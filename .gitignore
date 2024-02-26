@@ -36,3 +36,9 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### Important ###
+src/main/resources/dbconfig.properties
+
+### Other ###
+src/main/resources/
