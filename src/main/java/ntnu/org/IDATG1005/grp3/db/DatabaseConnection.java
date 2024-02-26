@@ -31,7 +31,8 @@ public class DatabaseConnection {
 
         connection = DriverManager.getConnection(url, user, password);
       } catch (IOException | SQLException e) {
-        logger.log(Level.SEVERE, "Error connecting to database", e);
+        logger.log(Level.SEVERE, "Error connecting to database.\n"
+            + "Check internet connection, VPN, and db properties", e);
       }
     }
     return connection;
