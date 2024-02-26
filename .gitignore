@@ -38,7 +38,8 @@ build/
 .DS_Store
 
 ### Important ###
-src/main/resources/dbconfig.properties
+src/main/resources/dbConfig.properties
 
 ### Other ###
 src/main/resources/
+.idea/
