@@ -12,6 +12,11 @@ public class HouseholdService {
     return householdDao.createHousehold(household);
   }
 
+  public Household createHousehold(Household h) {
+    Household household = new Household(h.getName(), h.getJoinCode());
+    return householdDao.createHousehold(household);
+  }
+
   public Household findHouseholdByJoinCode(String joinCode) {
     return householdDao.findHouseholdByJoinCode(joinCode);
   }
