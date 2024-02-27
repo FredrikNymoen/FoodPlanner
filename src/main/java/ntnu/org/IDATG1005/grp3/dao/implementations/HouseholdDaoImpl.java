@@ -8,11 +8,19 @@ import ntnu.org.IDATG1005.grp3.db.DatabaseConnection;
 import ntnu.org.IDATG1005.grp3.model.Household;
 import ntnu.org.IDATG1005.grp3.utility.Utility;
 
+/**
+ * Implementation of the HouseholdDao interface for interacting with household data in the database.
+ */
 public class HouseholdDaoImpl implements HouseholdDao {
 
   private static final Logger logger = Logger.getLogger(HouseholdDaoImpl.class.getName());
   private static final int MAX_RETRY = 5;
 
+  /**
+   * Creates a new household in the database with a unique name and join code.
+   *
+   * @return The created Household object, or null if the creation failed.
+   */
   @Override
   public Household createHousehold() {
 
@@ -43,10 +51,11 @@ public class HouseholdDaoImpl implements HouseholdDao {
             }
           }
         } else {
-          logger.log(Level.SEVERE, "Failed to generate a household");
+          logger.log(Level.SEVERE, "Failed to create a household");
           return null;
         }
       } catch (SQLException e) {
+        // Handle unique constraint violation for join codes
         if (e.getSQLState().startsWith("23")) {
           logger.log(Level.WARNING, "Join code already exists, retrying...", e);
           attempt++;
@@ -60,6 +69,12 @@ public class HouseholdDaoImpl implements HouseholdDao {
     return null;
   }
 
+  /**
+   * Finds a household by its join code.
+   *
+   * @param joinCode The join code of the household to find.
+   * @return The found Household object, or null if not found.
+   */
   @Override
   public Household findHouseholdByJoinCode(String joinCode) {
     String sql = "SELECT * FROM household WHERE join_code = ?";
@@ -78,25 +93,43 @@ public class HouseholdDaoImpl implements HouseholdDao {
     return null;
   }
 
+  /**
+   * Updates the name of an existing household.
+   *
+   * @param h The household to update.
+   * @param newName The new name for the household.
+   * @return true if the update was successful, false otherwise.
+   */
   @Override
-  public boolean updateName(int householdId, String newName) {
+  public boolean updateName(Household h, String newName) {
     String sql = "UPDATE household SET name = ? WHERE household_id = ?";
     try (Connection conn = DatabaseConnection.getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
       pstmt.setString(1, newName);
-      pstmt.setInt(2, householdId);
+      pstmt.setInt(2, h.getHouseholdId());
       int affectedRows = pstmt.executeUpdate();
 
-      return affectedRows > 0;
+      if (affectedRows > 0) {
+        h.setName(newName);
+        return true;
+      }
+      return false;
     } catch (SQLException e) {
-        logger.log(Level.SEVERE, "There was an error updating the household name", e);
+      logger.log(Level.SEVERE, "There was an error updating the household name", e);
       return false;
     }
   }
 
+  /**
+   * Updates the join code of an existing household.
+   *
+   * @param h The household to update.
+   * @param newJoinCode The new join code for the household.
+   * @return true if the update was successful, false otherwise.
+   */
   @Override
-  public boolean updateJoinCode(int householdId, String newJoinCode) {
+  public boolean updateJoinCode(Household h, String newJoinCode) {
 
     String sql = "UPDATE household SET join_code = ? WHERE household_id = ?";
 
@@ -104,12 +137,16 @@ public class HouseholdDaoImpl implements HouseholdDao {
         PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
       pstmt.setString(1, newJoinCode);
-      pstmt.setInt(2, householdId);
+      pstmt.setInt(2, h.getHouseholdId());
       int affectedRows = pstmt.executeUpdate();
 
-      return affectedRows > 0;
+      if (affectedRows > 0) {
+        h.setJoinCode(newJoinCode);
+        return true;
+      }
+      return false;
     } catch (SQLException e) {
-        logger.log(Level.SEVERE, "There was an error updating the household join code", e);
+      logger.log(Level.SEVERE, "There was an error updating the household join code", e);
       return false;
     }
   }
