@@ -12,29 +12,22 @@ import java.io.IOException;
 public class DatabaseConnection {
 
   private static final Logger logger = Logger.getLogger(DatabaseConnection.class.getName());
-  private static Connection connection = null;
-
-  // private constructor instead of implicit
-  private DatabaseConnection () {
-
-  }
 
   public static Connection getConnection() {
-    if (connection == null) {
-      try (FileInputStream fis = new FileInputStream("src/main/resources/dbConfig.properties")) {
-        Properties props = new Properties();
-        props.load(fis);
+    Connection conn = null;
+    try (FileInputStream fis = new FileInputStream("src/main/resources/dbConfig.properties")) {
+      Properties props = new Properties();
+      props.load(fis);
 
-        String url = props.getProperty("db.url");
-        String user = props.getProperty("db.user");
-        String password = props.getProperty("db.password");
+      String url = props.getProperty("db.url");
+      String user = props.getProperty("db.user");
+      String password = props.getProperty("db.password");
 
-        connection = DriverManager.getConnection(url, user, password);
-      } catch (IOException | SQLException e) {
-        logger.log(Level.SEVERE, "Error connecting to database.\n"
-            + "Check internet connection, VPN, and db properties", e);
-      }
+      conn = DriverManager.getConnection(url, user, password);
+    } catch (IOException | SQLException e) {
+      logger.log(Level.SEVERE, "Error connecting to the database.\n" +
+          "Check internet connection, VPN, and db properties", e);
     }
-    return connection;
+    return conn;
   }
 }
