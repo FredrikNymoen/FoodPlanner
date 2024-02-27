@@ -1,7 +1,8 @@
 
 o
-java:S1192"MDefine a constant instead of duplicating this literal "Hello world!" 3 times.(‚ÞÏ¥ýÿÿÿÿ8ÇêïÏÞ1
+java:S1192"MDefine a constant instead of duplicating this literal "Hello world!" 4 times.(‚ÞÏ¥ýÿÿÿÿ8š×¤ÑÞ1
 t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÝžÍƒûÿÿÿÿ
 L	java:S106"+Replace this use of System.out by a logger.(‚ÞÏ¥ýÿÿÿÿ8Óä‹ÏÞ1
-L	java:S106"+Replace this use of System.out by a logger.(‚ÞÏ¥ýÿÿÿÿ8éêïÏÞ1
-L	java:S106"+Replace this use of System.out by a logger.(‚ÞÏ¥ýÿÿÿÿ8êêïÏÞ1
+L	java:S106"+Replace this use of System.out by a logger.(‚ÞÏ¥ýÿÿÿÿ8¸×¤ÑÞ1
+L	java:S106"+Replace this use of System.out by a logger.(‚ÞÏ¥ýÿÿÿÿ8º×¤ÑÞ1
+L	java:S106	"+Replace this use of System.out by a logger.(‚ÞÏ¥ýÿÿÿÿ8óì§ÑÞ1
