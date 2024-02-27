@@ -1,9 +1,7 @@
 
 {	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(İÍƒûÿÿÿÿ8•¨ÈÏŞ1
 L	java:S106	"+Replace this use of System.out by a logger.(‚ŞÏ¥ıÿÿÿÿ8¢¨ÈÏŞ1
-R
-java:S1874
-"0Remove this use of "Provider"; it is deprecated.(Øğ²ûÿÿÿÿ8£¨ÈÏŞ1
-D
-java:S1185"(Remove this method to simply inherit it.(Ö’ò8¤¨ÈÏŞ1
-F	java:S106"+Replace this use of System.out by a logger.(¬…ËU8¨¨ÈÏŞ1
+U
+java:S1128"3Remove this unused import 'java.security.Provider'.(×„áãøÿÿÿÿ8·ê–ÑŞ1
+]
+java:S1128";Remove this unused import 'java.security.Provider.Service'.(ˆí²‰ùÿÿÿÿ8·ê–ÑŞ1
