@@ -77,7 +77,7 @@ public class HouseholdDaoImpl implements HouseholdDao {
    */
   @Override
   public Household findHouseholdByJoinCode(String joinCode) {
-    String sql = "SELECT * FROM household WHERE join_code = ?";
+    String sql = "SELECT household_id, name, join_code FROM household WHERE join_code = ?";
     try (Connection conn = DatabaseConnection.getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
@@ -85,7 +85,7 @@ public class HouseholdDaoImpl implements HouseholdDao {
       ResultSet rs = pstmt.executeQuery();
 
       if (rs.next()) {
-        return new Household(rs.getString(2), rs.getString(3), rs.getInt(1));
+        return new Household(rs.getString("name"), rs.getString("join_code"), rs.getInt("household_id"));
       }
     } catch (SQLException e) {
       logger.log(Level.SEVERE, "There was an error with SQL query", e);
@@ -93,60 +93,29 @@ public class HouseholdDaoImpl implements HouseholdDao {
     return null;
   }
 
+
   /**
-   * Updates the name of an existing household.
+   * Updates the details of an existing household.
    *
-   * @param h The household to update.
-   * @param newName The new name for the household.
+   * @param household The household to update with new values for name and/or join code.
    * @return true if the update was successful, false otherwise.
    */
   @Override
-  public boolean updateName(Household h, String newName) {
-    String sql = "UPDATE household SET name = ? WHERE household_id = ?";
+  public boolean updateHousehold(Household household) {
+    String sql = "UPDATE household SET name = ?, join_code = ? WHERE household_id = ?";
     try (Connection conn = DatabaseConnection.getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-      pstmt.setString(1, newName);
-      pstmt.setInt(2, h.getHouseholdId());
+      pstmt.setString(1, household.getName());
+      pstmt.setString(2, household.getJoinCode());
+      pstmt.setInt(3, household.getHouseholdId());
+
+      // Execute the update
       int affectedRows = pstmt.executeUpdate();
 
-      if (affectedRows > 0) {
-        h.setName(newName);
-        return true;
-      }
-      return false;
+      return affectedRows > 0;
     } catch (SQLException e) {
-      logger.log(Level.SEVERE, "There was an error updating the household name", e);
-      return false;
-    }
-  }
-
-  /**
-   * Updates the join code of an existing household.
-   *
-   * @param h The household to update.
-   * @param newJoinCode The new join code for the household.
-   * @return true if the update was successful, false otherwise.
-   */
-  @Override
-  public boolean updateJoinCode(Household h, String newJoinCode) {
-
-    String sql = "UPDATE household SET join_code = ? WHERE household_id = ?";
-
-    try (Connection conn = DatabaseConnection.getConnection();
-        PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-      pstmt.setString(1, newJoinCode);
-      pstmt.setInt(2, h.getHouseholdId());
-      int affectedRows = pstmt.executeUpdate();
-
-      if (affectedRows > 0) {
-        h.setJoinCode(newJoinCode);
-        return true;
-      }
-      return false;
-    } catch (SQLException e) {
-      logger.log(Level.SEVERE, "There was an error updating the household join code", e);
+      logger.log(Level.SEVERE, "There was an error updating the household", e);
       return false;
     }
   }

@@ -18,19 +18,9 @@ public interface HouseholdDao {
    * Updates the name of an existing household.
    *
    * @param h The household to update.
-   * @param newName The new name to assign to the household.
    * @return true if the update succeeds, false otherwise.
    */
-  boolean updateName(Household h, String newName);
-
-  /**
-   * Updates the join code of an existing household.
-   *
-   * @param h The household to update.
-   * @param newJoinCode The new join code to assign to the household.
-   * @return true if the update succeeds, false otherwise.
-   */
-  boolean updateJoinCode(Household h, String newJoinCode);
+  boolean updateHousehold(Household h);
 
   /**
    * Finds a household by its join code.
