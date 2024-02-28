@@ -12,7 +12,3 @@ g
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
-?
-hello-view.fxml,3\d\3d488f7229a98ebad5a1e290a3bb02da35d36f4d
-M
-src/main/java/hello-view.fxml,e\1\e12bef508e32cea52f7ae64f0ac94deaae80b22d

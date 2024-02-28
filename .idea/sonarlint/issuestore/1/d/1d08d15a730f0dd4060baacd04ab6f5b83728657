@@ -1,6 +1,7 @@
 
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(İÍƒûÿÿÿÿ8„ÂùÑŞ1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(İÍƒûÿÿÿÿ8ê”ƒß1
+L	java:S106	"+Replace this use of System.out by a logger.(ü°¸¢øÿÿÿÿ8Šì”ƒß1
 f
-java:S1128"DRemove this unused import 'ntnu.org.IDATG1005.grp3.model.Household'.(Ä–Åøÿÿÿÿ8â‡§‚ß1
+java:S1128"DRemove this unused import 'ntnu.org.IDATG1005.grp3.model.Household'.(Ä–Åøÿÿÿÿ8œì”ƒß1
 j
-java:S1128"MRemove this unused import 'ntnu.org.IDATG1005.grp3.service.HouseholdService'.(ü¾²»8ã‡§‚ß1
+java:S1128"MRemove this unused import 'ntnu.org.IDATG1005.grp3.service.HouseholdService'.(ü¾²»8ì”ƒß1
