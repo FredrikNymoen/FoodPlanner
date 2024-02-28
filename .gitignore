@@ -41,5 +41,4 @@ build/
 src/main/resources/dbConfig.properties
 
 ### Other ###
-src/main/resources/
 .idea/
