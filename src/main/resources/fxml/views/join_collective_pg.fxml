@@ -10,12 +10,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.org.IDATG1005.grp3.controller.aSimpleTestController">
    <children>
       <ImageView fitHeight="488.0" fitWidth="957.0" layoutX="-122.0" layoutY="-12.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../Desktop/bakgrunnsbilde_mat.jpg" />
+            <Image url="@/images/bakgrunnsbilde_mat.jpg" />
          </image>
       </ImageView>
       <Pane layoutX="245.0" layoutY="78.0" prefHeight="295.0" prefWidth="310.0" style="-fx-background-color: white; -fx-background-radius: 10;">
@@ -31,7 +30,7 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <Button layoutX="15.0" layoutY="94.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="279.0" style="-fx-background-color: green;" text="Bli med" textFill="WHITE">
+            <Button layoutX="15.0" layoutY="94.0" mnemonicParsing="false" onAction="#btnNextSite" prefHeight="25.0" prefWidth="279.0" style="-fx-background-color: green;" text="Bli med" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>

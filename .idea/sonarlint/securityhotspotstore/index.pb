@@ -14,3 +14,5 @@ g
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 n
 >src/main/java/ntnu/org/IDATG1005/grp3/application/MainApp.java,1\3\13315e7152b91d6e185edfcdc013203ae9641308
+{
+Ksrc/main/java/ntnu/org/IDATG1005/grp3/controller/aSimpleTestController.java,c\b\cbe85c9e226f5c82dcb41c622a6ba979947a5157
