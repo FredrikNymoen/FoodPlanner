@@ -17,7 +17,7 @@ public class User {
    * @param email The email address of the user.
    * @param password The password for the user account.
    */
-  public User(int userId, String username, String email, String password) {
+  public User(Integer userId, String username, String email, String password) {
     this.userId = userId;
     this.username = username;
     this.email = email;

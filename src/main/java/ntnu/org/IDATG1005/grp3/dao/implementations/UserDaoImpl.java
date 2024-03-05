@@ -5,6 +5,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import ntnu.org.IDATG1005.grp3.dao.interfaces.UserDao;
 import ntnu.org.IDATG1005.grp3.db.DatabaseConnection;
+import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.UsernameAlreadyExistsException;
+import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.EmailAlreadyExistsException;
 import ntnu.org.IDATG1005.grp3.model.User;
 
 /**
@@ -22,9 +24,11 @@ public class UserDaoImpl implements UserDao {
    * @param email The email of the new user.
    * @param password The password for the new user account.
    * @return A new User object if the user was successfully created, or null if the operation failed.
+   * @throws UsernameAlreadyExistsException If the specified username already exists in the database.
+   * @throws EmailAlreadyExistsException If the specified email already exists in the database.
    */
   @Override
-  public User createUser(String username, String email, String password) {
+  public User createUser(String username, String email, String password) throws UsernameAlreadyExistsException, EmailAlreadyExistsException {
     String sql = "INSERT INTO user (username, email, password) VALUES (?, ?, ?)";
     try (Connection conn = DatabaseConnection.getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -41,19 +45,29 @@ public class UserDaoImpl implements UserDao {
         }
       }
     } catch (SQLException e) {
-      logger.log(Level.SEVERE, "There was an error with SQL query on creating a user", e);
+      if (e.getSQLState().startsWith("23")) {
+        if (e.getMessage().contains("email")) {
+          throw new EmailAlreadyExistsException(email);
+        } else if (e.getMessage().contains("username")) {
+          throw new UsernameAlreadyExistsException(username);
+        }
+      }
+      logger.log(Level.SEVERE, "There was an error with the SQL query on creating a user", e);
     }
     return null;
   }
+
 
   /**
    * Updates an existing user's details in the database.
    *
    * @param user The user to update, containing the new state to be persisted.
    * @return true if the update was successful, false otherwise.
+   * @throws UsernameAlreadyExistsException If the specified username already exists in the database.
+   * @throws EmailAlreadyExistsException If the specified email already exists in the database.
    */
   @Override
-  public boolean updateUser(User user) {
+  public boolean updateUser(User user) throws UsernameAlreadyExistsException, EmailAlreadyExistsException {
     String sql = "UPDATE user SET username = ?, email = ?, password = ? WHERE user_id = ?";
     try (Connection conn = DatabaseConnection.getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -66,6 +80,13 @@ public class UserDaoImpl implements UserDao {
       int affectedRows = pstmt.executeUpdate();
       return affectedRows > 0;
     } catch (SQLException e) {
+      if (e.getSQLState().startsWith("23")) {
+        if (e.getMessage().contains("email")) {
+          throw new EmailAlreadyExistsException(user.getEmail());
+        } else if (e.getMessage().contains("username")) {
+          throw new UsernameAlreadyExistsException(user.getUsername());
+        }
+      }
       logger.log(Level.SEVERE, "There was an error updating the user", e);
       return false;
     }
