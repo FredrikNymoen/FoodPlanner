@@ -4,22 +4,38 @@ import ntnu.org.IDATG1005.grp3.dao.implementations.HouseholdDaoImpl;
 import ntnu.org.IDATG1005.grp3.dao.interfaces.HouseholdDao;
 import ntnu.org.IDATG1005.grp3.model.Household;
 
+/**
+ * Provides service operations for managing households.
+ */
 public class HouseholdService {
   private final HouseholdDao householdDao = new HouseholdDaoImpl();
 
+  /**
+   * Creates a new household.
+   *
+   * @return The newly created Household object.
+   */
   public Household createHousehold() {
     return householdDao.createHousehold();
   }
 
+  /**
+   * Finds a household by its join code.
+   *
+   * @param joinCode The join code associated with the household.
+   * @return The Household object if found, or null if not found.
+   */
   public Household findHouseholdByJoinCode(String joinCode) {
     return householdDao.findHouseholdByJoinCode(joinCode);
   }
 
-  public boolean updateHouseholdName(int householdId, String newName) {
-    return householdDao.updateName(householdId, newName);
-  }
-
-  public boolean updateHouseholdJoinCode(int householdId, String newJoinCode) {
-    return householdDao.updateJoinCode(householdId, newJoinCode);
+  /**
+   * Updates the details of an existing household.
+   *
+   * @param household The household to update with new values already set.
+   * @return true if the update was successful, false otherwise.
+   */
+  public boolean updateHouseholdDetails(Household household) {
+    return householdDao.updateHousehold(household);
   }
 }

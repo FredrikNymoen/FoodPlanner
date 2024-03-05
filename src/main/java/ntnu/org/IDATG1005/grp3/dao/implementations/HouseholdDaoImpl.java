@@ -8,11 +8,19 @@ import ntnu.org.IDATG1005.grp3.db.DatabaseConnection;
 import ntnu.org.IDATG1005.grp3.model.Household;
 import ntnu.org.IDATG1005.grp3.utility.Utility;
 
+/**
+ * Implementation of the HouseholdDao interface for interacting with household data in the database.
+ */
 public class HouseholdDaoImpl implements HouseholdDao {
 
   private static final Logger logger = Logger.getLogger(HouseholdDaoImpl.class.getName());
   private static final int MAX_RETRY = 5;
 
+  /**
+   * Creates a new household in the database with a unique name and join code.
+   *
+   * @return The created Household object, or null if the creation failed.
+   */
   @Override
   public Household createHousehold() {
 
@@ -43,10 +51,11 @@ public class HouseholdDaoImpl implements HouseholdDao {
             }
           }
         } else {
-          logger.log(Level.SEVERE, "Failed to generate a household");
+          logger.log(Level.SEVERE, "Failed to create a household");
           return null;
         }
       } catch (SQLException e) {
+        // Handle unique constraint violation for join codes
         if (e.getSQLState().startsWith("23")) {
           logger.log(Level.WARNING, "Join code already exists, retrying...", e);
           attempt++;
@@ -60,9 +69,15 @@ public class HouseholdDaoImpl implements HouseholdDao {
     return null;
   }
 
+  /**
+   * Finds a household by its join code.
+   *
+   * @param joinCode The join code of the household to find.
+   * @return The found Household object, or null if not found.
+   */
   @Override
   public Household findHouseholdByJoinCode(String joinCode) {
-    String sql = "SELECT * FROM household WHERE join_code = ?";
+    String sql = "SELECT household_id, name, join_code FROM household WHERE join_code = ?";
     try (Connection conn = DatabaseConnection.getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
@@ -70,7 +85,7 @@ public class HouseholdDaoImpl implements HouseholdDao {
       ResultSet rs = pstmt.executeQuery();
 
       if (rs.next()) {
-        return new Household(rs.getString(2), rs.getString(3), rs.getInt(1));
+        return new Household(rs.getString("name"), rs.getString("join_code"), rs.getInt("household_id"));
       }
     } catch (SQLException e) {
       logger.log(Level.SEVERE, "There was an error with SQL query", e);
@@ -78,38 +93,29 @@ public class HouseholdDaoImpl implements HouseholdDao {
     return null;
   }
 
+
+  /**
+   * Updates the details of an existing household.
+   *
+   * @param household The household to update with new values for name and/or join code.
+   * @return true if the update was successful, false otherwise.
+   */
   @Override
-  public boolean updateName(int householdId, String newName) {
-    String sql = "UPDATE household SET name = ? WHERE household_id = ?";
+  public boolean updateHousehold(Household household) {
+    String sql = "UPDATE household SET name = ?, join_code = ? WHERE household_id = ?";
     try (Connection conn = DatabaseConnection.getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-      pstmt.setString(1, newName);
-      pstmt.setInt(2, householdId);
+      pstmt.setString(1, household.getName());
+      pstmt.setString(2, household.getJoinCode());
+      pstmt.setInt(3, household.getHouseholdId());
+
+      // Execute the update
       int affectedRows = pstmt.executeUpdate();
 
       return affectedRows > 0;
     } catch (SQLException e) {
-        logger.log(Level.SEVERE, "There was an error updating the household name", e);
-      return false;
-    }
-  }
-
-  @Override
-  public boolean updateJoinCode(int householdId, String newJoinCode) {
-
-    String sql = "UPDATE household SET join_code = ? WHERE household_id = ?";
-
-    try (Connection conn = DatabaseConnection.getConnection();
-        PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-      pstmt.setString(1, newJoinCode);
-      pstmt.setInt(2, householdId);
-      int affectedRows = pstmt.executeUpdate();
-
-      return affectedRows > 0;
-    } catch (SQLException e) {
-        logger.log(Level.SEVERE, "There was an error updating the household join code", e);
+      logger.log(Level.SEVERE, "There was an error updating the household", e);
       return false;
     }
   }
