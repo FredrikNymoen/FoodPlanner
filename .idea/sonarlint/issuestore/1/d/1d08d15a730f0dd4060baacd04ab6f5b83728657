@@ -1,14 +1,14 @@
 
 {	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(İÍƒûÿÿÿÿ8²©òà1
-L	java:S106"+Replace this use of System.out by a logger.(í²€ùøÿÿÿÿ8À©òà1
-G	java:S106"+Replace this use of System.out by a logger.(·®‰­8Á©òà1
-G	java:S106"+Replace this use of System.out by a logger.(£‡îû8Ã©òà1
-L	java:S106"+Replace this use of System.out by a logger.(¼ïÕşşÿÿÿÿ8Ä©òà1
-L	java:S106"+Replace this use of System.out by a logger.(åîù­ıÿÿÿÿ8Å©òà1
-L	java:S106!"+Replace this use of System.out by a logger.(ş‰¯îúÿÿÿÿ8Æ©òà1
-L	java:S106#"+Replace this use of System.out by a logger.(Ô Êÿÿÿÿÿ8Ç©òà1
-G	java:S106)"+Replace this use of System.out by a logger.(ÎÒÃ®8È©òà1
-G	java:S1060"+Replace this use of System.out by a logger.(â•ßŸ8Ê©òà1
-L	java:S1062"+Replace this use of System.out by a logger.(²ºşªÿÿÿÿÿ8Ë©òà1
-L	java:S1064"+Replace this use of System.out by a logger.(ÕøˆŸÿÿÿÿÿ8Ì©òà1
-L	java:S1066"+Replace this use of System.out by a logger.(Ô Êÿÿÿÿÿ8Í©òà1
+L	java:S106"+Replace this use of System.out by a logger.(í²€ùøÿÿÿÿ8À©òà1
+G	java:S106"+Replace this use of System.out by a logger.(·®‰­8Á©òà1
+G	java:S106"+Replace this use of System.out by a logger.(£‡îû8Ã©òà1
+L	java:S106"+Replace this use of System.out by a logger.(¼ïÕşşÿÿÿÿ8Ä©òà1
+L	java:S106 "+Replace this use of System.out by a logger.(åîù­ıÿÿÿÿ8Å©òà1
+L	java:S106""+Replace this use of System.out by a logger.(ş‰¯îúÿÿÿÿ8Æ©òà1
+L	java:S106$"+Replace this use of System.out by a logger.(Ô Êÿÿÿÿÿ8Ç©òà1
+G	java:S106*"+Replace this use of System.out by a logger.(ÎÒÃ®8È©òà1
+G	java:S1061"+Replace this use of System.out by a logger.(â•ßŸ8Ê©òà1
+L	java:S1063"+Replace this use of System.out by a logger.(²ºşªÿÿÿÿÿ8Ë©òà1
+L	java:S1065"+Replace this use of System.out by a logger.(ÕøˆŸÿÿÿÿÿ8Ì©òà1
+L	java:S1067"+Replace this use of System.out by a logger.(Ô Êÿÿÿÿÿ8Í©òà1

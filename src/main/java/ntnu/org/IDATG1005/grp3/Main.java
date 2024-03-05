@@ -6,9 +6,10 @@ import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.UsernameAlreadyExists
 import ntnu.org.IDATG1005.grp3.model.User;
 import ntnu.org.IDATG1005.grp3.service.UserService;
 
-public class Main {
 
+public class Main{
   public static void main(String[] args) {
+
     createUserSim();
   }
 
