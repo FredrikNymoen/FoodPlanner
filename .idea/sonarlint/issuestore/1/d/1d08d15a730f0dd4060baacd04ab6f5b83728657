@@ -1,7 +1,14 @@
 
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(İÍƒûÿÿÿÿ8ê”ƒß1
-L	java:S106	"+Replace this use of System.out by a logger.(ü°¸¢øÿÿÿÿ8ó€œƒß1
-f
-java:S1128"DRemove this unused import 'ntnu.org.IDATG1005.grp3.model.Household'.(Ä–Åøÿÿÿÿ8õ€œƒß1
-j
-java:S1128"MRemove this unused import 'ntnu.org.IDATG1005.grp3.service.HouseholdService'.(ü¾²»8õ€œƒß1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(İÍƒûÿÿÿÿ8´¹¿ğà1
+L	java:S106"+Replace this use of System.out by a logger.(í²€ùøÿÿÿÿ8Ò¹¿ğà1
+G	java:S106"+Replace this use of System.out by a logger.(·®‰­8Ó¹¿ğà1
+G	java:S106"+Replace this use of System.out by a logger.(£‡îû8Õ¹¿ğà1
+L	java:S106"+Replace this use of System.out by a logger.(¼ïÕşşÿÿÿÿ8Ù¹¿ğà1
+L	java:S106"+Replace this use of System.out by a logger.(åîù­ıÿÿÿÿ8Ú¹¿ğà1
+L	java:S106!"+Replace this use of System.out by a logger.(ş‰¯îúÿÿÿÿ8Ü¹¿ğà1
+L	java:S106#"+Replace this use of System.out by a logger.(Ô Êÿÿÿÿÿ8İ¹¿ğà1
+G	java:S106)"+Replace this use of System.out by a logger.(ÎÒÃ®8ß¹¿ğà1
+G	java:S1060"+Replace this use of System.out by a logger.(â•ßŸ8â¹¿ğà1
+L	java:S1062"+Replace this use of System.out by a logger.(²ºşªÿÿÿÿÿ8ã¹¿ğà1
+L	java:S1064"+Replace this use of System.out by a logger.(ÕøˆŸÿÿÿÿÿ8å¹¿ğà1
+L	java:S1066"+Replace this use of System.out by a logger.(Ô Êÿÿÿÿÿ8æ¹¿ğà1

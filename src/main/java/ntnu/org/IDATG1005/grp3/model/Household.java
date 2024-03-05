@@ -1,51 +1,101 @@
 package ntnu.org.IDATG1005.grp3.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * Represents a household, including its identification, name, join code, and users.
+ */
 public class Household {
 
   private final Integer householdId;
   private String name;
   private String joinCode;
-  private ArrayList<User> users;
+  private final ArrayList<User> users;
 
-  public Household(String name, String joinCode, int householdId) {
+  /**
+   * Constructs a new Household with the specified name, join code, and ID.
+   * Initializes an empty list of users.
+   *
+   * @param name The name of the household.
+   * @param joinCode The join code for the household.
+   * @param householdId The unique identifier for the household.
+   */
+  public Household(String name, String joinCode, Integer householdId) {
     this.householdId = householdId;
     this.name = name;
     this.joinCode = joinCode;
     users = new ArrayList<>();
   }
 
-  // Getters
+  /**
+   * Gets the household ID.
+   *
+   * @return The unique identifier of the household.
+   */
   public Integer getHouseholdId() {
     return householdId;
   }
 
+  /**
+   * Gets the household name.
+   *
+   * @return The name of the household.
+   */
   public String getName() {
     return name;
   }
 
+  /**
+   * Gets the join code of the household.
+   *
+   * @return The join code for the household.
+   */
   public String getJoinCode() {
     return joinCode;
   }
 
-  public ArrayList<User> getUsers() {
+  /**
+   * Gets the list of users in the household.
+   *
+   * @return A list of users belonging to the household.
+   */
+  public List<User> getUsers() {
     return users;
   }
 
-  // Setters
+  /**
+   * Sets the name of the household.
+   *
+   * @param name The new name for the household.
+   */
   public void setName(String name) {
     this.name = name;
   }
 
+  /**
+   * Sets the join code for the household.
+   *
+   * @param joinCode The new join code for the household.
+   */
   public void setJoinCode(String joinCode) {
     this.joinCode = joinCode;
   }
 
+  /**
+   * Adds a user to the household.
+   *
+   * @param u The user to add.
+   */
   public void addUser(User u) {
     users.add(u);
   }
 
+  /**
+   * Removes a user from the household.
+   *
+   * @param u The user to remove.
+   */
   public void removeUser(User u) {
     users.remove(u);
   }
