@@ -39,6 +39,7 @@ build/
 
 ### Important ###
 src/main/resources/dbConfig.properties
+src/main/resources/images
 
 ### Other ###
 .idea/

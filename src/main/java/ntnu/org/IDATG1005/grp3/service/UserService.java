@@ -23,6 +23,8 @@ public class UserService {
    * @throws EmailAlreadyExistsException if the provided email already exists in the database
    */
   public User createUser(String username, String email, String password) throws UsernameAlreadyExistsException, EmailAlreadyExistsException {
+    // hash password
+    // email validation etc
     return userDao.createUser(username, email, password);
   }
 
