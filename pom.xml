@@ -112,7 +112,7 @@
         </executions>
 
         <configuration>
-          <mainClass>ntnu.org.IDATG1005.grp3.application.TheFoodPlannerApp</mainClass>
+          <mainClass>ntnu.org.IDATG1005.grp3.application.MainApp</mainClass>
         </configuration>
 
       </plugin>

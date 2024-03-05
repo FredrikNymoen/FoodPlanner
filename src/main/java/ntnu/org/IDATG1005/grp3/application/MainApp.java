@@ -7,12 +7,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class TheFoodPlannerApp extends Application {
+public class MainApp extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
     Parent root = FXMLLoader.load(
-        Objects.requireNonNull(getClass().getResource("/fxmls/aSimpleTest.fxml")));
+        Objects.requireNonNull(getClass().getResource("/fxml/views/aSimpleTest.fxml")));
     primaryStage.setTitle("Application Title");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();
