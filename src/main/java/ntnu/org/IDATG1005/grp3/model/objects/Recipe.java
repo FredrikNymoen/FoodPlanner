@@ -1,5 +1,104 @@
 package ntnu.org.IDATG1005.grp3.model.objects;
 
+import java.util.List;
+
 public class Recipe {
-  private String name;
+
+  private final RecipeInfo recipeInfo;
+  private final List<RecipeIngredient> ingredients;
+  private final List<Direction> directions;
+  private final List<Tag> tags;
+  private Integer personsAdults;
+  private Integer personsChildren;
+
+  /**
+   * Constructs a Recipe with specified details.
+   *
+   * @param recipeInfo  Object containing recipe meta-information.
+   * @param ingredients List of ingredients required for the recipe.
+   * @param directions  List of cooking directions.
+   * @param tags        List of tags associated with the recipe.
+   */
+  public Recipe(RecipeInfo recipeInfo, List<RecipeIngredient> ingredients,
+      List<Direction> directions, List<Tag> tags) {
+    this.recipeInfo = recipeInfo;
+    this.ingredients = ingredients;
+    this.directions = directions;
+    this.tags = tags;
+
+    this.personsAdults = 2; // default
+    this.personsChildren = 2; // default
+  }
+
+  /**
+   * Gets the recipe information.
+   *
+   * @return The RecipeInfo object containing meta-information.
+   */
+  public RecipeInfo getRecipeInfo() {
+    return recipeInfo;
+  }
+
+  /**
+   * Gets the list of ingredients.
+   *
+   * @return The list of RecipeIngredient objects.
+   */
+  public List<RecipeIngredient> getIngredients() {
+    return ingredients;
+  }
+
+  /**
+   * Gets the list of directions.
+   *
+   * @return The list of Direction objects.
+   */
+  public List<Direction> getDirections() {
+    return directions;
+  }
+
+  /**
+   * Gets the list of tags.
+   *
+   * @return The list of Tag objects.
+   */
+  public List<Tag> getTags() {
+    return tags;
+  }
+
+  /**
+   * Gets the number of adults served.
+   *
+   * @return The number of adults.
+   */
+  public Integer getPersonsAdults() {
+    return personsAdults;
+  }
+
+  /**
+   * Sets the number of adults served.
+   *
+   * @param personsAdults The new number of adults served.
+   */
+  public void setPersonsAdults(Integer personsAdults) {
+    this.personsAdults = personsAdults;
+  }
+
+  /**
+   * Gets the number of children served.
+   *
+   * @return The number of children.
+   */
+  public Integer getPersonsChildren() {
+    return personsChildren;
+  }
+
+  /**
+   * Sets the number of children served.
+   *
+   * @param personsChildren The new number of children served.
+   */
+  public void setPersonsChildren(Integer personsChildren) {
+    this.personsChildren = personsChildren;
+  }
 }
