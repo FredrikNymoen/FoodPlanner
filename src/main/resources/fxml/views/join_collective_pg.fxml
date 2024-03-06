@@ -5,54 +5,58 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.org.IDATG1005.grp3.controller.aSimpleTestController">
    <children>
-      <ImageView fitHeight="488.0" fitWidth="957.0" layoutX="-122.0" layoutY="-12.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="466.0" fitWidth="931.0" layoutX="-122.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-9.0" AnchorPane.leftAnchor="-122.0" AnchorPane.rightAnchor="-9.0" AnchorPane.topAnchor="-7.0">
          <image>
             <Image url="@/images/bakgrunnsbilde_mat.jpg" />
          </image>
       </ImageView>
-      <Pane layoutX="245.0" layoutY="78.0" prefHeight="295.0" prefWidth="310.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+      <StackPane layoutX="189.0" layoutY="79.0" prefHeight="295.0" prefWidth="310.0">
          <children>
-            <TextField layoutX="15.0" layoutY="56.0" prefHeight="25.0" prefWidth="279.0" />
-            <Text layoutX="15.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bli med i kollektiv" wrappingWidth="279.0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <Text layoutX="15.0" layoutY="76.0" opacity="0.22" strokeType="OUTSIDE" strokeWidth="0.0" text="Kollektivets kode" wrappingWidth="164.298828125">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <Button layoutX="15.0" layoutY="94.0" mnemonicParsing="false" onAction="#btnNextSite" prefHeight="25.0" prefWidth="279.0" style="-fx-background-color: green;" text="Bli med" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Button>
-            <Button layoutX="15.0" layoutY="224.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="279.0" style="-fx-background-color: green;" text="Registrer" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Button>
-            <Text layoutX="16.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registrer kollektiv" wrappingWidth="279.0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <Text layoutX="73.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: front;" text="Eller" textAlignment="CENTER" wrappingWidth="164.298828125">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Text>
-            <Line endX="99.0" layoutX="37.0" layoutY="159.0" startX="-37.0" />
-            <Line endX="97.0" layoutX="213.0" layoutY="159.0" startX="-40.0" />
+            <AnchorPane maxHeight="590.0" maxWidth="620.0" minHeight="295.0" minWidth="310.0" style="-fx-background-color: white; -fx-background-radius: 10;" StackPane.alignment="CENTER">
+               <children>
+                  <TextField layoutX="10.0" layoutY="68.0" maxHeight="50.0" maxWidth="558.0" prefHeight="25.0" prefWidth="279.0" style="-fx-font-size: 1.1em;" />
+                  <Text layoutX="11.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.6em;" text="Bli med i kollektiv" wrappingWidth="279.0" AnchorPane.bottomAnchor="237.18124961853027" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="32.28125">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="18.0" layoutY="87.0" opacity="0.22" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.1em;" text="Kollektivets kode" wrappingWidth="164.298828125" AnchorPane.bottomAnchor="204.44296836853027" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="127.701171875" AnchorPane.topAnchor="72.755859375">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Button layoutX="10.0" layoutY="106.0" maxHeight="30.0" maxWidth="300.0" minHeight="25.0" minWidth="279.0" mnemonicParsing="false" onAction="#btnNextSite" style="-fx-background-color: green; -fx-font-size: 1.2em;" text="Bli med" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Text layoutX="11.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.6em;" text="Registrer kollektiv" wrappingWidth="279.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="67.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: front; -fx-font-size: 1.4em;" text="Eller" textAlignment="CENTER" wrappingWidth="164.298828125">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Text>
+                  <Line endX="92.5" layoutX="35.0" layoutY="172.0" startX="-37.0" />
+                  <Line endX="97.0" layoutX="212.0" layoutY="171.0" startX="-40.0" />
+                  <Button layoutX="10.0" layoutY="236.0" maxHeight="30.0" maxWidth="300.0" minHeight="25.0" minWidth="279.0" mnemonicParsing="false" style="-fx-background-color: green; -fx-font-size: 1.2em;" text="Registrer" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
          </children>
-      </Pane>
+      </StackPane>
    </children>
 </AnchorPane>
