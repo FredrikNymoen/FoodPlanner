@@ -1,5 +1,6 @@
 package ntnu.org.IDATG1005.grp3;
 
+import ntnu.org.IDATG1005.grp3.dao.implementations.UserDaoImpl;
 import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.EmailAlreadyExistsException;
 import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.UsernameAlreadyExistsException;
 import ntnu.org.IDATG1005.grp3.model.User;
@@ -20,12 +21,12 @@ public class Main{
     System.out.println("Username: " + user.getUsername());
 
     // simulate how to create a user with database.
-    UserService userService = new UserService();
+    UserService userService = new UserService(new UserDaoImpl());
     // as always a objectService class is used.
 
     System.out.println("\nMaking the db create the user for us:");
     try {
-      User newUser = userService.createUser("kjosern", "kjos@kjos.no", "ok");
+      User newUser = userService.createUser("no", "new@no", "ok");
       System.out.println("User created successfully: " + newUser.getUsername());
     } catch (UsernameAlreadyExistsException e) {
       System.out.println("Failed to create user: Username already exists.");
