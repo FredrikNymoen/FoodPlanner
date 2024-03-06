@@ -1,6 +1,6 @@
 package ntnu.org.IDATG1005.grp3.dao.interfaces;
 
-import ntnu.org.IDATG1005.grp3.model.Household;
+import ntnu.org.IDATG1005.grp3.model.objects.Household;
 
 /**
  * Defines the data access operations for managing households.

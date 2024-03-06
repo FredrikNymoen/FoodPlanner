@@ -1,4 +1,6 @@
-package ntnu.org.IDATG1005.grp3.model;
+package ntnu.org.IDATG1005.grp3.model.objects;
+
+import ntnu.org.IDATG1005.grp3.model.objects.Inventory;
 
 /**
  * Represents a user with a unique ID, username, email address, and password.
@@ -6,6 +8,7 @@ package ntnu.org.IDATG1005.grp3.model;
 public class User {
   private final Integer userId;
   private String username;
+  private Inventory inventory;
   private String email;
   private String password; // Storing password in this manner is not a best practice
 
@@ -87,5 +90,9 @@ public class User {
    */
   public void setPassword(String password) {
     this.password = password;
+  }
+
+  public Inventory getInventory() {
+    return inventory;
   }
 }

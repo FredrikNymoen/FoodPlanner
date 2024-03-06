@@ -2,7 +2,7 @@ package ntnu.org.IDATG1005.grp3.service;
 
 import ntnu.org.IDATG1005.grp3.dao.implementations.HouseholdDaoImpl;
 import ntnu.org.IDATG1005.grp3.dao.interfaces.HouseholdDao;
-import ntnu.org.IDATG1005.grp3.model.Household;
+import ntnu.org.IDATG1005.grp3.model.objects.Household;
 
 /**
  * Provides service operations for managing households.

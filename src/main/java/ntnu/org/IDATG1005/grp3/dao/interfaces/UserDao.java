@@ -2,7 +2,7 @@ package ntnu.org.IDATG1005.grp3.dao.interfaces;
 
 import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.EmailAlreadyExistsException;
 import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.UsernameAlreadyExistsException;
-import ntnu.org.IDATG1005.grp3.model.User;
+import ntnu.org.IDATG1005.grp3.model.objects.User;
 
 /**
  * Interface for data access operations related to {@link User} entities.

@@ -5,7 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import ntnu.org.IDATG1005.grp3.dao.interfaces.HouseholdDao;
 import ntnu.org.IDATG1005.grp3.db.DatabaseConnection;
-import ntnu.org.IDATG1005.grp3.model.Household;
+import ntnu.org.IDATG1005.grp3.model.objects.Household;
 import ntnu.org.IDATG1005.grp3.utility.Utility;
 
 /**

@@ -1,4 +1,4 @@
-package ntnu.org.IDATG1005.grp3.model;
+package ntnu.org.IDATG1005.grp3.model.objects;
 
 /**
  * Represents an ingredient with a unique ID, name, and image URL.
