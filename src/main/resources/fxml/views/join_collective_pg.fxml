@@ -21,7 +21,7 @@
          <children>
             <AnchorPane maxHeight="590.0" maxWidth="620.0" minHeight="295.0" minWidth="310.0" style="-fx-background-color: white; -fx-background-radius: 10;" StackPane.alignment="CENTER">
                <children>
-                  <TextField layoutX="10.0" layoutY="68.0" maxHeight="50.0" maxWidth="558.0" prefHeight="25.0" prefWidth="279.0" style="-fx-font-size: 1.1em;" />
+                  <TextField layoutX="10.0" layoutY="68.0" maxHeight="50.0" maxWidth="558.0" prefHeight="25.0" prefWidth="279.0" promptText="Kollektivets kode" style="-fx-font-size: 1.1em;" />
                   <Text layoutX="11.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.6em;" text="Bli med i kollektiv" wrappingWidth="279.0" AnchorPane.bottomAnchor="237.18124961853027" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="32.28125">
                      <font>
                         <Font size="18.0" />

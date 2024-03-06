@@ -1,15 +1,24 @@
 package ntnu.org.IDATG1005.grp3.controller;
 
 import java.io.IOException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class aSimpleTestController {
+
+  @FXML
+  private TextField username;
+  @FXML
+  private PasswordField password;
+
   @FXML
   private void btnProfile(MouseEvent actionEvent) {
     try {
@@ -22,6 +31,9 @@ public class aSimpleTestController {
       Scene scene = new Scene(root);
 
       profileStage.setScene(scene);
+
+      //Blocks the main stage until the profile stage is closed
+      profileStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
 
       profileStage.show();
 
@@ -60,13 +72,22 @@ public class aSimpleTestController {
       profileStage.setTitle("Profile");
       Parent root = loader.load();
       Scene scene = new Scene(root);
-
       profileStage.setScene(scene);
-
+      profileStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
       profileStage.show();
 
     } catch (IOException e) {
       e.printStackTrace();
+    }
+  }
+  public void createUser(ActionEvent actionEvent){
+    if(username.getText().isEmpty() || password.getText().isEmpty()){
+      System.out.println("Please fill in all fields");
+    }else {
+      System.out.println(username.getText());
+      System.out.println(password.getText());
+      Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+      stage.close();
     }
   }
 

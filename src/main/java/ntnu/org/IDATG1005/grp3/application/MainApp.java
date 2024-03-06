@@ -1,5 +1,6 @@
 package ntnu.org.IDATG1005.grp3.application;
 
+import java.awt.Button;
 import java.util.Objects;
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
