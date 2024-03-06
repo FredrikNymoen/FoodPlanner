@@ -2,6 +2,11 @@ package ntnu.org.IDATG1005.grp3.model.objects;
 
 import java.util.List;
 
+/**
+ * Aggregates comprehensive details of a recipe including meta-information, ingredients, cooking directions, and tags,
+ * alongside proportions adults and children. It encapsulates the essence of a recipe for presentation and
+ * preparation guidance.
+ */
 public class Recipe {
 
   private final RecipeInfo recipeInfo;
@@ -14,20 +19,21 @@ public class Recipe {
   /**
    * Constructs a Recipe with specified details.
    *
-   * @param recipeInfo  Object containing recipe meta-information.
-   * @param ingredients List of ingredients required for the recipe.
-   * @param directions  List of cooking directions.
-   * @param tags        List of tags associated with the recipe.
+   * @param recipeInfo      Object containing recipe meta-information.
+   * @param ingredients     List of ingredients required for the recipe.
+   * @param directions      List of cooking directions.
+   * @param tags            List of tags associated with the recipe.
+   * @param personsAdults   Number of Adults recorded for base ingredients.
+   * @param personsChildren Number of Children recorded for base ingredients.
    */
   public Recipe(RecipeInfo recipeInfo, List<RecipeIngredient> ingredients,
-      List<Direction> directions, List<Tag> tags) {
+      List<Direction> directions, List<Tag> tags, Integer personsAdults, Integer personsChildren) {
     this.recipeInfo = recipeInfo;
     this.ingredients = ingredients;
     this.directions = directions;
     this.tags = tags;
-
-    this.personsAdults = 2; // default
-    this.personsChildren = 2; // default
+    this.personsAdults = personsAdults;
+    this.personsChildren = personsChildren;
   }
 
   /**
