@@ -10,14 +10,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
 public class aSimpleTestController {
 
+  public FlowPane profileContainer;
   @FXML
   private TextField username;
   @FXML
   private PasswordField password;
+
 
   @FXML
   private void btnProfile(MouseEvent actionEvent) {
@@ -53,6 +56,7 @@ public class aSimpleTestController {
       FXMLLoader loader = new FXMLLoader(
           getClass().getResource("/fxml/views/your_collective_pg.fxml"));
       Parent root = loader.load();
+      System.out.println("Button clicked");
 
       Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
@@ -68,6 +72,7 @@ public class aSimpleTestController {
       exitUser(mouseEvent);
       FXMLLoader loader = new FXMLLoader(
           getClass().getResource("/fxml/components/edit_profile.fxml"));
+      System.out.println("button 2 clicked");
       Stage profileStage = new Stage();
       profileStage.setTitle("Profile");
       Parent root = loader.load();
@@ -80,12 +85,21 @@ public class aSimpleTestController {
       e.printStackTrace();
     }
   }
-  public void createUser(ActionEvent actionEvent){
+  public void createUser(ActionEvent actionEvent) throws IOException {
     if(username.getText().isEmpty() || password.getText().isEmpty()){
       System.out.println("Please fill in all fields");
     }else {
       System.out.println(username.getText());
       System.out.println(password.getText());
+      Node newUser  = null;
+      try {
+        newUser = FXMLLoader.load(getClass().getResource("/fxml/components/profile_page.fxml"));
+
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
+
+      profileContainer.getChildren().add(newUser);
       Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
       stage.close();
     }
