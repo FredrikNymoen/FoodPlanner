@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="119.0" prefWidth="66.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="22.0" layoutY="1.0" prefHeight="86.0" prefWidth="86.0" style="-fx-background-color: #29ff21; -fx-background-radius: 100;">
+         <children>
+            <ImageView fitHeight="64.0" fitWidth="65.0" layoutX="11.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/images/persons.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <Text layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guest" textAlignment="CENTER" wrappingWidth="129.0" />
+   </children>
+</AnchorPane>
