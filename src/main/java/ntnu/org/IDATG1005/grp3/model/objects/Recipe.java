@@ -3,7 +3,7 @@ package ntnu.org.IDATG1005.grp3.model.objects;
 import java.util.List;
 
 /**
- * Aggregates comprehensive details of a recipe including meta-information, ingredients, cooking directions, and tags,
+ * Represent a recipe including meta-information, ingredients, cooking directions, and tags,
  * alongside proportions adults and children. It encapsulates the essence of a recipe for presentation and
  * preparation guidance.
  */

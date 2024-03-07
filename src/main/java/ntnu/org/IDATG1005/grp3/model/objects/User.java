@@ -10,7 +10,7 @@ public class User {
   private String username;
   private Inventory inventory;
   private String email;
-  private String password; // Storing password in this manner is not a best practice
+  private String password; // hashed at service layer, so stored in plain at ram
 
   /**
    * Constructs a new User with the specified ID, username, email, and password.
@@ -94,5 +94,9 @@ public class User {
 
   public Inventory getInventory() {
     return inventory;
+  }
+
+  public void setInventory(Inventory inventory) {
+    this.inventory = inventory;
   }
 }

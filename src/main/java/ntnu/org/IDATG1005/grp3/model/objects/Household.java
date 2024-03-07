@@ -21,7 +21,7 @@ public class Household {
    * @param joinCode The join code for the household.
    * @param householdId The unique identifier for the household.
    */
-  public Household(String name, String joinCode, Integer householdId) {
+  public Household(Integer householdId, String name, String joinCode) {
     this.householdId = householdId;
     this.name = name;
     this.joinCode = joinCode;

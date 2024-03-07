@@ -1,51 +1,39 @@
 package ntnu.org.IDATG1005.grp3.model.objects;
 
 /**
- * Represents an ingredient used in a recipe. Contains ingredient object, its measurement unit, and the quantity used.
+ * Represents an ingredient used in a recipe, detailing the ingredient, its measurement unit,
+ * and the amount used. Each recipe ingredient is uniquely identified by a recipeIngredientId.
  */
-public class RecipeIngredient {
-
-  private final Integer recipeIngredientId;
-  private final Ingredient ingredient;
-  private final Unit unit;
+public class RecipeIngredient extends AbstractIngredientDetail {
   private Integer amount;
 
   /**
-   * Constructs a RecipeIngredient with specified details.
+   * Constructs a RecipeIngredient with specified details including its unique ID, the ingredient
+   * used, the unit of measurement, and the amount of the ingredient.
    *
-   * @param recipeIngredientId The unique ID for this recipe ingredient.
-   * @param ingredient The ingredient used.
-   * @param unit The unit of measurement for the ingredient.
-   * @param amount The amount of the ingredient used.
+   * @param ingredient         The ingredient object used in the recipe.
+   * @param unit               The unit of measurement for the ingredient.
+   * @param amount             The amount of the ingredient used in the recipe.
    */
-  public RecipeIngredient(Integer recipeIngredientId, Ingredient ingredient, Unit unit, Integer amount) {
-    this.recipeIngredientId = recipeIngredientId;
-    this.ingredient = ingredient;
-    this.unit = unit;
+  public RecipeIngredient(Ingredient ingredient, MeasurementUnit unit, Integer amount) {
+    super(ingredient, unit);
     this.amount = amount;
   }
 
-  // Getter for recipeIngredientId
-  public Integer getRecipeIngredientId() {
-    return recipeIngredientId;
-  }
-
-  // Getter for ingredient
-  public Ingredient getIngredient() {
-    return ingredient;
-  }
-
-  // Getter for unit
-  public Unit getUnit() {
-    return unit;
-  }
-
-  // Getter for amount
+  /**
+   * Gets the amount of the ingredient used in the recipe.
+   *
+   * @return The amount of the ingredient.
+   */
   public Integer getAmount() {
     return amount;
   }
 
-  // Setter for amount
+  /**
+   * Sets the amount of the ingredient used in the recipe.
+   *
+   * @param amount The new amount of the ingredient to be used.
+   */
   public void setAmount(Integer amount) {
     this.amount = amount;
   }

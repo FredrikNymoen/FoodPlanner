@@ -8,9 +8,9 @@ public class RecipeInfo {
 
   private final String title;
   private final String imageUrl;
-  private final String cookTime;
+  private final Integer cookTime;
   private final String difficulty;
-  private final Double rating;
+  private final Float rating;
   private final String description;
 
   /**
@@ -23,8 +23,8 @@ public class RecipeInfo {
    * @param rating      Recipe rating.
    * @param description Recipe description.
    */
-  public RecipeInfo(String title, String imageUrl, String cookTime,
-      String difficulty, Double rating, String description) {
+  public RecipeInfo(String title, String imageUrl, Integer cookTime,
+      String difficulty, Float rating, String description) {
     this.title = title;
     this.imageUrl = imageUrl;
     this.cookTime = cookTime;
@@ -32,6 +32,7 @@ public class RecipeInfo {
     this.rating = rating;
     this.description = description;
   }
+
 
   /**
    * Gets the title of the recipe.
@@ -54,9 +55,9 @@ public class RecipeInfo {
   /**
    * Gets the cooking time required for the recipe.
    *
-   * @return The cook time.
+   * @return The cook time as an Integer.
    */
-  public String getCookTime() {
+  public Integer getCookTime() {
     return cookTime;
   }
 
@@ -72,9 +73,9 @@ public class RecipeInfo {
   /**
    * Gets the rating of the recipe.
    *
-   * @return The recipe rating.
+   * @return The recipe rating as a Float.
    */
-  public Double getRating() {
+  public Float getRating() {
     return rating;
   }
 
