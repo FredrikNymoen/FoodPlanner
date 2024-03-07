@@ -76,7 +76,7 @@ public class Main{
     System.out.println("Inventory of user " + user1.getUsername() + ":");
     int n = 0;
     for (InventoryIngredient ii : user1.getInventory().getIngredients().values()) {
-      System.out.println(n + ": " + ii.getInventoryIngredientId());
+      System.out.println(n + ": " + ii.getIngredient().getName());
     }
 
     // create a recipe (or retrieve from db using a future service class not implemented yet
