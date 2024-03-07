@@ -91,10 +91,10 @@ public class Main{
     // not contain fields like amount. This way it will be easier in the future for more
     // features, like sorting, grouping and filtering (I hope)
     Ingredient pastaIngredient = new Ingredient(null, "Pasta", null);
-    Ingredient waterIngredient = new Ingredient(null, "Pasta", null);
+    Ingredient waterIngredient = new Ingredient(null, "Vann", null);
 
     RecipeIngredient pasta = new RecipeIngredient(pastaIngredient, GRAM, 500);
-    RecipeIngredient water = new RecipeIngredient(waterIngredient, LITER, 500);
+    RecipeIngredient water = new RecipeIngredient(waterIngredient, LITER, 5);
 
     List<RecipeIngredient> ingredientList = new ArrayList<>();
     ingredientList.add(pasta);
