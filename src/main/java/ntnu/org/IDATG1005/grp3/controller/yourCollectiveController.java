@@ -30,10 +30,11 @@ public class yourCollectiveController {
     return instance;
   }
   @FXML
-  private void btnExistingProfile(MouseEvent actionEvent) {
+  void btnExistingProfile(MouseEvent actionEvent) {
     try {
       FXMLLoader loader = new FXMLLoader(
           getClass().getResource("/fxml/components/profile_page.fxml"));
+      loader.setController(profilePageController.getInstance());
       Parent root = loader.load();
       Stage profileStage = new Stage();
       profileStage.setTitle("Profile");

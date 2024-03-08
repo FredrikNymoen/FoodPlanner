@@ -9,8 +9,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class editProfileController {
@@ -20,6 +23,8 @@ public class editProfileController {
   @FXML
   private PasswordField password;
   private  HBox profileContainer;
+  private Text text;
+  private ImageView login;
   private static editProfileController instance;
 
   private editProfileController() {
@@ -35,17 +40,25 @@ public class editProfileController {
     if(username.getText().isEmpty() || password.getText().isEmpty()){
       System.out.println("Please fill in all fields");
     }else {
+
       System.out.println(username.getText());
       System.out.println(password.getText());
-      Node newUser  = null;
+      AnchorPane newUser  = null;
+
       try {
-        newUser = FXMLLoader.load(
-            Objects.requireNonNull(getClass().getResource("/fxml/components/profile_picture.fxml")));
+        FXMLLoader loader = new FXMLLoader(
+            getClass().getResource("/fxml/components/profile_picture.fxml"));
+        loader.setController(profilePictureController.getInstance());
+        newUser = loader.load();
+        login = (ImageView) newUser.lookup("#login");
+        text = (Text) newUser.lookup("#text");
+        updateUsername();
+        addLogin();
+        System.out.println(text);
 
       } catch (IOException e) {
         throw new RuntimeException(e);
       }
-
       profileContainer.getChildren().add(newUser);
       Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
       stage.close();
@@ -58,5 +71,11 @@ public class editProfileController {
 
   public void setProfileContainer(HBox profileContainer){
     this.profileContainer = profileContainer;
+  }
+  public void updateUsername(){
+    text.setText(username.getText());
+  }
+  public void addLogin(){
+    login.setOnMouseClicked(event -> yourCollectiveController.getInstance().btnExistingProfile(event));
   }
 }

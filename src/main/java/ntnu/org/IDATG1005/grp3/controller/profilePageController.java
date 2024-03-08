@@ -7,6 +7,17 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class profilePageController {
+  private static profilePageController instance;
+
+  public profilePageController() {
+
+  }
+  public  static  synchronized profilePageController  getInstance(){
+    if(instance == null){
+      instance = new profilePageController();
+    }
+    return instance;
+  }
 
   @FXML
   private PasswordField checkPassword;
