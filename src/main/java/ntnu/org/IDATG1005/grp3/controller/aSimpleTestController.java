@@ -17,61 +17,28 @@ import javafx.stage.Stage;
 
 public class aSimpleTestController {
 
-  public HBox profileContainer;
-  @FXML
-  private TextField username;
-  @FXML
-  private PasswordField password;
-  @FXML
-  private PasswordField checkPassword;
+  private static aSimpleTestController instance;
 
+  public aSimpleTestController() {
 
-  @FXML
-  private void btnExistingProfile(MouseEvent actionEvent) {
-      try {
-        FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/fxml/components/profile_page.fxml"));
-        Parent root = loader.load();
-        Stage profileStage = new Stage();
-        profileStage.setTitle("Profile");
-        Scene scene = new Scene(root);
-        profileStage.setScene(scene);
-        //Blocks the main stage until the profile stage is closed
-        profileStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
-        profileStage.show();
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
-    }
-    public void btnAddProfile(MouseEvent mouseEvent){
-      try {
-        FXMLLoader loader = new FXMLLoader(
-            getClass().getResource("/fxml/components/edit_profile.fxml"));
-        Parent root = loader.load();
-        Stage profileStage = new Stage();
-        profileStage.setTitle("Profile");
-        Scene scene = new Scene(root);
-        profileStage.setScene(scene);
-        //Blocks the main stage until the profile stage is closed
-        profileStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
-        profileStage.show();
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
-    }
-  public void exitUser(MouseEvent mouseEvent){
-    Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-    stage.close();
   }
-
+  public  static  synchronized aSimpleTestController  getInstance(){
+    if(instance == null){
+      instance = new aSimpleTestController();
+    }
+    return instance;
+  }
 
   public void btnNextSite(javafx.event.ActionEvent actionEvent) {
     try {
       FXMLLoader loader = new FXMLLoader(
           getClass().getResource("/fxml/views/your_collective.fxml"));
+      loader.setController(yourCollectiveController.getInstance());
       Parent root = loader.load();
-      System.out.println("Button clicked");
 
+      System.out.println("Button clicked");
+      HBox c = (HBox) root.lookup("#profileContainer");
+      editProfileController.getInstance().setProfileContainer(c);
       Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
       Scene scene = new Scene(root);
@@ -79,35 +46,6 @@ public class aSimpleTestController {
       stage.show();
     } catch (IOException e) {
       e.printStackTrace();
-    }
-  }
-  public void btnLoginProfile(MouseEvent mouseEvent){
-    if(checkPassword.getText().isEmpty()){
-      System.out.println("Please fill in all fields");
-    }else {
-      System.out.println(checkPassword.getText());
-      exitUser(mouseEvent);
-    }
-
-  }
-  public void createUser(ActionEvent actionEvent) throws IOException {
-    if(username.getText().isEmpty() || password.getText().isEmpty()){
-      System.out.println("Please fill in all fields");
-    }else {
-      System.out.println(username.getText());
-      System.out.println(password.getText());
-      Node newUser  = null;
-      try {
-        newUser = FXMLLoader.load(
-            Objects.requireNonNull(getClass().getResource("/fxml/components/profile_page.fxml")));
-
-      } catch (IOException e) {
-        throw new RuntimeException(e);
-      }
-
-      profileContainer.getChildren().add(newUser);
-      Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-      stage.close();
     }
   }
 

@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: rgba(0,0,0,0.5);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.org.IDATG1005.grp3.controller.aSimpleTestController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: rgba(0,0,0,0.5);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" >
    <children>
       <ImageView fitHeight="536.0" fitWidth="973.0" layoutX="-173.0" opacity="0.55" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -47,7 +47,7 @@
             <Font size="23.0" />
          </font>
       </Label>
-      <HBox fx:id="profileContainer" alignment="CENTER" layoutY="145.0" prefHeight="160.0" prefWidth="800.0" style="-fx-spacing: 25;">
+      <HBox fx:id="profileContainer" alignment="CENTER" layoutY="145.0" prefHeight="160.0" prefWidth="800.0" style="-fx-spacing: 25">
          <children>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="116.0" prefWidth="97.0">
                <children>

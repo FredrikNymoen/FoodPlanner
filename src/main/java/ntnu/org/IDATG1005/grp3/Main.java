@@ -1,5 +1,6 @@
 package ntnu.org.IDATG1005.grp3;
 
+import ntnu.org.IDATG1005.grp3.application.MainApp;
 import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.EmailAlreadyExistsException;
 import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.UsernameAlreadyExistsException;
 import ntnu.org.IDATG1005.grp3.model.User;
@@ -9,7 +10,9 @@ import ntnu.org.IDATG1005.grp3.service.UserService;
 public class Main{
   public static void main(String[] args) {
 
-    createUserSim();
+    //createUserSim();
+    MainApp mainApp = new MainApp();
+    mainApp.maino(args);
   }
 
   // some reference code
