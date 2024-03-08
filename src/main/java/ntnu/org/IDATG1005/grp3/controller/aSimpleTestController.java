@@ -11,39 +11,37 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class aSimpleTestController {
 
-  public FlowPane profileContainer;
+  public HBox profileContainer;
   @FXML
   private TextField username;
   @FXML
   private PasswordField password;
+  @FXML
+  private PasswordField checkPassword;
 
 
   @FXML
-  private void btnProfile(MouseEvent actionEvent) {
-    try {
-      FXMLLoader loader = new FXMLLoader(
-          getClass().getResource("/fxml/components/profile_page.fxml"));
-      Parent root = loader.load();
-
-      Stage profileStage = new Stage();
-      profileStage.setTitle("Profile");
-      Scene scene = new Scene(root);
-
-      profileStage.setScene(scene);
-
-      //Blocks the main stage until the profile stage is closed
-      profileStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
-
-      profileStage.show();
-
-    } catch (IOException e) {
-      e.printStackTrace();
+  private void btnExistingProfile(MouseEvent actionEvent) {
+      try {
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/fxml/components/profile_page.fxml"));
+        Parent root = loader.load();
+        Stage profileStage = new Stage();
+        profileStage.setTitle("Profile");
+        Scene scene = new Scene(root);
+        profileStage.setScene(scene);
+        //Blocks the main stage until the profile stage is closed
+        profileStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+        profileStage.show();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
     }
-  }
   public void exitUser(MouseEvent mouseEvent){
     Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
     stage.close();
@@ -68,22 +66,13 @@ public class aSimpleTestController {
     }
   }
   public void btnLoginProfile(MouseEvent mouseEvent){
-    try {
+    if(checkPassword.getText().isEmpty()){
+      System.out.println("Please fill in all fields");
+    }else {
+      System.out.println(checkPassword.getText());
       exitUser(mouseEvent);
-      FXMLLoader loader = new FXMLLoader(
-          getClass().getResource("/fxml/components/edit_profile.fxml"));
-      System.out.println("button 2 clicked");
-      Stage profileStage = new Stage();
-      profileStage.setTitle("Profile");
-      Parent root = loader.load();
-      Scene scene = new Scene(root);
-      profileStage.setScene(scene);
-      profileStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
-      profileStage.show();
-
-    } catch (IOException e) {
-      e.printStackTrace();
     }
+
   }
   public void createUser(ActionEvent actionEvent) throws IOException {
     if(username.getText().isEmpty() || password.getText().isEmpty()){

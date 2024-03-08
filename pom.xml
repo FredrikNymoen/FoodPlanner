@@ -93,12 +93,10 @@
       <plugin>
         <groupId>org.openjfx</groupId>
         <artifactId>javafx-maven-plugin</artifactId>
-        <version>0.0.8</version>
-
+        <version>0.0.8</version> <!-- Make sure this is the latest or a compatible version -->
         <configuration>
           <mainClass>ntnu.org.IDATG1005.grp3.application.MainApp</mainClass>
         </configuration>
-
       </plugin>
     </plugins>
   </build>
