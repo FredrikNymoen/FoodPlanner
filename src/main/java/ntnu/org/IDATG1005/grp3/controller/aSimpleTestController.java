@@ -52,7 +52,7 @@ public class aSimpleTestController {
 
     try {
       FXMLLoader loader = new FXMLLoader(
-          getClass().getResource("/fxml/views/your_collective_pg.fxml"));
+          getClass().getResource("/fxml/views/your_collective.fxml"));
       Parent root = loader.load();
       System.out.println("Button clicked");
 
