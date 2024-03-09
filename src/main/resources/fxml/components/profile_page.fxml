@@ -27,7 +27,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <Text layoutX="1.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guest" textAlignment="CENTER" wrappingWidth="129.0">
+            <Text layoutX="1.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guest" textAlignment="CENTER" wrappingWidth="129.0" fx:id="text">
                <font>
                   <Font size="17.0" />
                </font>

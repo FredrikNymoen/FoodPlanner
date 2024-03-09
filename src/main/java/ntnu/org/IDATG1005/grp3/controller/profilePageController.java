@@ -4,9 +4,12 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.PasswordField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class profilePageController {
+  @FXML
+  private Text profileUsername;
   private static profilePageController instance;
 
   public profilePageController() {
@@ -21,6 +24,7 @@ public class profilePageController {
 
   @FXML
   private PasswordField checkPassword;
+
   public void btnLoginProfile(MouseEvent mouseEvent){
     if(checkPassword.getText().isEmpty()){
       System.out.println("Please fill in all fields");
@@ -34,6 +38,9 @@ public class profilePageController {
   public void exitUser(MouseEvent mouseEvent){
     Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
     stage.close();
+  }
+  public void setProfileUsername(Text text){
+    profileUsername = text;
   }
 
 }

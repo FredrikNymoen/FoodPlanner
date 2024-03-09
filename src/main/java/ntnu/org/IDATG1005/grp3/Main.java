@@ -12,6 +12,7 @@ public class Main{
 
     //createUserSim();
     MainApp mainApp = new MainApp();
+
     mainApp.maino(args);
   }
 

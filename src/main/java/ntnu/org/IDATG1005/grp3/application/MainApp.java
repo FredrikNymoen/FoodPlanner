@@ -11,14 +11,18 @@ import javafx.scene.Scene;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import ntnu.org.IDATG1005.grp3.controller.aSimpleTestController;
+import ntnu.org.IDATG1005.grp3.controller.yourCollectiveController;
 
 public class MainApp extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-    Parent root = FXMLLoader.load(
-        Objects.requireNonNull(getClass().getResource(
-            "/fxml/views/join_collective_pg.fxml")));
+    FXMLLoader loader = new FXMLLoader(
+        getClass().getResource("/fxml/views/join_collective_pg.fxml"));
+    loader.setController(aSimpleTestController.getInstance());
+    Parent root = loader.load();
+
     primaryStage.setTitle("Application Title");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();

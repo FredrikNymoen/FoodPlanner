@@ -75,6 +75,9 @@ public class editProfileController {
   public void updateUsername(){
     text.setText(username.getText());
   }
+  public Text getUsername(){
+    return text;
+  }
   public void addLogin(){
     login.setOnMouseClicked(event -> yourCollectiveController.getInstance().btnExistingProfile(event));
   }

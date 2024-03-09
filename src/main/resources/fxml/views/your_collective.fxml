@@ -37,7 +37,7 @@
             <Font size="23.0" />
          </font>
       </Text>
-      <Button layoutX="302.0" layoutY="401.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="178.0" style="-fx-background-color: rgb(0,200,0); -fx-background-radius: 10;" text="Forlat kollektiv" textFill="#f80e0e">
+      <Button layoutX="302.0" layoutY="401.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="178.0" style="-fx-background-color: rgb(0,200,0); -fx-background-radius: 10;" text="Forlat kollektiv" textFill="#f80e0e" onAction="#leaveCollective">
          <font>
             <Font size="16.0" />
          </font>
