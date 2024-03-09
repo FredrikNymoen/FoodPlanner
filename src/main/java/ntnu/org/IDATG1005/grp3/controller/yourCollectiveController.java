@@ -42,8 +42,8 @@ public class yourCollectiveController {
       loader.setController(profilePageController.getInstance());
       profile = loader.load();
 
-     // profileUsername = (Text) profile.lookup("#profileUsername");
-   //   updateProfileUsername();
+      profileUsername = (Text) profile.lookup("#profileUsername");
+      updateProfileUsername();
 
       Stage profileStage = new Stage();
       profileStage.setTitle("Profile");
