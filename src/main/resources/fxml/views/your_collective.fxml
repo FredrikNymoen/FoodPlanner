@@ -37,7 +37,7 @@
             <Font size="23.0" />
          </font>
       </Text>
-      <Button layoutX="302.0" layoutY="401.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="178.0" style="-fx-background-color: rgb(0,200,0); -fx-background-radius: 10;" text="Forlat kollektiv" textFill="#f80e0e" onAction="#leaveCollective">
+      <Button layoutX="302.0" layoutY="401.0" mnemonicParsing="false" onAction="#leaveCollective" prefHeight="35.0" prefWidth="178.0" style="-fx-background-color: rgb(0,200,0); -fx-background-radius: 10;" text="Forlat kollektiv" textFill="#f80e0e">
          <font>
             <Font size="16.0" />
          </font>
@@ -60,20 +60,6 @@
                </children>
             </AnchorPane>
             <Text layoutX="-11.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til bruker" textAlignment="CENTER" wrappingWidth="97.0" />
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="53.0" layoutY="296.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="116.0" prefWidth="97.0">
-         <children>
-            <AnchorPane layoutX="1.0" prefHeight="92.0" prefWidth="95.0" style="-fx-background-color: #29ff21; -fx-background-radius: 100;">
-               <children>
-                  <ImageView fitHeight="65.0" fitWidth="68.0" layoutX="22.0" layoutY="14.0" onMouseReleased="#btnExistingProfile" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@/images/persons.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </AnchorPane>
-            <Text layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guest" textAlignment="CENTER" wrappingWidth="97.0" />
          </children>
       </AnchorPane>
    </children>

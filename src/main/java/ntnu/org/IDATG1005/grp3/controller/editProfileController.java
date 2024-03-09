@@ -1,8 +1,7 @@
 package ntnu.org.IDATG1005.grp3.controller;
 
 import java.io.IOException;
-import java.security.cert.PolicyNode;
-import java.util.Objects;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +22,7 @@ public class editProfileController {
   @FXML
   private PasswordField password;
   private  HBox profileContainer;
-  private Text text;
+  private Text profilePictureName;
   private ImageView login;
   private static editProfileController instance;
 
@@ -51,10 +50,10 @@ public class editProfileController {
         loader.setController(profilePictureController.getInstance());
         newUser = loader.load();
         login = (ImageView) newUser.lookup("#login");
-        text = (Text) newUser.lookup("#text");
+        profilePictureName = (Text) newUser.lookup("#profilePictureName");
         updateUsername();
         addLogin();
-        System.out.println(text);
+        System.out.println(profilePictureName);
 
       } catch (IOException e) {
         throw new RuntimeException(e);
@@ -73,10 +72,10 @@ public class editProfileController {
     this.profileContainer = profileContainer;
   }
   public void updateUsername(){
-    text.setText(username.getText());
+    profilePictureName.setText(username.getText());
   }
   public Text getUsername(){
-    return text;
+    return profilePictureName;
   }
   public void addLogin(){
     login.setOnMouseClicked(event -> yourCollectiveController.getInstance().btnExistingProfile(event));
