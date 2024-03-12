@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="309.0" prefWidth="272.0" style="-fx-border-color: black; -fx-border-width: 2px; -fx-background-color: #6E935D;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="309.0" prefWidth="272.0" style="-fx-border-color: black; -fx-border-width: 2px; -fx-background-color: #6E935D;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="">
    <children>
       <ImageView fitHeight="173.0" fitWidth="200.0" layoutX="36.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="24.0" />
       <Text fill="WHITE" layoutX="96.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Navn" textAlignment="CENTER" wrappingWidth="77.21630859375" AnchorPane.bottomAnchor="69.359375" AnchorPane.leftAnchor="96.0" AnchorPane.rightAnchor="96.0" AnchorPane.topAnchor="213.73046875">

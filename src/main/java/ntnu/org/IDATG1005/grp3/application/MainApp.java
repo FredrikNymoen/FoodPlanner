@@ -19,7 +19,6 @@ public class MainApp extends Application {
   public void start(Stage primaryStage) throws Exception {
     FXMLLoader loader = new FXMLLoader(
         getClass().getResource("/fxml/views/ingredience.fxml"));
-    loader.setController(MarketController.getInstance());
     Parent root = loader.load();
 
     primaryStage.setTitle("Application Title");
@@ -27,7 +26,7 @@ public class MainApp extends Application {
     primaryStage.show();
   }
 
-  public static void maino(String[] args) {
+  public static void main(String[] args) {
     launch(args);}
 
 }
