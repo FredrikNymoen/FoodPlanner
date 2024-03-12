@@ -138,7 +138,7 @@ public class Main{
 
     // creating users locally with explicit username is considered unsafe.
     User unsafeUser = new User(1, "unsafeUser", "pass");
-    System.out.println("Unsafe user will persist any user in db with id 1. ID: " + unsafeUser.getUserId());
+    System.out.println("Unsafe user will persist any user in db with id 1. ID: " + unsafeUser.getUserId() + '\n');
 
     // getting users from the database is considered safe as it ensures the id is the same as in the db
     // all services classes should be used with try catch blocks, as they come with specific errors
@@ -149,7 +149,7 @@ public class Main{
 
     // userService.login (to be created)
     try {
-      safeUser = userService.createUser("safeUser", "pass");
+      safeUser = userService.createUser("safeUser1", "pass");
     } catch (UsernameAlreadyExistsException e) {
       System.out.println("You username already exists, please choose another one");
       // call a method
@@ -170,7 +170,10 @@ public class Main{
       // call a method
     }
 
-    // add a user
+    // print the name of the household
+    System.out.println("Household found: " + householdTrust.getName());
+
+    // add a user to the household
     householdTrust.getUsers().add(safeUser);
 
     // HOWEVER this user is now only added locally to persist any changes, as mentioned we need to use the service class
@@ -183,7 +186,7 @@ public class Main{
   }
 
 
-  // example function
+  // example function for printing a recipe
   public static void printRecipe(Recipe recipe) {
     System.out.println("Recipe: " + recipe.getRecipeInfo().getTitle());
     System.out.println("Description: " + recipe.getRecipeInfo().getDescription());
