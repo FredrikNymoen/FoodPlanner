@@ -125,7 +125,7 @@ public class Main{
 
     // print a recipe \n is added for extra newlines
     System.out.println("\n\n");
-    printRecipe(pastaRecipe);
+    MainCheeky.printRecipe(pastaRecipe);
     System.out.println("\n\n");
 
     /*
@@ -182,30 +182,6 @@ public class Main{
     } catch (Exception e) {
       System.out.println("Failed");
       // call a method
-    }
-  }
-
-
-  // example function for printing a recipe
-  public static void printRecipe(Recipe recipe) {
-    System.out.println("Recipe: " + recipe.getRecipeInfo().getTitle());
-    System.out.println("Description: " + recipe.getRecipeInfo().getDescription());
-    System.out.println("Cook Time: " + recipe.getRecipeInfo().getCookTime() + " minutes");
-    System.out.println("Difficulty: " + recipe.getRecipeInfo().getDifficulty());
-    System.out.println("Rating: " + recipe.getRecipeInfo().getRating() + " stars");
-    System.out.println("Serves Adults: " + recipe.getPersonsAdults());
-    System.out.println("Serves Children: " + recipe.getPersonsChildren());
-    System.out.println("\nIngredients:");
-    for (RecipeIngredient ingredient : recipe.getIngredients()) {
-      System.out.println("- " + ingredient.getIngredient().getName() + ": " + ingredient.getAmount() + " " + ingredient.getUnit().getUnitName());
-    }
-    System.out.println("\nDirections:");
-    for (Direction direction : recipe.getDirections()) {
-      System.out.println(direction.getDirectionStep() + ". " + direction.getDirection());
-    }
-    System.out.println("\nTags:");
-    for (Tag tag : recipe.getTags()) {
-      System.out.println("- " + tag.getTitle());
     }
   }
 }
