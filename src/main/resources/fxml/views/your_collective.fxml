@@ -5,11 +5,10 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: rgba(0,0,0,0.5);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -18,23 +17,6 @@
             <Image url="@/images/bakgrunnsbilde_mat.jpg" />
          </image>
       </ImageView>
-      <Circle fill="#23ff1f" layoutX="468.0" layoutY="235.0" radius="47.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#29ff21" layoutX="325.0" layoutY="235.0" radius="47.0" stroke="BLACK" strokeType="INSIDE" />
-      <ImageView fitHeight="67.0" fitWidth="58.0" layoutX="439.0" layoutY="206.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@/images/plus.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="63.0" fitWidth="42.0" layoutX="304.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@/images/persons.png" />
-         </image>
-      </ImageView>
-      <Text fill="WHITE" layoutX="296.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guest" textAlignment="CENTER" wrappingWidth="58.125">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
       <Pane layoutX="-6.0" layoutY="22.0" prefHeight="43.0" prefWidth="810.0" style="-fx-background-color: rgb(0,190,0);">
          <children>
             <Text fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Matplanleggern" wrappingWidth="171.13671875">
@@ -55,7 +37,7 @@
             <Font size="23.0" />
          </font>
       </Text>
-      <Button layoutX="302.0" layoutY="401.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="178.0" style="-fx-background-color: rgb(0,200,0); -fx-background-radius: 10;" text="Forlat kollektiv" textFill="#f80e0e">
+      <Button layoutX="302.0" layoutY="401.0" mnemonicParsing="false" onAction="#leaveCollective" prefHeight="35.0" prefWidth="178.0" style="-fx-background-color: rgb(0,200,0); -fx-background-radius: 10;" text="Forlat kollektiv" textFill="#f80e0e">
          <font>
             <Font size="16.0" />
          </font>
@@ -65,5 +47,20 @@
             <Font size="23.0" />
          </font>
       </Label>
+      <HBox fx:id="profileContainer" alignment="CENTER" layoutX="-4.0" layoutY="126.0" prefHeight="131.0" prefWidth="800.0" style="-fx-spacing: 25" />
+      <AnchorPane layoutX="363.0" layoutY="258.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="77.0" prefWidth="75.0">
+         <children>
+            <AnchorPane layoutX="1.0" prefHeight="65.0" prefWidth="60.0" style="-fx-background-color: #29ff21; -fx-background-radius: 100;">
+               <children>
+                  <ImageView fitHeight="65.0" fitWidth="69.0" layoutY="1.0" onMouseReleased="#btnAddProfile" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/images/plus.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <Text layoutX="-11.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til bruker" textAlignment="CENTER" wrappingWidth="97.0" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
