@@ -1,29 +1,30 @@
 package ntnu.org.IDATG1005.grp3.controller;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import java.awt.event.ActionEvent;
+import java.io.IOException;
+import javafx.beans.binding.Bindings;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class aSimpleTestController {
 
-  @FXML
-  private Button exButton; // ID matches fx:id in  FXML
+  public void btnNextSite(javafx.event.ActionEvent actionEvent) {
+    try {
+      FXMLLoader loader = new FXMLLoader(
+          getClass().getResource("/fxml/views/your_collective_pg.fxml"));
+      Parent root = loader.load();
 
-  @FXML
-  private Text someText;   // ID matches fx:id in FXML
+      Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
-  // handler method(s)?? for button action
-  @FXML
-  private void handleButtonAction(ActionEvent event) {
-    // Toggle the visibility of the text
-    someText.setVisible(!someText.isVisible());
-
-    System.out.println(event.getEventType());
-  }
-
-  @FXML
-  private void testButtonAction(ActionEvent event) {
-    System.out.println("reeeee");
+      Scene scene = new Scene(root);
+      stage.setScene(scene);
+      stage.show();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }

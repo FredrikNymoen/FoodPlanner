@@ -1,14 +1,0 @@
-
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(İÍƒûÿÿÿÿ8ÿ—Éòà1
-L	java:S106"+Replace this use of System.out by a logger.(í²€ùøÿÿÿÿ8ÓœÉòà1
-G	java:S106"+Replace this use of System.out by a logger.(·®‰­8ØœÉòà1
-G	java:S106"+Replace this use of System.out by a logger.(£‡îû8ìœÉòà1
-L	java:S106"+Replace this use of System.out by a logger.(¼ïÕşşÿÿÿÿ8ùœÉòà1
-L	java:S106"+Replace this use of System.out by a logger.(åîù­ıÿÿÿÿ8ıœÉòà1
-L	java:S106!"+Replace this use of System.out by a logger.(ş‰¯îúÿÿÿÿ8€Éòà1
-L	java:S106#"+Replace this use of System.out by a logger.(Ô Êÿÿÿÿÿ8‚Éòà1
-G	java:S106)"+Replace this use of System.out by a logger.(ÎÒÃ®8†Éòà1
-G	java:S1060"+Replace this use of System.out by a logger.(â•ßŸ8Éòà1
-L	java:S1062"+Replace this use of System.out by a logger.(²ºşªÿÿÿÿÿ8‘Éòà1
-L	java:S1064"+Replace this use of System.out by a logger.(ÕøˆŸÿÿÿÿÿ8“Éòà1
-L	java:S1066"+Replace this use of System.out by a logger.(Ô Êÿÿÿÿÿ8–Éòà1
