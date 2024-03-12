@@ -1,16 +1,17 @@
 package ntnu.org.IDATG1005.grp3.model.objects;
 
 public enum MeasurementUnit {
+  // id must match db
   GRAM(1, "g"),
-  GLASS(8, "glass"),
-  PINCH(7, "klype"),
   ML(2, "ml"),
   MM(3, "mm"),
-  PK(9, "pk"),
   SS(4, "ss"),
-  STK(6, "stk"),
   TS(5, "ts"),
-  LITER(10, "L");
+  STK(6, "stk"),
+  PINCH(7, "klype"),
+  GLASS(8, "glass"),
+  PK(9, "pk"),
+  LITER(10, "l");
 
   private final int id;
   private final String unitName;
