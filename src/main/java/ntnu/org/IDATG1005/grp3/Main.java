@@ -1,211 +1,64 @@
+
 package ntnu.org.IDATG1005.grp3;
 
-import static ntnu.org.IDATG1005.grp3.model.objects.MeasurementUnit.GRAM;
-import static ntnu.org.IDATG1005.grp3.model.objects.MeasurementUnit.LITER;
-import static ntnu.org.IDATG1005.grp3.model.objects.MeasurementUnit.STK;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import ntnu.org.IDATG1005.grp3.dao.implementations.HouseholdDaoImpl;
-import ntnu.org.IDATG1005.grp3.dao.implementations.UserDaoImpl;
-import ntnu.org.IDATG1005.grp3.dao.interfaces.HouseholdDao;
-import ntnu.org.IDATG1005.grp3.dao.interfaces.UserDao;
-import ntnu.org.IDATG1005.grp3.exception.db.HouseholdExceptions.HouseholdNotFoundException;
+import ntnu.org.IDATG1005.grp3.application.MainApp;
+import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.EmailAlreadyExistsException;
 import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.UsernameAlreadyExistsException;
-import ntnu.org.IDATG1005.grp3.model.objects.Direction;
-import ntnu.org.IDATG1005.grp3.model.objects.Household;
-import ntnu.org.IDATG1005.grp3.model.objects.Ingredient;
-import ntnu.org.IDATG1005.grp3.model.objects.Inventory;
-import ntnu.org.IDATG1005.grp3.model.objects.InventoryIngredient;
-import ntnu.org.IDATG1005.grp3.model.objects.Recipe;
-import ntnu.org.IDATG1005.grp3.model.objects.RecipeInfo;
-import ntnu.org.IDATG1005.grp3.model.objects.RecipeIngredient;
-import ntnu.org.IDATG1005.grp3.model.objects.Tag;
-import ntnu.org.IDATG1005.grp3.model.objects.User;
-import ntnu.org.IDATG1005.grp3.service.HouseholdService;
+import ntnu.org.IDATG1005.grp3.model.User;
 import ntnu.org.IDATG1005.grp3.service.UserService;
+
 
 public class Main{
   public static void main(String[] args) {
 
-    /*
-    Some objects to use for example.
-     */
-    User user1 = new User(null, "user1", "pass");
-    User user2 = new User(null, "user2", "pass");
-    Household household = new Household(null, "Household1","zro4" );
-    Inventory inventory = new Inventory(null, new HashMap<>());
+    //createUserSim();
+    MainApp mainApp = new MainApp();
 
-    Ingredient tomato = new Ingredient(null, "Tomat", null);
-    Ingredient apple = new Ingredient(null, "Eple", null);
-
-    InventoryIngredient tomatoInInventory = new InventoryIngredient(null, tomato, STK, 2);
-    InventoryIngredient appleInInventory = new InventoryIngredient(null, apple, STK, 4);
-
-    /*
-    Some object interactions
-     */
-
-    // add users to a household
-    household.addUser(user1);
-    household.addUser(user2);
-
-    // remove user from a household
-    household.removeUser(user2);
-
-    // get user from household (index in array list, may change)
-    User secondUser = household.getUsers().get(0);
-    System.out.println("Remaining user in " + household.getName() + " is " + secondUser.getUsername());
-
-    // give a user an inventory
-    user1.setInventory(inventory);
-
-    // add ingredients to an inventory
-    user1.getInventory().getIngredients().put(tomato, tomatoInInventory);
-
-    Inventory userOnesInventory = user1.getInventory();
-    userOnesInventory.getIngredients().put(apple, appleInInventory);
-
-    // modify amount of an ingredient in a user inventory
-    user1.getInventory().getIngredients().get(tomato).setQuantity(3);
-    userOnesInventory.getIngredients().get(apple).addQuantity(-1);
-
-    /*
-    Object logic
-     */
-
-    // print the inventory of user1
-    System.out.println("Inventory of user " + user1.getUsername() + ":");
-    int n = 0;
-    for (InventoryIngredient ii : user1.getInventory().getIngredients().values()) {
-      System.out.println(n + ": " + ii.getIngredient().getName());
-      n++;
-    }
-
-    // create a recipe (or retrieve from db using a future service class not implemented yet
-    // creating a recipe is just show how we can do it manually, all fields will just be
-    // retrieved by db automatically
-    RecipeInfo recipeInfo = new RecipeInfo("Kokt pasta", null, 8, "Veldig vanskelig", 4.8f,
-        """
-        Pasta kokt i lett saltet vann. Popluært og godt.
-        Må ikke forveksles med poteter.""");
-
-    // if not clear yet, Ingredient class is a representation class, it does
-    // not contain fields like amount. This way it will be easier in the future for more
-    // features, like sorting, grouping and filtering (I hope)
-    Ingredient pastaIngredient = new Ingredient(null, "Pasta", null);
-    Ingredient waterIngredient = new Ingredient(null, "Vann", null);
-
-    RecipeIngredient pasta = new RecipeIngredient(pastaIngredient, GRAM, 500);
-    RecipeIngredient water = new RecipeIngredient(waterIngredient, LITER, 5);
-
-    List<RecipeIngredient> ingredientList = new ArrayList<>();
-    ingredientList.add(pasta);
-    ingredientList.add(water);
-
-    // directions
-    Direction direction1 = new Direction(1, "Kok alt vannet");
-    Direction direction2 = new Direction(2, "Legg pasta ned i og kok i 5 sekunder");
-
-    List<Direction> directionList = new ArrayList<>();
-    directionList.add(direction1);
-    directionList.add(direction2);
-
-    // tags
-    Tag tag1 = new Tag("Pasta Rett");
-
-    List<Tag> tagList = new ArrayList<>();
-    tagList.add(tag1);
-
-    // create recipe
-    Recipe pastaRecipe = new Recipe(recipeInfo, ingredientList, directionList, tagList, 0, 1);
-    // in the future Recipe class will have to method adjustForAdults and adjustForChildren
-    // which will adjust the quantities based on the initial
-
-    // print a recipe \n is added for extra newlines
-    System.out.println("\n\n");
-    printRecipe(pastaRecipe);
-    System.out.println("\n\n");
-
-    /*
-    Persistent logic
-
-    All objects that are modified is stored in ram. Therefore, to persist changes
-    we have service classes. If you are planning to persist an object be careful with the id.
-    The id of the object will determine what object it persists in the database.
-     */
-
-    // creating users locally with explicit username is considered unsafe.
-    User unsafeUser = new User(1, "unsafeUser", "pass");
-    System.out.println("Unsafe user will persist any user in db with id 1. ID: " + unsafeUser.getUserId() + '\n');
-
-    // getting users from the database is considered safe as it ensures the id is the same as in the db
-    // all services classes should be used with try catch blocks, as they come with specific errors
-    // should be handled accordingly.
-    UserDao userDao = new UserDaoImpl();
-    UserService userService = new UserService(userDao);
-    User safeUser = null;
-
-    // userService.login (to be created)
-    try {
-      safeUser = userService.createUser("safeUser1", "pass");
-    } catch (UsernameAlreadyExistsException e) {
-      System.out.println("You username already exists, please choose another one");
-      // call a method
-    } catch (IllegalArgumentException e) {
-      System.out.println("You username was not formatted correct or too long");
-      // call a method
-    }
-
-    // find a household and add the user
-    // find household
-    HouseholdDao householdDao = new HouseholdDaoImpl();
-    HouseholdService householdService = new HouseholdService(householdDao);
-    Household householdTrust = null;
-    try {
-      householdTrust = householdService.findHouseholdByJoinCode("trust");
-    } catch (HouseholdNotFoundException e) {
-      System.out.println("Household does not exist");
-      // call a method
-    }
-
-    // print the name of the household
-    System.out.println("Household found: " + householdTrust.getName());
-
-    // add a user to the household
-    householdTrust.getUsers().add(safeUser);
-
-    // HOWEVER this user is now only added locally to persist any changes, as mentioned we need to use the service class
-    try {
-      householdService.updateHouseholdDetails(householdTrust);
-    } catch (Exception e) {
-      System.out.println("Failed");
-      // call a method
-    }
+    mainApp.maino(args);
   }
 
+  // some reference code
+  private static void createUserSim() {
+    // simulate how to create a user without database
+    User user = new User(null, "usernameNull", "emailNull", "passNull");
+    System.out.println("\nLocal user with null id: ");
+    System.out.println("Username: " + user.getUsername());
 
-  // example function for printing a recipe
-  public static void printRecipe(Recipe recipe) {
-    System.out.println("Recipe: " + recipe.getRecipeInfo().getTitle());
-    System.out.println("Description: " + recipe.getRecipeInfo().getDescription());
-    System.out.println("Cook Time: " + recipe.getRecipeInfo().getCookTime() + " minutes");
-    System.out.println("Difficulty: " + recipe.getRecipeInfo().getDifficulty());
-    System.out.println("Rating: " + recipe.getRecipeInfo().getRating() + " stars");
-    System.out.println("Serves Adults: " + recipe.getPersonsAdults());
-    System.out.println("Serves Children: " + recipe.getPersonsChildren());
-    System.out.println("\nIngredients:");
-    for (RecipeIngredient ingredient : recipe.getIngredients()) {
-      System.out.println("- " + ingredient.getIngredient().getName() + ": " + ingredient.getAmount() + " " + ingredient.getUnit().getUnitName());
+    // simulate how to create a user with database.
+    UserService userService = new UserService();
+    // as always a objectService class is used.
+
+    System.out.println("\nMaking the db create the user for us:");
+    try {
+      User newUser = userService.createUser("kjosern", "kjos@kjos.no", "ok");
+      System.out.println("User created successfully: " + newUser.getUsername());
+    } catch (UsernameAlreadyExistsException e) {
+      System.out.println("Failed to create user: Username already exists.");
+    } catch (EmailAlreadyExistsException e) {
+      System.out.println("Failed to create user: Email already exists.");
+    } catch (Exception e) {
+      System.out.println("An unexpected error occurred: " + e.getMessage());
     }
-    System.out.println("\nDirections:");
-    for (Direction direction : recipe.getDirections()) {
-      System.out.println(direction.getDirectionStep() + ". " + direction.getDirection());
+
+    // creating a user locally, is still fine! The main difference is how the userId is set.
+    // When we create a user locally, this user will interact with the user in the database with the same id.
+    // When we create a user using userService the database automatically assigns the id.
+    System.out.println("\nUpdating user: ");
+    User localUser = new User(1, "kjosern", "email", "pass");
+
+    // This code will therefore update the user in the database with the id = 1
+    // userId is a constant, so it cannot be changed after initialisation.
+    try {
+      userService.updateUserDetails(localUser);
+      System.out.println("User updated!");
+    } catch (UsernameAlreadyExistsException e) {
+      System.out.println("Failed to update user: Username already exists.");
+    } catch (EmailAlreadyExistsException e) {
+      System.out.println("Failed to update user: Email already exists.");
+    } catch (Exception e) {
+      System.out.println("An unexpected error occurred: " + e.getMessage());
     }
-    System.out.println("\nTags:");
-    for (Tag tag : recipe.getTags()) {
-      System.out.println("- " + tag.getTitle());
-    }
+
   }
 }
+
