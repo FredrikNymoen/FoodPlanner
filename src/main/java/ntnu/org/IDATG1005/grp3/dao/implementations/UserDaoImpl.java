@@ -26,7 +26,7 @@ public class UserDaoImpl implements UserDao {
    */
   @Override
   public User createUser(String username, String password) throws UsernameAlreadyExistsException {
-    String sql = "INSERT INTO user (username, password) VALUES (?, ?, ?)";
+    String sql = "INSERT INTO user (username, password) VALUES (?, ?)";
     try (Connection conn = DatabaseConnection.getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 

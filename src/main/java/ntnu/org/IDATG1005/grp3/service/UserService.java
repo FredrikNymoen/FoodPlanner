@@ -1,11 +1,8 @@
 package ntnu.org.IDATG1005.grp3.service;
 
-import java.util.regex.Pattern;
-import ntnu.org.IDATG1005.grp3.dao.implementations.UserDaoImpl;
 import ntnu.org.IDATG1005.grp3.dao.interfaces.UserDao;
-import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.EmailAlreadyExistsException;
 import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.UsernameAlreadyExistsException;
-import ntnu.org.IDATG1005.grp3.model.User;
+import ntnu.org.IDATG1005.grp3.model.objects.User;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import de.mkammerer.argon2.Argon2Factory.Argon2Types;
@@ -41,35 +38,26 @@ import de.mkammerer.argon2.Argon2Factory.Argon2Types;
 public class UserService {
   private final UserDao userDao;
   private static final int MAX_USERNAME_LENGTH = 20;
-  private static final int MAX_EMAIL_LENGTH = 255;
-  private static final Pattern EMAIL_PATTERN = Pattern.compile("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$");
-
   public UserService(UserDao userDao) {
     this.userDao = userDao;
-  }
-
-  private static boolean isValidEmail(String email) {
-    return EMAIL_PATTERN.matcher(email).matches();
   }
 
   /**
    * Creates a new user with unique username, email, and password. Validates inputs and uses Argon2 for password hashing.
    *
    * @param username Unique username within length limit.
-   * @param email Unique email within length limit and correct format.
    * @param password Password to be hashed.
    * @return Newly created User object.
    * @throws UsernameAlreadyExistsException if username exists.
-   * @throws EmailAlreadyExistsException if email is taken.
    * @throws IllegalArgumentException for invalid inputs.
    */
-  public User createUser(String username, String email, String password)
-      throws UsernameAlreadyExistsException, EmailAlreadyExistsException, IllegalArgumentException {
+  public User createUser(String username, String password)
+      throws UsernameAlreadyExistsException, IllegalArgumentException {
 
-    validate(username, email, password);
+    validate(username, password);
     String hashedPassword = hashPassword(password);
 
-    return userDao.createUser(username, email, hashedPassword);
+    return userDao.createUser(username, hashedPassword);
   }
 
   /**
@@ -78,12 +66,11 @@ public class UserService {
    * @param user User object with updated info and existing identifier.
    * @return True if successful.
    * @throws UsernameAlreadyExistsException If updated username is not unique.
-   * @throws EmailAlreadyExistsException If updated email is already in use.
    * @throws IllegalArgumentException If information is invalid or does not meet constraints.
    */
   public boolean updateUserDetails(User user)
-      throws UsernameAlreadyExistsException, EmailAlreadyExistsException, IllegalArgumentException {
-    validate(user.getUsername(), user.getEmail(), user.getPassword());
+      throws UsernameAlreadyExistsException, IllegalArgumentException {
+    validate(user.getUsername(), user.getPassword());
     return userDao.updateUser(user);
   }
 
@@ -101,15 +88,12 @@ public class UserService {
     return hashedPassword;
   }
 
-  private void validate (String username, String email, String password) {
-    if (username == null || username.isEmpty() || email == null || email.isEmpty() || password == null || password.isEmpty()) {
-      throw new IllegalArgumentException("Username, email, and password cannot be null or empty.");
+  private void validate (String username, String password) {
+    if (username == null || username.isEmpty() || password == null || password.isEmpty()) {
+      throw new IllegalArgumentException("Username, and password cannot be null or empty.");
     }
     if (username.length() > MAX_USERNAME_LENGTH) {
       throw new IllegalArgumentException("Username cannot exceed " + MAX_USERNAME_LENGTH + " characters.");
-    }
-    if (email.length() > MAX_EMAIL_LENGTH || !isValidEmail(email)) {
-      throw new IllegalArgumentException("Email is invalid or exceeds " + MAX_EMAIL_LENGTH + " characters.");
     }
   }
 }
