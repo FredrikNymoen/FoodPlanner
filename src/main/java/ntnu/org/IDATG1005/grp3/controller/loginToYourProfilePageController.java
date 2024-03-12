@@ -7,39 +7,43 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class profilePageController {
+public class loginToYourProfilePageController {
+
+  private static loginToYourProfilePageController instance;
   @FXML
   private Text profileUsername;
-  private static profilePageController instance;
+  @FXML
+  private PasswordField checkPassword;
 
-  public profilePageController() {
+  public loginToYourProfilePageController() {
 
   }
-  public  static  synchronized profilePageController  getInstance(){
-    if(instance == null){
-      instance = new profilePageController();
+
+  public static synchronized loginToYourProfilePageController getInstance() {
+    if (instance == null) {
+      instance = new loginToYourProfilePageController();
     }
     return instance;
   }
 
-  @FXML
-  private PasswordField checkPassword;
-
-  public void btnLoginProfile(MouseEvent mouseEvent){
-    if(checkPassword.getText().isEmpty()){
+  public void loginToExistingUser(MouseEvent mouseEvent) {
+    if (checkPassword.getText().isEmpty()) {
       System.out.println("Please fill in all fields");
-    }else {
+    } else {
       System.out.println(checkPassword.getText());
       Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
       stage.close();
+
     }
 
   }
-  public void exitUser(MouseEvent mouseEvent){
+
+  public void exitUser(MouseEvent mouseEvent) {
     Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
     stage.close();
   }
-  public void setProfileUsername(Text text){
+
+  public void setProfileUsername(Text text) {
     profileUsername = text;
   }
 

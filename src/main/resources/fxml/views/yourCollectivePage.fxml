@@ -52,7 +52,7 @@
          <children>
             <AnchorPane layoutX="1.0" prefHeight="65.0" prefWidth="60.0" style="-fx-background-color: #29ff21; -fx-background-radius: 100;">
                <children>
-                  <ImageView fitHeight="65.0" fitWidth="69.0" layoutY="1.0" onMouseReleased="#btnAddProfile" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="65.0" fitWidth="69.0" layoutY="1.0" onMouseReleased="#addUserToCollective" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@/images/plus.png" />
                      </image>
