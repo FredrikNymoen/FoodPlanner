@@ -8,7 +8,7 @@ import de.mkammerer.argon2.Argon2Factory;
 import de.mkammerer.argon2.Argon2Factory.Argon2Types;
 
 /**
- * Manages user accounts, offering functions to create and update users persistent info while ensuring some data integrity and security.
+ * Manages user accounts, offering functions to create and update users' persistent info while ensuring some data integrity and security.
  * Utilizes <code>UserDao</code> for persistence and Argon2 for password hashing.
  *
  * <p>Key methods include <code>createUser</code> for new users and <code>updateUserDetails</code> for existing users,
@@ -19,22 +19,21 @@ import de.mkammerer.argon2.Argon2Factory.Argon2Types;
  * UserService userService = new UserService();
  * // Create a new user
  * try {
- *     User newUser = userService.createUser("johnDoe", "john.doe@example.com", "securePassword123");
+ *     User newUser = userService.createUser("johnDoe", "securePassword123");
  *     System.out.println("User created successfully: " + newUser.getUsername());
- * } catch (UsernameAlreadyExistsException | EmailAlreadyExistsException | Exception e) {
- *     System.out.println("Failed to create/update user: " + e.getMessage());
+ * } catch (UsernameAlreadyExistsException | IllegalArgumentException | Exception e) {
+ *     System.out.println("Failed to create user: " + e.getMessage());
  * }
  * // Update a user
  * try {
- *     User existingUser = new User(1, "janeDoe", "jane.doe@example.com", "newSecurePassword456");
+ *     User existingUser = new User(1, "janeDoe", "newSecurePassword456");
  *     userService.updateUserDetails(existingUser);
  *     System.out.println("User updated successfully");
- * } catch (UsernameAlreadyExistsException | EmailAlreadyExistsException | Exception e) {
+ * } catch (UsernameAlreadyExistsException | IllegalArgumentException | Exception e) {
  *     System.out.println("Failed to update user: " + e.getMessage());
  * }
  * </pre>
  */
-
 public class UserService {
   private final UserDao userDao;
   private static final int MAX_USERNAME_LENGTH = 20;
@@ -43,7 +42,7 @@ public class UserService {
   }
 
   /**
-   * Creates a new user with unique username, email, and password. Validates inputs and uses Argon2 for password hashing.
+   * Creates a new user with unique username and a password. Validates inputs and uses Argon2 for password hashing.
    *
    * @param username Unique username within length limit.
    * @param password Password to be hashed.

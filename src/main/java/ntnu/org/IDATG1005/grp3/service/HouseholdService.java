@@ -8,7 +8,7 @@ import ntnu.org.IDATG1005.grp3.model.objects.Household;
  * Provides service operations for managing households.
  */
 public class HouseholdService {
-  private HouseholdDao householdDao;
+  private final HouseholdDao householdDao;
 
   public HouseholdService (HouseholdDao household) {
     householdDao = household;
