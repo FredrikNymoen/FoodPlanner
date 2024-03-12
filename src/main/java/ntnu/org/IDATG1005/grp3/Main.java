@@ -80,6 +80,7 @@ public class Main{
     int n = 0;
     for (InventoryIngredient ii : user1.getInventory().getIngredients().values()) {
       System.out.println(n + ": " + ii.getIngredient().getName());
+      n++;
     }
 
     // create a recipe (or retrieve from db using a future service class not implemented yet
