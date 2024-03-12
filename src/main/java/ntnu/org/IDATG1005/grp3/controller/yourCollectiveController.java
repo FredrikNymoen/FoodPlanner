@@ -1,20 +1,17 @@
 package ntnu.org.IDATG1005.grp3.controller;
 
 import java.io.IOException;
-import java.util.Objects;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import ntnu.org.IDATG1005.grp3.model.User;
 
 
 public class yourCollectiveController {
@@ -78,7 +75,7 @@ public class yourCollectiveController {
     try {
       FXMLLoader loader = new FXMLLoader(
           getClass().getResource("/fxml/views/join_collective_pg.fxml"));
-      loader.setController(aSimpleTestController.getInstance());
+      loader.setController(joinCollectiveController.getInstance());
       Parent root = loader.load();
       Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
       Scene scene = new Scene(root);

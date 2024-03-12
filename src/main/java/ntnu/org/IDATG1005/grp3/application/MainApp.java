@@ -1,18 +1,11 @@
 package ntnu.org.IDATG1005.grp3.application;
 
-import java.awt.Button;
-import java.util.Objects;
 import javafx.application.Application;
-import javafx.beans.binding.Bindings;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import ntnu.org.IDATG1005.grp3.controller.aSimpleTestController;
-import ntnu.org.IDATG1005.grp3.controller.yourCollectiveController;
+import ntnu.org.IDATG1005.grp3.controller.joinCollectiveController;
 
 public class MainApp extends Application {
 
@@ -20,7 +13,7 @@ public class MainApp extends Application {
   public void start(Stage primaryStage) throws Exception {
     FXMLLoader loader = new FXMLLoader(
         getClass().getResource("/fxml/views/join_collective_pg.fxml"));
-    loader.setController(aSimpleTestController.getInstance());
+    loader.setController(joinCollectiveController.getInstance());
     Parent root = loader.load();
 
     primaryStage.setTitle("Application Title");

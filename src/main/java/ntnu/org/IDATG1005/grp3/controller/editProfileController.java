@@ -14,12 +14,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import ntnu.org.IDATG1005.grp3.model.User;
 
 public class editProfileController {
 
-  @FXML
   private TextField username;
-  @FXML
   private PasswordField password;
   private  HBox profileContainer;
   private Text profilePictureName;
@@ -36,23 +35,21 @@ public class editProfileController {
     return instance;
   }
   public void createUser(ActionEvent actionEvent) throws IOException {
-    if(username.getText().isEmpty() || password.getText().isEmpty()){
-      System.out.println("Please fill in all fields");
-    }else {
-
-      System.out.println(username.getText());
-      System.out.println(password.getText());
       AnchorPane newUser  = null;
-
       try {
         FXMLLoader loader = new FXMLLoader(
             getClass().getResource("/fxml/components/profile_picture.fxml"));
         loader.setController(profilePictureController.getInstance());
         newUser = loader.load();
+
+        username = (TextField) newUser.lookup("#username");
+        editProfileController.getInstance().setUsername(username);
+        password = (PasswordField) newUser.lookup("#password");
         login = (ImageView) newUser.lookup("#login");
         profilePictureName = (Text) newUser.lookup("#profilePictureName");
         updateUsername();
         addLogin();
+
         System.out.println(profilePictureName);
 
       } catch (IOException e) {
@@ -61,7 +58,6 @@ public class editProfileController {
       profileContainer.getChildren().add(newUser);
       Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
       stage.close();
-    }
   }
   public void exitUser(MouseEvent mouseEvent){
     Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
@@ -71,8 +67,12 @@ public class editProfileController {
   public void setProfileContainer(HBox profileContainer){
     this.profileContainer = profileContainer;
   }
+  public void setUsername(TextField username){
+    this.username = username;
+  }
   public void updateUsername(){
-    profilePictureName.setText(username.getText());
+    Text name = editProfileController.getInstance().getUsername();
+    username.setText(name.getText());
   }
   public Text getUsername(){
     return profilePictureName;
@@ -80,4 +80,5 @@ public class editProfileController {
   public void addLogin(){
     login.setOnMouseClicked(event -> yourCollectiveController.getInstance().btnExistingProfile(event));
   }
+  User user1 = new User(null, "profilePictureName.getText()" ,"userEmail", "password.getText()");
 }
