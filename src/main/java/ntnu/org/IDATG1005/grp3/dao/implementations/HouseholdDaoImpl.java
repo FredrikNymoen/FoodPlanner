@@ -5,7 +5,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import ntnu.org.IDATG1005.grp3.dao.interfaces.HouseholdDao;
 import ntnu.org.IDATG1005.grp3.db.DatabaseConnection;
-import ntnu.org.IDATG1005.grp3.model.Household;
+import ntnu.org.IDATG1005.grp3.exception.db.HouseholdExceptions.HouseholdNotFoundException;
+import ntnu.org.IDATG1005.grp3.model.objects.Household;
 import ntnu.org.IDATG1005.grp3.utility.Utility;
 
 /**
@@ -44,7 +45,7 @@ public class HouseholdDaoImpl implements HouseholdDao {
           try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
             if (generatedKeys.next()) {
               int householdId = generatedKeys.getInt(1);
-              return new Household(name, joinCode, householdId);
+              return new Household(householdId, name, joinCode);
             } else {
               logger.log(Level.SEVERE, "Creating household succeeded, but no ID was retrieved.");
               return null;
@@ -74,9 +75,10 @@ public class HouseholdDaoImpl implements HouseholdDao {
    *
    * @param joinCode The join code of the household to find.
    * @return The found Household object, or null if not found.
+   * @throws HouseholdNotFoundException if the join code is not found.
    */
   @Override
-  public Household findHouseholdByJoinCode(String joinCode) {
+  public Household findHouseholdByJoinCode(String joinCode) throws HouseholdNotFoundException {
     String sql = "SELECT household_id, name, join_code FROM household WHERE join_code = ?";
     try (Connection conn = DatabaseConnection.getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -85,7 +87,9 @@ public class HouseholdDaoImpl implements HouseholdDao {
       ResultSet rs = pstmt.executeQuery();
 
       if (rs.next()) {
-        return new Household(rs.getString("name"), rs.getString("join_code"), rs.getInt("household_id"));
+        return new Household(rs.getInt("household_id"), rs.getString("name"), rs.getString("join_code"));
+      } else {
+        throw new HouseholdNotFoundException(joinCode);
       }
     } catch (SQLException e) {
       logger.log(Level.SEVERE, "There was an error with SQL query", e);
