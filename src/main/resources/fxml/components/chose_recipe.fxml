@@ -25,7 +25,10 @@
             <ImageView fitHeight="29.0" fitWidth="32.0" layoutX="615.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
-      <ImageView fitHeight="133.0" fitWidth="210.0" layoutX="14.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="133.0" fitWidth="210.0" layoutX="14.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/images/bakgrunnsbilde_mat.jpg" />
+         </image></ImageView>
       <AnchorPane layoutX="240.0" layoutY="44.0" prefHeight="126.0" prefWidth="415.0" style="-fx-background-color: rgba(0,0,0,0.1);">
          <children>
             <Text fill="WHITE" layoutX="7.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The group will spend class hours and agreed meeting hours on assignments, with additional hours as needed." textAlignment="CENTER" wrappingWidth="401.13671875">
@@ -35,8 +38,14 @@
             </Text>
             <Button layoutX="234.0" layoutY="49.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="107.0" style="-fx-background-color: rgba(0,220,0,0.80);" text="Se oppsrkift" textFill="WHITE" />
             <Button layoutX="234.0" layoutY="86.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="107.0" style="-fx-background-color: rgba(0,180,0,0.80);" text="Velg!" textFill="WHITE" />
-            <ImageView fitHeight="29.0" fitWidth="41.0" layoutX="66.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="29.0" fitWidth="41.0" layoutX="66.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="29.0" fitWidth="41.0" layoutX="66.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/images/greenCheck.png" />
+               </image></ImageView>
+            <ImageView fitHeight="29.0" fitWidth="41.0" layoutX="66.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/images/redShoppingCart.png" />
+               </image></ImageView>
             <Text fill="#2add36" layoutX="119.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10">
                <font>
                   <Font size="17.0" />
