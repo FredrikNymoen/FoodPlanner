@@ -10,8 +10,12 @@ import ntnu.org.IDATG1005.grp3.model.objects.Household;
 public class HouseholdService {
   private final HouseholdDao householdDao;
 
-  public HouseholdService (HouseholdDao household) {
-    householdDao = household;
+  /**
+   * Constructs householdService with dao.
+   * @param householdDao corresponding dao.
+   */
+  public HouseholdService (HouseholdDao householdDao) {
+    this.householdDao = householdDao;
   }
 
   /**
