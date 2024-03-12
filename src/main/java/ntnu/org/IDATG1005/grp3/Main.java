@@ -7,7 +7,9 @@ import static ntnu.org.IDATG1005.grp3.model.objects.MeasurementUnit.STK;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import ntnu.org.IDATG1005.grp3.dao.implementations.HouseholdDaoImpl;
 import ntnu.org.IDATG1005.grp3.dao.implementations.UserDaoImpl;
+import ntnu.org.IDATG1005.grp3.dao.interfaces.HouseholdDao;
 import ntnu.org.IDATG1005.grp3.dao.interfaces.UserDao;
 import ntnu.org.IDATG1005.grp3.exception.db.HouseholdExceptions.HouseholdNotFoundException;
 import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.UsernameAlreadyExistsException;
@@ -157,7 +159,8 @@ public class Main{
 
     // find a household and add the user
     // find household
-    HouseholdService householdService = new HouseholdService();
+    HouseholdDao householdDao = new HouseholdDaoImpl();
+    HouseholdService householdService = new HouseholdService(householdDao);
     Household householdTrust = null;
     try {
       householdTrust = householdService.findHouseholdByJoinCode("trust");
