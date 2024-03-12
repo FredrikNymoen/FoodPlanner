@@ -2,9 +2,8 @@
 package ntnu.org.IDATG1005.grp3;
 
 import ntnu.org.IDATG1005.grp3.application.MainApp;
-import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.EmailAlreadyExistsException;
 import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.UsernameAlreadyExistsException;
-import ntnu.org.IDATG1005.grp3.model.User;
+import ntnu.org.IDATG1005.grp3.model.objects.User;
 import ntnu.org.IDATG1005.grp3.service.UserService;
 
 
@@ -17,10 +16,12 @@ public class Main{
     mainApp.maino(args);
   }
 
+
   // some reference code
+  /*
   private static void createUserSim() {
     // simulate how to create a user without database
-    User user = new User(null, "usernameNull", "emailNull", "passNull");
+    User user = new User(null, "usernameNull", , "passNull");
     System.out.println("\nLocal user with null id: ");
     System.out.println("Username: " + user.getUsername());
 
@@ -44,7 +45,7 @@ public class Main{
     // When we create a user locally, this user will interact with the user in the database with the same id.
     // When we create a user using userService the database automatically assigns the id.
     System.out.println("\nUpdating user: ");
-    User localUser = new User(1, "kjosern", "email", "pass");
+    User localUser = new User(1, "kjosern" , "pass");
 
     // This code will therefore update the user in the database with the id = 1
     // userId is a constant, so it cannot be changed after initialisation.
@@ -60,5 +61,7 @@ public class Main{
     }
 
   }
+
+   */
 }
 
