@@ -10,20 +10,24 @@ import javafx.scene.Scene;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import ntnu.org.IDATG1005.grp3.controller.ItemController;
+import ntnu.org.IDATG1005.grp3.controller.MarketController;
 
 public class MainApp extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-    Parent root = FXMLLoader.load(
-        Objects.requireNonNull(getClass().getResource(
-            "/fxml/components/ingredient_box.fxml")));
+    FXMLLoader loader = new FXMLLoader(
+        getClass().getResource("/fxml/views/ingredience.fxml"));
+    loader.setController(MarketController.getInstance());
+    Parent root = loader.load();
+
     primaryStage.setTitle("Application Title");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();
   }
 
-  public static void main(String[] args) {
+  public static void maino(String[] args) {
     launch(args);}
 
 }
