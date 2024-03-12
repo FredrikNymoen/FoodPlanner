@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="490.0" fitWidth="844.0" layoutX="-23.0" layoutY="-23.0" pickOnBounds="true" preserveRatio="true" />
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="800.0" spacing="10.0" style="-fx-background-color: #69A94F;">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="192.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text=" Matplanleggeren ">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <ImageView fitHeight="36.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../Documents/NTNU%201.%20Gjøvik/system-utvikling-gruppe-3/src/main/resources/fxml/components/output-onlinepngtools%20(1).png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="500.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Oppskrifter">
+                           <font>
+                              <Font name="Comic Sans MS" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingredienser">
+                           <font>
+                              <Font name="Comic Sans MS" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Handleliste">
+                           <font>
+                              <Font name="Comic Sans MS" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Aktive oppskrifter">
+                           <font>
+                              <Font name="Comic Sans MS" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="175.0">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Ditt kollektiv   ">
+                           <font>
+                              <Font name="Comic Sans MS" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="44.0" prefWidth="19.0">
+                     <children>
+                        <ImageView fitHeight="36.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../Documents/NTNU%201.%20Gjøvik/system-utvikling-gruppe-3/src/main/resources/fxml/components/output-onlinepngtools.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <ScrollPane layoutX="175.0" layoutY="151.0" prefHeight="299.0" prefWidth="450.0">
+         <content>
+            <VBox prefHeight="297.0" prefWidth="448.0" />
+         </content>
+      </ScrollPane>
+      <ComboBox layoutX="266.0" layoutY="98.0" prefHeight="25.0" prefWidth="268.0" promptText="Vis alle" />
+   </children>
+</AnchorPane>
