@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -34,30 +35,31 @@ public class editProfileController {
     }
     return instance;
   }
-  public void createUser(ActionEvent actionEvent) throws IOException {
-      AnchorPane newUser  = null;
+  public void createUser(MouseEvent mouseEvent) throws IOException {
+      AnchorPane newUser;
       try {
+        boolean isValid =  validateUser();
+        if(isValid) {
         FXMLLoader loader = new FXMLLoader(
             getClass().getResource("/fxml/components/profile_picture.fxml"));
         loader.setController(profilePictureController.getInstance());
         newUser = loader.load();
 
-        username = (TextField) newUser.lookup("#username");
-        editProfileController.getInstance().setUsername(username);
-        password = (PasswordField) newUser.lookup("#password");
         login = (ImageView) newUser.lookup("#login");
-        profilePictureName = (Text) newUser.lookup("#profilePictureName");
-        updateUsername();
-        addLogin();
 
-        System.out.println(profilePictureName);
-
+          ((Text) newUser.lookup("#profilePictureName")).setText(username.getText());
+          addLogin();
+          User user1 = new User(null, username.getText(), "userEmail", password.getText());
+          // todo database
+          System.out.println(user1);
+          profileContainer.getChildren().add(newUser);
+          Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+          stage.close();
+        }
       } catch (IOException e) {
         throw new RuntimeException(e);
       }
-      profileContainer.getChildren().add(newUser);
-      Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-      stage.close();
+
   }
   public void exitUser(MouseEvent mouseEvent){
     Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
@@ -70,15 +72,24 @@ public class editProfileController {
   public void setUsername(TextField username){
     this.username = username;
   }
-  public void updateUsername(){
-    Text name = editProfileController.getInstance().getUsername();
-    username.setText(name.getText());
-  }
   public Text getUsername(){
     return profilePictureName;
+  }
+  public void setPassword(PasswordField password){
+    this.password = password;
   }
   public void addLogin(){
     login.setOnMouseClicked(event -> yourCollectiveController.getInstance().btnExistingProfile(event));
   }
-  User user1 = new User(null, "profilePictureName.getText()" ,"userEmail", "password.getText()");
+  public boolean validateUser(){
+    if(username.getText().isEmpty() || password.getText().isEmpty()){
+    Alert alert = new Alert (Alert.AlertType.ERROR);
+    alert.setTitle("Error");
+    alert.setHeaderText("Logg inn feil");
+    alert.setContentText("Please fill in all fields");
+    alert.showAndWait();
+    return false;
+    }
+    return true;
+  }
 }

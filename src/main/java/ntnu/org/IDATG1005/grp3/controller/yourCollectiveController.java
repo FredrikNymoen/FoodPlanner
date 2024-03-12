@@ -1,11 +1,14 @@
 package ntnu.org.IDATG1005.grp3.controller;
 
 import java.io.IOException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -58,8 +61,12 @@ public class yourCollectiveController {
     try {
       FXMLLoader loader = new FXMLLoader(
           getClass().getResource("/fxml/components/edit_profile.fxml"));
+
       loader.setController(editProfileController.getInstance());
       Parent root = loader.load();
+      editProfileController.getInstance().setUsername((TextField) root.lookup("#username"));
+      editProfileController.getInstance().setPassword((PasswordField) root.lookup("#password"));
+      //todo: add user to database
       Stage profileStage = new Stage();
       profileStage.setTitle("Profile");
       Scene scene = new Scene(root);
