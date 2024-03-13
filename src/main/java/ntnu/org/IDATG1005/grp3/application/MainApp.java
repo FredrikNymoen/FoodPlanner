@@ -15,7 +15,9 @@ public class MainApp extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/views/join_collective_pg.fxml")));
+    Parent root = FXMLLoader.load(
+        Objects.requireNonNull(getClass().getResource(
+            "/fxml/components/profile_picture.fxml")));
     primaryStage.setTitle("Application Title");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();
