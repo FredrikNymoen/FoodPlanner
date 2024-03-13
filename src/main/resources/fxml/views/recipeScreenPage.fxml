@@ -98,7 +98,7 @@
       </HBox>
       <ScrollPane layoutX="175.0" layoutY="151.0" prefHeight="299.0" prefWidth="450.0" style="-fx-background-color: rgba(0,0,0,0.8);">
          <content>
-            <VBox prefHeight="297.0" prefWidth="448.0" />
+            <VBox prefHeight="297.0" prefWidth="448.0" fx:id="choseRecipeContainer" />
          </content>
       </ScrollPane>
       <ComboBox layoutX="266.0" layoutY="98.0" prefHeight="25.0" prefWidth="268.0" promptText="Vis alle" />

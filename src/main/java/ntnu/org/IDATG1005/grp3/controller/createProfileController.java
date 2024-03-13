@@ -20,7 +20,6 @@ public class createProfileController {
   private TextField username;
   private PasswordField password;
   private HBox profileContainer;
-  private Text profilePictureName;
   private ImageView login;
 
   private createProfileController() {

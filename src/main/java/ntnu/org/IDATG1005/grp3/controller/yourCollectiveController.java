@@ -18,8 +18,6 @@ import javafx.stage.Stage;
 public class yourCollectiveController {
 
   private static yourCollectiveController instance;
-  private HBox profileContainer;
-  private Text profileUsername;
 
   public yourCollectiveController() {
 
@@ -65,7 +63,6 @@ public class yourCollectiveController {
       Parent root = loader.load();
       createProfileController.getInstance().setUsername((TextField) root.lookup("#username"));
       createProfileController.getInstance().setPassword((PasswordField) root.lookup("#password"));
-      //todo: add user to database
       Stage profileStage = new Stage();
       profileStage.setTitle("Profile");
       Scene scene = new Scene(root);
@@ -78,13 +75,13 @@ public class yourCollectiveController {
     }
   }
 
-  public void leaveCollective(javafx.event.ActionEvent actionEvent) {
+  public void leaveCollective(MouseEvent mouseEvent) {
     try {
       FXMLLoader loader = new FXMLLoader(
           getClass().getResource("/fxml/views/joinCollectivePage.fxml"));
       loader.setController(joinCollectiveController.getInstance());
       Parent root = loader.load();
-      Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+      Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
       Scene scene = new Scene(root);
       stage.setScene(scene);
       stage.show();
@@ -94,8 +91,5 @@ public class yourCollectiveController {
     }
 
   }
-  /*public void updateProfileUsername(){
-    Text name = editProfileController.getInstance().getUsername();
-    profileUsername.setText(name.getText());
-  }*/
+
 }
