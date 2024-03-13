@@ -8,51 +8,42 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="815.0" style="-fx-background-color: #92C47C;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="rootBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="597.0" style="-fx-background-color: #749C63; -fx-border-color: #000; -fx-border-width: 1;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.org.IDATG1005.grp3.controller.IngredienceSearchAlternativeController">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="321.0" HBox.hgrow="NEVER">
          <children>
             <HBox prefHeight="100.0" prefWidth="15.0" />
-            <ImageView fitHeight="106.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="alternativeImage" fitHeight="72.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../images/tomat.png" />
+                  <Image url="@../../images/Kniv_Gaffel_ikon.png" />
                </image>
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </ImageView>
             <HBox prefHeight="150.0" prefWidth="37.0" HBox.hgrow="NEVER" />
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Tomat">
+            <Text fx:id="alternativeName" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Tomat" textAlignment="CENTER" wrappingWidth="139.609375">
                <font>
-                  <Font name="Comic Sans MS Bold" size="24.0" />
+                  <Font name="Comic Sans MS Bold" size="23.0" />
                </font>
             </Text>
          </children>
       </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="135.0">
+      <HBox alignment="CENTER" prefHeight="150.0" prefWidth="135.0">
          <children>
-            <HBox prefHeight="150.0" prefWidth="54.0" />
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="12 stk">
+            <Text fx:id="alternativeAmount" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="12 stk">
                <font>
-                  <Font name="Comic Sans MS" size="20.0" />
+                  <Font name="Comic Sans MS" size="17.0" />
                </font>
             </Text>
          </children>
       </HBox>
       <HBox prefHeight="150.0" prefWidth="91.0" HBox.hgrow="ALWAYS" />
-      <VBox prefHeight="150.0" prefWidth="232.0">
+      <VBox alignment="CENTER" prefHeight="150.0" prefWidth="193.0">
          <children>
-            <HBox alignment="TOP_RIGHT" prefHeight="55.0" prefWidth="232.0">
+            <HBox alignment="CENTER" maxHeight="30.0" prefHeight="25.0" prefWidth="205.0" spacing="15.0">
                <children>
-                  <ImageView fitHeight="71.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/star.png" />
-                     </image>
-                  </ImageView>
-               </children></HBox>
-            <HBox maxHeight="30.0" prefHeight="30.0" prefWidth="184.0" spacing="15.0">
-               <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="164.0" style="-fx-background-color: red; -fx-border-width: 2px; -fx-border-color: black;">
+                  <HBox fx:id="removeButton" alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: red; -fx-border-width: 2px; -fx-border-color: black;">
                      <children>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Kast  ">
                            <font>
@@ -66,7 +57,7 @@
                         </ImageView>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: green; -fx-border-width: 2px; -fx-border-color: black;">
+                  <HBox fx:id="addButton" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: green; -fx-border-width: 2px; -fx-border-color: black;">
                      <children>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til  ">
                            <font>

@@ -50,11 +50,11 @@
                   <Button fx:id="decrementButton" prefWidth="30.0" style="-fx-background-color: #69A94F;" text="-" textFill="WHITE" onMouseClicked="#minusAmount">
                      <font>
                         <Font size="14.0" />
-                     </font></Button> <!-- Button to decrement -->
+                     </font></Button>
                   <Button fx:id="incrementButton" prefWidth="30.0" style="-fx-background-color: #69A94F;" text="+" textFill="WHITE" onMouseClicked="#plusAmount">
                      <font>
                         <Font size="14.0" />
-                     </font></Button> <!-- Button to increment -->
+                     </font></Button>
                </children>
             </HBox>
          </children>

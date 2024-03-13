@@ -5,13 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-<<<<<<< HEAD
-import javafx.stage.StageStyle;
-import ntnu.org.IDATG1005.grp3.controller.ItemController;
-import ntnu.org.IDATG1005.grp3.controller.MarketController;
-=======
-import ntnu.org.IDATG1005.grp3.controller.joinCollectiveController;
->>>>>>> dev
 
 public class MainApp extends Application {
 
