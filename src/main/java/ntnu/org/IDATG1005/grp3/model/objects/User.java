@@ -1,6 +1,5 @@
 package ntnu.org.IDATG1005.grp3.model.objects;
 
-import ntnu.org.IDATG1005.grp3.model.objects.Inventory;
 
 /**
  * Represents a user with a unique ID, username, email address, and password.
@@ -9,7 +8,6 @@ public class User {
   private final Integer userId;
   private String username;
   private Inventory inventory;
-  private String email;
   private String password; // hashed at service layer, so stored in plain at ram
 
   /**
@@ -17,13 +15,11 @@ public class User {
    *
    * @param userId The unique identifier for the user.
    * @param username The username of the user.
-   * @param email The email address of the user.
    * @param password The password for the user account.
    */
-  public User(Integer userId, String username, String email, String password) {
+  public User(Integer userId, String username, String password) {
     this.userId = userId;
     this.username = username;
-    this.email = email;
     this.password = password;
   }
 
@@ -46,15 +42,6 @@ public class User {
   }
 
   /**
-   * Gets the user's email address.
-   *
-   * @return The email address of the user.
-   */
-  public String getEmail() {
-    return email;
-  }
-
-  /**
    * Gets the user's password.
    * Caution: Returning passwords in plain text is a security risk.
    *
@@ -71,15 +58,6 @@ public class User {
    */
   public void setUsername(String username) {
     this.username = username;
-  }
-
-  /**
-   * Sets the user's email address.
-   *
-   * @param email The new email address for the user.
-   */
-  public void setEmail(String email) {
-    this.email = email;
   }
 
   /**

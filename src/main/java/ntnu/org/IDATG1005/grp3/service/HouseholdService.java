@@ -1,6 +1,5 @@
 package ntnu.org.IDATG1005.grp3.service;
 
-import ntnu.org.IDATG1005.grp3.dao.implementations.HouseholdDaoImpl;
 import ntnu.org.IDATG1005.grp3.dao.interfaces.HouseholdDao;
 import ntnu.org.IDATG1005.grp3.exception.db.HouseholdExceptions.HouseholdNotFoundException;
 import ntnu.org.IDATG1005.grp3.model.objects.Household;
@@ -9,7 +8,15 @@ import ntnu.org.IDATG1005.grp3.model.objects.Household;
  * Provides service operations for managing households.
  */
 public class HouseholdService {
-  private final HouseholdDao householdDao = new HouseholdDaoImpl();
+  private final HouseholdDao householdDao;
+
+  /**
+   * Constructs householdService with dao.
+   * @param householdDao corresponding dao.
+   */
+  public HouseholdService (HouseholdDao householdDao) {
+    this.householdDao = householdDao;
+  }
 
   /**
    * Creates a new household.
