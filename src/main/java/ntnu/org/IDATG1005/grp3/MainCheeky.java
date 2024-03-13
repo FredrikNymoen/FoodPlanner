@@ -1,9 +1,4 @@
 package ntnu.org.IDATG1005.grp3;
-
-import static ntnu.org.IDATG1005.grp3.model.objects.MeasurementUnit.GRAM;
-import static ntnu.org.IDATG1005.grp3.model.objects.MeasurementUnit.LITER;
-
-import java.util.ArrayList;
 import java.util.List;
 import ntnu.org.IDATG1005.grp3.dao.implementations.HouseholdDaoImpl;
 import ntnu.org.IDATG1005.grp3.dao.implementations.IngredientDaoImpl;
@@ -18,9 +13,7 @@ import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.UsernameAlreadyExists
 import ntnu.org.IDATG1005.grp3.model.objects.Direction;
 import ntnu.org.IDATG1005.grp3.model.objects.Household;
 import ntnu.org.IDATG1005.grp3.model.objects.Ingredient;
-import ntnu.org.IDATG1005.grp3.model.objects.InventoryIngredient;
 import ntnu.org.IDATG1005.grp3.model.objects.Recipe;
-import ntnu.org.IDATG1005.grp3.model.objects.RecipeInfo;
 import ntnu.org.IDATG1005.grp3.model.objects.RecipeIngredient;
 import ntnu.org.IDATG1005.grp3.model.objects.Tag;
 import ntnu.org.IDATG1005.grp3.model.objects.User;
@@ -33,17 +26,17 @@ public class MainCheeky {
 
   public static void main(String[] args) {
 
-    //createUserSim();
+    createUserSim();
 
-    //updateUserSim();
+    updateUserSim();
 
-    //createHouseholdSim();
+    createHouseholdSim();
 
     findHouseholdById();
 
-    //retrieveAndAvailablePrintIngredients();
+    retrieveAndAvailablePrintIngredients();
 
-    //retrieveAndPrintRecipes();
+    retrieveAndPrintRecipes();
 
     /*
     Persistent logic:
@@ -154,8 +147,8 @@ public class MainCheeky {
 
     System.out.println("Household:");
     System.out.println("Id: " + householdPersistent.getHouseholdId());
-    System.out.println("Name " + householdPersistent.getName());
-    System.out.println("JoinCode" + householdPersistent.getJoinCode());
+    System.out.println("Name: " + householdPersistent.getName());
+    System.out.println("JoinCode: " + householdPersistent.getJoinCode());
   }
 
   private static void findHouseholdById() {
