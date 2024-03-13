@@ -24,17 +24,19 @@ public class recipeScreenController {
         return instance;
     }
     public void onLoadRecipeScreen(MouseEvent mouseEvent) throws IOException {
-        Pane recipe;
+        AnchorPane recipe;
         FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/fxml/components/activeRecipes.fxml"));
+                getClass().getResource("/fxml/components/choseRecipe.fxml"));
         loader.setController(recipeScreenController.getInstance());
         recipe = loader.load();
         choseRecipeContainer.getChildren().add(recipe);
+
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         stage.close();
+
     }
-    public void setChoseRecipeContainer(VBox c) {
-        this.choseRecipeContainer = c;
+    public void setChoseRecipeContainer(VBox choseRecipeContainer) {
+        this.choseRecipeContainer = choseRecipeContainer;
     }
 
 }

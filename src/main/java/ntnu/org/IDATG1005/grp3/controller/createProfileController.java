@@ -51,7 +51,6 @@ public class createProfileController {
         joinCollectiveController.getInstance().getHousehold().addUser(user1);
         System.out.println(joinCollectiveController.getInstance().getHousehold().getUsers());
         // todo database
-        System.out.println(user1);
         profileContainer.getChildren().add(newUser);
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         stage.close();

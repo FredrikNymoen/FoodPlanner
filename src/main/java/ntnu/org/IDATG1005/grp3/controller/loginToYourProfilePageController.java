@@ -40,7 +40,6 @@ public class loginToYourProfilePageController {
       System.out.println(checkPassword.getText());
       Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
       stage.close();
-      AnchorPane recipe;
         try {
           FXMLLoader loader = new FXMLLoader(
                   getClass().getResource("/fxml/views/recipeScreenPage.fxml"));

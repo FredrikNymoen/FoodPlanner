@@ -33,7 +33,6 @@ public class joinCollectiveController {
       loader.setController(yourCollectiveController.getInstance());
       Parent root = loader.load();
 
-      System.out.println("Button clicked");
       HBox c = (HBox) root.lookup("#profileContainer");
       createProfileController.getInstance().setProfileContainer(c);
       Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
