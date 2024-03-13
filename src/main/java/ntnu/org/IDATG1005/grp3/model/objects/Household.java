@@ -1,4 +1,4 @@
-package ntnu.org.IDATG1005.grp3.model;
+package ntnu.org.IDATG1005.grp3.model.objects;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ public class Household {
    * @param joinCode The join code for the household.
    * @param householdId The unique identifier for the household.
    */
-  public Household(String name, String joinCode, Integer householdId) {
+  public Household(Integer householdId, String name, String joinCode) {
     this.householdId = householdId;
     this.name = name;
     this.joinCode = joinCode;

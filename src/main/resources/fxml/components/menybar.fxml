@@ -17,9 +17,6 @@
                </font>
             </Text>
             <ImageView fitHeight="36.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@output-onlinepngtools%20(1).png" />
-               </image>
             </ImageView>
          </children>
       </HBox>
@@ -77,9 +74,7 @@
             <HBox alignment="CENTER" prefHeight="44.0" prefWidth="19.0">
                <children>
                   <ImageView fitHeight="36.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@output-onlinepngtools.png" />
-                     </image>
+
                   </ImageView>
                </children>
             </HBox>

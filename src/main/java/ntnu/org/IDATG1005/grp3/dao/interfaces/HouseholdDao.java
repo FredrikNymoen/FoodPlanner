@@ -1,6 +1,7 @@
 package ntnu.org.IDATG1005.grp3.dao.interfaces;
 
-import ntnu.org.IDATG1005.grp3.model.Household;
+import ntnu.org.IDATG1005.grp3.exception.db.HouseholdExceptions.HouseholdNotFoundException;
+import ntnu.org.IDATG1005.grp3.model.objects.Household;
 
 /**
  * Defines the data access operations for managing households.
@@ -27,6 +28,7 @@ public interface HouseholdDao {
    *
    * @param joinCode The join code of the household to find.
    * @return The found Household object, or null if no household matches the given join code.
+   * @throws HouseholdNotFoundException if the join code is not found.
    */
-  Household findHouseholdByJoinCode(String joinCode);
+  Household findHouseholdByJoinCode(String joinCode) throws HouseholdNotFoundException;
 }

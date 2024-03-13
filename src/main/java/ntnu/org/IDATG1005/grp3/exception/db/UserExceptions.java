@@ -9,10 +9,4 @@ public class UserExceptions {
       super("Username already exists: " + username);
     }
   }
-
-  public static class EmailAlreadyExistsException extends Exception {
-    public EmailAlreadyExistsException(String email) {
-      super("Email already exists: " + email);
-    }
-  }
 }

@@ -1,4 +1,5 @@
-package ntnu.org.IDATG1005.grp3.model;
+package ntnu.org.IDATG1005.grp3.model.objects;
+
 
 /**
  * Represents a user with a unique ID, username, email address, and password.
@@ -6,21 +7,19 @@ package ntnu.org.IDATG1005.grp3.model;
 public class User {
   private final Integer userId;
   private String username;
-  private String email;
-  private String password; // Storing password in this manner is not a best practice
+  private Inventory inventory;
+  private String password; // hashed at service layer, so stored in plain at ram
 
   /**
    * Constructs a new User with the specified ID, username, email, and password.
    *
    * @param userId The unique identifier for the user.
    * @param username The username of the user.
-   * @param email The email address of the user.
    * @param password The password for the user account.
    */
-  public User(Integer userId, String username, String email, String password) {
+  public User(Integer userId, String username, String password) {
     this.userId = userId;
     this.username = username;
-    this.email = email;
     this.password = password;
   }
 
@@ -43,15 +42,6 @@ public class User {
   }
 
   /**
-   * Gets the user's email address.
-   *
-   * @return The email address of the user.
-   */
-  public String getEmail() {
-    return email;
-  }
-
-  /**
    * Gets the user's password.
    * Caution: Returning passwords in plain text is a security risk.
    *
@@ -71,15 +61,6 @@ public class User {
   }
 
   /**
-   * Sets the user's email address.
-   *
-   * @param email The new email address for the user.
-   */
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  /**
    * Sets the user's password.
    * Again not the best security practice.
    *
@@ -87,5 +68,13 @@ public class User {
    */
   public void setPassword(String password) {
     this.password = password;
+  }
+
+  public Inventory getInventory() {
+    return inventory;
+  }
+
+  public void setInventory(Inventory inventory) {
+    this.inventory = inventory;
   }
 }
