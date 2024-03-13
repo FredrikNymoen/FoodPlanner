@@ -15,6 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.layout.ColumnConstraints?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.org.IDATG1005.grp3.controller.MarketController">
    <children>
       <ImageView fitHeight="450.0" fitWidth="800.0" layoutY="1.0">
@@ -115,7 +116,7 @@
                </font>
             </Label>
             <CheckBox layoutX="15.0" layoutY="104.0" mnemonicParsing="false" prefHeight="7.0" selected="true" text="Alle" />
-            <CheckBox layoutX="15.0" layoutY="131.0" mnemonicParsing="false" prefHeight="7.0" text="Favoritter" />
+            <CheckBox layoutX="15.0" layoutY="131.0" mnemonicParsing="false" prefHeight="7.0" text="Favoritter" fx:id="favoriteCheckBox" onAction="#filterFavorites"/>
             <CheckBox layoutX="15.0" layoutY="158.0" mnemonicParsing="false" prefHeight="7.0" text="Kjøtt" />
             <CheckBox layoutX="15.0" layoutY="185.0" mnemonicParsing="false" prefHeight="7.0" text="Grønnsaker" />
             <CheckBox layoutX="15.0" layoutY="212.0" mnemonicParsing="false" prefHeight="7.0" text="Frukt" />
@@ -141,6 +142,11 @@
             <ScrollPane fx:id="scroll" fitToWidth="true" layoutX="132.0" layoutY="85.0" prefHeight="319.0" prefWidth="597.0" stylesheets="@../../css/style.css">
                <content>
                   <GridPane fx:id="grid" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="3.0" prefWidth="5.0" style="-fx-background-color: #92C37D;">
+                     <columnConstraints>
+                        <ColumnConstraints minWidth="150" prefWidth="150" maxWidth="150" />
+                        <ColumnConstraints minWidth="150" prefWidth="150" maxWidth="150" />
+                        <ColumnConstraints minWidth="150" prefWidth="150" maxWidth="150" />
+                     </columnConstraints>
                      <cursor>
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor>

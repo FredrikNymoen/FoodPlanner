@@ -9,6 +9,11 @@ public class InventoryIngredient extends AbstractIngredientDetail {
   private final Integer inventoryIngredientId;
   private Integer quantity;
   private boolean favorite;
+  private boolean meat;
+  private boolean vegetable;
+  private boolean fruit;
+  private boolean pasta;
+  private boolean spice;
 
   /**
    * Constructs an instance of InventoryIngredient with specified ingredient, unit, and quantity.

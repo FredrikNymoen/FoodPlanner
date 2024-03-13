@@ -12,7 +12,7 @@
 
 <AnchorPane fx:id="item" prefHeight="162.0" prefWidth="149.0" style="-fx-background-color: #6E935D; -fx-border-color: #69A94F; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.org.IDATG1005.grp3.controller.ItemController">
    <children>
-      <VBox fx:id="itemContainer" alignment="TOP_CENTER" layoutX="62.0" layoutY="-1.0" prefHeight="189.0" prefWidth="149.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox fx:id="itemContainer" alignment="TOP_CENTER" layoutX="62.0" layoutY="-1.0" prefHeight="162.0" prefWidth="149.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox fx:id="itemInfo" alignment="CENTER" prefHeight="35.0" prefWidth="142.0">
                <children>
@@ -47,11 +47,11 @@
 
             <HBox id="buttons" prefHeight="40.0" prefWidth="149.0" spacing="40" stylesheets="@../../css/style.css"> <!-- Adjust 'spacing' as needed -->
                <children>
-                  <Button fx:id="decrementButton" prefWidth="30.0" style="-fx-background-color: #69A94F;" text="-" textFill="WHITE">
+                  <Button fx:id="decrementButton" prefWidth="30.0" style="-fx-background-color: #69A94F;" text="-" textFill="WHITE" onMouseClicked="#minusAmount">
                      <font>
                         <Font size="14.0" />
                      </font></Button> <!-- Button to decrement -->
-                  <Button fx:id="incrementButton" prefWidth="30.0" style="-fx-background-color: #69A94F;" text="+" textFill="WHITE">
+                  <Button fx:id="incrementButton" prefWidth="30.0" style="-fx-background-color: #69A94F;" text="+" textFill="WHITE" onMouseClicked="#plusAmount">
                      <font>
                         <Font size="14.0" />
                      </font></Button> <!-- Button to increment -->
