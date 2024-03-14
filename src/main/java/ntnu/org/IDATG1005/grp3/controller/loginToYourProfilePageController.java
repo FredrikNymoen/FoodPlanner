@@ -38,8 +38,8 @@ public class loginToYourProfilePageController {
       System.out.println("Please fill in all fields");
     } else {
       System.out.println(checkPassword.getText());
-      Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-      stage.close();
+      Stage LoginToProfile = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+      LoginToProfile.close();
         try {
           FXMLLoader loader = new FXMLLoader(
                   getClass().getResource("/fxml/views/recipeScreenPage.fxml"));
@@ -49,11 +49,12 @@ public class loginToYourProfilePageController {
           VBox c = (VBox) root.lookup("#choseRecipeContainer");
           recipeScreenController.getInstance().setChoseRecipeContainer(c);
 
-          Stage stage1 = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+          Stage recipeScreenPage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 
           Scene scene = new Scene(root);
-          stage1.setScene(scene);
-          stage1.show();
+          recipeScreenPage.setScene(scene);
+          recipeScreenPage.show();
+          closeYourColletive(joinCollectiveController.getInstance());
           recipeScreenController.getInstance().onLoadRecipeScreen(mouseEvent);
         } catch (IOException e) {
           e.printStackTrace();
@@ -65,6 +66,10 @@ public class loginToYourProfilePageController {
   public void exitUser(MouseEvent mouseEvent) {
     Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
     stage.close();
+  }
+  public void closeYourColletive(joinCollectiveController joinCollectiveController){
+    ntnu.org.IDATG1005.grp3.controller.joinCollectiveController.getInstance().closeCurrentScene();
+
   }
 
 }

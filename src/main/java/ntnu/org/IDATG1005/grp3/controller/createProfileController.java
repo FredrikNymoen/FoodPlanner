@@ -34,6 +34,7 @@ public class createProfileController {
   }
 
   public void createUser(MouseEvent mouseEvent) throws IOException {
+
     AnchorPane newUser;
     try {
       boolean isValid = validateUser();

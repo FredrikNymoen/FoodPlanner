@@ -63,13 +63,14 @@ public class yourCollectiveController {
       Parent root = loader.load();
       createProfileController.getInstance().setUsername((TextField) root.lookup("#username"));
       createProfileController.getInstance().setPassword((PasswordField) root.lookup("#password"));
-      Stage profileStage = new Stage();
-      profileStage.setTitle("Profile");
+
+      Stage addUser = new Stage();
+      addUser.setTitle("Profile");
       Scene scene = new Scene(root);
-      profileStage.setScene(scene);
+      addUser.setScene(scene);
       //Blocks the main stage until the profile stage is closed
-      profileStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
-      profileStage.show();
+      addUser.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+      addUser.show();
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -81,10 +82,10 @@ public class yourCollectiveController {
           getClass().getResource("/fxml/views/joinCollectivePage.fxml"));
       loader.setController(joinCollectiveController.getInstance());
       Parent root = loader.load();
-      Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+      Stage joinCollective = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
       Scene scene = new Scene(root);
-      stage.setScene(scene);
-      stage.show();
+      joinCollective.setScene(scene);
+      joinCollective.show();
 
     } catch (IOException e) {
       e.printStackTrace();

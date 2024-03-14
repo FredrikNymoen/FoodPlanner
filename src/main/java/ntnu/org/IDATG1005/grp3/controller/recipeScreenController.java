@@ -31,8 +31,8 @@ public class recipeScreenController {
         recipe = loader.load();
         choseRecipeContainer.getChildren().add(recipe);
 
-        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-        stage.close();
+        Stage choseRecipeComponent = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        choseRecipeComponent.close();
 
     }
     public void setChoseRecipeContainer(VBox choseRecipeContainer) {
