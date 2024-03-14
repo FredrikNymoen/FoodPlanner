@@ -8,6 +8,12 @@ public class InventoryIngredient extends AbstractIngredientDetail {
 
   private final Integer inventoryIngredientId;
   private Integer quantity;
+  private boolean favorite;
+  private boolean meat;
+  private boolean vegetable;
+  private boolean fruit;
+  private boolean pasta;
+  private boolean spice;
 
   /**
    * Constructs an instance of InventoryIngredient with specified ingredient, unit, and quantity.
@@ -22,6 +28,7 @@ public class InventoryIngredient extends AbstractIngredientDetail {
     super(ingredient, unit);
     this.inventoryIngredientId = inventoryIngredientId;
     this.quantity = quantity;
+    this.favorite = false;
   }
 
   /**
@@ -60,5 +67,32 @@ public class InventoryIngredient extends AbstractIngredientDetail {
    */
   public void addQuantity(Integer quantity) {
     this.quantity += quantity;
+  }
+
+  /**
+   * Updates the quantity of the ingredient in the inventory by removing the specified amount. This
+   * can be used to decrease inventory levels.
+   *
+   * @param quantity The quantity to remove from the current inventory level.
+   */
+  public void removeQuantity(Integer quantity) {
+    this.quantity -= quantity;
+  }
+
+  /**
+   * Changes the favorite status of the ingredient.
+   *
+   */
+  public void changeFavoriteStatus() {
+    this.favorite = !this.favorite;
+  }
+
+  /**
+   * Gets the favorite status of the ingredient.
+   *
+   * @return The favorite status of the ingredient.
+   */
+  public boolean getFavoriteStatus() {
+    return favorite;
   }
 }
