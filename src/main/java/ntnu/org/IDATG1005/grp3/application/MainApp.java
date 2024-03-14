@@ -16,6 +16,7 @@ public class MainApp extends Application {
 
     primaryStage.setTitle("Application Title");
     primaryStage.setScene(new Scene(root));
+
     primaryStage.show();
   }
 

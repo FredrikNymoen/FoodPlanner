@@ -2,6 +2,7 @@ package ntnu.org.IDATG1005.grp3.controller;
 
 import java.util.HashMap;
 import java.util.Map;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -28,13 +29,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import ntnu.org.IDATG1005.grp3.dao.implementations.IngredientDaoImpl;
 import ntnu.org.IDATG1005.grp3.dao.interfaces.IngredientDao;
+import ntnu.org.IDATG1005.grp3.interfaces.EditBoxDisplayListener;
 import ntnu.org.IDATG1005.grp3.interfaces.ItemRemovalListener;
 import ntnu.org.IDATG1005.grp3.model.objects.Ingredient;
 import ntnu.org.IDATG1005.grp3.model.objects.InventoryIngredient;
 import ntnu.org.IDATG1005.grp3.model.objects.MeasurementUnit;
 import ntnu.org.IDATG1005.grp3.service.IngredientService;
 
-public class IngredienceController implements Initializable{
+public class IngredienceController implements Initializable, EditBoxDisplayListener{
     @FXML
     private ScrollPane scroll;
 
@@ -78,6 +80,14 @@ public class IngredienceController implements Initializable{
         inventoryIngredients.add(tomat);
         inventoryIngredients.add(eple);
         inventoryIngredients.add(melk);
+        inventoryIngredients.add(sukker);
+        inventoryIngredients.add(sukker);
+        inventoryIngredients.add(sukker);
+        inventoryIngredients.add(sukker);
+        inventoryIngredients.add(sukker);
+        inventoryIngredients.add(sukker);
+        inventoryIngredients.add(sukker);
+        inventoryIngredients.add(sukker);
         inventoryIngredients.add(sukker);
 
         return inventoryIngredients;
@@ -198,6 +208,48 @@ public class IngredienceController implements Initializable{
         }
     }
 
+    @Override
+    public void onDisplayEditBox(Ingredient ingredient) {
+        // Overlay pane with opacity
+        AnchorPane overlay = new AnchorPane();
+        overlay.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5);"); // 50% opacity
+        overlay.setLayoutX(0);
+        overlay.setLayoutY(0);
+        overlay.setPrefSize(rootPane.getWidth(), rootPane.getHeight());
+
+        // Ensure the overlay resizes with the root pane
+        AnchorPane.setTopAnchor(overlay, 0.0);
+        AnchorPane.setBottomAnchor(overlay, 0.0);
+        AnchorPane.setLeftAnchor(overlay, 0.0);
+        AnchorPane.setRightAnchor(overlay, 0.0);
+
+        try {
+            // Load the FXML file for the edit ingredient box
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/components/ingrediens.fxml"));
+            AnchorPane editBox = loader.load();
+
+            overlay.getChildren().add(editBox);
+            // Get the controller and set the data
+            EditIngredientBoxController editBoxController = loader.getController();
+            editBoxController.setOverlayPane(overlay);
+            editBoxController.setData(ingredient, ingredients);
+
+            // Position the edit box in the middle of the overlay
+            editBox.setLayoutX((rootPane.getWidth() - editBox.getPrefWidth()) / 2);
+            editBox.setLayoutY((rootPane.getHeight() - editBox.getPrefHeight()) / 2);
+
+            // Display logic remains the same
+            Platform.runLater(() -> rootPane.getChildren().add(overlay));
+
+            System.out.println("Display edit box");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        overlay.setOnMouseClicked(e -> {
+            rootPane.getChildren().remove(overlay);
+        });
+    }
 
     private void displayIngredients(List<InventoryIngredient> ingredients) {
         grid.getChildren().clear(); // Clear existing items from the grid
@@ -213,6 +265,7 @@ public class IngredienceController implements Initializable{
                 System.out.println("hei" + itemController);
                 itemController.setData(ingredients.get(i));
                 itemController.setRemovalListener(ingredient -> removeItemFromGrid(ingredient));
+                itemController.setEditBoxDisplayListener(this); // 'this' refers to an instance of IngredienceController
                 System.out.println("HALLA");
 
                 if (column == 4) {

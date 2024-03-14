@@ -7,6 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import ntnu.org.IDATG1005.grp3.interfaces.EditBoxDisplayListener;
 import ntnu.org.IDATG1005.grp3.interfaces.ItemRemovalListener;
 import ntnu.org.IDATG1005.grp3.model.objects.InventoryIngredient;
 
@@ -28,6 +29,7 @@ public class ItemController {
 
     private ItemRemovalListener removalListener;
     private InventoryIngredient ingredient;
+    private EditBoxDisplayListener editBoxDisplayListener;
 
 
     public void setData(InventoryIngredient inventoryIngredient) {
@@ -80,6 +82,16 @@ public class ItemController {
         }
         else{
             this.removalListener.onItemRemoved(ingredient);
+        }
+    }
+
+    public void setEditBoxDisplayListener(EditBoxDisplayListener listener) {
+        this.editBoxDisplayListener = listener;
+    }
+    @FXML
+    void displayEditBox(MouseEvent event) {
+        if (editBoxDisplayListener != null) {
+            editBoxDisplayListener.onDisplayEditBox(ingredient.getIngredient());
         }
     }
 }
