@@ -30,9 +30,11 @@ public class joinCollectiveController {
     }
     return instance;
   }
-  public void start(Stage primaryStage){
+  /*public void start(Stage primaryStage){
     this.primaryStage = primaryStage;
   }
+
+   */
 
   public void btnNextSite(javafx.event.ActionEvent actionEvent) {
     createHousehold();
@@ -56,11 +58,6 @@ public class joinCollectiveController {
       e.printStackTrace();
     }
   }
-  public void closeYourColletive(MouseEvent mouseEvent){
-    Stage yourCollective = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-    yourCollective.close();
-  }
-
   public void createHousehold() {
     this.household = new Household(null, "kol", "k1");
   }

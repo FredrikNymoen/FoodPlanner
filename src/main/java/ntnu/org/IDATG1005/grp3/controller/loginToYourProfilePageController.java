@@ -54,7 +54,7 @@ public class loginToYourProfilePageController {
           Scene scene = new Scene(root);
           recipeScreenPage.setScene(scene);
           recipeScreenPage.show();
-          closeYourColletive(joinCollectiveController.getInstance());
+          //closeYourColletive(joinCollectiveController.getInstance());
           recipeScreenController.getInstance().onLoadRecipeScreen(mouseEvent);
         } catch (IOException e) {
           e.printStackTrace();
@@ -67,9 +67,11 @@ public class loginToYourProfilePageController {
     Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
     stage.close();
   }
-  public void closeYourColletive(joinCollectiveController joinCollectiveController){
+  /*public void closeYourColletive(joinCollectiveController joinCollectiveController){
     ntnu.org.IDATG1005.grp3.controller.joinCollectiveController.getInstance().closeCurrentScene();
 
   }
+
+   */
 
 }
