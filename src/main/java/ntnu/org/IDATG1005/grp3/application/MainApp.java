@@ -5,15 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import ntnu.org.IDATG1005.grp3.controller.joinCollectiveController;
 
 public class MainApp extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-    FXMLLoader loader = new FXMLLoader(
-        getClass().getResource("/fxml/views/join_collective_pg.fxml"));
-    loader.setController(joinCollectiveController.getInstance());
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/views/ingredience.fxml"));
+
     Parent root = loader.load();
 
     primaryStage.setTitle("Application Title");
