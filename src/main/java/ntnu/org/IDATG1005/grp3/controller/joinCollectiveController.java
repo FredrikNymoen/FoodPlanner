@@ -54,6 +54,8 @@ public class joinCollectiveController {
 
       yourCollective.setScene(scene);
       yourCollective.show();
+      loginToYourProfilePageController.getInstance().setPrimaryStage(yourCollective);
+      System.out.println(yourCollective);
     } catch (IOException e) {
       e.printStackTrace();
     }

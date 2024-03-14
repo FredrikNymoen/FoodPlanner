@@ -48,6 +48,7 @@ public class yourCollectiveController {
       //Blocks the main stage until the profile stage is closed
       profileStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
       profileStage.show();
+
     } catch (IOException e) {
       e.printStackTrace();
     }
