@@ -1,7 +1,6 @@
 package ntnu.org.IDATG1005.grp3.controller;
 
 import java.io.IOException;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -14,36 +13,33 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import ntnu.org.IDATG1005.grp3.model.objects.User;
 
 
 public class yourCollectiveController {
-  @FXML
-  private HBox profileContainer;
 
-  private Text profileUsername;
   private static yourCollectiveController instance;
 
   public yourCollectiveController() {
 
   }
-  public  static  synchronized yourCollectiveController  getInstance(){
-    if(instance == null){
+
+  public static synchronized yourCollectiveController getInstance() {
+    if (instance == null) {
       instance = new yourCollectiveController();
     }
     return instance;
   }
+
   @FXML
-  void btnExistingProfile(MouseEvent actionEvent) {
-    AnchorPane profile = null;
+  void loginToExistingUser(MouseEvent actionEvent) {
+    AnchorPane profile;
     try {
       FXMLLoader loader = new FXMLLoader(
-          getClass().getResource("/fxml/components/profile_page.fxml"));
-      loader.setController(profilePageController.getInstance());
+          getClass().getResource("/fxml/views/loginToYourProfilePage.fxml"));
+      loader.setController(loginToYourProfilePageController.getInstance());
       profile = loader.load();
-
-      profileUsername = (Text) profile.lookup("#profileUsername");
-      updateProfileUsername();
+      ((Text) profile.lookup("#profileUsername")).setText(
+          createProfileController.getInstance().getUsername().getText());
 
       Stage profileStage = new Stage();
       profileStage.setTitle("Profile");
@@ -52,50 +48,50 @@ public class yourCollectiveController {
       //Blocks the main stage until the profile stage is closed
       profileStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
       profileStage.show();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
-  @FXML
-  public void btnAddProfile(MouseEvent mouseEvent){
-    try {
-      FXMLLoader loader = new FXMLLoader(
-          getClass().getResource("/fxml/components/edit_profile.fxml"));
 
-      loader.setController(editProfileController.getInstance());
-      Parent root = loader.load();
-      editProfileController.getInstance().setUsername((TextField) root.lookup("#username"));
-      editProfileController.getInstance().setPassword((PasswordField) root.lookup("#password"));
-      //todo: add user to database
-      Stage profileStage = new Stage();
-      profileStage.setTitle("Profile");
-      Scene scene = new Scene(root);
-      profileStage.setScene(scene);
-      //Blocks the main stage until the profile stage is closed
-      profileStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
-      profileStage.show();
     } catch (IOException e) {
       e.printStackTrace();
     }
   }
-  public void leaveCollective(javafx.event.ActionEvent actionEvent){
+
+  @FXML
+  public void addUserToCollective(MouseEvent mouseEvent) {
     try {
       FXMLLoader loader = new FXMLLoader(
-          getClass().getResource("/fxml/views/join_collective_pg.fxml"));
+          getClass().getResource("/fxml/views/createProfilePage.fxml"));
+
+      loader.setController(createProfileController.getInstance());
+      Parent root = loader.load();
+      createProfileController.getInstance().setUsername((TextField) root.lookup("#username"));
+      createProfileController.getInstance().setPassword((PasswordField) root.lookup("#password"));
+
+      Stage addUser = new Stage();
+      addUser.setTitle("Profile");
+      Scene scene = new Scene(root);
+      addUser.setScene(scene);
+      //Blocks the main stage until the profile stage is closed
+      addUser.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+      addUser.show();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public void leaveCollective(MouseEvent mouseEvent) {
+    try {
+      FXMLLoader loader = new FXMLLoader(
+          getClass().getResource("/fxml/views/joinCollectivePage.fxml"));
       loader.setController(joinCollectiveController.getInstance());
       Parent root = loader.load();
-      Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+      Stage joinCollective = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
       Scene scene = new Scene(root);
-      stage.setScene(scene);
-      stage.show();
+      joinCollective.setScene(scene);
+      joinCollective.show();
 
     } catch (IOException e) {
       e.printStackTrace();
     }
 
   }
-  public void updateProfileUsername(){
-    Text name = editProfileController.getInstance().getUsername();
-    profileUsername.setText(name.getText());
-  }
+
 }

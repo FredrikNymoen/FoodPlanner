@@ -5,18 +5,19 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
 public class profilePictureController {
+
+  private static profilePictureController instance;
   @FXML
   private Text profilePictureName;
   @FXML
   private ImageView login;
 
-  private static profilePictureController instance;
-
   private profilePictureController() {
 
   }
-  public static  synchronized profilePictureController  getInstance(){
-    if(instance == null){
+
+  public static synchronized profilePictureController getInstance() {
+    if (instance == null) {
       instance = new profilePictureController();
     }
     return instance;

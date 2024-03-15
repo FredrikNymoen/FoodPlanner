@@ -99,4 +99,8 @@ public class Household {
   public void removeUser(User u) {
     users.remove(u);
   }
+
+  /*public boolean containsUser(String username){
+    return users.stream().anyMatch(user -> user.getUsername().equals(username));
+  }*/
 }
