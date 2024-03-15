@@ -143,19 +143,20 @@
                <content>
                   <GridPane fx:id="grid" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="3.0" prefWidth="5.0" style="-fx-background-color: #92C37D;">
                      <columnConstraints>
-                        <ColumnConstraints maxWidth="150" minWidth="150" prefWidth="150" />
-                        <ColumnConstraints maxWidth="150" minWidth="150" prefWidth="150" />
-                        <ColumnConstraints maxWidth="150" minWidth="150" prefWidth="150" />
+                        <ColumnConstraints maxWidth="145" minWidth="145" prefWidth="145" />
+                        <ColumnConstraints maxWidth="145" minWidth="145" prefWidth="145" />
+                        <ColumnConstraints maxWidth="145" minWidth="145" prefWidth="145" />
+                        <ColumnConstraints maxWidth="145" minWidth="145" prefWidth="145" />
                      </columnConstraints>
                      <cursor>
-                        <Cursor fx:constant="OPEN_HAND" />
+                        <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </GridPane>
                </content>
             </ScrollPane>
             <GridPane fx:id="ingredienceSearchGrid" layoutX="132.0" layoutY="36.0" prefHeight="1.0" prefWidth="597.0" style="-fx-background-color: #92C37D;">
               <columnConstraints>
-                 <ColumnConstraints minWidth="597" prefWidth="597" maxWidth="597" hgrow="NEVER"/>
+                 <ColumnConstraints hgrow="NEVER" maxWidth="597" minWidth="597" prefWidth="597" />
               </columnConstraints>
             </GridPane>
          </children>

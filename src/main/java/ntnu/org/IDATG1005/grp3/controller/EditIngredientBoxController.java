@@ -10,13 +10,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import ntnu.org.IDATG1005.grp3.interfaces.OnIngredientUpdateListener;
 import ntnu.org.IDATG1005.grp3.model.objects.Ingredient;
 import ntnu.org.IDATG1005.grp3.model.objects.InventoryIngredient;
 
 public class EditIngredientBoxController {
-
   @FXML
   private AnchorPane editBox;
+
+  @FXML
+  private Text editBoxName;
 
   @FXML
   private HBox addButton;
@@ -34,12 +37,24 @@ public class EditIngredientBoxController {
   private Text unitText;
   private Pane overlayPane;
 
+  private Ingredient ingredient;
+
+  private InventoryIngredient inventoryIngredient;
+
+  private OnIngredientUpdateListener updateListener;
+
+
 
   public void setData(Ingredient ingredient, List<InventoryIngredient> inventoryIngredients) {
-    editTextField.setText(ingredient.getName());
+    this.ingredient = ingredient;
+    editBoxName.setText(ingredient.getName());
     for (InventoryIngredient inventoryIngredient : inventoryIngredients) {
       if (!inventoryIngredient.getIngredient().getName().equals(ingredient.getName())) {
         //removeRemoveButton();
+      }
+      else {
+        this.inventoryIngredient = inventoryIngredient;
+        unitText.setText(inventoryIngredient.getUnit().toString());
       }
     }
   }
@@ -55,13 +70,40 @@ public class EditIngredientBoxController {
   @FXML
   void exitEditBox(MouseEvent event) {
     Platform.runLater(() -> {
-      if (overlayPane != null) {
-        // Assuming editBox is part of the overlayPane, which is part of the scene's rootPane
+      if (overlayPane != null && overlayPane.getParent() != null) {
         ((Pane)overlayPane.getParent()).getChildren().remove(overlayPane);
       }
     });
   }
 
+  public void setOnIngredientUpdateListener(OnIngredientUpdateListener listener) {
+    this.updateListener = listener;
+  }
+
+  @FXML
+  void onRemoveButtonClicked(MouseEvent event) {
+    try {
+      System.out.println("HALLAALALA");
+      // Parse the amount to remove from the text field.
+      int amountToRemove = Integer.parseInt(editTextField.getText());
+
+      // Check if the inventory has enough quantity, if not handle the error or set to zero.
+      int newQuantity = Math.max(inventoryIngredient.getQuantity() - amountToRemove, 0);
+      inventoryIngredient.setQuantity(newQuantity); // Update the model.
+
+      // Update the UI accordingly, e.g., refresh the list or update the display text.
+      // ...
+      if (updateListener != null) {
+        updateListener.onIngredientUpdate();
+      }
+      // If you have a data persistence layer, update the inventory ingredient there too.
+      // ...
+
+      // Close the edit box after the operation.
+      exitEditBox(event);
+    } catch (NumberFormatException e) {
+    }
+  }
 
 
 

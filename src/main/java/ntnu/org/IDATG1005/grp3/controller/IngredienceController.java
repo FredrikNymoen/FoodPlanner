@@ -2,6 +2,7 @@ package ntnu.org.IDATG1005.grp3.controller;
 
 import java.util.HashMap;
 import java.util.Map;
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,16 +28,20 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 import ntnu.org.IDATG1005.grp3.dao.implementations.IngredientDaoImpl;
 import ntnu.org.IDATG1005.grp3.dao.interfaces.IngredientDao;
 import ntnu.org.IDATG1005.grp3.interfaces.EditBoxDisplayListener;
 import ntnu.org.IDATG1005.grp3.interfaces.ItemRemovalListener;
+import ntnu.org.IDATG1005.grp3.interfaces.OnIngredientUpdateListener;
 import ntnu.org.IDATG1005.grp3.model.objects.Ingredient;
 import ntnu.org.IDATG1005.grp3.model.objects.InventoryIngredient;
 import ntnu.org.IDATG1005.grp3.model.objects.MeasurementUnit;
 import ntnu.org.IDATG1005.grp3.service.IngredientService;
 
-public class IngredienceController implements Initializable, EditBoxDisplayListener{
+public class IngredienceController implements Initializable, EditBoxDisplayListener,
+    OnIngredientUpdateListener {
+
     @FXML
     private ScrollPane scroll;
 
@@ -55,13 +60,14 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
     @FXML
     private AnchorPane rootPane;
 
+    private PauseTransition pauseTransition = new PauseTransition(
+        Duration.millis(300)); // 300ms debounce
+
     private List<InventoryIngredient> ingredients = new ArrayList<>();
     private Map<InventoryIngredient, AnchorPane> ingredientUIMap = new HashMap<>();
 
     private final IngredientDao ingredientDao = new IngredientDaoImpl();
     private IngredientService ingredientService = new IngredientService(ingredientDao);
-
-
 
 
     private List<InventoryIngredient> getData() {
@@ -103,7 +109,7 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
         displayIngredients(ingredients);
     }
 
-    private void initializeSearchBar() {
+    /*private void initializeSearchBar() {
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.isEmpty()) {
                 try {
@@ -116,24 +122,45 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
                 ingredienceSearchGrid.getChildren().clear(); // Clear rectangles if no text
             }
         });
+    }*/
+
+    private void initializeSearchBar() {
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            pauseTransition.setOnFinished(event -> performSearch(newValue));
+            pauseTransition.playFromStart(); // Reset the timer every time text changes
+        });
+    }
+
+    private void performSearch(String query) {
+        if (!query.isEmpty()) {
+            try {
+                List<Ingredient> searchItems = filterIngredients(query);
+                displaySearchAlternatives(searchItems);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            ingredienceSearchGrid.getChildren().clear();
+        }
     }
 
     private List<Ingredient> filterIngredients(String newValue) {
         int sublistEndIndex;
         List<Ingredient> searchItems = new ArrayList<>();
         for (Ingredient ingredient : ingredientService.findAllIngredients()) {
+            System.out.println(ingredient.getName());
             if (ingredient.getName().toLowerCase().startsWith(newValue.toLowerCase())) {
                 searchItems.add(ingredient);
             }
         }
 
-        if (searchItems.size()>=3) {
+        if (searchItems.size() >= 3) {
             sublistEndIndex = Math.min(searchItems.size(), 3);
-        }else{
+        } else {
             sublistEndIndex = searchItems.size();
         }
 
-        return searchItems.subList(0,sublistEndIndex); // Return the first 3 search results
+        return searchItems.subList(0, sublistEndIndex); // Return the first 3 search results
     }
 
     private void displaySearchAlternatives(List<Ingredient> searchItems) throws IOException {
@@ -148,15 +175,16 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
         for (int i = 0; i < searchItems.size(); i++) { // adding 3 alternatives
             String amount = "";
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/fxml/components/ingrediens-search-alternative.fxml"));
+            fxmlLoader.setLocation(
+                getClass().getResource("/fxml/components/ingrediens-search-alternative.fxml"));
             HBox hbox = fxmlLoader.load();
             IngredienceSearchAlternativeController alternativeController = fxmlLoader.getController();
 
             Ingredient ingredient = searchItems.get(i);
-            if (isIngredientInInventory(ingredient)!=null){
+            if (isIngredientInInventory(ingredient) != null) {
                 amount = isIngredientInInventory(ingredient).getQuantity().toString() +
                     " " + isIngredientInInventory(ingredient).getUnit().getUnitName();
-            } else{
+            } else {
                 alternativeController.hideRemoveButton();
             }
 
@@ -202,9 +230,11 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
                     favoriteIngredients.add(ingredient);
                 }
             }
-            displayIngredients(favoriteIngredients); // Implement this method to display ingredients in the grid
+            displayIngredients(
+                favoriteIngredients); // Implement this method to display ingredients in the grid
         } else {
-            displayIngredients(ingredients); // Implement this method to display ingredients in the grid
+            displayIngredients(
+                ingredients); // Implement this method to display ingredients in the grid
         }
     }
 
@@ -225,7 +255,8 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
 
         try {
             // Load the FXML file for the edit ingredient box
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/components/ingrediens.fxml"));
+            FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/fxml/components/ingrediens.fxml"));
             AnchorPane editBox = loader.load();
 
             overlay.getChildren().add(editBox);
@@ -233,6 +264,7 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
             EditIngredientBoxController editBoxController = loader.getController();
             editBoxController.setOverlayPane(overlay);
             editBoxController.setData(ingredient, ingredients);
+            editBoxController.setOnIngredientUpdateListener(this);
 
             // Position the edit box in the middle of the overlay
             editBox.setLayoutX((rootPane.getWidth() - editBox.getPrefWidth()) / 2);
@@ -258,14 +290,16 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
         try {
             for (int i = 0; i < ingredients.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/fxml/components/ingredience_box.fxml"));
+                fxmlLoader.setLocation(
+                    getClass().getResource("/fxml/components/ingredience_box.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
                 System.out.println("HEI");
                 ItemController itemController = fxmlLoader.getController();
                 System.out.println("hei" + itemController);
                 itemController.setData(ingredients.get(i));
                 itemController.setRemovalListener(ingredient -> removeItemFromGrid(ingredient));
-                itemController.setEditBoxDisplayListener(this); // 'this' refers to an instance of IngredienceController
+                itemController.setEditBoxDisplayListener(
+                    this); // 'this' refers to an instance of IngredienceController
                 System.out.println("HALLA");
 
                 if (column == 4) {
@@ -273,7 +307,7 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
                     row++;
                 }
 
-                if(ingredients.get(i).getFavoriteStatus()) {
+                if (ingredients.get(i).getFavoriteStatus()) {
                     itemController.makeStarYellow();
                 }
 
@@ -293,6 +327,11 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
         }
     }
 
+    @Override
+    public void onIngredientUpdate() {
+        // Call your method to update the display
+        displayIngredients(ingredients);
+    }
 
     /**
      * Setup a global click listener to close the search results when clicking outside the search field

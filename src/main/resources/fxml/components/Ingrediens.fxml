@@ -32,7 +32,7 @@
       </ImageView>
       <VBox alignment="TOP_CENTER" layoutY="112.0" prefHeight="139.0" prefWidth="180.0">
          <children>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Tomat">
+            <Text fx:id="editBoxName" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Tomat">
                <font>
                   <Font name="Comic Sans MS Bold" size="18.0" />
                </font>
@@ -72,7 +72,7 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox fx:id="removeButton" alignment="CENTER" maxHeight="10.0" maxWidth="90.0" minWidth="90.0" prefHeight="10.0" prefWidth="90.0" style="-fx-background-color: #f00; -fx-border-color: black;">
+                  <HBox fx:id="removeButton" alignment="CENTER" maxHeight="10.0" maxWidth="90.0" minWidth="90.0" onMouseClicked="#onRemoveButtonClicked" prefHeight="10.0" prefWidth="90.0" style="-fx-background-color: #f00; -fx-border-color: black;">
                      <children>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Fjern">
                            <font>
