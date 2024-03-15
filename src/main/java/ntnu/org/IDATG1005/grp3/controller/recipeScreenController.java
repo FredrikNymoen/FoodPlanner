@@ -6,15 +6,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import ntnu.org.IDATG1005.grp3.model.objects.Recipe;
 
 import java.io.IOException;
 
 public class recipeScreenController {
+    private List<Recipe> recipes;
     private static recipeScreenController instance;
     @FXML
     private VBox choseRecipeContainer;
@@ -31,7 +32,6 @@ public class recipeScreenController {
     }
     @FXML
     public void initialiseRecipeScreen(MouseEvent mouseEvent) throws IOException {
-        for (int i = 0; i < 5; i++) {
             AnchorPane recipe;
             FXMLLoader loader = new FXMLLoader(
                 getClass().getResource("/fxml/components/choseRecipe.fxml"));
@@ -41,8 +41,7 @@ public class recipeScreenController {
             chose = (Button) recipe.lookup("#chose");
             choseRecipeContainer.getChildren().add(recipe);
             addChoseRecipeButton();
-            addToFavorite();
-        }
+            addRecipeToFavorite();
         Stage choseRecipeComponent = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         choseRecipeComponent.close();
 
@@ -51,9 +50,9 @@ public class recipeScreenController {
         chose.setOnMouseClicked(
             event -> choseRecipeController.getInstance().choseDisplayedRecipe());
     }
-    public void addToFavorite(){
+    public void addRecipeToFavorite(){
         starLabel.setOnMouseClicked(
-            event -> choseRecipeController.getInstance().addRecipeToFavorite());
+            event -> choseRecipeController.getInstance().toggleFavorite());
     }
 
 }

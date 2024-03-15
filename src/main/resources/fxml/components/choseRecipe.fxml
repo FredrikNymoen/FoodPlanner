@@ -9,33 +9,33 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="choseRecipeBorder" style="-fx-background-color: rgba(0,0,0,0.8);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="choseRecipeBorder" prefHeight="179.0" prefWidth="641.0" style="-fx-background-color: rgba(0,0,0,0.8);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="113.0" fitWidth="165.0" layoutX="19.0" layoutY="56.8193359375" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@/images/bakgrunnsbilde_mat.jpg" />
          </image>
       </ImageView>
-      <Pane prefHeight="29.0" prefWidth="669.0" style="-fx-background-color: rgba(0,150,0,0.80);">
+      <Pane layoutX="2.0" prefHeight="29.0" prefWidth="637.0" style="-fx-background-color: rgba(0,150,0,0.80);">
          <children>
-            <Text fill="WHITE" layoutX="23.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Navn på matrett" textAlignment="CENTER" wrappingWidth="624.0">
+            <Text fill="WHITE" layoutX="16.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Navn på matrett" textAlignment="CENTER" wrappingWidth="624.0">
                <font>
-                  <Font size="23.0" />
+                  <Font size="21.0" />
                </font>
             </Text>
-            <Label fx:id="starLabel" layoutX="628.0" layoutY="1.0" text=" ☆" onMouseReleased="#addRecipeToFavorite">
+            <Label fx:id="starLabel" layoutX="599.0" layoutY="1.0" text="☆">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
          </children>
       </Pane>
-      <ImageView fitHeight="126.0" fitWidth="199.0" layoutX="16.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="120.0" fitWidth="207.0" layoutX="8.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@/images/bakgrunnsbilde_mat.jpg" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="240.0" layoutY="39.0" prefHeight="126.0" prefWidth="415.0" style="-fx-background-color: rgba(0,0,0,0.1);">
+      <AnchorPane layoutX="215.0" layoutY="38.0" prefHeight="120.0" prefWidth="413.0" style="-fx-background-color: rgba(0,0,0,0.1);">
          <children>
             <Text fill="WHITE" layoutX="7.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The group will spend class hours and agreed meeting hours on assignments, with additional hours as needed." textAlignment="CENTER" wrappingWidth="401.13671875">
                <font>

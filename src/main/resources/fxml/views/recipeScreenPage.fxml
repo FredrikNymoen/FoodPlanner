@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
@@ -96,11 +98,19 @@
             </HBox>
          </children>
       </HBox>
-      <ScrollPane layoutX="59.0" layoutY="151.0" prefHeight="299.0" prefWidth="682.0" style="-fx-background-color: rgba(0,0,0,0.8);">
+      <ScrollPane layoutX="83.0" layoutY="151.0" prefHeight="299.0" prefWidth="646.0" style="-fx-background-color: rgba(0,0,0,0.8);">
          <content>
-            <VBox fx:id="choseRecipeContainer" prefHeight="297.0" prefWidth="680.0" style="-fx-spacing: 20; -fx-background-color: rgba(0,0,0,0.9);" />
+            <VBox fx:id="choseRecipeContainer" prefHeight="297.0" prefWidth="644.0" style="-fx-spacing: 20; -fx-background-color: rgba(0,0,0,0.9);" />
          </content>
       </ScrollPane>
-      <ComboBox layoutX="266.0" layoutY="98.0" prefHeight="25.0" prefWidth="268.0" promptText="Vis alle" />
+      <ComboBox layoutX="266.0" layoutY="98.0" prefHeight="25.0" prefWidth="268.0" promptText="Vis alle">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:value="Vis alle" />
+               <String fx:value="Vis favoritter ☆" />
+               <String fx:value="Ukas anbefalinger" />
+            </FXCollections>
+         </items>
+      </ComboBox>
    </children>
 </AnchorPane>
