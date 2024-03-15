@@ -7,12 +7,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<Pane prefHeight="182.0" prefWidth="669.0" style="-fx-background-color: rgba(0,0,0,0.7);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<Pane minHeight="-Infinity" prefHeight="182.0" prefWidth="669.0" style="-fx-background-color: rgba(0,0,0,0.7); -fx-border-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="113.0" fitWidth="165.0" layoutX="19.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true" style="visibility: 100;">
          <image>
-            <Image url="@/images/bakgrunnsbilde_mat.jpg" />
+            <Image url="@../../images/tomat.png" />
          </image>
       </ImageView>
       <Pane layoutX="20.0" layoutY="8.0" prefHeight="39.0" prefWidth="624.0" style="-fx-background-color: rgba(0,150,0,0.80);">
