@@ -50,6 +50,9 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
     private GridPane grid;
 
     @FXML
+    private CheckBox allCheckBox;
+
+    @FXML
     private CheckBox favoriteCheckBox;
 
     @FXML
@@ -105,10 +108,30 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
         System.out.println("MarketController");
         setupGlobalClickListener();
         initializeSearchBar();
+        initializeCheckBoxes();
 
         ingredients.addAll(getData());
         displayIngredients(ingredients);
     }
+
+    public void initializeCheckBoxes(){
+        allCheckBox.selectedProperty().addListener((obs, wasPreviouslySelected, isNowSelected) -> {
+            // If 'allCheckBox' is now selected, unselect 'favoriteCheckBox'
+            if (isNowSelected) {
+                favoriteCheckBox.setSelected(false);
+            }
+            displayIngredients(ingredients);
+        });
+
+        favoriteCheckBox.selectedProperty().addListener((obs, wasPreviouslySelected, isNowSelected) -> {
+            // If 'favoriteCheckBox' is now selected, unselect 'allCheckBox'
+            if (isNowSelected) {
+                allCheckBox.setSelected(false);
+            }
+            filterFavorites();
+        });
+    }
+
 
     /*private void initializeSearchBar() {
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -225,7 +248,6 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
         displayIngredients(ingredients);
     }
 
-    @FXML
     private void filterFavorites() {
         List<InventoryIngredient> favoriteIngredients;
 
