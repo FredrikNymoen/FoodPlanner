@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -167,10 +168,6 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
         ingredienceSearchGrid.getChildren().clear();
         String url = getClass().getResource("/images/Kniv_Gaffel_ikon.png").toString();
 
-        /*for (Ingredient ingredient : ingredientService.findAllIngredients()) {
-            System.out.println(ingredient.getIngredientId() + ": " + ingredient.getName() + " - " + ingredient.getImageUrl());
-        }*/
-
         // Assume you have a list of ingredient alternatives to display
         for (int i = 0; i < searchItems.size(); i++) { // adding 3 alternatives
             String amount = "";
@@ -178,14 +175,16 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
             fxmlLoader.setLocation(
                 getClass().getResource("/fxml/components/ingrediens-search-alternative.fxml"));
             HBox hbox = fxmlLoader.load();
+            hbox.setId("searchAlternative");
             IngredienceSearchAlternativeController alternativeController = fxmlLoader.getController();
 
             Ingredient ingredient = searchItems.get(i);
             if (isIngredientInInventory(ingredient) != null) {
                 amount = isIngredientInInventory(ingredient).getQuantity().toString() +
                     " " + isIngredientInInventory(ingredient).getUnit().getUnitName();
-            } else {
-                alternativeController.hideRemoveButton();
+                alternativeController.showEditButton();
+            } else{
+                alternativeController.showAddButton();
             }
 
             // Example data, replace with actual data for each alternative
@@ -278,9 +277,6 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
             e.printStackTrace();
         }
 
-        overlay.setOnMouseClicked(e -> {
-            rootPane.getChildren().remove(overlay);
-        });
     }
 
     private void displayIngredients(List<InventoryIngredient> ingredients) {
@@ -338,32 +334,41 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
      */
     private void setupGlobalClickListener() {
         rootPane.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
-            Node target = (Node) event.getTarget(); // Get the target node of the click event
-
-            // Check if the target is not the searchField and not one of the rectangles
-            if (!isNodeOrDescendantOf(target, searchField) && !isNodeOrDescendantOf(target, ingredienceSearchGrid)) {
-                ingredienceSearchGrid.getChildren().clear(); // Clear the rectangles
-                // Request focus on the rootPane or another focusable component
+            Node target = (Node) event.getTarget();
+            target=target.getParent();
+            // Check if the clicked node or any of its parents is a TextField or ImageView.
+            // This allows interaction with all text fields and image views without triggering the click away logic.
+            System.out.println(target.getClass().getName());
+            if (isNodeOrParentInstanceOf(target, TextField.class) || isDescendantOrSelfWithId(target, "searchAlternative")){
+            } else {
+                // Handle clicks outside of TextFields and ImageViews.
+                // Example: clearing a search grid or setting focus elsewhere.
+                ingredienceSearchGrid.getChildren().clear();
                 if (!rootPane.isFocusTraversable()) {
-                    rootPane.setFocusTraversable(true); // Temporarily make it focusable
-                    rootPane.requestFocus(); // Request focus on it
-                    rootPane.setFocusTraversable(false); // Optionally, revert it to be non-focusable
+                    rootPane.setFocusTraversable(true);
+                    rootPane.requestFocus();
+                    rootPane.setFocusTraversable(false);
                 } else {
-                    rootPane.requestFocus(); // If it's already focusable, just request focus
+                    rootPane.requestFocus();
                 }
             }
         });
     }
 
-    /**
-     * Check if a node is the same as another node or a descendant of another node
-     * @param node the node to check
-     * @param potentialAncestor the potential ancestor node
-     * @return true if the node is the same as the potential ancestor or a descendant of the potential ancestor
-     */
-    private boolean isNodeOrDescendantOf(Node node, Node potentialAncestor) {
+    private boolean isNodeOrParentInstanceOf(Node node, Class<?> clazz) {
         while (node != null) {
-            if (node == potentialAncestor) {
+            if (clazz.isInstance(node)) {
+                return true;
+            }
+            node = node.getParent();
+        }
+        return false;
+    }
+
+    private boolean isDescendantOrSelfWithId(Node node, String id) {
+        while (node != null) {
+            System.out.println(node.getId() + " " + node.getClass().getName());
+            if (node.getId() != null && node.getId().equals(id)) {
                 return true;
             }
             node = node.getParent();

@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 public class IngredienceSearchAlternativeController {
@@ -24,7 +25,8 @@ public class IngredienceSearchAlternativeController {
   private Text alternativeName;
 
   @FXML
-  private HBox removeButton;
+  private HBox editButton;
+
 
   public void setData(String name, String amount, String imageUrl) {
     alternativeName.setText(name);
@@ -32,8 +34,22 @@ public class IngredienceSearchAlternativeController {
     alternativeImage.setImage(new Image(imageUrl));
   }
 
-  public void hideRemoveButton() {
-    removeButton.setVisible(false); // Hides the remove button
+
+  // Method to show the add button and hide the edit button
+  public void showAddButton() {
+    addButton.setVisible(true);
+    addButton.setManaged(true); // Included in layout calculations
+    editButton.setVisible(false);
+    editButton.setManaged(false); // Excluded from layout calculations
   }
+
+  // Method to show the edit button and hide the add button
+  public void showEditButton() {
+    addButton.setVisible(false);
+    addButton.setManaged(false);
+    editButton.setVisible(true);
+    editButton.setManaged(true);
+  }
+
 
 }

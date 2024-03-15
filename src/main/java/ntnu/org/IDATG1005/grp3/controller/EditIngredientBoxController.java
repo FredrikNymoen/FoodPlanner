@@ -91,13 +91,9 @@ public class EditIngredientBoxController {
       int newQuantity = Math.max(inventoryIngredient.getQuantity() - amountToRemove, 0);
       inventoryIngredient.setQuantity(newQuantity); // Update the model.
 
-      // Update the UI accordingly, e.g., refresh the list or update the display text.
-      // ...
       if (updateListener != null) {
         updateListener.onIngredientUpdate();
       }
-      // If you have a data persistence layer, update the inventory ingredient there too.
-      // ...
 
       // Close the edit box after the operation.
       exitEditBox(event);

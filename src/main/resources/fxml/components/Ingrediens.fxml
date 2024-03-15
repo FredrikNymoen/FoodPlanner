@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="editBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="285.0" prefWidth="180.0" style="-fx-background-color: #92C47C; -fx-border-color: black; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.org.IDATG1005.grp3.controller.EditIngredientBoxController">
+<AnchorPane fx:id="editBox" id="editBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="285.0" prefWidth="180.0" style="-fx-background-color: #92C47C; -fx-border-color: black; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.org.IDATG1005.grp3.controller.EditIngredientBoxController">
    <children>
       <HBox prefHeight="20.0" prefWidth="178.0" AnchorPane.bottomAnchor="256.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-2.0">
          <children>
