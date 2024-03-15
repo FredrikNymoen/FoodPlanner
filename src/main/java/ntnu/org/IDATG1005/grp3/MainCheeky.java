@@ -39,9 +39,9 @@ public class MainCheeky {
 
     //createHouseholdSim();
 
-    findHouseholdById();
+    //findHouseholdById();
 
-    //retrieveAndAvailablePrintIngredients();
+    retrieveAndAvailablePrintIngredients();
 
     //retrieveAndPrintRecipes();
 
