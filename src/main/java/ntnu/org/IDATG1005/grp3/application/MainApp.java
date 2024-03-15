@@ -12,7 +12,7 @@ public class MainApp extends Application {
   @Override
   public void start(Stage primaryStage) throws Exception {
     FXMLLoader loader = new FXMLLoader(
-        getClass().getResource("/fxml/views/join_collective_pg.fxml"));
+        getClass().getResource("/fxml/views/ActiveRecipes_Screen.fxml"));
     loader.setController(joinCollectiveController.getInstance());
     Parent root = loader.load();
 
