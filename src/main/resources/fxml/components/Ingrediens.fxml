@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="editBox" id="editBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="285.0" prefWidth="180.0" style="-fx-background-color: #92C47C; -fx-border-color: black; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.org.IDATG1005.grp3.controller.EditIngredientBoxController">
+<AnchorPane id="editBox" fx:id="editBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="285.0" prefWidth="180.0" style="-fx-background-color: #92C47C; -fx-border-color: black; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.org.IDATG1005.grp3.controller.EditIngredientBoxController">
    <children>
       <HBox prefHeight="20.0" prefWidth="178.0" AnchorPane.bottomAnchor="256.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-2.0">
          <children>
@@ -47,7 +47,10 @@
             </Text>
             <HBox alignment="CENTER" prefHeight="38.0" prefWidth="180.0">
                <children>
-                  <TextField fx:id="editTextField" prefHeight="10.0" prefWidth="87.0" promptText="F.eks 400" />
+                  <TextField fx:id="editTextField" prefHeight="10.0" prefWidth="87.0" promptText="Heltall ( 1 -&gt;)">
+                     <font>
+                        <Font size="12.0" />
+                     </font></TextField>
                   <Text fx:id="unitText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text=" Gram">
                      <font>
                         <Font name="Comic Sans MS Bold" size="14.0" />
@@ -60,7 +63,7 @@
             </HBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <HBox fx:id="addButton" alignment="CENTER" maxHeight="10.0" maxWidth="90.0" minWidth="50.0" prefHeight="10.0" prefWidth="50.0" style="-fx-background-color: #48742c; -fx-border-color: black;">
+                  <HBox fx:id="addButton" alignment="CENTER" maxHeight="10.0" maxWidth="90.0" minWidth="50.0" onMouseClicked="#onAddButtonClicked" prefHeight="10.0" prefWidth="50.0" style="-fx-background-color: #48742c; -fx-border-color: black;">
                      <children>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til">
                            <font>

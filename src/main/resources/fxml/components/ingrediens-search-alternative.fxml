@@ -41,7 +41,7 @@
       <HBox prefHeight="150.0" prefWidth="91.0" HBox.hgrow="ALWAYS" />
       <VBox fx:id="buttonVBox" alignment="CENTER" prefHeight="150.0" prefWidth="193.0">
          <children>
-            <HBox fx:id="addButton" alignment="CENTER_LEFT" maxWidth="90.0" minWidth="90.0" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color: green; -fx-border-width: 2px; -fx-border-color: black;">
+            <HBox fx:id="addButton" alignment="CENTER_LEFT" maxWidth="90.0" minWidth="90.0" onMouseClicked="#displayEditBox" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color: green; -fx-border-width: 2px; -fx-border-color: black;">
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til  " wrappingWidth="66.640625">
                      <font>
@@ -58,7 +58,7 @@
                   </ImageView>
                </children>
             </HBox>
-            <HBox fx:id="editButton" alignment="CENTER_LEFT" maxWidth="89.0" minWidth="84.0" prefHeight="27.0" prefWidth="84.0" style="-fx-background-color: gray; -fx-border-width: 2px; -fx-border-color: black;">
+            <HBox fx:id="editButton" alignment="CENTER_LEFT" maxWidth="89.0" minWidth="84.0" onMouseClicked="#displayEditBox" prefHeight="27.0" prefWidth="84.0" style="-fx-background-color: gray; -fx-border-width: 2px; -fx-border-color: black;">
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Endre">
                      <font>

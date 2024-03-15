@@ -6,7 +6,7 @@ package ntnu.org.IDATG1005.grp3.model.objects;
 public class Ingredient {
   private final Integer ingredientId;
   private final String name;
-  private final String imageUrl;
+  private String imageUrl;
 
   /**
    * Constructs an Ingredient with specified ID, name, and image URL.
@@ -47,4 +47,6 @@ public class Ingredient {
   public String getImageUrl() {
     return imageUrl;
   }
+
+  public void setImageUrl(String imageUrl) {this.imageUrl = imageUrl;}
 }

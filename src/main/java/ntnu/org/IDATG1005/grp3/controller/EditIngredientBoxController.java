@@ -13,6 +13,7 @@ import javafx.scene.text.Text;
 import ntnu.org.IDATG1005.grp3.interfaces.OnIngredientUpdateListener;
 import ntnu.org.IDATG1005.grp3.model.objects.Ingredient;
 import ntnu.org.IDATG1005.grp3.model.objects.InventoryIngredient;
+import ntnu.org.IDATG1005.grp3.model.objects.MeasurementUnit;
 
 public class EditIngredientBoxController {
   @FXML
@@ -37,27 +38,55 @@ public class EditIngredientBoxController {
   private Text unitText;
   private Pane overlayPane;
 
-  private Ingredient ingredient;
+  private List<InventoryIngredient> inventoryIngredients;
 
   private InventoryIngredient inventoryIngredient;
 
   private OnIngredientUpdateListener updateListener;
 
 
+  @FXML
+  public void initialize() {
+    setupTextFieldValidation();
+  }
+
+  public void setupTextFieldValidation() {
+    editTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+      // Regular expression for matching whole numbers greater than 0
+      String regex = "^[1-9]\\d*$";
+
+      if (!newValue.matches(regex) && !newValue.isEmpty()) {
+        // If new value doesn't match the pattern and is not empty, revert to the old value
+        editTextField.setText(oldValue);
+      }
+    });
+  }
+
 
   public void setData(Ingredient ingredient, List<InventoryIngredient> inventoryIngredients) {
-    this.ingredient = ingredient;
+    this.inventoryIngredients = inventoryIngredients;
     editBoxName.setText(ingredient.getName());
+
+    boolean isInInventory = false;
+    InventoryIngredient foundInventoryIngredient = null;
+
     for (InventoryIngredient inventoryIngredient : inventoryIngredients) {
-      if (!inventoryIngredient.getIngredient().getName().equals(ingredient.getName())) {
-        //removeRemoveButton();
-      }
-      else {
-        this.inventoryIngredient = inventoryIngredient;
-        unitText.setText(inventoryIngredient.getUnit().toString());
+      if (inventoryIngredient.getIngredient().getName().equals(ingredient.getName())) {
+        isInInventory = true;
+        foundInventoryIngredient = inventoryIngredient;
+        break; // Exit the loop as soon as you find the ingredient.
       }
     }
+
+    if (isInInventory && foundInventoryIngredient != null) {
+      this.inventoryIngredient = foundInventoryIngredient;
+      unitText.setText(foundInventoryIngredient.getUnit().toString());
+    } else {
+      this.inventoryIngredient = new InventoryIngredient(0, ingredient, MeasurementUnit.STK,0);
+      removeRemoveButton(); // Hide or disable the remove button as it's not applicable.
+    }
   }
+
 
   public void removeRemoveButton() {
     removeButton.setVisible(false);
@@ -93,6 +122,39 @@ public class EditIngredientBoxController {
 
       if (updateListener != null) {
         updateListener.onIngredientUpdate();
+      }
+
+      // Close the edit box after the operation.
+      exitEditBox(event);
+    } catch (NumberFormatException e) {
+    }
+  }
+
+  @FXML
+  void onAddButtonClicked(MouseEvent event) {
+    try {
+      // Parse the amount to add from the text field.
+      int amountToAdd = Integer.parseInt(editTextField.getText());
+      // Add the amount to the inventory.
+      inventoryIngredient.setQuantity(inventoryIngredient.getQuantity() + amountToAdd); // Update the model.
+
+      boolean isInInventory = false;
+      for (InventoryIngredient inventoryIngredient : inventoryIngredients) {
+        if (inventoryIngredient.getIngredient().getName().equals(this.inventoryIngredient.getIngredient().getName())) {
+          if (updateListener != null) {
+            System.out.println("SHHHALLLAA");
+            updateListener.onIngredientUpdate();
+            isInInventory = true;
+          }
+          //break; // Exit the loop as soon as you find the ingredient.
+        }
+      }
+      if (!isInInventory) {
+        System.out.println("RRRRRAAAAAAA");
+        inventoryIngredients.add(this.inventoryIngredient);
+        if (updateListener != null) {
+          updateListener.onInventoryIngredientsUpdated(this.inventoryIngredient);
+        }
       }
 
       // Close the edit box after the operation.

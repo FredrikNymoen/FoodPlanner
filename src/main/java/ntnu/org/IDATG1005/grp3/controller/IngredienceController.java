@@ -177,18 +177,25 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
             HBox hbox = fxmlLoader.load();
             hbox.setId("searchAlternative");
             IngredienceSearchAlternativeController alternativeController = fxmlLoader.getController();
+            alternativeController.setEditBoxDisplayListener(this);
 
+            InventoryIngredient invIngredient;
             Ingredient ingredient = searchItems.get(i);
             if (isIngredientInInventory(ingredient) != null) {
-                amount = isIngredientInInventory(ingredient).getQuantity().toString() +
-                    " " + isIngredientInInventory(ingredient).getUnit().getUnitName();
+                invIngredient = isIngredientInInventory(ingredient);
+                /*amount = isIngredientInInventory(ingredient).getQuantity().toString() +
+                    " " + isIngredientInInventory(ingredient).getUnit().getUnitName();*/
                 alternativeController.showEditButton();
+                alternativeController.setData(invIngredient);
             } else{
+                ingredient.setImageUrl(url);
+                invIngredient = new InventoryIngredient(0, ingredient, MeasurementUnit.STK, -99);
                 alternativeController.showAddButton();
             }
 
             // Example data, replace with actual data for each alternative
-            alternativeController.setData(ingredient.getName(), amount, url);
+            /*alternativeController.setData(ingredient.getName(), amount, url);*/
+            alternativeController.setData(invIngredient);
 
             ingredienceSearchGrid.add(hbox, 0, i); // Add to column 0, appropriate row
         }
@@ -294,8 +301,7 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
                 System.out.println("hei" + itemController);
                 itemController.setData(ingredients.get(i));
                 itemController.setRemovalListener(ingredient -> removeItemFromGrid(ingredient));
-                itemController.setEditBoxDisplayListener(
-                    this); // 'this' refers to an instance of IngredienceController
+                itemController.setEditBoxDisplayListener(this); // 'this' refers to an instance of IngredienceController
                 System.out.println("HALLA");
 
                 if (column == 4) {
@@ -328,6 +334,13 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
         // Call your method to update the display
         displayIngredients(ingredients);
     }
+    @Override
+    public void onInventoryIngredientsUpdated(InventoryIngredient inventoryIngredient) {
+        //this.ingredients.add(inventoryIngredient);
+        displayIngredients(this.ingredients);
+        System.out.println(ingredients.size());
+    }
+
 
     /**
      * Setup a global click listener to close the search results when clicking outside the search field
@@ -341,8 +354,6 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
             System.out.println(target.getClass().getName());
             if (isNodeOrParentInstanceOf(target, TextField.class) || isDescendantOrSelfWithId(target, "searchAlternative")){
             } else {
-                // Handle clicks outside of TextFields and ImageViews.
-                // Example: clearing a search grid or setting focus elsewhere.
                 ingredienceSearchGrid.getChildren().clear();
                 if (!rootPane.isFocusTraversable()) {
                     rootPane.setFocusTraversable(true);
@@ -367,7 +378,6 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
 
     private boolean isDescendantOrSelfWithId(Node node, String id) {
         while (node != null) {
-            System.out.println(node.getId() + " " + node.getClass().getName());
             if (node.getId() != null && node.getId().equals(id)) {
                 return true;
             }
