@@ -16,8 +16,6 @@ public class joinCollectiveController {
 
   private static joinCollectiveController instance;
   private Household household;
-
-  private Stack<Scene> previousScenes = new Stack<>();
   private Stage primaryStage;
 
   public joinCollectiveController() {
@@ -30,11 +28,6 @@ public class joinCollectiveController {
     }
     return instance;
   }
-  /*public void start(Stage primaryStage){
-    this.primaryStage = primaryStage;
-  }
-
-   */
 
   public void btnNextSite(javafx.event.ActionEvent actionEvent) {
     createHousehold();
@@ -49,8 +42,6 @@ public class joinCollectiveController {
       Stage yourCollective = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
       Scene scene = new Scene(root);
-
-      previousScenes.push(yourCollective.getScene());
 
       yourCollective.setScene(scene);
       yourCollective.show();
