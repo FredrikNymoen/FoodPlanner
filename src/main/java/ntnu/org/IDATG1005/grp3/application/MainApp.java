@@ -18,7 +18,7 @@ public class MainApp extends Application {
 
   public static User appUser = null; // set in login / register controller
   public final static List<Ingredient> appIngredients = new IngredientService(new IngredientDaoImpl()).findAllIngredients();
-  public static List<Recipe> appRecipes;
+  public static List<Recipe> appRecipes = new RecipeService(new RecipeDaoImpl()).findAllRecipes();
 
   @Override
   public void start(Stage primaryStage) throws Exception {
@@ -32,14 +32,5 @@ public class MainApp extends Application {
   }
 
   public static void maino(String[] args) {
-
-
-    try {
-      appRecipes = new RecipeService(new RecipeDaoImpl()).findAllRecipes();
-    } catch (Exception e){
-      e.printStackTrace();
-    }
-
     launch(args);}
-
 }
