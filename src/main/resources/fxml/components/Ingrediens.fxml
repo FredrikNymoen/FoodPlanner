@@ -50,7 +50,10 @@
                   <TextField fx:id="editTextField" prefHeight="10.0" prefWidth="87.0" promptText="Heltall ( 1 -&gt;)">
                      <font>
                         <Font size="12.0" />
-                     </font></TextField>
+                     </font>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin></TextField>
                   <Text fx:id="unitText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text=" Gram">
                      <font>
                         <Font name="Comic Sans MS Bold" size="14.0" />

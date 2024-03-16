@@ -42,7 +42,7 @@ public class IngredienceSearchAlternativeController {
     this.amount = invIngredient.getQuantity();
     alternativeName.setText(invIngredient.getIngredient().getName());
 
-    if(invIngredient.getQuantity()==-99){
+    if(invIngredient.getQuantity()==-99.0){
       alternativeAmount.setText("");
     }
     else{
