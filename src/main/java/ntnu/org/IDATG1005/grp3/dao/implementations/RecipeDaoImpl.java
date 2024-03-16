@@ -54,7 +54,7 @@ public class RecipeDaoImpl implements RecipeDao {
 
   private List<RecipeIngredient> getRecipeIngredients(int recipeId, Connection conn) {
     List<RecipeIngredient> ingredients = new ArrayList<>();
-    String sql = "SELECT ri.amount, i.ingredient_id, i.name, i.image, ri.unit_id FROM recipe_ingredient ri "
+    String sql = "SELECT ri.amount, i.ingredient_id, i.name, i.image, i.unit_id FROM recipe_ingredient ri "
         + "JOIN ingredient i ON ri.ingredient_id = i.ingredient_id WHERE ri.recipe_id = ?";
     try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
       pstmt.setInt(1, recipeId);

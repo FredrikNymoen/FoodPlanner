@@ -145,7 +145,7 @@ public class MainCheeky {
     System.out.println("All ingredients:");
     ingredients.forEach(ingredient -> System.out.println("- " + ingredient.getName()));
 
-    Ingredient newIngredient = ingredientService.findIngredientById(1); // assuming an ingredient with ID 1 exists
+    Ingredient newIngredient = ingredientService.findIngredientById(1); // is assuming an ingredient with ID 1 exists
     System.out.println("Ingredient found: " + newIngredient.getName());
   }
 
