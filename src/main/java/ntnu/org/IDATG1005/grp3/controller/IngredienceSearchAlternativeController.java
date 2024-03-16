@@ -32,7 +32,7 @@ public class IngredienceSearchAlternativeController {
   private HBox editButton;
 
   private Ingredient ingredient;
-  private int amount;
+  private Double amount;
 
   private EditBoxDisplayListener editBoxDisplayListener;
 

@@ -12,11 +12,10 @@ public class RecipeIngredient extends AbstractIngredientDetail {
    * used, the unit of measurement, and the amount of the ingredient.
    *
    * @param ingredient         The ingredient object used in the recipe.
-   * @param unit               The unit of measurement for the ingredient.
    * @param amount             The amount of the ingredient used in the recipe.
    */
-  public RecipeIngredient(Ingredient ingredient, MeasurementUnit unit, Integer amount) {
-    super(ingredient, unit);
+  public RecipeIngredient(Ingredient ingredient, Integer amount) {
+    super(ingredient);
     this.amount = amount;
   }
 
@@ -36,5 +35,9 @@ public class RecipeIngredient extends AbstractIngredientDetail {
    */
   public void setAmount(Integer amount) {
     this.amount = amount;
+  }
+
+  public MeasurementUnit getUnit() {
+    return ingredient.getUnit();
   }
 }

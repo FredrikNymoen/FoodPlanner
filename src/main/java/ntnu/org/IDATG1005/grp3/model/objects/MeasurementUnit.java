@@ -47,6 +47,15 @@ public enum MeasurementUnit {
     throw new IllegalArgumentException("No measurement unit with name: " + unitName);
   }
 
+  public static MeasurementUnit fromUnitId(int id) {
+    for (MeasurementUnit unit : values()) {
+      if (unit.getId() == id) {
+        return unit;
+      }
+    }
+    throw new IllegalArgumentException("No measurement unit with name: " + id);
+  }
+
   @Override
   public String toString() {
     return unitName;
