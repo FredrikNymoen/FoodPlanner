@@ -138,11 +138,11 @@ public class IngredienceController implements Initializable{
                 amount = isIngredientInInventory(ingredient).getQuantity().toString() +
                     " " + isIngredientInInventory(ingredient).getUnit().getUnitName();
             } else{
-                alternativeController.hideRemoveButton();
+                //alternativeController.hideRemoveButton();
             }
 
             // Example data, replace with actual data for each alternative
-            alternativeController.setData(ingredient.getName(), amount, url);
+            //alternativeController.setData(ingredient.getName(), amount, url);
 
             ingredienceSearchGrid.add(hbox, 0, i); // Add to column 0, appropriate row
         }

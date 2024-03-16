@@ -82,7 +82,7 @@ public class EditIngredientBoxController {
       this.inventoryIngredient = foundInventoryIngredient;
       unitText.setText(foundInventoryIngredient.getUnit().toString());
     } else {
-      this.inventoryIngredient = new InventoryIngredient(0, ingredient, MeasurementUnit.STK,0);
+      this.inventoryIngredient = new InventoryIngredient(ingredient, 0.0);
       removeRemoveButton(); // Hide or disable the remove button as it's not applicable.
     }
   }
@@ -117,7 +117,7 @@ public class EditIngredientBoxController {
       int amountToRemove = Integer.parseInt(editTextField.getText());
 
       // Check if the inventory has enough quantity, if not handle the error or set to zero.
-      int newQuantity = Math.max(inventoryIngredient.getQuantity() - amountToRemove, 0);
+      double newQuantity = Math.max(inventoryIngredient.getQuantity() - amountToRemove, 0.0);
       inventoryIngredient.setQuantity(newQuantity); // Update the model.
 
       if (updateListener != null) {

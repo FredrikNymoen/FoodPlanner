@@ -66,7 +66,7 @@ public class ItemController {
     @FXML
     public void plusAmount(MouseEvent mouseEvent) {
         int amount = Integer.parseInt(amountLabel.getText().split(" ")[0]);
-        ingredient.setQuantity(amount + 1);
+        ingredient.setQuantity(amount + 1.0);
         amountLabel.setText(ingredient.getQuantity() + " " + amountLabel.getText().split(" ")[1]);
     }
 
@@ -78,7 +78,7 @@ public class ItemController {
     public void minusAmount(MouseEvent mouseEvent) {
         int amount = Integer.parseInt(amountLabel.getText().split(" ")[0]);
         if (amount > 0) {
-            ingredient.setQuantity(amount - 1);
+            ingredient.setQuantity(amount - 1.0);
             amountLabel.setText(ingredient.getQuantity() + " " + amountLabel.getText().split(" ")[1]);
         }
         else{
