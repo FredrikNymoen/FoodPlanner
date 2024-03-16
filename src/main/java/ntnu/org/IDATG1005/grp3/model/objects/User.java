@@ -9,6 +9,7 @@ public class User {
   private String username;
   private Inventory inventory;
   private String password; // hashed at service layer, so stored in plain at ram
+  private Household household;
 
   /**
    * Constructs a new User with the specified ID, username, email, and password.
@@ -76,5 +77,22 @@ public class User {
 
   public void setInventory(Inventory inventory) {
     this.inventory = inventory;
+  }
+
+  /**
+   * Return the household the user is part of.
+   *
+   * @return household that the user is part of, null if not part of any.
+   */
+  public Household getHousehold() {
+    return household;
+  }
+
+  public void setHousehold(Household household) {
+    this.household = household;
+  }
+
+  public boolean isAssociatedWithHousehold () {
+    return household != null;
   }
 }

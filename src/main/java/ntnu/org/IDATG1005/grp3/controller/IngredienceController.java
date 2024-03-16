@@ -15,20 +15,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-//import main.Main;
-//import main.MyListener;
-//import model.Fruit;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import ntnu.org.IDATG1005.grp3.dao.implementations.IngredientDaoImpl;
 import ntnu.org.IDATG1005.grp3.dao.interfaces.IngredientDao;
-import ntnu.org.IDATG1005.grp3.interfaces.ItemRemovalListener;
 import ntnu.org.IDATG1005.grp3.model.objects.Ingredient;
 import ntnu.org.IDATG1005.grp3.model.objects.InventoryIngredient;
 import ntnu.org.IDATG1005.grp3.model.objects.MeasurementUnit;
@@ -59,21 +53,18 @@ public class IngredienceController implements Initializable{
     private final IngredientDao ingredientDao = new IngredientDaoImpl();
     private IngredientService ingredientService = new IngredientService(ingredientDao);
 
-
-
-
     private List<InventoryIngredient> getData() {
         List<InventoryIngredient> inventoryIngredients = new ArrayList<>();
         String url = getClass().getResource("/images/Kniv_Gaffel_ikon.png").toString();
 
-        InventoryIngredient tomat = new InventoryIngredient(0, new Ingredient(0, "Tomat", url),
-            MeasurementUnit.STK, 2);
-        InventoryIngredient eple = new InventoryIngredient(0, new Ingredient(0, "Eple", url),
-            MeasurementUnit.STK, 4);
-        InventoryIngredient melk = new InventoryIngredient(0, new Ingredient(0, "Melk", url),
-            MeasurementUnit.LITER, 1);
-        InventoryIngredient sukker = new InventoryIngredient(0, new Ingredient(0, "Sukker", url),
-            MeasurementUnit.GRAM, 500);
+        InventoryIngredient tomat = new InventoryIngredient(null, new Ingredient(0, "Tomat", url,
+            MeasurementUnit.STK), 2.0);
+        InventoryIngredient eple = new InventoryIngredient(null, new Ingredient(0, "Eple", url,
+            MeasurementUnit.STK), 4.0);
+        InventoryIngredient melk = new InventoryIngredient(null, new Ingredient(0, "Melk", url,
+            MeasurementUnit.LITER), 1.0);
+        InventoryIngredient sukker = new InventoryIngredient(null, new Ingredient(0, "Sukker", url,
+            MeasurementUnit.GRAM), 500.0);
 
         inventoryIngredients.add(tomat);
         inventoryIngredients.add(eple);

@@ -25,149 +25,67 @@ import ntnu.org.IDATG1005.grp3.service.UserService;
 public class MainCheeky {
 
   public static void main(String[] args) {
-
-    createUserSim();
-
-    updateUserSim();
-
-    createHouseholdSim();
-
-    //findHouseholdById();
-
-    retrieveAndAvailablePrintIngredients();
-
-    retrieveAndPrintRecipes();
-
-    /*
-    Persistent logic:
-
-    All objects that are modified is stored in ram. Therefore, to persist changes
-    we have service classes. If you are planning to persist an object be careful with the id.
-    The id of the object will determine what object it persists in the database. To solve for this
-    only persist objects created or retrieved by service classes in the first place.
-     */
+    testUserOperations();
+    testHouseholdOperations();
+    testIngredientOperations();
+    testRecipeOperations();
   }
 
-  public static void retrieveAndAvailablePrintIngredients() {
-    // initialize DAO and initialize the service with the DAO
-    IngredientDao ingredientDao = new IngredientDaoImpl();
-    IngredientService ingredientService = new IngredientService(ingredientDao);
-
-    // fetch and display all ingredients
-    System.out.println("All Ingredients:");
-    for (Ingredient ingredient : ingredientService.findAllIngredients()) {
-      System.out.println(ingredient.getIngredientId() + ": " + ingredient.getName() + " - " + ingredient.getImageUrl());
-    }
-
-    // look for an ingredient with ID 1
-    Integer ingredientIdToFind = 1;
-    Ingredient foundIngredient = ingredientService.findIngredientById(ingredientIdToFind);
-    if (foundIngredient != null) {
-      System.out.println("\nIngredient Found:");
-      System.out.println(foundIngredient.getIngredientId() + ": " + foundIngredient.getName() + " - " + foundIngredient.getImageUrl());
-    } else {
-      System.out.println("\nIngredient with ID " + ingredientIdToFind + " not found.");
-    }
-  }
-
-  public static void retrieveAndPrintRecipes() {
-    // initialize DAO and initialize the service with the DAO
-    RecipeDao recipeDao = new RecipeDaoImpl();
-    RecipeService recipeService = new RecipeService(recipeDao);
-
-    // fetch and display all recipes by title
-    System.out.println("All recipes:");
-
-    // TODO try catch
-    List<Recipe> recipes = recipeService.findAllRecipes();
-    for (int i = 0; i < recipes.size(); i++) {
-      System.out.println((i + 1) + ": " + recipes.get(i).getRecipeInfo().getTitle());
-    }
-
-    // print the recipe in id 1
-    System.out.println("\n\n");
-    printRecipe(recipes.get(0));
-  }
-
-  private static void createUserSim() {
-    // simulate how to create a user without database
-    User user = new User(null, "usernameNull", "passNull");
-    System.out.println("\nLocal user with null id: ");
-    System.out.println("Username: " + user.getUsername());
-
-    // simulate how to create a user with database.
+  private static void testUserOperations() {
+    System.out.println("=== User Operations Test ===");
     UserDao userDao = new UserDaoImpl();
     UserService userService = new UserService(userDao);
 
-    User userPersistent;
-
     try {
-      userPersistent = userService.createUser("usernamePersistent", "passPersistent");
-    } catch (UsernameAlreadyExistsException e) {
-      System.out.println("Username already exists.");
-    } catch (IllegalArgumentException e) {
-      System.out.println("Username is too long.");
+      User newUser = userService.registerUser("testUser7", "testPass");
+      System.out.println("User registered: " + newUser.getUsername());
+      User loggedInUser = userService.authenticateUser("testUser7", "testePass");
+      System.out.println("User authenticated: " + loggedInUser.getUsername());
+    } catch (UsernameAlreadyExistsException | IllegalArgumentException e) {
+      System.out.println(e.getMessage());
     }
   }
 
-  private static void updateUserSim() {
-
-    UserDao userDao = new UserDaoImpl();
-    UserService userService = new UserService(userDao);
-
-    // updates are based on the id, in practice you do not know the id
-    User user = new User(1, "newUsername", "newPass");
-    try {
-      userService.updateUserDetails(user);
-      System.out.println("User updated!");
-    } catch (UsernameAlreadyExistsException e) {
-      System.out.println("Failed to update user: Username already exists.");
-    } catch (Exception e) {
-      System.out.println("An unexpected error occurred: " + e.getMessage());
-    }
-  }
-
-  private static void createHouseholdSim() {
-    // simulate how to create a household without database
-    Household household = new Household(null, "householdNull", "joinCodeNull");
-    System.out.println("\nLocal household with null id: ");
-    System.out.println("Username: " + household.getName());
-
-    // simulate how to create a household with database.
+  private static void testHouseholdOperations() {
+    System.out.println("=== Household Operations Test ===");
     HouseholdDao householdDao = new HouseholdDaoImpl();
     HouseholdService householdService = new HouseholdService(householdDao);
 
-    Household householdPersistent = null;
-
     try {
-      householdPersistent = householdService.createHousehold();
-    } catch (Exception e) {
-      System.out.println("Something failed");
-    }
-
-    System.out.println("Household:");
-    System.out.println("Id: " + householdPersistent.getHouseholdId());
-    System.out.println("Name: " + householdPersistent.getName());
-    System.out.println("JoinCode: " + householdPersistent.getJoinCode());
-  }
-
-  private static void findHouseholdById() {
-
-    // start the service
-    HouseholdDao householdDao = new HouseholdDaoImpl();
-    HouseholdService householdService = new HouseholdService(householdDao);
-    Household household = null;
-
-    try {
-      household = householdService.findHouseholdByJoinCode("trust");
+      Household newHousehold = householdService.createHousehold();
+      System.out.println("Household created: " + newHousehold.getName());
+      Household foundHousehold = householdService.findHouseholdByJoinCode("TestJoinCode");
+      System.out.println("Household found: " + foundHousehold.getName());
     } catch (HouseholdNotFoundException e) {
       System.out.println("Household not found");
     }
+  }
 
-    System.out.println("Household:");
-    System.out.println("Id: " + household.getHouseholdId());
-    System.out.println("Name " + household.getName());
-    System.out.println("JoinCode" + household.getJoinCode());
+  private static void testIngredientOperations() {
+    System.out.println("=== Ingredient Operations Test ===");
+    IngredientDao ingredientDao = new IngredientDaoImpl();
+    IngredientService ingredientService = new IngredientService(ingredientDao);
+
+    List<Ingredient> ingredients = ingredientService.findAllIngredients();
+    System.out.println("All ingredients:");
+    ingredients.forEach(ingredient -> System.out.println("- " + ingredient.getName()));
+
+    Ingredient newIngredient = ingredientService.findIngredientById(1); // assuming an ingredient with ID 1 exists
+    System.out.println("Ingredient found: " + newIngredient.getName());
+  }
+
+  private static void testRecipeOperations() {
+    System.out.println("=== Recipe Operations Test ===");
+    RecipeDao recipeDao = new RecipeDaoImpl();
+    RecipeService recipeService = new RecipeService(recipeDao);
+
+    List<Recipe> recipes = recipeService.findAllRecipes();
+    System.out.println("All recipes:");
+    recipes.forEach(recipe -> System.out.println("- " + recipe.getRecipeInfo().getTitle()));
+
+    // assuming a recipe with ID 1 exists
+    Recipe recipe = recipes.get(1);
+    printRecipe(recipe);
   }
 
   // example function for printing a recipe
@@ -193,5 +111,3 @@ public class MainCheeky {
     }
   }
 }
-
-
