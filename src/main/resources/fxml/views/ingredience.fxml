@@ -105,7 +105,7 @@
       </HBox>
       <Pane layoutX="29.0" layoutY="48.0" prefHeight="404.0" prefWidth="740.0" style="-fx-background-color: #92C37D;">
          <children>
-            <Label layoutX="15.0" layoutY="11.0" text="Sorter" textFill="WHITE">
+            <Label disable="true" layoutX="15.0" layoutY="11.0" text="Sorter" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -115,13 +115,13 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <CheckBox layoutX="15.0" layoutY="104.0" mnemonicParsing="false" prefHeight="7.0" selected="true" text="Alle" />
-            <CheckBox fx:id="favoriteCheckBox" layoutX="15.0" layoutY="131.0" mnemonicParsing="false" onAction="#filterFavorites" prefHeight="7.0" text="Favoritter" />
-            <CheckBox layoutX="15.0" layoutY="158.0" mnemonicParsing="false" prefHeight="7.0" text="Kjøtt" />
-            <CheckBox layoutX="15.0" layoutY="185.0" mnemonicParsing="false" prefHeight="7.0" text="Grønnsaker" />
-            <CheckBox layoutX="15.0" layoutY="212.0" mnemonicParsing="false" prefHeight="7.0" text="Frukt" />
-            <CheckBox layoutX="15.0" layoutY="239.0" mnemonicParsing="false" prefHeight="7.0" text="Pasta" />
-            <CheckBox layoutX="15.0" layoutY="266.0" mnemonicParsing="false" prefHeight="7.0" text="Krydder" />
+            <CheckBox fx:id="allCheckBox" layoutX="15.0" layoutY="104.0" mnemonicParsing="false" prefHeight="7.0" selected="true" text="Alle" />
+            <CheckBox fx:id="favoriteCheckBox" layoutX="15.0" layoutY="131.0" mnemonicParsing="false" prefHeight="7.0" text="Favoritter" />
+            <CheckBox disable="true" layoutX="15.0" layoutY="158.0" mnemonicParsing="false" prefHeight="7.0" text="Kjøtt" />
+            <CheckBox disable="true" layoutX="15.0" layoutY="185.0" mnemonicParsing="false" prefHeight="7.0" text="Grønnsaker" />
+            <CheckBox disable="true" layoutX="15.0" layoutY="212.0" mnemonicParsing="false" prefHeight="7.0" text="Frukt" />
+            <CheckBox disable="true" layoutX="15.0" layoutY="239.0" mnemonicParsing="false" prefHeight="7.0" text="Pasta" />
+            <CheckBox disable="true" layoutX="15.0" layoutY="266.0" mnemonicParsing="false" prefHeight="7.0" text="Krydder" />
             <Pane layoutX="132.0" layoutY="3.0" prefHeight="35.0" prefWidth="597.0" style="-fx-background-color: #69A94F; -fx-background-radius: 7px;">
                <children>
                   <TextField fx:id="searchField" layoutX="4.0" layoutY="4.0" prefHeight="26.0" prefWidth="588.0" promptText="Søk etter ingrediens" />
@@ -134,7 +134,7 @@
                </font>
             </Label>
             <Line endX="327.9999694824219" endY="152.99998474121094" layoutX="105.0" layoutY="-76.0" startX="17.555130004882812" startY="152.8480224609375" stroke="WHITE" />
-            <Label layoutX="558.0" layoutY="48.0" text="Kollektiv" textFill="WHITE">
+            <Label disable="true" layoutX="558.0" layoutY="48.0" text="Kollektiv" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -143,19 +143,20 @@
                <content>
                   <GridPane fx:id="grid" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="3.0" prefWidth="5.0" style="-fx-background-color: #92C37D;">
                      <columnConstraints>
-                        <ColumnConstraints maxWidth="150" minWidth="150" prefWidth="150" />
-                        <ColumnConstraints maxWidth="150" minWidth="150" prefWidth="150" />
-                        <ColumnConstraints maxWidth="150" minWidth="150" prefWidth="150" />
+                        <ColumnConstraints maxWidth="145" minWidth="145" prefWidth="145" />
+                        <ColumnConstraints maxWidth="145" minWidth="145" prefWidth="145" />
+                        <ColumnConstraints maxWidth="145" minWidth="145" prefWidth="145" />
+                        <ColumnConstraints maxWidth="145" minWidth="145" prefWidth="145" />
                      </columnConstraints>
                      <cursor>
-                        <Cursor fx:constant="OPEN_HAND" />
+                        <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </GridPane>
                </content>
             </ScrollPane>
             <GridPane fx:id="ingredienceSearchGrid" layoutX="132.0" layoutY="36.0" prefHeight="1.0" prefWidth="597.0" style="-fx-background-color: #92C37D;">
               <columnConstraints>
-                 <ColumnConstraints minWidth="597" prefWidth="597" maxWidth="597" hgrow="NEVER"/>
+                 <ColumnConstraints hgrow="NEVER" maxWidth="597" minWidth="597" prefWidth="597" />
               </columnConstraints>
             </GridPane>
          </children>
