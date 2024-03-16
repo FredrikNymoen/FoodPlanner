@@ -191,6 +191,11 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
         ingredienceSearchGrid.getChildren().clear();
         String url = getClass().getResource("/images/Kniv_Gaffel_ikon.png").toString();
 
+        for (int i = 0; i < ingredientService.findAllIngredients().size(); i++){
+            System.out.println(ingredientService.findAllIngredients().get(i).getName());
+        }
+
+
         // Assume you have a list of ingredient alternatives to display
         for (int i = 0; i < searchItems.size(); i++) { // adding 3 alternatives
             String amount = "";
