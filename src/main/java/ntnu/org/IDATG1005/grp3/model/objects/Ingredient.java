@@ -58,4 +58,21 @@ public class Ingredient {
   public MeasurementUnit getUnit() {
     return unit;
   }
+
+  /*
+  Compares an ingredient with an ingredient on db id
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (obj == null || getClass() != obj.getClass()) return false;
+
+    Ingredient that = (Ingredient) obj;
+    return ingredientId.equals(that.ingredientId);
+  }
+
+  @Override
+  public int hashCode() {
+    return ingredientId.hashCode();
+  }
 }

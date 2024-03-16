@@ -16,9 +16,9 @@ import ntnu.org.IDATG1005.grp3.service.RecipeService;
 
 public class MainApp extends Application {
 
-  //public static User appUser = null; // set in login / register controller
-  //public static List<Ingredient> appIngredients;
-  //public static List<Recipe> appRecipes;
+  public static User appUser = null; // set in login / register controller
+  public final static List<Ingredient> appIngredients = new IngredientService(new IngredientDaoImpl()).findAllIngredients();
+  public static List<Recipe> appRecipes;
 
   @Override
   public void start(Stage primaryStage) throws Exception {
@@ -33,19 +33,12 @@ public class MainApp extends Application {
 
   public static void maino(String[] args) {
 
-    // download recipes and ingredients from the database before the app starts
-    /*
-    try {
-      appIngredients = new IngredientService(new IngredientDaoImpl()).findAllIngredients();
-    } catch (Exception e){
-      e.printStackTrace();
-    }
 
     try {
       appRecipes = new RecipeService(new RecipeDaoImpl()).findAllRecipes();
     } catch (Exception e){
       e.printStackTrace();
-    }*/
+    }
 
     launch(args);}
 

@@ -5,33 +5,20 @@ package ntnu.org.IDATG1005.grp3.model.objects;
  * and the quantity available.
  */
 public class InventoryIngredient extends AbstractIngredientDetail {
-
-  private final Integer inventoryIngredientId;
   private Double quantity;
   private boolean favorite;
 
   /**
    * Constructs an instance of InventoryIngredient with specified ingredient, unit, and quantity.
    *
-   * @param inventoryIngredientId The unique ID for this recipe ingredient.
    * @param ingredient            The ingredient object.
    * @param quantity              The quantity of the ingredient in inventory.
    */
-  public InventoryIngredient(Integer inventoryIngredientId, Ingredient ingredient,
+  public InventoryIngredient(Ingredient ingredient,
       Double quantity) {
     super(ingredient);
-    this.inventoryIngredientId = inventoryIngredientId;
     this.quantity = quantity;
     this.favorite = false;
-  }
-
-  /**
-   * Gets the unique ID for this inventory ingredient.
-   *
-   * @return The unique ID of the inventory ingredient.
-   */
-  public Integer getInventoryIngredientId() {
-    return inventoryIngredientId;
   }
 
   /**

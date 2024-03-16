@@ -29,7 +29,7 @@ public class User {
    *
    * @return The unique identifier of the user.
    */
-  public int getUserId() {
+  public Integer getUserId() {
     return userId;
   }
 
@@ -94,5 +94,41 @@ public class User {
 
   public boolean isAssociatedWithHousehold () {
     return household != null;
+  }
+
+  /**
+   * Removes the specified ingredient from the inventory.
+   * If the ingredient does not exist in the inventory, this method performs no action.
+   *
+   * @param ingredient The ingredient to be removed from the inventory.
+   */
+  public void removeIngredient(Ingredient ingredient) {
+    inventory.getIngredients().remove(ingredient);
+  }
+
+  /**
+   * Can both increase and decrease the value based on +-
+   *
+   * @param ingredient
+   * @param changeValue
+   */
+  public void changeQuantityOfIngredient(Ingredient ingredient, double changeValue) {
+    InventoryIngredient inventoryIngredient = inventory.getIngredients().get(ingredient);
+    if (inventoryIngredient != null) {
+      double newQuantity = inventoryIngredient.getQuantity() + changeValue;
+      inventoryIngredient.setQuantity(newQuantity);
+      // removes the ingredient if the new quantity is less than or equal to 0
+      if (newQuantity <= 0) {
+        removeIngredient(ingredient);
+      }
+    } else {
+      // adds the ingredient with changeValue as its initial quantity if changeValue is positive.
+      if (changeValue > 0) {
+        inventory.getIngredients().put(ingredient, new InventoryIngredient(ingredient, changeValue));
+      } else {
+        // handle case for negative or zero changeValue for non-existing ingredient
+        System.out.println("Cannot add ingredient with non-positive quantity.");
+      }
+    }
   }
 }

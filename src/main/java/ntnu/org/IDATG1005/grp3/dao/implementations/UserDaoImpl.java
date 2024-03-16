@@ -1,15 +1,19 @@
 package ntnu.org.IDATG1005.grp3.dao.implementations;
 
+import com.google.protobuf.ProtocolStringList;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import de.mkammerer.argon2.Argon2Factory.Argon2Types;
 import java.math.BigDecimal;
 import java.sql.*;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import ntnu.org.IDATG1005.grp3.dao.interfaces.UserDao;
 import ntnu.org.IDATG1005.grp3.db.DatabaseConnection;
+import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.AuthenticationFailedException;
 import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.UsernameAlreadyExistsException;
 import ntnu.org.IDATG1005.grp3.model.objects.Household;
 import ntnu.org.IDATG1005.grp3.model.objects.Ingredient;
@@ -57,14 +61,11 @@ public class UserDaoImpl implements UserDao {
     return null;
   }
 
-
   /**
    * {@inheritDoc}
    */
   @Override
-  public User loginUser(String username, String password) {
-    // updated SQL query to fetch the password hash along with other user details
-    // I know this sucks but
+  public User loginUser(String username, String password) throws AuthenticationFailedException {
     String sql = "SELECT user_id, username, household_id, password FROM user WHERE username = ?";
     try (Connection conn = DatabaseConnection.getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -81,20 +82,21 @@ public class UserDaoImpl implements UserDao {
         // Verify the password with the stored hash
         if (verifyPassword(password, storedHash)) {
           User user = new User(userId, userUsername, null);
-          user.setHousehold(setHouseholdIfPartOf(householdId)); // check if user is part of a household
+          user.setHousehold(
+              setHouseholdIfPartOf(householdId)); // check if user is part of a household
           user.setInventory(setInventoryIfExists(userId));
 
           return user;
         } else {
-          // If password verification fails, return null or handle accordingly
-          return null;
+          throw new AuthenticationFailedException();
         }
+      } else {
+        throw new AuthenticationFailedException();
       }
     } catch (SQLException e) {
       logger.log(Level.SEVERE, "SQL error on finding a user", e);
+      return null; // could be better error handling
     }
-    // If user not found or any other issue, return null
-    return null;
   }
 
   private boolean verifyPassword(String password, String storedHash) {
@@ -108,44 +110,36 @@ public class UserDaoImpl implements UserDao {
   }
 
   @Override
-  public void saveUserInventory(Integer userId, Inventory inventory) {
-
+  public void saveUserInventory(Integer userId, Collection<InventoryIngredient> ingredients) {
     String sql = "INSERT INTO inventory_ingredient (user_id, ingredient_id, amount) VALUES (?, ?, ?) " +
         "ON DUPLICATE KEY UPDATE amount = VALUES(amount)";
-
     try (Connection conn = DatabaseConnection.getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-      for (InventoryIngredient ingredient : inventory.getIngredients().values()) {
+      for (InventoryIngredient ingredient : ingredients) {
         pstmt.setInt(1, userId);
-        pstmt.setInt(2, ingredient.getInventoryIngredientId());
+        pstmt.setInt(2, ingredient.getIngredient().getIngredientId());
         pstmt.setBigDecimal(3, BigDecimal.valueOf(ingredient.getQuantity()));
         pstmt.executeUpdate();
       }
-
     } catch (SQLException e) {
       logger.log(Level.SEVERE, "SQL error on saving user inventory", e);
     }
   }
-
 
   @Override
   public void saveUserHousehold(Integer userId, Integer householdId) {
     String sql = "UPDATE user SET household_id = ? WHERE user_id = ?";
     try (Connection conn = DatabaseConnection.getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-      // if householdId is null, removes the user from any household
       if (householdId == null) {
         pstmt.setNull(1, Types.INTEGER);
       } else {
         pstmt.setInt(1, householdId);
       }
       pstmt.setLong(2, userId);
-
       int affectedRows = pstmt.executeUpdate();
       if (affectedRows == 0) {
-        // no rows affected means either the user doesn't exist or the household doesn't exist.
         logger.log(Level.WARNING, "No user found with the provided userId, or householdId does not exist.");
       }
     } catch (SQLException e) {
@@ -153,37 +147,30 @@ public class UserDaoImpl implements UserDao {
     }
   }
 
+
   public void updateUsername(Integer userId, String newUsername) throws UsernameAlreadyExistsException {
-    // Check if the new username already exists in the database
     String checkSql = "SELECT COUNT(*) FROM user WHERE username = ?";
     try (Connection conn = DatabaseConnection.getConnection();
         PreparedStatement checkStmt = conn.prepareStatement(checkSql)) {
-
       checkStmt.setString(1, newUsername);
       ResultSet resultSet = checkStmt.executeQuery();
       if (resultSet.next() && resultSet.getInt(1) > 0) {
-        // If count is greater than 0, then the username already exists
         throw new UsernameAlreadyExistsException("Username already exists: " + newUsername);
       }
     } catch (SQLException e) {
       logger.log(Level.SEVERE, "SQL error when checking for existing username", e);
-      // Handle more gracefully according to your error handling policies
     }
-
-    // If we reach this point, it's safe to update the username
     String updateSql = "UPDATE user SET username = ? WHERE user_id = ?";
     try (Connection conn = DatabaseConnection.getConnection();
         PreparedStatement updateStmt = conn.prepareStatement(updateSql)) {
-
       updateStmt.setString(1, newUsername);
       updateStmt.setInt(2, userId);
       int affectedRows = updateStmt.executeUpdate();
       if (affectedRows == 0) {
-        logger.log(Level.WARNING, "No user found with the provided userId: " + userId);
+        logger.log(Level.WARNING, () -> "No user found with the provided userId: " + userId);
       }
     } catch (SQLException e) {
       logger.log(Level.SEVERE, "SQL error when updating username", e);
-      // Handle more gracefully according to your error handling policies
     }
   }
 
@@ -233,7 +220,7 @@ public class UserDaoImpl implements UserDao {
     Inventory inventory = new Inventory(new HashMap<>()); // initialize an empty Inventory
 
     // fetch inventory items for the user
-    String sql = "SELECT ii.inventory_ingredient_id, ii.amount, ii.ingredient_id, i.name, i.image, i.unit_id " +
+    String sql = "SELECT ii.amount, ii.ingredient_id, i.name, i.image, i.unit_id " +
         "FROM inventory_ingredient ii JOIN ingredient i ON ii.ingredient_id = i.ingredient_id " +
         "WHERE ii.user_id = ?";
 
@@ -244,7 +231,6 @@ public class UserDaoImpl implements UserDao {
       ResultSet rs = pstmt.executeQuery();
 
       while (rs.next()) {
-        int ingredientId = rs.getInt("ingredient_id");
         Ingredient ingredient = new Ingredient(
             rs.getInt("ingredient_id"),
             rs.getString("name"),
@@ -252,7 +238,7 @@ public class UserDaoImpl implements UserDao {
             MeasurementUnit.fromUnitId(rs.getInt("unit_id")));
         double amount = rs.getDouble("amount");
 
-        InventoryIngredient inventoryIngredient = new InventoryIngredient(ingredientId, ingredient, amount);
+        InventoryIngredient inventoryIngredient = new InventoryIngredient(ingredient, amount);
 
         inventory.getIngredients().put(ingredient, inventoryIngredient);
       }

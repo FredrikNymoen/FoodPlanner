@@ -57,13 +57,13 @@ public class IngredienceController implements Initializable{
         List<InventoryIngredient> inventoryIngredients = new ArrayList<>();
         String url = getClass().getResource("/images/Kniv_Gaffel_ikon.png").toString();
 
-        InventoryIngredient tomat = new InventoryIngredient(null, new Ingredient(0, "Tomat", url,
+        InventoryIngredient tomat = new InventoryIngredient(new Ingredient(0, "Tomat", url,
             MeasurementUnit.STK), 2.0);
-        InventoryIngredient eple = new InventoryIngredient(null, new Ingredient(0, "Eple", url,
+        InventoryIngredient eple = new InventoryIngredient(new Ingredient(0, "Eple", url,
             MeasurementUnit.STK), 4.0);
-        InventoryIngredient melk = new InventoryIngredient(null, new Ingredient(0, "Melk", url,
+        InventoryIngredient melk = new InventoryIngredient(new Ingredient(0, "Melk", url,
             MeasurementUnit.LITER), 1.0);
-        InventoryIngredient sukker = new InventoryIngredient(null, new Ingredient(0, "Sukker", url,
+        InventoryIngredient sukker = new InventoryIngredient(new Ingredient(0, "Sukker", url,
             MeasurementUnit.GRAM), 500.0);
 
         inventoryIngredients.add(tomat);

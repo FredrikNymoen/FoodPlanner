@@ -1,7 +1,11 @@
 package ntnu.org.IDATG1005.grp3.dao.interfaces;
 
+import java.util.Collection;
+import java.util.List;
+import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.AuthenticationFailedException;
 import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.UsernameAlreadyExistsException;
 import ntnu.org.IDATG1005.grp3.model.objects.Inventory;
+import ntnu.org.IDATG1005.grp3.model.objects.InventoryIngredient;
 import ntnu.org.IDATG1005.grp3.model.objects.User;
 
 /**
@@ -29,7 +33,7 @@ public interface UserDao {
    * @param password The hashed password of the user.
    * @return A {@link User} object if a user with the specified username and password exists, null otherwise.
    */
-  User loginUser(String username, String password);
+  User loginUser(String username, String password) throws AuthenticationFailedException;
 
   /**
    * Updates the username for a given user.
@@ -52,9 +56,9 @@ public interface UserDao {
    * Persists changes to a user's inventory.
    *
    * @param userId The ID of the user whose inventory is to be saved.
-   * @param inventory The inventory to be persisted.
+   * @param ingredients The inventory to be persisted.
    */
-  void saveUserInventory(Integer userId, Inventory inventory);
+  void saveUserInventory(Integer userId, Collection<InventoryIngredient> ingredients);
 
   /**
    * Persists household information for a user.
