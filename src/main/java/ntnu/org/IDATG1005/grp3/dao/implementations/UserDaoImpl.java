@@ -12,8 +12,10 @@ import ntnu.org.IDATG1005.grp3.dao.interfaces.UserDao;
 import ntnu.org.IDATG1005.grp3.db.DatabaseConnection;
 import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.UsernameAlreadyExistsException;
 import ntnu.org.IDATG1005.grp3.model.objects.Household;
+import ntnu.org.IDATG1005.grp3.model.objects.Ingredient;
 import ntnu.org.IDATG1005.grp3.model.objects.Inventory;
 import ntnu.org.IDATG1005.grp3.model.objects.InventoryIngredient;
+import ntnu.org.IDATG1005.grp3.model.objects.MeasurementUnit;
 import ntnu.org.IDATG1005.grp3.model.objects.User;
 
 /**
@@ -80,7 +82,7 @@ public class UserDaoImpl implements UserDao {
         if (verifyPassword(password, storedHash)) {
           User user = new User(userId, userUsername, null);
           user.setHousehold(setHouseholdIfPartOf(householdId)); // check if user is part of a household
-          //user.setInventory(setInventoryIfExists););
+          user.setInventory(setInventoryIfExists(userId));
 
           return user;
         } else {
@@ -225,5 +227,39 @@ public class UserDaoImpl implements UserDao {
       logger.log(Level.SEVERE, "SQL error on fetching household", e);
     }
     return null;
+  }
+
+  private Inventory setInventoryIfExists(Integer userId) {
+    Inventory inventory = new Inventory(new HashMap<>()); // initialize an empty Inventory
+
+    // fetch inventory items for the user
+    String sql = "SELECT ii.inventory_ingredient_id, ii.amount, ii.ingredient_id, i.name, i.image, i.unit_id " +
+        "FROM inventory_ingredient ii JOIN ingredient i ON ii.ingredient_id = i.ingredient_id " +
+        "WHERE ii.user_id = ?";
+
+    try (Connection conn = DatabaseConnection.getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+      pstmt.setInt(1, userId);
+      ResultSet rs = pstmt.executeQuery();
+
+      while (rs.next()) {
+        int ingredientId = rs.getInt("ingredient_id");
+        Ingredient ingredient = new Ingredient(
+            rs.getInt("ingredient_id"),
+            rs.getString("name"),
+            rs.getString("image"),
+            MeasurementUnit.fromUnitId(rs.getInt("unit_id")));
+        double amount = rs.getDouble("amount");
+
+        InventoryIngredient inventoryIngredient = new InventoryIngredient(ingredientId, ingredient, amount);
+
+        inventory.getIngredients().put(ingredient, inventoryIngredient);
+      }
+    } catch (SQLException e) {
+      logger.log(Level.SEVERE, "SQL error on fetching user inventory", e);
+    }
+
+    return inventory;
   }
 }
