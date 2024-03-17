@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.org.IDATG1005.grp3.controller.ShoppingListController">
+   <children>
+      <ImageView fitHeight="450.0" fitWidth="800.0" layoutY="1.0">
+         <image>
+            <Image url="@../../images/bakgrunnsbilde_mat.jpg" />
+         </image>
+      </ImageView>
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="48.0" prefWidth="800.0" spacing="10.0" style="-fx-background-color: #69A94F;">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="192.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text=" Matplanleggeren ">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <ImageView fitHeight="36.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/images/Kniv_Gaffel_ikon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="500.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Oppskrifter">
+                           <font>
+                              <Font name="Comic Sans MS" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingredienser">
+                           <font>
+                              <Font name="Comic Sans MS" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Handleliste">
+                           <font>
+                              <Font name="Comic Sans MS" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Aktive oppskrifter">
+                           <font>
+                              <Font name="Comic Sans MS" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="175.0">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Ditt kollektiv   ">
+                           <font>
+                              <Font name="Comic Sans MS" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="44.0" prefWidth="19.0">
+                     <children>
+                        <ImageView fitHeight="36.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@/images/Profilbilde_ikon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <Pane layoutX="69.0" layoutY="48.0" prefHeight="405.0" prefWidth="659.0" style="-fx-background-color: #92C37D;">
+         <children>
+            <ScrollPane fx:id="scroll" fitToWidth="true" layoutX="7.0" layoutY="78.0" prefHeight="271.0" prefWidth="646.0" stylesheets="@../../css/style.css">
+               <content>
+                  <GridPane fx:id="shoppingListGrid" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="3.0" prefWidth="5.0" style="-fx-background-color: #92C37D;">
+                     <columnConstraints>
+                        <ColumnConstraints maxWidth="110" minWidth="110" prefWidth="145" />
+                        <ColumnConstraints maxWidth="110" minWidth="110" prefWidth="145" />
+                        <ColumnConstraints maxWidth="110" minWidth="110" prefWidth="145" />
+                        <ColumnConstraints maxWidth="110" minWidth="110" prefWidth="145" />
+                        <ColumnConstraints maxWidth="110" minWidth="110" prefWidth="145" />
+                     </columnConstraints>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+            <Label layoutX="13.0" layoutY="48.0" text="Handleliste" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Pane layoutX="7.0" layoutY="5.0" prefHeight="36.0" prefWidth="646.0" style="-fx-background-color: #69A94F; -fx-background-radius: 7px;">
+               <children>
+                  <Label layoutX="5.0" layoutY="8.0" text="Valgte retter:" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <ScrollPane id="chosenRecipes" fx:id="scroll1" fitToWidth="true" layoutX="99.0" prefHeight="23.0" prefWidth="542.0" style="-fx-background-color: #69A94F;" stylesheets="@../../css/style.css">
+                     <content>
+                        <GridPane fx:id="chosenRecipesGrid">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </Pane>
+            <VBox alignment="TOP_CENTER" layoutY="352.0" prefHeight="53.0" prefWidth="659.0" style="-fx-background-color: #69A94F;">
+               <children>
+                  <Line endX="534.9265747070312" endY="-5.657065391540527" startX="-122.87712097167969" startY="-5.657081604003906" />
+                  <HBox alignment="TOP_CENTER" maxWidth="500.0" prefHeight="34.0" prefWidth="447.0" spacing="60.0">
+                     <VBox.margin>
+                        <Insets top="9.0" />
+                     </VBox.margin>
+                     <children>
+                        <HBox fx:id="buyButton" alignment="CENTER" prefHeight="100.0" prefWidth="163.0" style="-fx-background-color: #92C37D;">
+                           <children>
+                              <Label alignment="CENTER" text="Kjøpt!" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
