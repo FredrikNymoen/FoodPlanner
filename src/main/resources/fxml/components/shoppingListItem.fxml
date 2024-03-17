@@ -9,30 +9,33 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="item" maxHeight="135.0" maxWidth="120.0" minHeight="135.0" minWidth="120.0" prefHeight="135.0" prefWidth="120.0" style="-fx-background-color: #6E935D; -fx-border-color: #69A94F; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.org.IDATG1005.grp3.controller.ShoppingListItemController">
+<AnchorPane fx:id="item" maxHeight="135.0" maxWidth="140.0" minHeight="135.0" minWidth="120.0" prefHeight="135.0" prefWidth="140.0" style="-fx-background-color: #6E935D; -fx-border-color: #69A94F; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.org.IDATG1005.grp3.controller.ShoppingListItemController">
    <children>
       <VBox fx:id="itemContainer" alignment="TOP_CENTER" layoutX="62.0" layoutY="-1.0" prefHeight="162.0" prefWidth="149.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox fx:id="itemInfo" alignment="CENTER" prefHeight="35.0" prefWidth="142.0">
+            <HBox fx:id="itemInfo" alignment="CENTER" prefHeight="35.0" prefWidth="136.0">
                <children>
-                  <Label fx:id="nameLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="106.0" text="Tomat" textAlignment="CENTER" textFill="WHITE">
+                  <Label fx:id="nameLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="23.0" prefHeight="33.0" prefWidth="136.0" text="Tomat" textAlignment="CENTER" textFill="WHITE">
                      <font>
-                        <Font name="Futura Bold" size="15.0" />
+                        <Font name="Futura Bold" size="14.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
                   </Label>
                </children>
                <VBox.margin>
-                  <Insets top="2.0" />
+                  <Insets bottom="6.0" top="2.0" />
                </VBox.margin>
             </HBox>
-            <ImageView fx:id="img" fitHeight="88.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="img" fitHeight="67.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/Kniv_Gaffel_ikon.png" />
                </image>
             </ImageView>
             <Label fx:id="amountLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="46.0" prefWidth="98.0" text="12 stk" textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="16.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
                <VBox.margin>
                   <Insets top="7.0" />

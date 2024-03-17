@@ -109,14 +109,13 @@
                <content>
                   <GridPane fx:id="shoppingListGrid" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="3.0" prefWidth="5.0" style="-fx-background-color: #92C37D;">
                      <columnConstraints>
-                        <ColumnConstraints maxWidth="110" minWidth="110" prefWidth="145" />
-                        <ColumnConstraints maxWidth="110" minWidth="110" prefWidth="145" />
-                        <ColumnConstraints maxWidth="110" minWidth="110" prefWidth="145" />
-                        <ColumnConstraints maxWidth="110" minWidth="110" prefWidth="145" />
-                        <ColumnConstraints maxWidth="110" minWidth="110" prefWidth="145" />
+                        <ColumnConstraints percentWidth="25"/>
+                        <ColumnConstraints percentWidth="25"/>
+                        <ColumnConstraints percentWidth="25"/>
+                        <ColumnConstraints percentWidth="25"/>
                      </columnConstraints>
                      <cursor>
-                        <Cursor fx:constant="DEFAULT" />
+                        <Cursor fx:constant="OPEN_HAND" />
                      </cursor>
                   </GridPane>
                </content>
