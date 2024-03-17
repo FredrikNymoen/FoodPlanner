@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import ntnu.org.IDATG1005.grp3.model.objects.Recipe;
 import ntnu.org.IDATG1005.grp3.model.objects.RecipeInfo;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -61,16 +62,19 @@ public class ActiveRecipesController {
 
     public void addActiveRecipe() {
         Pane recipePane = null;
-        try {
-            recipePane = FXMLLoader.load(getClass().getResource("/fxml/components/active_recipes_display.fxml"));
-            int recipeIndex = activeRecipesList.size() + 1;
-            recipePane.setId("recipe" + recipeIndex);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        if(activeRecipesList.size() < 3){
+            try { //Legg også til at den endrer bilde og tekst ut ifra retten
+                recipePane = FXMLLoader.load(getClass().getResource("/fxml/components/active_recipes_display.fxml"));
+                int recipeIndex = activeRecipesList.size() + 1;
+                recipePane.setId("recipe" + recipeIndex);
+                activeRecipesList.add(recipePane);
+                recipeHolder.getChildren().add(recipePane);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
         }
 
-        activeRecipesList.add(recipePane);
-        recipeHolder.getChildren().add(recipePane);
         System.out.println(recipeHolder.getChildren());
     }
 
