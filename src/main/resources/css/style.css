@@ -6,3 +6,7 @@
   -fx-padding: 3 0 3 0;
   -fx-alignment: center;
 }
+
+#chosenRecipes > .viewport{
+  -fx-background-color:  #69A94F;
+}
