@@ -1,5 +1,7 @@
 package ntnu.org.IDATG1005.grp3.controller;
 
+import static ntnu.org.IDATG1005.grp3.application.MainApp.appUser;
+
 import java.util.ArrayList;
 import java.util.List;
 import javafx.fxml.FXML;
@@ -24,6 +26,7 @@ public class choseRecipeController {
   }
 
   public void choseDisplayedRecipe() {
+    appUser.addChosenRecipe();
     System.out.println("Recipe chosen");
   }
   public void toggleFavorite(){

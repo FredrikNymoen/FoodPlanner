@@ -1,5 +1,7 @@
 package ntnu.org.IDATG1005.grp3.controller;
 
+import static ntnu.org.IDATG1005.grp3.application.MainApp.appUser;
+
 import java.util.ArrayList;
 import java.util.List;
 import javafx.fxml.FXML;
@@ -16,12 +18,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import ntnu.org.IDATG1005.grp3.application.MainApp;
+import ntnu.org.IDATG1005.grp3.model.objects.Recipe;
 import ntnu.org.IDATG1005.grp3.model.objects.RecipeInfo;
 
 import java.io.IOException;
+import ntnu.org.IDATG1005.grp3.model.objects.User;
 
 public class recipeScreenController {
-    private List<RecipeInfo> recipes;
     private static recipeScreenController instance;
     @FXML
     private VBox choseRecipeContainer;
@@ -32,7 +36,6 @@ public class recipeScreenController {
     private ImageView recipeImage;
 
     private recipeScreenController() {
-        recipes = new ArrayList<>();
         intializeRecipeList();
     }
 
@@ -45,18 +48,18 @@ public class recipeScreenController {
 
     @FXML
     public void initialiseRecipeScreen(MouseEvent mouseEvent) throws IOException {
-        for (RecipeInfo recp : recipes) {
+        for(Recipe recp : MainApp.appRecipes) {
             AnchorPane recipe;
             FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/fxml/components/choseRecipe.fxml"));
+                getClass().getResource("/fxml/components/choseRecipe.fxml"));
             loader.setController(choseRecipeController.getInstance());
             recipe = loader.load();
 
-            recipeName = (Text) recipe.lookup("#recipeName");
-            recipeName.setText(recp.getTitle());
+             recipeName = (Text) recipe.lookup("#recipeName");
+             recipeName.setText(recp.getRecipeInfo().getTitle());
 
-            recipeImage = (ImageView) recipe.lookup("#recipeImage");
-            recipeImage.setImage(new Image(recp.getImageUrl()));
+             recipeImage = (ImageView) recipe.lookup("#recipeImage");
+             recipeImage.setImage(new Image("/images/Kniv_Gaffel_ikon.png"));
 
             starLabel = (Label) recipe.lookup("#starLabel");
             chose = (Button) recipe.lookup("#chose");
@@ -66,7 +69,6 @@ public class recipeScreenController {
             addRecipeToFavorite();
             lookAtRecipe();
         }
-
         Stage choseRecipeComponent = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         choseRecipeComponent.close();
 
@@ -105,9 +107,7 @@ public class recipeScreenController {
     }
 
     public void intializeRecipeList(){
-        recipes.add(new RecipeInfo("Spaghetti", "/images/tomat.png", 5, "recipeInstructions", 3F,"4"));
-        recipes.add(new RecipeInfo("Kjøtt", "/images/redShoppingCart.png", 5, "recipeInstructions", 3F,"4"));
-        recipes.add(new RecipeInfo("Potet", "/images/bakgrunnsbilde_mat.jpg", 5, "recipeInstructions", 3F,"4"));
+        appUser = new User(1, "test", "test");
     }
 
 }
