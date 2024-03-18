@@ -4,21 +4,21 @@ import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
-public class profilePictureController {
+public class ProfilePictureController {
 
-  private static profilePictureController instance;
+  private static ProfilePictureController instance;
   @FXML
   private Text profilePictureName;
   @FXML
   private ImageView login;
 
-  private profilePictureController() {
+  private ProfilePictureController() {
 
   }
 
-  public static synchronized profilePictureController getInstance() {
+  public static synchronized ProfilePictureController getInstance() {
     if (instance == null) {
-      instance = new profilePictureController();
+      instance = new ProfilePictureController();
     }
     return instance;
   }

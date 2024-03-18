@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="choseRecipeBorder" prefHeight="212.0" prefWidth="641.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.org.IDATG1005.grp3.controller.choseRecipeController">
+<AnchorPane fx:id="choseRecipeBorder" prefHeight="212.0" prefWidth="641.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.org.IDATG1005.grp3.controller.ChoseRecipeController">
    <children>
       <ImageView fitHeight="113.0" fitWidth="165.0" layoutX="19.0" layoutY="56.8193359375" pickOnBounds="true" preserveRatio="true">
       </ImageView>

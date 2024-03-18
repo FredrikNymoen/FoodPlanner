@@ -3,35 +3,26 @@ package ntnu.org.IDATG1005.grp3.controller;
 import static ntnu.org.IDATG1005.grp3.application.MainApp.appUser;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import ntnu.org.IDATG1005.grp3.application.MainApp;
 import ntnu.org.IDATG1005.grp3.interfaces.RecipeChangedListener;
 import ntnu.org.IDATG1005.grp3.model.objects.Recipe;
-import ntnu.org.IDATG1005.grp3.model.objects.RecipeInfo;
 
 import java.io.IOException;
 import ntnu.org.IDATG1005.grp3.model.objects.User;
 
 
-public class recipeScreenController implements Initializable, RecipeChangedListener {
-    private static recipeScreenController instance;
+public class RecipeScreenController implements Initializable, RecipeChangedListener {
+    private static RecipeScreenController instance;
     @FXML
     private VBox choseRecipeContainer;
     private Button lookRecipe;
@@ -40,13 +31,13 @@ public class recipeScreenController implements Initializable, RecipeChangedListe
     private Text recipeName;
     private ImageView recipeImage;
 
-    public recipeScreenController() {
+    public RecipeScreenController() {
         intializeRecipeList();
     }
 
-    public static synchronized recipeScreenController getInstance() {
+    public static synchronized RecipeScreenController getInstance() {
         if (instance == null) {
-            instance = new recipeScreenController();
+            instance = new RecipeScreenController();
         }
         return instance;
     }
@@ -65,12 +56,12 @@ public class recipeScreenController implements Initializable, RecipeChangedListe
                 loader.setLocation(
                     getClass().getResource("/fxml/components/choseRecipe.fxml"));
                 AnchorPane anchorPane = loader.load();
-                choseRecipeController controller = loader.getController();
+                ChoseRecipeController controller = loader.getController();
                 controller.setData(recp);
                 controller.setRecipeChangedListener(this);
 
                 if(appUser.getChosenRecipes().contains(recp)){
-                    controller.changeApperance();
+                    controller.changeAppearance();
                 }
 
                 //controller.changeFavoriteColor();

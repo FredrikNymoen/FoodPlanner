@@ -3,8 +3,7 @@ package ntnu.org.IDATG1005.grp3.controller;
 import static ntnu.org.IDATG1005.grp3.application.MainApp.appUser;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,15 +13,14 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ntnu.org.IDATG1005.grp3.interfaces.RecipeChangedListener;
 import ntnu.org.IDATG1005.grp3.model.objects.Recipe;
 
-public class choseRecipeController {
+public class ChoseRecipeController {
   private Recipe recipe;
-  private static choseRecipeController instance;
+  private static ChoseRecipeController instance;
   @FXML
   private Label starLabel;
   @FXML
@@ -48,12 +46,16 @@ public class choseRecipeController {
 
   @FXML
   private Text recipeName;
-  private RecipeChangedListener recipeChangedListener;
+  private RecipeChangedListener recipeChangedListener = recipe1 -> changeAppearance();
+
+    public ChoseRecipeController() {
+
+    }
 
 
-  public static synchronized choseRecipeController getInstance() {
+  public static synchronized ChoseRecipeController getInstance() {
     if (instance == null) {
-      instance = new choseRecipeController();
+      instance = new ChoseRecipeController();
     }
     return instance;
   }
@@ -81,7 +83,7 @@ public class choseRecipeController {
     try {
       FXMLLoader loader = new FXMLLoader(
           getClass().getResource("/fxml/components/showingRecipe.fxml"));
-      loader.setController(showingRecipeController.getInstance());
+      loader.setController(ShowingRecipeController.getInstance());
       Parent root = loader.load();
 
       Stage showingRecipe = new Stage();
@@ -90,7 +92,7 @@ public class choseRecipeController {
 
       showingRecipe.setScene(scene);
       showingRecipe.show();
-      loginToYourProfilePageController.getInstance().setPrimaryStage(showingRecipe);
+      LoginToYourProfilePageController.getInstance().setPrimaryStage(showingRecipe);
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -98,30 +100,22 @@ public class choseRecipeController {
   @FXML
   public void favoriteClick(){
     recipe.changeFavoriteStatus();
-    System.out.println("added to fave");
+    if(recipeChangedListener != null){
+      recipeChangedListener.onRecipeChanged(recipe);
+    }
+    System.out.println("added");
   }
 
   public void setRecipeChangedListener(RecipeChangedListener recipeChangedListener){
     this.recipeChangedListener = recipeChangedListener;
   }
-
-  /*public void changeFavoriteColor(){
-    if(recipe.getFavoriteStatus()){
-      starLabel.setText("★");
-      choseRecipeBorder.setStyle("-fx-border-color: yellow");
-      choseRecipeBorder.setStyle("-fx-border-width: 5");
-      starLabel.setTextFill(Color.YELLOW);
-    }else{
-      starLabel.setText("☆");
-      choseRecipeBorder.setStyle("-fx-border-color: black");
-      starLabel.setTextFill(Color.BLACK);
-    }
-  }*/
-  public void changeApperance(){
+  public void changeAppearance(){
+    System.out.println("changed");
     if(recipe.getFavoriteStatus()) {
-      starLabel.setStyle("-fx-text-fill: yellow");
-      choseRecipeBorder.setStyle("-fx-border-color: yellow");
-      choseRecipeBorder.setStyle("-fx-border-width: 5");
+      starLabel.setText("★");
+      System.out.println("added to fave");
+      starLabel.setStyle("-fx-text-fill: yellow;");
+      choseRecipeBorder.setStyle("-fx-border-color: yellow; -fx-border-width: 5;");
     }
     if(appUser.getChosenRecipes().contains(recipe)){
         appUser.addChosenRecipe(recipe);
