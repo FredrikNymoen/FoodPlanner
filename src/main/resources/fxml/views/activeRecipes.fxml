@@ -109,9 +109,7 @@
          <content>
             <VBox fx:id="recipeHolder" prefHeight="316.0" prefWidth="643.0" spacing="10.0" VBox.vgrow="ALWAYS">
                <children>
-                  <fx:include fx:id="recipe1" source="../components/active_recipes_display.fxml" />
-                  <fx:include fx:id="recipe2" source="../components/active_recipes_display.fxml" />
-                  <fx:include fx:id="recipe3" source="../components/active_recipes_display.fxml" />
+
                </children>
             </VBox>
          </content>
