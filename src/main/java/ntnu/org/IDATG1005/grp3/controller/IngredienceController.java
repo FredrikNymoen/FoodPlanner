@@ -64,40 +64,28 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
     @FXML
     private AnchorPane rootPane;
 
-    private PauseTransition pauseTransition = new PauseTransition(
+    private final PauseTransition pauseTransition = new PauseTransition(
         Duration.millis(300)); // 300ms debounce
 
     private List<InventoryIngredient> ingredients = new ArrayList<>();
     private Map<InventoryIngredient, AnchorPane> ingredientUIMap = new HashMap<>();
 
     private final IngredientDao ingredientDao = new IngredientDaoImpl();
-    private IngredientService ingredientService = new IngredientService(ingredientDao);
+    private final IngredientService ingredientService = new IngredientService(ingredientDao);
 
 
     private List<InventoryIngredient> getData() {
         List<InventoryIngredient> inventoryIngredients = new ArrayList<>();
         String url = getClass().getResource("/images/Kniv_Gaffel_ikon.png").toString();
 
-        InventoryIngredient tomat = new InventoryIngredient(0, new Ingredient(0, "Tomat", url),
-            MeasurementUnit.STK, 2);
-        InventoryIngredient eple = new InventoryIngredient(0, new Ingredient(0, "Eple", url),
-            MeasurementUnit.STK, 4);
-        InventoryIngredient melk = new InventoryIngredient(0, new Ingredient(0, "Melk", url),
-            MeasurementUnit.LITER, 1);
-        InventoryIngredient sukker = new InventoryIngredient(0, new Ingredient(0, "Sukker", url),
-            MeasurementUnit.GRAM, 500);
+        InventoryIngredient tomat = new InventoryIngredient(new Ingredient(0, "Tomat", url, MeasurementUnit.STK), 2.0);
+        InventoryIngredient eple = new InventoryIngredient(new Ingredient(0, "Eple", url, MeasurementUnit.STK), 4.0);
+        InventoryIngredient melk = new InventoryIngredient(new Ingredient(0, "Melk", url, MeasurementUnit.LITER), 1.0);
+        InventoryIngredient sukker = new InventoryIngredient(new Ingredient(0, "Sukker", url, MeasurementUnit.GRAM), 500.0);
 
         inventoryIngredients.add(tomat);
         inventoryIngredients.add(eple);
         inventoryIngredients.add(melk);
-        inventoryIngredients.add(sukker);
-        inventoryIngredients.add(sukker);
-        inventoryIngredients.add(sukker);
-        inventoryIngredients.add(sukker);
-        inventoryIngredients.add(sukker);
-        inventoryIngredients.add(sukker);
-        inventoryIngredients.add(sukker);
-        inventoryIngredients.add(sukker);
         inventoryIngredients.add(sukker);
 
         return inventoryIngredients;
@@ -172,7 +160,6 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
         int sublistEndIndex;
         List<Ingredient> searchItems = new ArrayList<>();
         for (Ingredient ingredient : ingredientService.findAllIngredients()) {
-            System.out.println(ingredient.getName());
             if (ingredient.getName().toLowerCase().startsWith(newValue.toLowerCase())) {
                 searchItems.add(ingredient);
             }
@@ -211,13 +198,11 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
             Ingredient ingredient = searchItems.get(i);
             if (isIngredientInInventory(ingredient) != null) {
                 invIngredient = isIngredientInInventory(ingredient);
-                /*amount = isIngredientInInventory(ingredient).getQuantity().toString() +
-                    " " + isIngredientInInventory(ingredient).getUnit().getUnitName();*/
                 alternativeController.showEditButton();
                 alternativeController.setData(invIngredient);
             } else{
-                ingredient.setImageUrl(url);
-                invIngredient = new InventoryIngredient(0, ingredient, MeasurementUnit.STK, -99);
+                //ingredient.setImageUrl(url);
+                invIngredient = new InventoryIngredient(ingredient,-99.0);
                 alternativeController.showAddButton();
             }
 
@@ -306,7 +291,6 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
             // Display logic remains the same
             Platform.runLater(() -> rootPane.getChildren().add(overlay));
 
-            System.out.println("Display edit box");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -323,13 +307,10 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
                 fxmlLoader.setLocation(
                     getClass().getResource("/fxml/components/ingredience_box.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
-                System.out.println("HEI");
                 ItemController itemController = fxmlLoader.getController();
-                System.out.println("hei" + itemController);
                 itemController.setData(ingredients.get(i));
                 itemController.setRemovalListener(ingredient -> removeItemFromGrid(ingredient));
                 itemController.setEditBoxDisplayListener(this); // 'this' refers to an instance of IngredienceController
-                System.out.println("HALLA");
 
                 if (column == 4) {
                     column = 0;
@@ -365,7 +346,6 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
     public void onInventoryIngredientsUpdated(InventoryIngredient inventoryIngredient) {
         //this.ingredients.add(inventoryIngredient);
         displayIngredients(this.ingredients);
-        System.out.println(ingredients.size());
     }
 
 
@@ -378,7 +358,6 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
             target=target.getParent();
             // Check if the clicked node or any of its parents is a TextField or ImageView.
             // This allows interaction with all text fields and image views without triggering the click away logic.
-            System.out.println(target.getClass().getName());
             if (isNodeOrParentInstanceOf(target, TextField.class) || isDescendantOrSelfWithId(target, "searchAlternative")){
             } else {
                 ingredienceSearchGrid.getChildren().clear();
