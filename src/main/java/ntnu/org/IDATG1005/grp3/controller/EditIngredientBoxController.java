@@ -66,6 +66,7 @@ public class EditIngredientBoxController {
   public void setData(Ingredient ingredient, List<InventoryIngredient> inventoryIngredients) {
     this.inventoryIngredients = inventoryIngredients;
     editBoxName.setText(ingredient.getName());
+    unitText.setText(ingredient.getUnit().toString());
 
     boolean isInInventory = false;
     InventoryIngredient foundInventoryIngredient = null;
@@ -80,7 +81,6 @@ public class EditIngredientBoxController {
 
     if (isInInventory && foundInventoryIngredient != null) {
       this.inventoryIngredient = foundInventoryIngredient;
-      unitText.setText(foundInventoryIngredient.getUnit().toString());
     } else {
       this.inventoryIngredient = new InventoryIngredient(ingredient, 0.0);
       removeRemoveButton(); // Hide or disable the remove button as it's not applicable.
@@ -150,7 +150,6 @@ public class EditIngredientBoxController {
         }
       }
       if (!isInInventory) {
-        System.out.println("RRRRRAAAAAAA");
         inventoryIngredients.add(this.inventoryIngredient);
         if (updateListener != null) {
           updateListener.onInventoryIngredientsUpdated(this.inventoryIngredient);

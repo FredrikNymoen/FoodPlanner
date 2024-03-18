@@ -36,11 +36,9 @@ public class ItemController {
         this.ingredient = inventoryIngredient;
         nameLabel.setText(inventoryIngredient.getIngredient().getName());
         amountLabel.setText(inventoryIngredient.getQuantity().toString() + " " + inventoryIngredient.getUnit().getUnitName());
-        System.out.println("HALLABALLA");
-        System.out.println(inventoryIngredient.getIngredient().getImageUrl().toString());
-        Image image = new Image(inventoryIngredient.getIngredient().getImageUrl().toString());
-        System.out.println("image loaded");
-        img.setImage(image);
+        //Image image = new Image(inventoryIngredient.getIngredient().getImageUrl().toString());
+        //System.out.println("image loaded");
+        //img.setImage(image);
     }
 
     @FXML
@@ -65,7 +63,7 @@ public class ItemController {
 
     @FXML
     public void plusAmount(MouseEvent mouseEvent) {
-        int amount = Integer.parseInt(amountLabel.getText().split(" ")[0]);
+        double amount = ingredient.getQuantity();
         ingredient.setQuantity(amount + 1.0);
         amountLabel.setText(ingredient.getQuantity() + " " + amountLabel.getText().split(" ")[1]);
     }
@@ -76,7 +74,7 @@ public class ItemController {
 
     @FXML
     public void minusAmount(MouseEvent mouseEvent) {
-        int amount = Integer.parseInt(amountLabel.getText().split(" ")[0]);
+        double amount = ingredient.getQuantity();
         if (amount > 0) {
             ingredient.setQuantity(amount - 1.0);
             amountLabel.setText(ingredient.getQuantity() + " " + amountLabel.getText().split(" ")[1]);

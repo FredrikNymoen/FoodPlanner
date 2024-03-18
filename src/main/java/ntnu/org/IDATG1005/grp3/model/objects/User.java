@@ -1,6 +1,9 @@
 package ntnu.org.IDATG1005.grp3.model.objects;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Represents a user with a unique ID, username, email address, and password.
  */
@@ -10,6 +13,9 @@ public class User {
   private Inventory inventory;
   private String password; // hashed at service layer, so stored in plain at ram
   private Household household;
+  private List<ShoppingListIngredient> shoppingList;
+  private List<Recipe> chosenRecipes;
+  private List<Recipe> shoppingCartRecipes;
 
   /**
    * Constructs a new User with the specified ID, username, email, and password.
@@ -22,6 +28,9 @@ public class User {
     this.userId = userId;
     this.username = username;
     this.password = password;
+    this.shoppingList = new ArrayList<>();
+    this.chosenRecipes = new ArrayList<>();
+    this.shoppingCartRecipes = new ArrayList<>();
   }
 
   /**
@@ -130,5 +139,35 @@ public class User {
         System.out.println("Cannot add ingredient with non-positive quantity.");
       }
     }
+  }
+
+  public void addShoppingListIngredient(ShoppingListIngredient ingredient) {
+    shoppingList.add(ingredient);
+  }
+
+  public void removeShoppingListIngredient(ShoppingListIngredient ingredient) {
+    shoppingList.remove(ingredient);
+  }
+
+  public List<ShoppingListIngredient> getShoppingList() {
+    return shoppingList;
+  }
+
+  public void addChosenRecipe(Recipe recipe) {
+    chosenRecipes.add(recipe);
+    shoppingCartRecipes.add(recipe);
+  }
+
+  public void removeChosenRecipe(Recipe recipe) {
+    chosenRecipes.remove(recipe);
+    shoppingCartRecipes.remove(recipe);
+  }
+
+  public List<Recipe> getChosenRecipes() {
+    return chosenRecipes;
+  }
+
+  public List<Recipe> getShoppingCartRecipes() {
+    return shoppingCartRecipes;
   }
 }

@@ -156,7 +156,7 @@ public class MainCheeky {
 
     List<Recipe> recipes = recipeService.findAllRecipes();
     System.out.println("All recipes:");
-    recipes.forEach(recipe -> System.out.println("- " + recipe.getRecipeInfo().getTitle()));
+    recipes.forEach(recipe -> System.out.println("- " + recipe));
 
     // assuming a recipe with ID 1 exists
     Recipe recipe = recipes.get(1);
