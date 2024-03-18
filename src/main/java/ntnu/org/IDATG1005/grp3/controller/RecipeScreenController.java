@@ -50,7 +50,9 @@ public class RecipeScreenController implements Initializable, RecipeChangedListe
 
     public void displayRecipes(){
         choseRecipeContainer.getChildren().clear();
+        System.out.println("Hei");
         for(Recipe recp : MainApp.appRecipes) {
+            System.out.println(recp.getFavoriteStatus());
             try{
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(
@@ -60,11 +62,9 @@ public class RecipeScreenController implements Initializable, RecipeChangedListe
                 controller.setData(recp);
                 controller.setRecipeChangedListener(this);
 
-                if(appUser.getChosenRecipes().contains(recp)){
+                if(appUser.getChosenRecipes().contains(recp) || recp.getFavoriteStatus()){
                     controller.changeAppearance();
                 }
-
-                //controller.changeFavoriteColor();
                 choseRecipeContainer.getChildren().add(anchorPane);
             }catch (IOException e){
                 e.printStackTrace();

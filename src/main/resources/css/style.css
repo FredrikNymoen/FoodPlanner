@@ -10,3 +10,9 @@
 #chosenRecipes > .viewport{
   -fx-background-color:  #69A94F;
 }
+.recipeScrollPane .scroll-bar:vertical, .hide-scrollbar .scroll-bar:horizontal {
+  -fx-opacity: 0;
+  -fx-pref-width: 0;
+  -fx-pref-height: 0;
+  -fx-background-insets: 0;
+}

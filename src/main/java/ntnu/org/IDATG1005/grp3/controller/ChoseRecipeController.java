@@ -46,7 +46,7 @@ public class ChoseRecipeController {
 
   @FXML
   private Text recipeName;
-  private RecipeChangedListener recipeChangedListener = recipe1 -> changeAppearance();
+  private RecipeChangedListener recipeChangedListener;
 
     public ChoseRecipeController() {
 
@@ -110,7 +110,7 @@ public class ChoseRecipeController {
     this.recipeChangedListener = recipeChangedListener;
   }
   public void changeAppearance(){
-    System.out.println("changed");
+    System.out.println(recipe.getFavoriteStatus());
     if(recipe.getFavoriteStatus()) {
       starLabel.setText("★");
       System.out.println("added to fave");
