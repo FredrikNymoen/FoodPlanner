@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: rgba(50,50,50,0.7);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.org.IDATG1005.grp3.controller.Popup_buyShoppingListController">
+   <children>
+      <VBox alignment="TOP_CENTER" layoutX="169.0" layoutY="46.0" prefHeight="372.0" prefWidth="462.0" spacing="20.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 18; -fx-border-width: 5px;">
+         <children>
+            <HBox alignment="CENTER" prefHeight="52.0" prefWidth="452.0" style="-fx-background-color: #69A94F; -fx-border-color: black;">
+               <children>
+                  <Text fx:id="overskrift" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Navn på matrett">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="21.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <Text fx:id="beskjed" fill="#b52323" strokeType="OUTSIDE" strokeWidth="0.0" text="For å lage {____________}, må du ha kjøpt handlelista!" wrappingWidth="406.13671875">
+               <font>
+                  <Font name="Comic Sans MS" size="21.0" />
+               </font>
+            </Text>
+            <HBox alignment="CENTER" maxWidth="-Infinity" onMouseClicked="#buyAndMake" prefHeight="77.0" prefWidth="423.0" style="-fx-background-color: green; -fx-border-color: black;">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Kjøp alle ingrediensene fra handlelista, og lag!">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="16.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#changeShoppingList" prefHeight="60.0" prefWidth="421.0" style="-fx-background-color: gray; -fx-border-color: black;">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Endre på Handlelista">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets top="20.0" />
+         </padding>
+      </VBox>
+      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="182.0" layoutY="78.0" onMouseClicked="#exit" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/simpleX.png" />
+         </image></ImageView>
+   </children>
+</AnchorPane>

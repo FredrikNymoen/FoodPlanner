@@ -11,32 +11,29 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import ntnu.org.IDATG1005.grp3.Main;
-import ntnu.org.IDATG1005.grp3.application.MainApp;
+import ntnu.org.IDATG1005.grp3.interfaces.ActiveRecipePopupBuyMake;
 import ntnu.org.IDATG1005.grp3.interfaces.ActiveRecipeRemovalListener;
+import ntnu.org.IDATG1005.grp3.interfaces.ActiveRecipeMadeListener;
+import ntnu.org.IDATG1005.grp3.interfaces.CloseActiveRecipePopupListener;
 import ntnu.org.IDATG1005.grp3.model.objects.Recipe;
-import ntnu.org.IDATG1005.grp3.model.objects.RecipeInfo;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import ntnu.org.IDATG1005.grp3.model.objects.User;
 
 //Controller for the activeRecipesBox.fxml file
-public class ActiveRecipesController implements Initializable, ActiveRecipeRemovalListener {
+public class ActiveRecipesController implements Initializable, ActiveRecipeRemovalListener, ActiveRecipeMadeListener, CloseActiveRecipePopupListener, ActiveRecipePopupBuyMake, ActiveRecipePopupBuyMake, ActiveRecipePopupChangeShoppingList {
 
     @FXML
     private AnchorPane rootPane;
     @FXML
     private VBox recipeHolder;
+    @FXML
+    private Pane popupHolder;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -47,8 +44,6 @@ public class ActiveRecipesController implements Initializable, ActiveRecipeRemov
         getData();
         System.out.println("ActiveRecipesController initialized");
         displayActiveRecipes();
-
-        //registerMouseClick();
     }
 
     private void getData() {
@@ -58,36 +53,12 @@ public class ActiveRecipesController implements Initializable, ActiveRecipeRemov
     }
 
     public void displayActiveRecipes(){
-        /*for (int i = 0; i < recipeHolder.getChildren().size(); i++) {
-            activeRecipesList.add(recipeHolder.getChildren().get(i));
-        }*/
-        //remove all recipes from the recipeHolder
         recipeHolder.getChildren().clear();
 
-        System.out.println(appUser.getChosenRecipes().size());
         for (int i = 0; i < appUser.getChosenRecipes().size(); i++) {
             addActiveRecipe(appUser.getChosenRecipes().get(i));
         }
     }
-
-    /*public void registerMouseClick() {
-
-        rootPane.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
-            Node clickedTarget = (Node) event.getTarget();
-            //System.out.println("stor Box: Target: " + clickedTarget.getId() + " Type: " + clickedTarget.getClass().getName());
-            //System.out.println(clickedTarget.getId());
-
-            if (clickedTarget.getId().equals("addRecipeButton")) {
-                addActiveRecipe(MainApp.appRecipes.get(0));
-            }
-            if (clickedTarget.getId().equals("lagdFerdigButton")) {
-                //recipeMade();
-            }
-            if (clickedTarget.getId().equals("fjernButton")) {
-                //removeRecipe(clickedTarget);
-            }
-        });
-    }*/
 
     public void addActiveRecipe(Recipe recipe) {
         //Pane recipePane = null;
@@ -99,25 +70,59 @@ public class ActiveRecipesController implements Initializable, ActiveRecipeRemov
                 ActiveRecipeBoxController controller = loader.getController();
                 controller.setData(recipe);
                 controller.setRemovalListener(this);
+                controller.setMadeListener(this);
 
                 recipeHolder.getChildren().add(pane);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
-
-        //System.out.println(recipeHolder.getChildren());
     }
+
+    private void madeRecipe(Recipe recipe) {
+        //check if user has the nessaary ingredients
+        //if run different methods based on if user has the ingredients or not
+
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fxml/components/Popup_BuyShoppingList.fxml"));
+
+            AnchorPane anchorPane = loader.load();
+            Popup_buyShoppingListController controller = loader.getController();
+            controller.setData(recipe);
+            controller.setCloseActiveRecipePopupListener(this);
+            controller.setActiveRecipePopupBuyMakeListener(this);
+            controller.setActiveRecipePopupChangeShoppingListListener(this);
+            popupHolder.getChildren().add(anchorPane);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     @Override
     public void anActiveRecipeRemoved(Recipe recipe) {
         displayActiveRecipes();
     }
 
+
+    @Override
+    public void anActiveRecipeMade(Recipe recipe) {
+        madeRecipe(recipe);
+    }
+
+    @Override
+    public void exitPopup() {
+        popupHolder.getChildren().clear();
+        System.out.println("Popup closed");
+    }
+
+    @Override
+    public void buyAndMake() {
+        popupHolder.getChildren().clear();
+        System.out.println("Pressed buy and make button");
+    }
+
+
     //Iterer gjennom inventory og fjern ingredienser som er brukt i oppskriften
-
-
-
-
 
 }

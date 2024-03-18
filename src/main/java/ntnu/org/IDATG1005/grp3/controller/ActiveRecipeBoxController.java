@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import ntnu.org.IDATG1005.grp3.interfaces.ActiveRecipeRemovalListener;
+import ntnu.org.IDATG1005.grp3.interfaces.ActiveRecipeMadeListener;
 import ntnu.org.IDATG1005.grp3.model.objects.Recipe;
 
 public class ActiveRecipeBoxController implements Initializable {
@@ -33,6 +34,7 @@ public class ActiveRecipeBoxController implements Initializable {
 
   private Recipe recipe;
   private ActiveRecipeRemovalListener listener;
+  private ActiveRecipeMadeListener listener2;
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -46,28 +48,25 @@ public class ActiveRecipeBoxController implements Initializable {
     recipeImage.setImage(new Image("/images/Kniv_Gaffel_ikon.png")); //Funker ikke fordi det ikke er lagt inn bilde i databasen
   }
 
-
   @FXML
   public void recipeMade() {
     System.out.println("Recipe made!");
+    listener2.anActiveRecipeMade(recipe);
   }
 
   @FXML
   public void removeRecipe() {
     System.out.println("Recipe removed!");
     appUser.getChosenRecipes().remove(recipe);
-    //remove this recipe from the
-    //ActiveRecipesController activeRecipesController = new ActiveRecipesController();
-    //activeRecipesController.displayActiveRecipes();
 
-
-    //System.out.println(recipe.getParent().getId());
-    //recipeHolder.getChildren().remove(recipe.getParent());
-    //activeRecipesList.remove(recipe.getParent());
     listener.anActiveRecipeRemoved(recipe);
   }
 
   public void setRemovalListener(ActiveRecipeRemovalListener listener) {
     this.listener = listener;
+  }
+
+  public void setMadeListener(ActiveRecipeMadeListener listener2) {
+    this.listener2 = listener2;
   }
 }
