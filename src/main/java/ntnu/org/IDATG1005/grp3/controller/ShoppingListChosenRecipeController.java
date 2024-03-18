@@ -29,6 +29,7 @@ public class ShoppingListChosenRecipeController {
   void removeRecipe(MouseEvent event) {
     System.out.println("HALLA");
     appUser.getChosenRecipes().remove(recipe);
+    appUser.getShoppingCartRecipes().remove(recipe);
     removalListener.onRecipeRemoved(recipe);
   }
 

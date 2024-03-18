@@ -153,9 +153,9 @@
                         <Insets top="9.0" />
                      </VBox.margin>
                      <children>
-                        <HBox fx:id="buyButton" alignment="CENTER" prefHeight="100.0" prefWidth="163.0" style="-fx-background-color: #92C37D;">
+                        <HBox fx:id="buyButton" alignment="CENTER" onMouseClicked="#buyShoppingList" prefHeight="100.0" prefWidth="163.0" style="-fx-background-color: #92C37D;">
                            <children>
-                              <Label alignment="CENTER" text="Kjøpt!" textFill="WHITE">
+                              <Label alignment="CENTER" text="Kjøp!" textFill="WHITE">
                                  <font>
                                     <Font size="24.0" />
                                  </font>

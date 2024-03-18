@@ -15,6 +15,7 @@ public class User {
   private Household household;
   private List<ShoppingListIngredient> shoppingList;
   private List<Recipe> chosenRecipes;
+  private List<Recipe> shoppingCartRecipes;
 
   /**
    * Constructs a new User with the specified ID, username, email, and password.
@@ -29,6 +30,7 @@ public class User {
     this.password = password;
     this.shoppingList = new ArrayList<>();
     this.chosenRecipes = new ArrayList<>();
+    this.shoppingCartRecipes = new ArrayList<>();
   }
 
   /**
@@ -153,13 +155,19 @@ public class User {
 
   public void addChosenRecipe(Recipe recipe) {
     chosenRecipes.add(recipe);
+    shoppingCartRecipes.add(recipe);
   }
 
   public void removeChosenRecipe(Recipe recipe) {
     chosenRecipes.remove(recipe);
+    shoppingCartRecipes.remove(recipe);
   }
 
   public List<Recipe> getChosenRecipes() {
     return chosenRecipes;
+  }
+
+  public List<Recipe> getShoppingCartRecipes() {
+    return shoppingCartRecipes;
   }
 }

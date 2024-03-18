@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -30,8 +31,6 @@ import ntnu.org.IDATG1005.grp3.model.objects.User;
 
 public class ShoppingListController implements Initializable, ShoppingListRecipeRemovalListener {
 
-  @FXML
-  private HBox buyButton;
 
   @FXML
   private GridPane chosenRecipesGrid;
@@ -57,7 +56,7 @@ public class ShoppingListController implements Initializable, ShoppingListRecipe
     appUser.getShoppingList().clear();
 
     Collection<InventoryIngredient> ingredients = appUser.getInventory().getIngredients().values();
-    for (Recipe recipe : appUser.getChosenRecipes()) {
+    for (Recipe recipe : appUser.getShoppingCartRecipes()) {
       System.out.println(recipe.getRecipeInfo().getTitle());
       for(RecipeIngredient recIngredient : recipe.getIngredients()){
         System.out.println(recIngredient.getIngredient().getName() + " " + recIngredient.getAmount() + " " + recIngredient.getUnit());
@@ -89,19 +88,19 @@ public class ShoppingListController implements Initializable, ShoppingListRecipe
   }
 
   public void displayChosenRecipes(){
-    List<Recipe> chosenRecipes = appUser.getChosenRecipes();
+    List<Recipe> shoppingCartRecipes = appUser.getShoppingCartRecipes();
     chosenRecipesGrid.getChildren().clear(); // Clear existing items from the grid
     int column = 0;
     int row = 1;
     try {
-      for (int i = 0; i < chosenRecipes.size(); i++) {
-        System.out.println(chosenRecipes.get(i).getRecipeInfo().getTitle());
+      for (int i = 0; i < shoppingCartRecipes.size(); i++) {
+        System.out.println(shoppingCartRecipes.get(i).getRecipeInfo().getTitle());
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(
             getClass().getResource("/fxml/components/shoppingListChosenRecipe.fxml"));
         HBox hBox = fxmlLoader.load();
         ShoppingListChosenRecipeController chosenRecipeController = fxmlLoader.getController();
-        chosenRecipeController.setData(chosenRecipes.get(i));// 'this' refers to an instance of IngredienceController
+        chosenRecipeController.setData(shoppingCartRecipes.get(i));// 'this' refers to an instance of IngredienceController
         chosenRecipeController.setShoppingListRecipeRemovalListener(this);
 
 
@@ -117,6 +116,7 @@ public class ShoppingListController implements Initializable, ShoppingListRecipe
 
 
   public void displayShoppingList(){
+
     fillShoppingList();
 
     List<ShoppingListIngredient> shoppingList = appUser.getShoppingList();
@@ -155,6 +155,18 @@ public class ShoppingListController implements Initializable, ShoppingListRecipe
     chosenRecipeUIMap.remove(recipe);
     displayChosenRecipes();
     displayShoppingList();
+  }
+
+  @FXML
+  void buyShoppingList(MouseEvent event) {
+    for (ShoppingListIngredient ingredient : appUser.getShoppingList()) {
+      appUser.getInventory().addIngredient(ingredient);
+    }
+
+    appUser.getShoppingCartRecipes().clear();
+    displayChosenRecipes();
+    displayShoppingList();
+    System.out.println(appUser.getInventory().getIngredients().size());
   }
 
 }
