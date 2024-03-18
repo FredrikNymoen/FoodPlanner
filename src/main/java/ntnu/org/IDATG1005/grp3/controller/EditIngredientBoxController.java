@@ -150,7 +150,6 @@ public class EditIngredientBoxController {
         }
       }
       if (!isInInventory) {
-        System.out.println("RRRRRAAAAAAA");
         inventoryIngredients.add(this.inventoryIngredient);
         if (updateListener != null) {
           updateListener.onInventoryIngredientsUpdated(this.inventoryIngredient);
