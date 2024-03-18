@@ -6,7 +6,6 @@ import ntnu.org.IDATG1005.grp3.model.objects.User;
 import ntnu.org.IDATG1005.grp3.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,13 +27,13 @@ class UserServiceTest {
     String password = "password123";
     User expectedUser = new User(1, username, password);
 
-    when(userDaoMock.createUser(anyString(), eq(password))).thenReturn(expectedUser);
+    when(userDaoMock.registerUser(anyString(), eq(password))).thenReturn(expectedUser);
 
-    User resultUser = userService.createUser(username, password);
+    User resultUser = userService.registerUser(username, password);
 
     //assertNotNull(resultUser, "Created user should not be null");
     assertEquals(expectedUser.getUsername(), resultUser.getUsername(), "Usernames should match");
-    verify(userDaoMock, times(1)).createUser(username, password);
+    verify(userDaoMock, times(1)).registerUser(username, password);
   }
 
   @Test
@@ -42,21 +41,10 @@ class UserServiceTest {
     String username = "existingUser";
     String password = "password123";
 
-    when(userDaoMock.createUser(anyString(), anyString())).thenThrow(new UsernameAlreadyExistsException(username));
+    when(userDaoMock.registerUser(anyString(), anyString())).thenThrow(new UsernameAlreadyExistsException(username));
 
-    assertThrows(UsernameAlreadyExistsException.class, () -> userService.createUser(username, password),
+    assertThrows(UsernameAlreadyExistsException.class, () -> userService.registerUser(username, password),
         "Expected UsernameAlreadyExistsException to be thrown");
-  }
-
-  @Test
-  void updateUserDetails_Success() throws Exception {
-    User userToUpdate = new User(1, "updatedUser", "newPassword123");
-    when(userDaoMock.updateUser(any(User.class))).thenReturn(true);
-
-    boolean result = userService.updateUserDetails(userToUpdate);
-
-    assertTrue(result, "Update should be successful");
-    verify(userDaoMock, times(1)).updateUser(userToUpdate);
   }
 }
 

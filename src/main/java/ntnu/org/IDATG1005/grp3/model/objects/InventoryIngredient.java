@@ -5,39 +5,20 @@ package ntnu.org.IDATG1005.grp3.model.objects;
  * and the quantity available.
  */
 public class InventoryIngredient extends AbstractIngredientDetail {
-
-  private final Integer inventoryIngredientId;
-  private Integer quantity;
+  private Double quantity;
   private boolean favorite;
-  private boolean meat;
-  private boolean vegetable;
-  private boolean fruit;
-  private boolean pasta;
-  private boolean spice;
 
   /**
    * Constructs an instance of InventoryIngredient with specified ingredient, unit, and quantity.
    *
-   * @param inventoryIngredientId The unique ID for this recipe ingredient.
    * @param ingredient            The ingredient object.
-   * @param unit                  The unit of measurement for the ingredient.
    * @param quantity              The quantity of the ingredient in inventory.
    */
-  public InventoryIngredient(Integer inventoryIngredientId, Ingredient ingredient, MeasurementUnit unit,
-      Integer quantity) {
-    super(ingredient, unit);
-    this.inventoryIngredientId = inventoryIngredientId;
+  public InventoryIngredient(Ingredient ingredient,
+      Double quantity) {
+    super(ingredient);
     this.quantity = quantity;
     this.favorite = false;
-  }
-
-  /**
-   * Gets the unique ID for this inventory ingredient.
-   *
-   * @return The unique ID of the inventory ingredient.
-   */
-  public Integer getInventoryIngredientId() {
-    return inventoryIngredientId;
   }
 
   /**
@@ -45,7 +26,7 @@ public class InventoryIngredient extends AbstractIngredientDetail {
    *
    * @return The quantity of the ingredient.
    */
-  public Integer getQuantity() {
+  public Double getQuantity() {
     return quantity;
   }
 
@@ -54,7 +35,7 @@ public class InventoryIngredient extends AbstractIngredientDetail {
    *
    * @param quantity The new quantity of the ingredient.
    */
-  public void setQuantity(Integer quantity) {
+  public void setQuantity(Double quantity) {
     this.quantity = quantity;
   }
 
@@ -65,8 +46,12 @@ public class InventoryIngredient extends AbstractIngredientDetail {
    * @param quantity The quantity to add to the current inventory level. This value can be negative
    *                 to reduce inventory.
    */
-  public void addQuantity(Integer quantity) {
+  public void addQuantity(Double quantity) {
     this.quantity += quantity;
+  }
+
+  public MeasurementUnit getUnit() {
+    return ingredient.getUnit();
   }
 
   /**
@@ -75,7 +60,7 @@ public class InventoryIngredient extends AbstractIngredientDetail {
    *
    * @param quantity The quantity to remove from the current inventory level.
    */
-  public void removeQuantity(Integer quantity) {
+  public void removeQuantity(Double quantity) {
     this.quantity -= quantity;
   }
 

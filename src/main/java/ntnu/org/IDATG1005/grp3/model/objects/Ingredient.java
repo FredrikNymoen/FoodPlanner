@@ -7,6 +7,7 @@ public class Ingredient {
   private final Integer ingredientId;
   private final String name;
   private final String imageUrl;
+  private final MeasurementUnit unit;
 
   /**
    * Constructs an Ingredient with specified ID, name, and image URL.
@@ -15,10 +16,11 @@ public class Ingredient {
    * @param name The name of the ingredient.
    * @param imageUrl The URL of the image associated with the ingredient.
    */
-  public Ingredient(Integer ingredientId, String name, String imageUrl) {
+  public Ingredient(Integer ingredientId, String name, String imageUrl, MeasurementUnit unit) {
     this.ingredientId = ingredientId;
     this.name = name;
     this.imageUrl = imageUrl;
+    this.unit = unit;
   }
 
   /**
@@ -46,5 +48,31 @@ public class Ingredient {
    */
   public String getImageUrl() {
     return imageUrl;
+  }
+
+  /**
+   * Gets the unit of the ingredient.
+   *
+   * @return The measurement of the ingredient.
+   */
+  public MeasurementUnit getUnit() {
+    return unit;
+  }
+
+  /*
+  Compares an ingredient with an ingredient on db id
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (obj == null || getClass() != obj.getClass()) return false;
+
+    Ingredient that = (Ingredient) obj;
+    return ingredientId.equals(that.ingredientId);
+  }
+
+  @Override
+  public int hashCode() {
+    return ingredientId.hashCode();
   }
 }

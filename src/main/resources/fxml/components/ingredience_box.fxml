@@ -21,7 +21,7 @@
                         <Font name="Futura Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="starLabel" prefHeight="17.0" prefWidth="18.0" text="☆" textFill="WHITE" onMouseClicked="#onStarClicked">
+                  <Label fx:id="starLabel" onMouseClicked="#onStarClicked" prefHeight="17.0" prefWidth="18.0" text="☆" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -45,13 +45,25 @@
                </VBox.margin>
             </Label>
 
-            <HBox id="buttons" prefHeight="40.0" prefWidth="149.0" spacing="40" stylesheets="@../../css/style.css"> <!-- Adjust 'spacing' as needed -->
+            <HBox id="buttons" prefHeight="40.0" prefWidth="149.0" spacing="13.0" stylesheets="@../../css/style.css"> <!-- Adjust 'spacing' as needed -->
                <children>
-                  <Button fx:id="decrementButton" prefWidth="30.0" style="-fx-background-color: #69A94F;" text="-" textFill="WHITE" onMouseClicked="#minusAmount">
+                  <Button fx:id="decrementButton" onMouseClicked="#minusAmount" prefWidth="30.0" style="-fx-background-color: #69A94F;" text="-" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font></Button>
-                  <Button fx:id="incrementButton" prefWidth="30.0" style="-fx-background-color: #69A94F;" text="+" textFill="WHITE" onMouseClicked="#plusAmount">
+                  <Button fx:id="editButton" onMouseClicked="#displayEditBox" prefWidth="30.0" style="-fx-background-color: grey;" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="12.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/editPen.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="incrementButton" onMouseClicked="#plusAmount" prefWidth="30.0" style="-fx-background-color: #69A94F;" text="+" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font></Button>

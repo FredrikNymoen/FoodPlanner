@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import ntnu.org.IDATG1005.grp3.model.objects.MeasurementUnit;
 
 public class IngredientDaoImpl implements IngredientDao {
 
@@ -22,7 +23,11 @@ public class IngredientDaoImpl implements IngredientDao {
       pstmt.setInt(1, id);
       ResultSet rs = pstmt.executeQuery();
       if (rs.next()) {
-        return new Ingredient(rs.getInt("ingredient_id"), rs.getString("name"), rs.getString("image"));
+        return new Ingredient(
+            rs.getInt("ingredient_id"),
+            rs.getString("name"),
+            rs.getString("image"),
+            MeasurementUnit.fromUnitId(rs.getInt("unit_id")));
       }
     } catch (SQLException e) {
       logger.log(Level.SEVERE, "Error finding ingredient by ID", e);
@@ -38,7 +43,11 @@ public class IngredientDaoImpl implements IngredientDao {
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(sql)) {
       while (rs.next()) {
-        ingredients.add(new Ingredient(rs.getInt("ingredient_id"), rs.getString("name"), rs.getString("image")));
+        ingredients.add(new Ingredient(
+            rs.getInt("ingredient_id"),
+            rs.getString("name"),
+            rs.getString("image"),
+            MeasurementUnit.fromUnitId(rs.getInt("unit_id"))));
       }
     } catch (SQLException e) {
       logger.log(Level.SEVERE, "Error finding all ingredients", e);
