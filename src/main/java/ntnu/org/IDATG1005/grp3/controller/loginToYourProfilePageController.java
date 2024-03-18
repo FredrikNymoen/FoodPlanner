@@ -41,14 +41,12 @@ public class loginToYourProfilePageController {
       try {
         FXMLLoader loader = new FXMLLoader(
             getClass().getResource("/fxml/views/recipeScreenPage.fxml"));
-        loader.setController(recipeScreenController.getInstance());
+        //loader.setController(recipeScreenController.getInstance());
         Parent root = loader.load();
 
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
-        //closeYourColletive(joinCollectiveController.getInstance());
-        recipeScreenController.getInstance().initialiseRecipeScreen(mouseEvent);
       } catch (IOException e) {
         e.printStackTrace();
       }

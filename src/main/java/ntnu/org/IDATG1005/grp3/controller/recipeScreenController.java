@@ -2,10 +2,13 @@ package ntnu.org.IDATG1005.grp3.controller;
 
 import static ntnu.org.IDATG1005.grp3.application.MainApp.appUser;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,13 +22,15 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ntnu.org.IDATG1005.grp3.application.MainApp;
+import ntnu.org.IDATG1005.grp3.interfaces.RecipeChangedListener;
 import ntnu.org.IDATG1005.grp3.model.objects.Recipe;
 import ntnu.org.IDATG1005.grp3.model.objects.RecipeInfo;
 
 import java.io.IOException;
 import ntnu.org.IDATG1005.grp3.model.objects.User;
 
-public class recipeScreenController {
+
+public class recipeScreenController implements Initializable, RecipeChangedListener {
     private static recipeScreenController instance;
     @FXML
     private VBox choseRecipeContainer;
@@ -35,7 +40,7 @@ public class recipeScreenController {
     private Text recipeName;
     private ImageView recipeImage;
 
-    private recipeScreenController() {
+    public recipeScreenController() {
         intializeRecipeList();
     }
 
@@ -46,69 +51,45 @@ public class recipeScreenController {
         return instance;
     }
 
-    @FXML
-    public void initialiseRecipeScreen(MouseEvent mouseEvent) throws IOException {
+    @Override
+    public void initialize(URL location, ResourceBundle resourceBundle) {
+        displayRecipes();
+    }
+
+
+    public void displayRecipes(){
+        choseRecipeContainer.getChildren().clear();
         for(Recipe recp : MainApp.appRecipes) {
-            AnchorPane recipe;
-            FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/fxml/components/choseRecipe.fxml"));
-            loader.setController(choseRecipeController.getInstance());
-            recipe = loader.load();
+            try{
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(
+                    getClass().getResource("/fxml/components/choseRecipe.fxml"));
+                AnchorPane anchorPane = loader.load();
+                choseRecipeController controller = loader.getController();
+                controller.setData(recp);
+                controller.setRecipeChangedListener(this);
 
-             recipeName = (Text) recipe.lookup("#recipeName");
-             recipeName.setText(recp.getRecipeInfo().getTitle());
+                if(appUser.getChosenRecipes().contains(recp)){
+                    controller.changeApperance();
+                }
 
-             recipeImage = (ImageView) recipe.lookup("#recipeImage");
-             recipeImage.setImage(new Image("/images/Kniv_Gaffel_ikon.png"));
-
-            starLabel = (Label) recipe.lookup("#starLabel");
-            chose = (Button) recipe.lookup("#chose");
-            lookRecipe = (Button) recipe.lookup("#lookRecipe");
-            choseRecipeContainer.getChildren().add(recipe);
-            addChoseRecipeButton();
-            addRecipeToFavorite();
-            lookAtRecipe();
+                //controller.changeFavoriteColor();
+                choseRecipeContainer.getChildren().add(anchorPane);
+            }catch (IOException e){
+                e.printStackTrace();
+            }
         }
-        Stage choseRecipeComponent = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-        choseRecipeComponent.close();
-
-    }
-
-    public void addChoseRecipeButton() {
-        chose.setOnMouseClicked(
-                event -> choseRecipeController.getInstance().choseDisplayedRecipe());
-    }
-
-    public void addRecipeToFavorite() {
-        starLabel.setOnMouseClicked(
-                event -> choseRecipeController.getInstance().toggleFavorite());
-    }
-    public void lookAtRecipe() {
-        lookRecipe.setOnMouseClicked(
-                event -> showingRecipe());
-    }
-    public void showingRecipe() {
-        try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/fxml/components/showingRecipe.fxml"));
-            loader.setController(showingRecipeController.getInstance());
-            Parent root = loader.load();
-
-            Stage showingRecipe = new Stage();
-
-            Scene scene = new Scene(root);
-
-            showingRecipe.setScene(scene);
-            showingRecipe.show();
-            loginToYourProfilePageController.getInstance().setPrimaryStage(showingRecipe);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        //Stage choseRecipeComponent = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        //choseRecipeComponent.close();
     }
 
     public void intializeRecipeList(){
         appUser = new User(1, "test", "test");
     }
 
+    @Override
+    public void onRecipeChanged(Recipe recipe) {
+        displayRecipes();
+    }
 }
 
