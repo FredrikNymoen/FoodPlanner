@@ -22,6 +22,7 @@ import ntnu.org.IDATG1005.grp3.model.objects.Ingredient;
 import ntnu.org.IDATG1005.grp3.model.objects.Inventory;
 import ntnu.org.IDATG1005.grp3.model.objects.InventoryIngredient;
 import ntnu.org.IDATG1005.grp3.model.objects.MeasurementUnit;
+import ntnu.org.IDATG1005.grp3.model.objects.Recipe;
 import ntnu.org.IDATG1005.grp3.model.objects.RecipeIngredient;
 import ntnu.org.IDATG1005.grp3.model.objects.ShoppingListIngredient;
 import ntnu.org.IDATG1005.grp3.model.objects.User;
@@ -44,22 +45,21 @@ public class ShoppingListController implements Initializable{
   private GridPane shoppingListGrid;
 
   private Map<ShoppingListIngredient, AnchorPane> ingredientUIMap = new HashMap<>();
+  private Map<Recipe, HBox> chosenRecipeUIMap = new HashMap<>();
 
 
 
-  @Override
-  public void initialize(URL location, ResourceBundle resources){
+  public void getData(){
     appUser = new User(1, "test", "test");
     Ingredient ingredient1 = new Ingredient(1, "Tomat", "", MeasurementUnit.STK);
 
     Inventory inventory = new Inventory(new HashMap<>());
     inventory.getIngredients().put(ingredient1, new InventoryIngredient(ingredient1, 5.0));
     appUser.setInventory(inventory);
+  }
 
+  public void fillShoppingList(){
     Collection<InventoryIngredient> ingredients = appUser.getInventory().getIngredients().values();
-
-
-    appUser.addChosenRecipe(MainApp.appRecipes.get(0));
 
     for(RecipeIngredient recIngredient : appUser.getChosenRecipes().get(0).getIngredients()){
       System.out.println(recIngredient.getIngredient().getName() + " " + recIngredient.getAmount() + " " + recIngredient.getUnit());
@@ -74,11 +74,53 @@ public class ShoppingListController implements Initializable{
         }
       }
     }
+  }
 
+  @Override
+  public void initialize(URL location, ResourceBundle resources){
+    getData();
+
+    appUser.addChosenRecipe(MainApp.appRecipes.get(0));
+
+    fillShoppingList();
     System.out.println(appUser.getShoppingList().size());
 
     displayShoppingList();
+    displayChosenRecipes();
   }
+
+  public void displayChosenRecipes(){
+    List<Recipe> chosenRecipes = appUser.getChosenRecipes();
+    chosenRecipesGrid.getChildren().clear(); // Clear existing items from the grid
+    int column = 0;
+    int row = 1;
+    try {
+      for (int i = 0; i < chosenRecipes.size(); i++) {
+        System.out.println(chosenRecipes.get(i).getRecipeInfo().getTitle());
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(
+            getClass().getResource("/fxml/components/shoppingListChosenRecipe.fxml"));
+        HBox hBox = fxmlLoader.load();
+        ShoppingListChosenRecipeController chosenRecipeController = fxmlLoader.getController();
+        chosenRecipeController.setData(chosenRecipes.get(i));// 'this' refers to an instance of IngredienceController
+
+
+        chosenRecipesGrid.add(hBox, column++, row); //(child,column,row)
+        chosenRecipeUIMap.put(appUser.getChosenRecipes().get(i), hBox);
+        /*shoppingListGrid.setMinWidth(Region.USE_COMPUTED_SIZE);
+        shoppingListGrid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+        shoppingListGrid.setMaxWidth(Region.USE_PREF_SIZE);
+        shoppingListGrid.setMinHeight(Region.USE_COMPUTED_SIZE);
+        shoppingListGrid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+        shoppingListGrid.setMaxHeight(Region.USE_PREF_SIZE);*/
+        GridPane.setMargin(hBox, new Insets(5));
+        //Add to grid pane
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
 
   public void displayShoppingList(){
     List<ShoppingListIngredient> shoppingList = appUser.getShoppingList();
@@ -115,7 +157,5 @@ public class ShoppingListController implements Initializable{
       e.printStackTrace();
     }
   }
-
-
 
 }
