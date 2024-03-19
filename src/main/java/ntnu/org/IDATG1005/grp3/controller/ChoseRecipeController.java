@@ -92,7 +92,7 @@ public class ChoseRecipeController {
 
       showingRecipe.setScene(scene);
       showingRecipe.show();
-      LoginToYourProfilePageController.getInstance().setPrimaryStage(showingRecipe);
+      //LoginToYourProfilePageController.getInstance().setPrimaryStage(showingRecipe);
     } catch (IOException e) {
       e.printStackTrace();
     }

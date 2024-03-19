@@ -10,24 +10,24 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import ntnu.org.IDATG1005.grp3.model.objects.Household;
 
-public class JoinCollectiveController {
+public class StartScreenController {
 
-  private static JoinCollectiveController instance;
+  private static StartScreenController instance;
   private Household household;
   private Stage primaryStage;
 
-  public JoinCollectiveController() {
+  /*public JoinCollectiveController() {
 
-  }
+  }*/
 
-  public static synchronized JoinCollectiveController getInstance() {
+  /*public static synchronized JoinCollectiveController getInstance() {
     if (instance == null) {
       instance = new JoinCollectiveController();
     }
     return instance;
-  }
+  }*/
 
-  public void registerNewCollective(javafx.event.ActionEvent actionEvent) {
+  /*public void registerNewCollective(javafx.event.ActionEvent actionEvent) {
     createHousehold();
     try {
       FXMLLoader loader = new FXMLLoader(
@@ -54,7 +54,11 @@ public class JoinCollectiveController {
     try {
       FXMLLoader loader = new FXMLLoader(
               getClass().getResource("/fxml/views/yourCollectivePage.fxml"));
-      loader.setController(YourCollectiveController.getInstance());
+
+
+      //loader.setController(YourCollectiveController.getInstance());
+
+
       Parent root = loader.load();
 
       HBox c = (HBox) root.lookup("#profileContainer");
@@ -81,5 +85,5 @@ public class JoinCollectiveController {
   public void closeCurrentScene(){
     primaryStage.close();
   }
-
+  */
 }

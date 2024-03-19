@@ -36,7 +36,7 @@
          </children>
       </AnchorPane>
       <PasswordField fx:id="password" layoutX="27.0" layoutY="205.0" prefHeight="25.0" prefWidth="247.0" promptText="Passord" />
-      <Button layoutX="27.0" layoutY="236.0" mnemonicParsing="false" onMouseReleased="#createUser" prefHeight="25.0" prefWidth="247.0" style="-fx-background-color: rgb(0,180,0);" text="Lag bruker" textFill="WHITE">
+      <Button layoutX="27.0" layoutY="236.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="247.0" style="-fx-background-color: rgb(0,180,0);" text="Lag bruker" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font></Button>
@@ -45,7 +45,7 @@
             <Font size="15.0" />
          </font>
       </Text>
-      <Pane layoutX="253.0" layoutY="6.0" onMouseReleased="#exitUser" prefHeight="39.0" prefWidth="41.0">
+      <Pane layoutX="253.0" layoutY="6.0" prefHeight="39.0" prefWidth="41.0">
          <children>
             <Line endX="-20.878662109375" endY="6.0" layoutX="55.0" layoutY="25.0" rotate="90.0" startX="-48.121337890625" startY="-19.121322631835938" strokeWidth="3.0" />
             <Line endX="-20.878662109375" endY="6.0" layoutX="54.0" layoutY="25.0" startX="-48.121337890625" startY="-19.121322631835938" strokeWidth="3.0" />

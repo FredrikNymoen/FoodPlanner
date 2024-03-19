@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 import ntnu.org.IDATG1005.grp3.model.objects.User;
 
 public class CreateProfileController {
-
+  /*
   private static CreateProfileController instance;
   private TextField username;
   private PasswordField password;
@@ -47,7 +47,11 @@ public class CreateProfileController {
         login = (ImageView) newUser.lookup("#login");
 
         ((Text) newUser.lookup("#profilePictureName")).setText(username.getText());
-        addLogin();
+
+
+        //addLogin();
+
+
         User user1 = new User(null, username.getText(), password.getText());
         //JoinCollectiveController.getInstance().getHousehold().addUser(user1);
         //System.out.println(JoinCollectiveController.getInstance().getHousehold().getUsers());
@@ -83,11 +87,12 @@ public class CreateProfileController {
     this.password = password;
   }
 
-  public void addLogin() {
+  /*public void addLogin() {
     login.setOnMouseClicked(
         event -> YourCollectiveController.getInstance().loginToExistingUser(event));
-  }
+  }*/
 
+  /*
   public boolean validateUser() {
     if (username.getText().isEmpty() || password.getText().isEmpty()) {
       Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -99,4 +104,6 @@ public class CreateProfileController {
     }
     return true;
   }
+
+   */
 }
