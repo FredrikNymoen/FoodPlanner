@@ -82,6 +82,12 @@ public class MainCheeky {
       System.out.println("Inventory saving failed because failed to load inventory");
     }
 
+    // add a recipe to the user and persist it
+    persitentUser.getChosenRecipes().add(MainApp.appRecipes.get(1));
+    persitentUser.getChosenRecipes().add(MainApp.appRecipes.get(2));
+    userService.saveChosenRecipes(persitentUser);
+
+
 
     // save user household (example)
 

@@ -6,8 +6,11 @@ import de.mkammerer.argon2.Argon2Factory;
 import de.mkammerer.argon2.Argon2Factory.Argon2Types;
 import java.math.BigDecimal;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +23,7 @@ import ntnu.org.IDATG1005.grp3.model.objects.Ingredient;
 import ntnu.org.IDATG1005.grp3.model.objects.Inventory;
 import ntnu.org.IDATG1005.grp3.model.objects.InventoryIngredient;
 import ntnu.org.IDATG1005.grp3.model.objects.MeasurementUnit;
+import ntnu.org.IDATG1005.grp3.model.objects.Recipe;
 import ntnu.org.IDATG1005.grp3.model.objects.User;
 
 /**
@@ -247,5 +251,75 @@ public class UserDaoImpl implements UserDao {
     }
 
     return inventory;
+  }
+
+  /**
+   * Persist chosen recipes to the db.
+   *
+   * @param userId the id of the user which want.
+   * @param recipeList the list of recipes to be stored.
+   */
+  public void saveChosenRecipes(Integer userId, List<Recipe> recipeList) {
+
+    // convert list to set of integers
+    Set<Integer> newRecipeIds = new HashSet<>();
+    for (Recipe r : recipeList) {
+      newRecipeIds.add(r.getRecipeId());
+    }
+
+    // fetch currently saved recipes for the user
+    String fetchSql = "SELECT recipe_id FROM user_recipe WHERE user_id = ?";
+    Set<Integer> currentRecipes = new HashSet<>();
+
+    try (Connection conn = DatabaseConnection.getConnection();
+        PreparedStatement fetchStmt = conn.prepareStatement(fetchSql)) {
+      fetchStmt.setInt(1, userId);
+      ResultSet rs = fetchStmt.executeQuery();
+
+      while (rs.next()) {
+        currentRecipes.add(rs.getInt("recipe_id"));
+      }
+    } catch (SQLException e) {
+      logger.log(Level.SEVERE, "SQL error when fetching user's recipes", e);
+      return;
+    }
+
+    // determine recipes to delete and to add
+    Set<Integer> toDelete = new HashSet<>(currentRecipes);
+    toDelete.removeAll(newRecipeIds);
+    Set<Integer> toAdd = new HashSet<>(newRecipeIds);
+    toAdd.removeAll(currentRecipes);
+
+    // delete old recipes
+    if (!toDelete.isEmpty()) {
+      String deleteSql = "DELETE FROM user_recipe WHERE user_id = ? AND recipe_id = ?";
+      try (Connection conn = DatabaseConnection.getConnection();
+          PreparedStatement deleteStmt = conn.prepareStatement(deleteSql)) {
+        for (Integer recipeId : toDelete) {
+          deleteStmt.setInt(1, userId);
+          deleteStmt.setInt(2, recipeId);
+          deleteStmt.addBatch();
+        }
+        deleteStmt.executeBatch();
+      } catch (SQLException e) {
+        logger.log(Level.SEVERE, "SQL error when deleting recipes", e);
+      }
+    }
+
+    // insert new recipes
+    if (!toAdd.isEmpty()) {
+      String insertSql = "INSERT INTO user_recipe (user_id, recipe_id) VALUES (?, ?)";
+      try (Connection conn = DatabaseConnection.getConnection();
+          PreparedStatement insertStmt = conn.prepareStatement(insertSql)) {
+        for (Integer recipeId : toAdd) {
+          insertStmt.setInt(1, userId);
+          insertStmt.setInt(2, recipeId);
+          insertStmt.addBatch();
+        }
+        insertStmt.executeBatch();
+      } catch (SQLException e) {
+        logger.log(Level.SEVERE, "SQL error when inserting new recipes", e);
+      }
+    }
   }
 }

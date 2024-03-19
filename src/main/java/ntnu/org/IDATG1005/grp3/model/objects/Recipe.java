@@ -118,4 +118,8 @@ public class Recipe {
     return this.favorite;
   }
 
+  public Integer getRecipeId(){
+    return recipeId;
+  }
+
 }
