@@ -24,3 +24,9 @@
   -fx-border-radius: 7; /* Rounded corners */
   -fx-background-radius: 7; /* Ensure the background also has rounded corners to match the border */
 }
+.recipeScrollPane .scroll-bar:vertical, .hide-scrollbar .scroll-bar:horizontal {
+  -fx-opacity: 0;
+  -fx-pref-width: 0;
+  -fx-pref-height: 0;
+  -fx-background-insets: 0;
+}

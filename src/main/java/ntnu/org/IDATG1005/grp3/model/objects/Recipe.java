@@ -8,6 +8,7 @@ import java.util.List;
  * preparation guidance.
  */
 public class Recipe {
+  private boolean favorite = false;
 
   private final RecipeInfo recipeInfo;
   private final List<RecipeIngredient> ingredients;
@@ -107,4 +108,11 @@ public class Recipe {
   public void setPersonsChildren(Integer personsChildren) {
     this.personsChildren = personsChildren;
   }
+  public void changeFavoriteStatus(){
+    this.favorite = !this.favorite;
+  }
+  public boolean getFavoriteStatus(){
+    return this.favorite;
+  }
+
 }
