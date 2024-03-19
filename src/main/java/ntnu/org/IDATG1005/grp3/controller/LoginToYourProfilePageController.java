@@ -7,26 +7,24 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class loginToYourProfilePageController {
+public class LoginToYourProfilePageController {
 
-  private static loginToYourProfilePageController instance;
+  private static LoginToYourProfilePageController instance;
   @FXML
   private PasswordField checkPassword;
   private Stage primaryStage;
 
-
-  private loginToYourProfilePageController() {
+  private LoginToYourProfilePageController() {
 
   }
 
-  public static synchronized loginToYourProfilePageController getInstance() {
+  public static synchronized LoginToYourProfilePageController getInstance() {
     if (instance == null) {
-      instance = new loginToYourProfilePageController();
+      instance = new LoginToYourProfilePageController();
     }
     return instance;
   }
@@ -41,14 +39,13 @@ public class loginToYourProfilePageController {
       try {
         FXMLLoader loader = new FXMLLoader(
             getClass().getResource("/fxml/views/recipeScreenPage.fxml"));
-        loader.setController(recipeScreenController.getInstance());
+
+        //loader.setController(recipeScreenController.getInstance());
         Parent root = loader.load();
 
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
-        //closeYourColletive(joinCollectiveController.getInstance());
-        recipeScreenController.getInstance().initialiseRecipeScreen(mouseEvent);
       } catch (IOException e) {
         e.printStackTrace();
       }

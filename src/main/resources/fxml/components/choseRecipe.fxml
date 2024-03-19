@@ -9,51 +9,51 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="choseRecipeBorder" prefHeight="179.0" prefWidth="641.0" style="-fx-background-color: rgba(0,0,0,0.8);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="choseRecipeBorder" prefHeight="232.0" prefWidth="644.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.org.IDATG1005.grp3.controller.ChoseRecipeController">
    <children>
       <ImageView fitHeight="113.0" fitWidth="165.0" layoutX="19.0" layoutY="56.8193359375" pickOnBounds="true" preserveRatio="true">
       </ImageView>
-      <Pane layoutX="2.0" prefHeight="29.0" prefWidth="637.0" style="-fx-background-color: rgba(0,150,0,0.80);">
+      <Pane layoutX="9.0" layoutY="6.0" prefHeight="29.0" prefWidth="626.0" style="-fx-background-color: rgba(0,150,0,0.80);">
          <children>
-            <Text fill="WHITE" layoutX="16.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Navn på matrett" textAlignment="CENTER" wrappingWidth="624.0" fx:id="recipeName">
+            <Text fx:id="recipeName" fill="WHITE" layoutX="-5.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Navn på matrett" textAlignment="CENTER" wrappingWidth="624.0">
                <font>
                   <Font size="21.0" />
                </font>
             </Text>
-            <Label fx:id="starLabel" layoutX="599.0" layoutY="1.0" text="☆">
+            <Label fx:id="starLabel" layoutX="582.0" layoutY="1.0" onMouseClicked="#favoriteClick" text="☆">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
          </children>
       </Pane>
-      <ImageView fitHeight="120.0" fitWidth="207.0" layoutX="8.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true" fx:id="recipeImage">
+      <ImageView fx:id="recipeImage" fitHeight="160.0" fitWidth="207.0" layoutX="8.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
       </ImageView>
-      <AnchorPane layoutX="215.0" layoutY="38.0" prefHeight="120.0" prefWidth="413.0" style="-fx-background-color: rgba(0,0,0,0.1);">
+      <AnchorPane layoutX="215.0" layoutY="57.0" prefHeight="160.0" prefWidth="418.0" style="-fx-background-color: rgba(0,0,0,0.1);">
          <children>
-            <Text fill="WHITE" layoutX="7.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The group will spend class hours and agreed meeting hours on assignments, with additional hours as needed." textAlignment="CENTER" wrappingWidth="401.13671875">
+            <Text fx:id="recipeDescription" fill="WHITE" layoutX="6.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The group will spend class hours and agreed meeting hours on assignments, with additional hours as needed." textAlignment="CENTER" wrappingWidth="401.13671875">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <Button layoutX="234.0" layoutY="49.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="107.0" style="-fx-background-color: rgba(0,220,0,0.80);" text="Se oppsrkift" textFill="WHITE" fx:id="lookRecipe" />
-            <Button fx:id="chose" layoutX="234.0" layoutY="86.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="107.0" style="-fx-background-color: rgba(0,180,0,0.80);" text="Velg!" textFill="WHITE" />
-            <ImageView fitHeight="29.0" fitWidth="41.0" layoutX="66.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+            <Button fx:id="lookRecipe" layoutX="234.0" layoutY="74.0" mnemonicParsing="false" onMouseClicked="#showingRecipe" prefHeight="29.0" prefWidth="107.0" style="-fx-background-color: rgba(0,220,0,0.80);" text="Se oppsrkift" textFill="WHITE" />
+            <Button fx:id="chose" layoutX="234.0" layoutY="115.0" mnemonicParsing="false" onMouseClicked="#chooseRecipe" prefHeight="29.0" prefWidth="107.0" style="-fx-background-color: rgba(0,180,0,0.80);" text="Velg!" textFill="WHITE" />
+            <ImageView fitHeight="23.0" fitWidth="41.0" layoutX="66.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@/images/greenCheck.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="29.0" fitWidth="41.0" layoutX="66.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="27.0" fitWidth="41.0" layoutX="66.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@/images/redShoppingCart.png" />
                </image>
             </ImageView>
-            <Text fill="#2add36" layoutX="119.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10">
+            <Text fx:id="boughtIngredients" fill="#2add36" layoutX="118.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10">
                <font>
                   <Font size="17.0" />
                </font>
             </Text>
-            <Text fill="#db2c2c" layoutX="123.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3">
+            <Text fx:id="missingIngredients" fill="#db2c2c" layoutX="123.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3">
                <font>
                   <Font size="17.0" />
                </font>

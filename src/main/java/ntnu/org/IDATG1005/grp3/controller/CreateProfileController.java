@@ -14,21 +14,21 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ntnu.org.IDATG1005.grp3.model.objects.User;
 
-public class createProfileController {
+public class CreateProfileController {
 
-  private static createProfileController instance;
+  private static CreateProfileController instance;
   private TextField username;
   private PasswordField password;
   private HBox profileContainer;
   private ImageView login;
 
-  private createProfileController() {
+  private CreateProfileController() {
 
   }
 
-  public static synchronized createProfileController getInstance() {
+  public static synchronized CreateProfileController getInstance() {
     if (instance == null) {
-      instance = new createProfileController();
+      instance = new CreateProfileController();
     }
     return instance;
   }
@@ -41,7 +41,7 @@ public class createProfileController {
       if (isValid) {
         FXMLLoader loader = new FXMLLoader(
             getClass().getResource("/fxml/components/profilePicture.fxml"));
-        loader.setController(profilePictureController.getInstance());
+        loader.setController(ProfilePictureController.getInstance());
         newUser = loader.load();
 
         login = (ImageView) newUser.lookup("#login");
@@ -49,8 +49,8 @@ public class createProfileController {
         ((Text) newUser.lookup("#profilePictureName")).setText(username.getText());
         addLogin();
         User user1 = new User(null, username.getText(), password.getText());
-        joinCollectiveController.getInstance().getHousehold().addUser(user1);
-        System.out.println(joinCollectiveController.getInstance().getHousehold().getUsers());
+        //JoinCollectiveController.getInstance().getHousehold().addUser(user1);
+        //System.out.println(JoinCollectiveController.getInstance().getHousehold().getUsers());
         // todo database
         profileContainer.getChildren().add(newUser);
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
@@ -85,7 +85,7 @@ public class createProfileController {
 
   public void addLogin() {
     login.setOnMouseClicked(
-        event -> yourCollectiveController.getInstance().loginToExistingUser(event));
+        event -> YourCollectiveController.getInstance().loginToExistingUser(event));
   }
 
   public boolean validateUser() {

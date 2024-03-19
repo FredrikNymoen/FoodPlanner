@@ -10,22 +10,21 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
-public class yourCollectiveController {
+public class YourCollectiveController {
 
-  private static yourCollectiveController instance;
+  private static YourCollectiveController instance;
 
-  public yourCollectiveController() {
+  public YourCollectiveController() {
 
   }
 
-  public static synchronized yourCollectiveController getInstance() {
+  public static synchronized YourCollectiveController getInstance() {
     if (instance == null) {
-      instance = new yourCollectiveController();
+      instance = new YourCollectiveController();
     }
     return instance;
   }
@@ -36,10 +35,10 @@ public class yourCollectiveController {
     try {
       FXMLLoader loader = new FXMLLoader(
           getClass().getResource("/fxml/views/loginToYourProfilePage.fxml"));
-      loader.setController(loginToYourProfilePageController.getInstance());
+      loader.setController(LoginToYourProfilePageController.getInstance());
       profile = loader.load();
       ((Text) profile.lookup("#profileUsername")).setText(
-          createProfileController.getInstance().getUsername().getText());
+          CreateProfileController.getInstance().getUsername().getText());
 
       Stage profileStage = new Stage();
       profileStage.setTitle("Profile");
@@ -60,10 +59,10 @@ public class yourCollectiveController {
       FXMLLoader loader = new FXMLLoader(
           getClass().getResource("/fxml/views/createProfilePage.fxml"));
 
-      loader.setController(createProfileController.getInstance());
+      loader.setController(CreateProfileController.getInstance());
       Parent root = loader.load();
-      createProfileController.getInstance().setUsername((TextField) root.lookup("#username"));
-      createProfileController.getInstance().setPassword((PasswordField) root.lookup("#password"));
+      CreateProfileController.getInstance().setUsername((TextField) root.lookup("#username"));
+      CreateProfileController.getInstance().setPassword((PasswordField) root.lookup("#password"));
 
       Stage addUser = new Stage();
       addUser.setTitle("Profile");
@@ -81,7 +80,7 @@ public class yourCollectiveController {
     try {
       FXMLLoader loader = new FXMLLoader(
           getClass().getResource("/fxml/views/joinCollectivePage.fxml"));
-      loader.setController(joinCollectiveController.getInstance());
+      loader.setController(JoinCollectiveController.getInstance());
       Parent root = loader.load();
       Stage joinCollective = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
       Scene scene = new Scene(root);
