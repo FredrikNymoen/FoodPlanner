@@ -20,8 +20,11 @@ public class MainApp extends Application {
   public final static List<Ingredient> appIngredients = new IngredientService(new IngredientDaoImpl()).findAllIngredients();
   public static List<Recipe> appRecipes = new RecipeService(new RecipeDaoImpl()).findAllRecipes();
 
+  public static Stage primaryStage;
+
   @Override
   public void start(Stage primaryStage) throws Exception {
+    MainApp.primaryStage = primaryStage;
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/views/activeRecipes.fxml"));
 
     Parent root = loader.load();
