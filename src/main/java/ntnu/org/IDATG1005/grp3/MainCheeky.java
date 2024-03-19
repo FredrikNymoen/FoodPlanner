@@ -89,6 +89,27 @@ public class MainCheeky {
     HouseholdService hs = new HouseholdService(new HouseholdDaoImpl());
     Household household = hs.createHousehold();
 
+    household.setJoinCode("newJoin");
+    hs.updateHouseholdDetails(household);
+
+    MainApp.appUser.setHousehold(household);
+    userService.saveUserHousehold(MainApp.appUser);
+
+
+    Household householdN = null;
+
+    try {
+      householdN = hs.findHouseholdByJoinCode("newJoin");
+    } catch (HouseholdNotFoundException e) {
+      System.out.println("Household with joincode not found.");
+    }
+
+    for (User u : householdN.getUsers()) {
+      System.out.println(u.getUsername());
+    }
+
+
+
     System.out.println("Created household: " + household.getName());
     System.out.println("With the join code: " + household.getJoinCode());
 
