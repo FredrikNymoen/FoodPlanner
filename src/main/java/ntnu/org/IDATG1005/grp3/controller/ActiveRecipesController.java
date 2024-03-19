@@ -15,10 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import ntnu.org.IDATG1005.grp3.interfaces.ActiveRecipePopupBuyMake;
-import ntnu.org.IDATG1005.grp3.interfaces.ActiveRecipeRemovalListener;
-import ntnu.org.IDATG1005.grp3.interfaces.ActiveRecipeMadeListener;
-import ntnu.org.IDATG1005.grp3.interfaces.CloseActiveRecipePopupListener;
+import ntnu.org.IDATG1005.grp3.interfaces.*;
 import ntnu.org.IDATG1005.grp3.model.objects.Recipe;
 
 import java.io.IOException;
@@ -26,7 +23,7 @@ import java.util.ArrayList;
 import ntnu.org.IDATG1005.grp3.model.objects.User;
 
 //Controller for the activeRecipesBox.fxml file
-public class ActiveRecipesController implements Initializable, ActiveRecipeRemovalListener, ActiveRecipeMadeListener, CloseActiveRecipePopupListener, ActiveRecipePopupBuyMake, ActiveRecipePopupBuyMake, ActiveRecipePopupChangeShoppingList {
+public class ActiveRecipesController implements Initializable, ActiveRecipeRemovalListener, ActiveRecipeMadeListener, ActiveRecipePopupBuyMake {
 
     @FXML
     private AnchorPane rootPane;
@@ -89,9 +86,9 @@ public class ActiveRecipesController implements Initializable, ActiveRecipeRemov
             AnchorPane anchorPane = loader.load();
             Popup_buyShoppingListController controller = loader.getController();
             controller.setData(recipe);
-            controller.setCloseActiveRecipePopupListener(this);
+            //controller.setCloseActiveRecipePopupListener(this);
             controller.setActiveRecipePopupBuyMakeListener(this);
-            controller.setActiveRecipePopupChangeShoppingListListener(this);
+            //controller.setActiveRecipePopupChangeShoppingListListener(this);
             popupHolder.getChildren().add(anchorPane);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -111,16 +108,25 @@ public class ActiveRecipesController implements Initializable, ActiveRecipeRemov
     }
 
     @Override
+    public void buyAndMake(Recipe recipe) {
+        popupHolder.getChildren().clear();
+        displayActiveRecipes();
+        System.out.println("Pressed buy and make button");
+    }
+
+    /*@Override
     public void exitPopup() {
         popupHolder.getChildren().clear();
         System.out.println("Popup closed");
     }
 
+
+
     @Override
-    public void buyAndMake() {
+    public void editShoppingList() {
         popupHolder.getChildren().clear();
-        System.out.println("Pressed buy and make button");
-    }
+        System.out.println("Pressed edit shopping list button");
+    }*/
 
 
     //Iterer gjennom inventory og fjern ingredienser som er brukt i oppskriften
