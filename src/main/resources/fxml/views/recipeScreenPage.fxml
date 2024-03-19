@@ -112,5 +112,6 @@
             </FXCollections>
          </items>
       </ComboBox>
+      <fx:include source="../components/menybar-1utkast.fxml" />
    </children>
 </AnchorPane>
