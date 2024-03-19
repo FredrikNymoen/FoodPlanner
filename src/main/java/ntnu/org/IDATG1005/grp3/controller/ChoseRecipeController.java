@@ -3,12 +3,9 @@ package ntnu.org.IDATG1005.grp3.controller;
 import static ntnu.org.IDATG1005.grp3.application.MainApp.appUser;
 
 import java.io.IOException;
-
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,19 +19,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import ntnu.org.IDATG1005.grp3.application.MainApp;
 import ntnu.org.IDATG1005.grp3.interfaces.RecipeChangedListener;
 import ntnu.org.IDATG1005.grp3.model.objects.Ingredient;
-import ntnu.org.IDATG1005.grp3.model.objects.Inventory;
-import ntnu.org.IDATG1005.grp3.model.objects.InventoryIngredient;
 import ntnu.org.IDATG1005.grp3.model.objects.Recipe;
-import ntnu.org.IDATG1005.grp3.model.objects.RecipeIngredient;
-import ntnu.org.IDATG1005.grp3.model.objects.User;
 
 public class ChoseRecipeController implements Initializable {
 
-  private Recipe recipe;
   private static ChoseRecipeController instance;
+  private Recipe recipe;
   @FXML
   private Label starLabel;
   @FXML
@@ -65,17 +57,17 @@ public class ChoseRecipeController implements Initializable {
   public ChoseRecipeController() {
 
   }
-  @Override
-  public void initialize(URL location, ResourceBundle resourceBundle) {
-    intializeUser();
-  }
-
 
   public static synchronized ChoseRecipeController getInstance() {
     if (instance == null) {
       instance = new ChoseRecipeController();
     }
     return instance;
+  }
+
+  @Override
+  public void initialize(URL location, ResourceBundle resourceBundle) {
+
   }
 
   public void setData(Recipe recipe) {
@@ -94,7 +86,6 @@ public class ChoseRecipeController implements Initializable {
       chose.setText("Choose");
     } else {
       appUser.addChosenRecipe(recipe);
-      System.out.println(appUser.getChosenRecipes().size());
       chose.setStyle("-fx-background-color: #f00");
       chose.setText("Remove");
     }
@@ -126,7 +117,6 @@ public class ChoseRecipeController implements Initializable {
     if (recipeChangedListener != null) {
       recipeChangedListener.onRecipeChanged(recipe);
     }
-    System.out.println("added");
   }
 
   public void setRecipeChangedListener(RecipeChangedListener recipeChangedListener) {
@@ -134,16 +124,13 @@ public class ChoseRecipeController implements Initializable {
   }
 
   public void changeAppearance() {
-    System.out.println(recipe.getFavoriteStatus());
     if (recipe.getFavoriteStatus()) {
       starLabel.setText("★");
-      System.out.println("added to fave");
       starLabel.setStyle("-fx-text-fill: yellow;");
       choseRecipeBorder.setStyle("-fx-border-color: yellow; -fx-border-width: 5;");
     }
     if (appUser.getChosenRecipes().contains(recipe)) {
       appUser.addChosenRecipe(recipe);
-      System.out.println(appUser.getChosenRecipes().size());
       chose.setStyle("-fx-background-color: #f00");
       chose.setText("Remove");
     }
@@ -151,19 +138,20 @@ public class ChoseRecipeController implements Initializable {
 
   public void checkIngredients() {
     Integer matchedIngredients = 0;
-    List<String> missingIngredientsList = new ArrayList<>(); // List to hold names of missing ingredients
+    List<Ingredient> missingIngredientsList = new ArrayList<>(); // List to hold names of missing ingredients
     int totalRecipeIngredients = recipe.getIngredients().size();
-    System.out.println("Checking ingredients for recipe: " + recipe.getRecipeInfo().getTitle());
     // Check each ingredient in the recipe
     if (appUser != null && appUser.getInventory() != null) {
-      for (RecipeIngredient recipeIngredient : recipe.getIngredients()) {
-        String ingredientName = recipeIngredient.getIngredient().getName();
+      for (int i = 0; i < recipe.getIngredients().size(); i++) {
+        Ingredient recIngredient = recipe.getIngredients().get(i).getIngredient();
         // Check if the user's inventory contains this ingredient
-        if (appUser.getInventory().getIngredients()
-            .containsKey(ingredientName)) {
-          matchedIngredients++; // Ingredient is in inventory
+        if (appUser.getInventory().getIngredients().get(recIngredient) != null) {
+          if (appUser.getInventory().getIngredients().get(recIngredient).getQuantity()
+              >= recipe.getIngredients().get(0).getAmount()) {
+            matchedIngredients++; // Ingredient is in inventory
+          }
         } else {
-          missingIngredientsList.add(ingredientName); // Ingredient is missing
+          missingIngredientsList.add(recIngredient); // Ingredient is missing
         }
       }
     } else {
@@ -176,19 +164,5 @@ public class ChoseRecipeController implements Initializable {
     int missingCount =
         totalRecipeIngredients - matchedIngredients; // Calculate the number of missing ingredients
     this.missingIngredients.setText(String.valueOf(missingCount));
-  }
-  public void intializeUser(){
-    appUser = new User(1, "test", "test");
-    Ingredient ingredient1 = MainApp.appIngredients.get(0);
-    Ingredient ingredient2 = MainApp.appIngredients.get(1);
-    /*System.out.println("HEISANN");
-    for (Ingredient ingredient : MainApp.appIngredients) {
-      System.out.println(ingredient.getName());
-    }*/
-
-    Inventory inventory = new Inventory(new HashMap<>());
-    inventory.getIngredients().put(ingredient1, new InventoryIngredient(ingredient1, 5.0));
-    inventory.getIngredients().put(ingredient2, new InventoryIngredient(ingredient2, 5.0));
-    appUser.setInventory(inventory);
   }
 }
