@@ -5,5 +5,4 @@ import ntnu.org.IDATG1005.grp3.model.objects.InventoryIngredient;
 
 public interface OnIngredientUpdateListener {
   void onIngredientUpdate();
-  void onInventoryIngredientsUpdated(InventoryIngredient inventoryIngredient);
 }

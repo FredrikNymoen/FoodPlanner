@@ -1,5 +1,7 @@
 package ntnu.org.IDATG1005.grp3.controller;
 
+import static ntnu.org.IDATG1005.grp3.application.MainApp.appUser;
+
 import java.util.List;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -38,8 +40,6 @@ public class EditIngredientBoxController {
   private Text unitText;
   private Pane overlayPane;
 
-  private List<InventoryIngredient> inventoryIngredients;
-
   private InventoryIngredient inventoryIngredient;
 
   private OnIngredientUpdateListener updateListener;
@@ -63,15 +63,14 @@ public class EditIngredientBoxController {
   }
 
 
-  public void setData(Ingredient ingredient, List<InventoryIngredient> inventoryIngredients) {
-    this.inventoryIngredients = inventoryIngredients;
+  public void setData(Ingredient ingredient) {
     editBoxName.setText(ingredient.getName());
     unitText.setText(ingredient.getUnit().toString());
 
     boolean isInInventory = false;
     InventoryIngredient foundInventoryIngredient = null;
 
-    for (InventoryIngredient inventoryIngredient : inventoryIngredients) {
+    for (InventoryIngredient inventoryIngredient : appUser.getInventory().getIngredients().values()) {
       if (inventoryIngredient.getIngredient().getName().equals(ingredient.getName())) {
         isInInventory = true;
         foundInventoryIngredient = inventoryIngredient;
@@ -118,7 +117,7 @@ public class EditIngredientBoxController {
 
       // Check if the inventory has enough quantity, if not handle the error or set to zero.
       double newQuantity = Math.max(inventoryIngredient.getQuantity() - amountToRemove, 0.0);
-      inventoryIngredient.setQuantity(newQuantity); // Update the model.
+      appUser.getInventory().getIngredients().get(this.inventoryIngredient.getIngredient()).setQuantity(newQuantity);
 
       if (updateListener != null) {
         updateListener.onIngredientUpdate();
@@ -135,25 +134,17 @@ public class EditIngredientBoxController {
     try {
       // Parse the amount to add from the text field.
       int amountToAdd = Integer.parseInt(editTextField.getText());
-      // Add the amount to the inventory.
-      inventoryIngredient.setQuantity(inventoryIngredient.getQuantity() + amountToAdd); // Update the model.
+      inventoryIngredient.setQuantity(inventoryIngredient.getQuantity() + amountToAdd);
 
-      boolean isInInventory = false;
-      for (InventoryIngredient inventoryIngredient : inventoryIngredients) {
-        if (inventoryIngredient.getIngredient().getName().equals(this.inventoryIngredient.getIngredient().getName())) {
-          if (updateListener != null) {
-            System.out.println("SHHHALLLAA");
-            updateListener.onIngredientUpdate();
-            isInInventory = true;
-          }
-          //break; // Exit the loop as soon as you find the ingredient.
-        }
+      if(appUser.getInventory().getIngredients().get(inventoryIngredient.getIngredient()) != null){
+        appUser.getInventory().getIngredients().get(inventoryIngredient.getIngredient()).setQuantity(inventoryIngredient.getQuantity());
       }
-      if (!isInInventory) {
-        inventoryIngredients.add(this.inventoryIngredient);
-        if (updateListener != null) {
-          updateListener.onInventoryIngredientsUpdated(this.inventoryIngredient);
-        }
+      else {
+        appUser.getInventory().getIngredients().put(inventoryIngredient.getIngredient(),inventoryIngredient);
+      }
+
+      if (updateListener != null) {
+        updateListener.onIngredientUpdate();
       }
 
       // Close the edit box after the operation.
