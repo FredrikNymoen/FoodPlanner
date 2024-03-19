@@ -93,7 +93,6 @@ public class UserService {
     userDao.updatePassword(user.getUserId(), hashedPassword);
   }
 
-
   /**
    * Persists the household for a user.
    * @param user The user to associate with a household.
@@ -103,6 +102,17 @@ public class UserService {
       throw new IllegalArgumentException("User cannot be null.");
     }
     userDao.saveUserHousehold(user.getUserId(), user.getHousehold().getHouseholdId());
+  }
+
+  /**
+   * Persists the household for a user.
+   * @param user The user to associate with a household.
+   */
+  public void saveChosenRecipes(User user) {
+    if (user == null) {
+      throw new IllegalArgumentException("User cannot be null.");
+    }
+    userDao.saveChosenRecipes(user.getUserId(), user.getChosenRecipes());
   }
 
   private String hashPassword(String password) {

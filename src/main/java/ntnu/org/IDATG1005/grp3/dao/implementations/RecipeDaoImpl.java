@@ -43,7 +43,7 @@ public class RecipeDaoImpl implements RecipeDao {
         List<Direction> directions = getDirections(recipeId, conn);
         List<Tag> tags = new ArrayList<>();
 
-        Recipe recipe = new Recipe(info, recipeIngredients, directions, tags, rs.getInt("persons_adults"), rs.getInt("persons_children"));
+        Recipe recipe = new Recipe(info, recipeIngredients, directions, tags, rs.getInt("persons_adults"), rs.getInt("persons_children"), recipeId);
         recipes.add(recipe);
       }
     } catch (SQLException e) {
