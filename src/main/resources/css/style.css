@@ -10,6 +10,20 @@
 #chosenRecipes > .viewport{
   -fx-background-color:  #69A94F;
 }
+
+.hide-scrollbar .scroll-bar:vertical, .hide-scrollbar .scroll-bar:horizontal {
+  -fx-opacity: 0;
+  -fx-pref-width: 0;
+  -fx-pref-height: 0;
+  -fx-background-insets: 0;
+}
+
+.shoppingListChosenRecipe{
+  -fx-border-width: 4; /* Increase border width for a bolder look */
+  -fx-border-color: #69A94F; /* Gradient border color for a dynamic effect */
+  -fx-border-radius: 7; /* Rounded corners */
+  -fx-background-radius: 7; /* Ensure the background also has rounded corners to match the border */
+}
 .recipeScrollPane .scroll-bar:vertical, .hide-scrollbar .scroll-bar:horizontal {
   -fx-opacity: 0;
   -fx-pref-width: 0;

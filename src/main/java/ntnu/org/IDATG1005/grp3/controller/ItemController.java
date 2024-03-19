@@ -1,5 +1,7 @@
 package ntnu.org.IDATG1005.grp3.controller;
 
+import static ntnu.org.IDATG1005.grp3.application.MainApp.appUser;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -44,6 +46,7 @@ public class ItemController {
     @FXML
     public void onStarClicked(MouseEvent event) {
         if (!ingredient.getFavoriteStatus()) {
+            System.out.println("Star clicked");
             // Change only the border color, preserving other styles
             item.setStyle(item.getStyle() + "-fx-border-color: yellow;");
             starLabel.setTextFill(Color.YELLOW); // Change star color to yellow
@@ -66,6 +69,7 @@ public class ItemController {
         double amount = ingredient.getQuantity();
         ingredient.setQuantity(amount + 1.0);
         amountLabel.setText(ingredient.getQuantity() + " " + amountLabel.getText().split(" ")[1]);
+
     }
 
     public void setRemovalListener(ItemRemovalListener removalListener) {

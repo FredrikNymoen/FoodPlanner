@@ -25,4 +25,8 @@ public class Inventory {
   public Map<Ingredient, InventoryIngredient> getIngredients() {
     return ingredients;
   }
+
+  public void addIngredient(ShoppingListIngredient shoppingListIngredient){
+    ingredients.put(shoppingListIngredient.getIngredient(), new InventoryIngredient(shoppingListIngredient.getIngredient(), shoppingListIngredient.getQuantity()));
+  }
 }
