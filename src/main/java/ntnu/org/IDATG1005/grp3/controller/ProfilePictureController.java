@@ -14,8 +14,6 @@ public class ProfilePictureController {
   private Text profilePictureName;
   @FXML
   private ImageView login;
-  @FXML
-  private AnchorPane rootPane;
 
   private LoginDisplayListener loginDisplayListener;
 
@@ -37,18 +35,5 @@ public class ProfilePictureController {
       loginDisplayListener.onLoginDisplay(this.user);
     }
   }
-
-
-
-  /*private ProfilePictureController() {
-
-  }
-
-  public static synchronized ProfilePictureController getInstance() {
-    if (instance == null) {
-      instance = new ProfilePictureController();
-    }
-    return instance;
-  }*/
 
 }

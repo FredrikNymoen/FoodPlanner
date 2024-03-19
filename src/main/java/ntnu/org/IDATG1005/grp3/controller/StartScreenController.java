@@ -16,6 +16,10 @@ public class StartScreenController {
   private Household household;
   private Stage primaryStage;
 
+
+
+
+
   /*public JoinCollectiveController() {
 
   }*/
