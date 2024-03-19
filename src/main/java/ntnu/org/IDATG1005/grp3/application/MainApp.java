@@ -25,7 +25,7 @@ public class MainApp extends Application {
   @Override
   public void start(Stage primaryStage) throws Exception {
     MainApp.primaryStage = primaryStage;
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/views/activeRecipes.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/views/joinCollectivePage.fxml"));
 
     Parent root = loader.load();
 
