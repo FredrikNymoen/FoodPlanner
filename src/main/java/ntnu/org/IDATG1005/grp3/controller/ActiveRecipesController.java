@@ -78,6 +78,17 @@ public class ActiveRecipesController implements Initializable, ActiveRecipeRemov
     private void madeRecipe(Recipe recipe) {
         //check if user has the nessaary ingredients
         //if run different methods based on if user has the ingredients or not
+        boolean hasIngredients = checkIfUserHasIngredients(recipe);
+        hasIngredients = false; // MÅ FJERNES
+
+        if (hasIngredients) {
+            appUser.getShoppingCartRecipes().remove(recipe);
+            appUser.getChosenRecipes().remove(recipe);
+            displayActiveRecipes();
+        } else {
+            //open popup to buy ingredients
+            //openPopup(recipe);
+        }
 
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -85,16 +96,34 @@ public class ActiveRecipesController implements Initializable, ActiveRecipeRemov
 
             AnchorPane anchorPane = loader.load();
             Popup_buyShoppingListController controller = loader.getController();
-            controller.setData(recipe);
-            //controller.setCloseActiveRecipePopupListener(this);
+            controller.setData(recipe, hasIngredients);
             controller.setActiveRecipePopupBuyMakeListener(this);
-            //controller.setActiveRecipePopupChangeShoppingListListener(this);
             popupHolder.getChildren().add(anchorPane);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
+    private boolean checkIfUserHasIngredients(Recipe recipe) {
+        //Iterer gjennom inventory og sjekk om brukeren har alle ingrediensene som trengs for å lage oppskriften
+        boolean returnValue = false;
+        try{
+            //HER KAN DET VÆRE FEIL
+            for (int i = 0; i < recipe.getIngredients().size(); i++) {
+                if (appUser.getInventory().getIngredients().containsKey(recipe.getIngredients().get(i))) {
+                    returnValue = true;
+                } else {
+                    returnValue = false;
+                    break;
+                }
+            }
+        } catch (NullPointerException e) {
+            System.out.println("User has no ingredients");
+        }
+
+        System.out.println("User has ingredients: " + returnValue);
+        return returnValue;
+    }
 
     @Override
     public void anActiveRecipeRemoved(Recipe recipe) {

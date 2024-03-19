@@ -27,20 +27,11 @@
                   <Font name="Comic Sans MS" size="21.0" />
                </font>
             </Text>
-            <HBox alignment="CENTER" maxWidth="-Infinity" onMouseClicked="#buyAndMake" prefHeight="77.0" prefWidth="423.0" style="-fx-background-color: green; -fx-border-color: black;">
+            <HBox fx:id="buyAndMakeButton" alignment="CENTER" maxWidth="-Infinity" onMouseClicked="#buyAndMake" prefHeight="77.0" prefWidth="423.0" style="-fx-background-color: green; -fx-border-color: black;">
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Kjøp alle ingrediensene fra handlelista, og lag!">
                      <font>
                         <Font name="Comic Sans MS Bold" size="16.0" />
-                     </font>
-                  </Text>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#changeShoppingList" prefHeight="60.0" prefWidth="421.0" style="-fx-background-color: gray; -fx-border-color: black;">
-               <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Endre på Handlelista">
-                     <font>
-                        <Font name="Comic Sans MS Bold" size="18.0" />
                      </font>
                   </Text>
                </children>
