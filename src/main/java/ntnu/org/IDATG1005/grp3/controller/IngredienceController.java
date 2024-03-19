@@ -107,6 +107,11 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
             // If 'allCheckBox' is now selected, unselect 'favoriteCheckBox'
             if (isNowSelected) {
                 favoriteCheckBox.setSelected(false);
+            } else {
+                // Prevent unchecking 'allCheckBox' if 'favoriteCheckBox' is not checked
+                if (!favoriteCheckBox.isSelected()) {
+                    allCheckBox.setSelected(true);
+                }
             }
             displayIngredients();
         });
@@ -115,6 +120,11 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
             // If 'favoriteCheckBox' is now selected, unselect 'allCheckBox'
             if (isNowSelected) {
                 allCheckBox.setSelected(false);
+            } else {
+                // Prevent unchecking 'favoriteCheckBox' if 'allCheckBox' is not checked
+                if (!allCheckBox.isSelected()) {
+                    favoriteCheckBox.setSelected(true);
+                }
             }
             displayIngredients();
         });
