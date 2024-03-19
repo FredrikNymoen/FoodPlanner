@@ -62,7 +62,7 @@ public class Popup_buyShoppingListController implements Initializable {
 
     @FXML
     public void buyAndMake() {
-        listener1.buyAndMake(recipe);
+
         if(!hasIngredients) {
             //Iterer gjennom hvilke ingredienser brukeren har, legg til de ingrediensene som mangler, også fjern alle ingrediensene som brukes i retten
 
@@ -76,6 +76,7 @@ public class Popup_buyShoppingListController implements Initializable {
             appUser.getShoppingCartRecipes().remove(recipe);
             appUser.getChosenRecipes().remove(recipe);
         }
+        listener1.buyAndMake(recipe);
     }
 
     @FXML

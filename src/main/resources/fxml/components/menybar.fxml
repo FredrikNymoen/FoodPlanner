@@ -23,7 +23,7 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="500.0" HBox.hgrow="ALWAYS">
          <children>
-            <HBox alignment="CENTER" prefHeight="60.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
+            <HBox alignment="CENTER" onKeyPressed="#recipes" prefHeight="60.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Oppskrifter">
                      <font>
@@ -32,7 +32,7 @@
                   </Text>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="60.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
+            <HBox alignment="CENTER" onKeyPressed="#ingredients" prefHeight="60.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingredienser">
                      <font>
@@ -41,7 +41,7 @@
                   </Text>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="60.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
+            <HBox alignment="CENTER" onKeyPressed="#shoppingList" prefHeight="60.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Handleliste">
                      <font>
@@ -50,7 +50,7 @@
                   </Text>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="60.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
+            <HBox alignment="CENTER" onKeyPressed="#activeRecipes" prefHeight="60.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Aktive oppskrifter">
                      <font>
