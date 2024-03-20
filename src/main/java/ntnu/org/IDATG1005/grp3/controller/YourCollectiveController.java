@@ -22,15 +22,22 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ntnu.org.IDATG1005.grp3.application.MainApp;
+import ntnu.org.IDATG1005.grp3.dao.implementations.HouseholdDaoImpl;
+import ntnu.org.IDATG1005.grp3.dao.implementations.UserDaoImpl;
+import ntnu.org.IDATG1005.grp3.exception.db.HouseholdExceptions.HouseholdNotFoundException;
 import ntnu.org.IDATG1005.grp3.interfaces.LoginDisplayListener;
+import ntnu.org.IDATG1005.grp3.interfaces.NewProfileListener;
 import ntnu.org.IDATG1005.grp3.model.objects.Household;
 import ntnu.org.IDATG1005.grp3.model.objects.Ingredient;
 import ntnu.org.IDATG1005.grp3.model.objects.Inventory;
 import ntnu.org.IDATG1005.grp3.model.objects.InventoryIngredient;
 import ntnu.org.IDATG1005.grp3.model.objects.User;
+import ntnu.org.IDATG1005.grp3.service.HouseholdService;
+import ntnu.org.IDATG1005.grp3.service.UserService;
 
 
-public class YourCollectiveController implements Initializable, LoginDisplayListener {
+public class YourCollectiveController implements Initializable, LoginDisplayListener,
+    NewProfileListener {
 
   @FXML
   private HBox profileContainer;
@@ -41,39 +48,54 @@ public class YourCollectiveController implements Initializable, LoginDisplayList
   @FXML
   private AnchorPane rootPane;
 
+  private final UserService us = new UserService(new UserDaoImpl());
+  private final HouseholdService hs = new HouseholdService(new HouseholdDaoImpl());
+
   @FXML
-  void addUserToCollective(MouseEvent event) {
-    System.out.println("addUserToCollective");
+  void addUser(){
+    try {
+      FXMLLoader loader = new FXMLLoader();
+      loader.setLocation(getClass().getResource("/fxml/views/createProfilePage.fxml"));
+      AnchorPane anchorPane = loader.load();
+      CreateProfileController createProfileController = loader.getController();
+      createProfileController.setNewProfileListener(this);
+      rootPane.getChildren().add(anchorPane);
+
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
-  /*@FXML
-  void leaveCollective(MouseEvent event) {
-    System.out.println("leaveCollective");
-  }*/
-
-  public void getData(){
-    appUser = new User(1, "test", "test");
-
-    Household household = new Household(1, "test", "Oisann");
-    household.addUser(appUser);
-    household.addUser(new User(2, "test2", "test2"));
-
-
-    appUser.setHousehold(household);
-  }
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     System.out.println("YourCollectiveController initialized");
-    getData();
+    collectiveCode.setText(appUser.getHousehold().getJoinCode());
+
+    System.out.println(appUser.getHousehold().getUsers().size());
+    try {
+      System.out.println(hs.findHouseholdByJoinCode(appUser.getHousehold().getJoinCode()).getUsers().size());
+    } catch (HouseholdNotFoundException e) {
+      throw new RuntimeException(e);
+    };
+
+    //getData();
 
     displayUsers();
   }
 
   private void displayUsers() {
-    profileContainer.getChildren().clear();
+    System.out.println("HALLAHHALLA");
+    System.out.println(appUser.getHousehold().getUsers().size());
+    try {
+      System.out.println(hs.findHouseholdByJoinCode(appUser.getHousehold().getJoinCode()).getUsers().size()); //FUNKER IKKE
+    } catch (HouseholdNotFoundException e) {
+    };
 
+
+    profileContainer.getChildren().clear();
     for (User user : appUser.getHousehold().getUsers()) {
+      System.out.println(user.getUsername() + " " + user.getPassword());
       try {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(
@@ -116,6 +138,12 @@ public class YourCollectiveController implements Initializable, LoginDisplayList
     System.out.println("leaveCollective");
     appUser.getHousehold().removeUser(appUser);
     appUser.setHousehold(null);
+    try {
+      us.saveUserHousehold(appUser);
+      hs.findHouseholdByJoinCode(collectiveCode.getText()).removeUser(appUser);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
     System.out.println("halla");
 
     try{
@@ -131,6 +159,11 @@ public class YourCollectiveController implements Initializable, LoginDisplayList
     catch (IOException e){
       e.printStackTrace();
     }
+  }
+
+  @Override
+  public void onNewProfile() {
+    displayUsers();
   }
 
 }

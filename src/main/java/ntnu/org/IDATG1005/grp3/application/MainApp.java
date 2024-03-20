@@ -25,7 +25,7 @@ public class MainApp extends Application {
   @Override
   public void start(Stage primaryStage) throws Exception {
     MainApp.primaryStage = primaryStage;
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/views/yourCollectivePage.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/views/startScreen.fxml"));
 
     Parent root = loader.load();
 

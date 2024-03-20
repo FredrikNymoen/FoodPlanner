@@ -12,13 +12,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="288.0" prefWidth="299.0" style="-fx-background-color: white; -fx-border-radius: 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" >
+<AnchorPane fx:id="rootPane" prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: rgba(0, 0, 0, 0.7);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.org.IDATG1005.grp3.controller.CreateProfileController">
    <children>
-      <AnchorPane layoutX="85.0" layoutY="6.0" prefHeight="119.0" prefWidth="66.0">
+      <AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="288.0" prefWidth="300.0" style="-fx-background-color: white; -fx-border-radius: 10;" AnchorPane.bottomAnchor="82.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="80.0">
          <children>
-            <AnchorPane layoutX="22.0" layoutY="1.0" prefHeight="86.0" prefWidth="86.0" style="-fx-background-color: #29ff21; -fx-background-radius: 100;">
+            <AnchorPane layoutX="107.0" layoutY="35.0" maxHeight="86.0" maxWidth="86.0" prefHeight="86.0" prefWidth="86.0" style="-fx-background-color: #29ff21; -fx-background-radius: 100;">
                <children>
-                  <ImageView fitHeight="66.0" fitWidth="61.0" layoutX="17.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="-1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="8.0">
                      <image>
                         <Image url="@/images/persons.png" />
                      </image>
@@ -28,34 +28,30 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <Text layoutX="1.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rediger bilde" textAlignment="CENTER" wrappingWidth="129.0">
+            <PasswordField fx:id="password" layoutX="27.0" layoutY="208.0" prefHeight="25.0" prefWidth="247.0" promptText="Passord" />
+            <Button layoutX="27.0" layoutY="242.0" mnemonicParsing="false" onAction="#createUser" prefHeight="25.0" prefWidth="247.0" style="-fx-background-color: rgb(0,180,0);" text="Lag bruker" textFill="WHITE">
                <font>
-                  <Font size="17.0" />
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Text layoutX="26.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passord" wrappingWidth="86.0">
+               <font>
+                  <Font size="15.0" />
                </font>
             </Text>
+            <Pane layoutX="7.0" layoutY="6.0" onMouseClicked="#exitCreateUser" prefHeight="29.0" prefWidth="30.0">
+               <children>
+                  <Line endX="-30.122772216796875" endY="-1.1320724487304688" layoutX="54.0" layoutY="25.0" startX="-48.121337890625" startY="-19.121322631835938" strokeWidth="3.0" />
+                  <Line endX="-30.122772216796875" endY="-1.1320724487304688" layoutX="54.0" layoutY="26.0" nodeOrientation="RIGHT_TO_LEFT" startX="-48.121337890625" startY="-19.121322631835938" strokeWidth="3.0" />
+               </children>
+            </Pane>
+            <Text layoutX="26.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Navn" wrappingWidth="86.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+            <TextField fx:id="username" layoutX="27.0" layoutY="160.0" prefHeight="25.0" prefWidth="247.0" promptText="Navn" />
          </children>
       </AnchorPane>
-      <PasswordField fx:id="password" layoutX="27.0" layoutY="205.0" prefHeight="25.0" prefWidth="247.0" promptText="Passord" />
-      <Button layoutX="27.0" layoutY="236.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="247.0" style="-fx-background-color: rgb(0,180,0);" text="Lag bruker" textFill="WHITE">
-         <font>
-            <Font size="15.0" />
-         </font></Button>
-      <Text layoutX="26.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passord" wrappingWidth="86.0">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Text>
-      <Pane layoutX="253.0" layoutY="6.0" prefHeight="39.0" prefWidth="41.0">
-         <children>
-            <Line endX="-20.878662109375" endY="6.0" layoutX="55.0" layoutY="25.0" rotate="90.0" startX="-48.121337890625" startY="-19.121322631835938" strokeWidth="3.0" />
-            <Line endX="-20.878662109375" endY="6.0" layoutX="54.0" layoutY="25.0" startX="-48.121337890625" startY="-19.121322631835938" strokeWidth="3.0" />
-         </children>
-      </Pane>
-      <Text layoutX="26.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Navn" wrappingWidth="86.0">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Text>
-      <TextField fx:id="username" layoutX="27.0" layoutY="160.0" prefHeight="25.0" prefWidth="247.0" promptText="Navn" />
    </children>
 </AnchorPane>

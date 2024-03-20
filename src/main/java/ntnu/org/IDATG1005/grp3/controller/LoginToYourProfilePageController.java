@@ -14,7 +14,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import ntnu.org.IDATG1005.grp3.application.MainApp;
+import ntnu.org.IDATG1005.grp3.dao.implementations.UserDaoImpl;
+import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.AuthenticationFailedException;
 import ntnu.org.IDATG1005.grp3.model.objects.User;
+import ntnu.org.IDATG1005.grp3.service.UserService;
 
 public class LoginToYourProfilePageController {
 
@@ -27,8 +30,9 @@ public class LoginToYourProfilePageController {
   @FXML
   private AnchorPane rootPane;
   private User user;
+  private final UserService us = new UserService(new UserDaoImpl());
 
-  public void setData(User user){
+  public void setData(User user) {
     this.user = user;
     profileUsername.setText(user.getUsername());
   }
@@ -42,27 +46,31 @@ public class LoginToYourProfilePageController {
 
   @FXML
   void loggInn(MouseEvent event) {
-    if (user.getPassword().equals(checkPassword.getText())){
-      try{
+    //if (user.getPassword().equals(checkPassword.getText()))
+    try {
+      if (us.authenticateUser(user.getUsername(), checkPassword.getText()) != null){
         MainApp.appUser = user;
         checkPassword.setStyle("-fx-border-color: green");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/views/recipeScreenPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(
+            getClass().getResource("/fxml/views/recipeScreenPage.fxml"));
         Parent root = loader.load();
         // Create a new scene with the loaded content
         Scene scene = new Scene(root);
         // Get the current stage and set the new scene
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
-
       }
-      catch (IOException e){
-        e.printStackTrace();
+      else{
+        checkPassword.setStyle("-fx-border-color: red");
       }
-    }
-    else{
+    } catch (IOException e) {
+      e.printStackTrace();
+    } catch (AuthenticationFailedException e) {
       checkPassword.setStyle("-fx-border-color: red");
     }
+
+
   }
 
 }

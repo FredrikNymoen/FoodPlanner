@@ -11,7 +11,7 @@
 
 <AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: rgba(0,0,0,0.5);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.org.IDATG1005.grp3.controller.YourCollectiveController">
    <children>
-      <ImageView fitHeight="487.0" fitWidth="1059.0" layoutX="-173.0" opacity="0.55" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="450.0" fitWidth="800.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@/images/bakgrunnsbilde_mat.jpg" />
          </image>
@@ -32,9 +32,9 @@
          </font>
       </Label>
       <HBox fx:id="profileContainer" alignment="CENTER" layoutX="-4.0" layoutY="136.0" prefHeight="131.0" prefWidth="806.0" style="-fx-spacing: 0;" />
-      <AnchorPane layoutX="362.0" layoutY="272.0" prefHeight="65.0" prefWidth="69.0" style="-fx-background-color: #69A94F; -fx-background-radius: 100; -fx-border-color: #92C37D; -fx-border-radius: 100; -fx-border-width: 2;">
+      <AnchorPane layoutX="362.0" layoutY="272.0" onMouseClicked="#addUser" prefHeight="65.0" prefWidth="69.0" style="-fx-background-color: #69A94F; -fx-background-radius: 100; -fx-border-color: #92C37D; -fx-border-radius: 100; -fx-border-width: 2;">
          <children>
-            <ImageView fitHeight="65.0" fitWidth="69.0" onMouseReleased="#addUserToCollective" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+            <ImageView fitHeight="65.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
                <image>
                   <Image url="@/images/plus.png" />
                </image>
