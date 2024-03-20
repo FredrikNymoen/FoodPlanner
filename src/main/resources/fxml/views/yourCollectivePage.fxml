@@ -6,61 +6,78 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: rgba(0,0,0,0.5);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: rgba(0,0,0,0.5);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.org.IDATG1005.grp3.controller.YourCollectiveController">
    <children>
-      <ImageView fitHeight="536.0" fitWidth="973.0" layoutX="-173.0" opacity="0.55" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="450.0" fitWidth="800.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@/images/bakgrunnsbilde_mat.jpg" />
          </image>
       </ImageView>
-      <Pane layoutX="-6.0" layoutY="22.0" prefHeight="43.0" prefWidth="810.0" style="-fx-background-color: rgb(0,190,0);">
-         <children>
-            <Text fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Matplanleggern" wrappingWidth="171.13671875">
-               <font>
-                  <Font size="23.0" />
-               </font>
-            </Text>
-            <Text fill="WHITE" layoutX="624.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ditt kollektiv" wrappingWidth="171.13671874999997">
-               <font>
-                  <Font size="23.0" />
-               </font>
-            </Text>
-         </children>
-      </Pane>
-      <Pane layoutX="-9.0" layoutY="-9.0" prefHeight="31.0" prefWidth="810.0" style="-fx-background-color: grey;" />
-      <Text fill="WHITE" layoutX="200.0" layoutY="388.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kollektivets kode: " wrappingWidth="191.13671875">
+      <Text fill="WHITE" layoutX="227.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kollektivets kode: " wrappingWidth="191.13671875">
          <font>
             <Font size="23.0" />
          </font>
       </Text>
-      <Button layoutX="302.0" layoutY="401.0" mnemonicParsing="false" onMouseReleased="#leaveCollective" prefHeight="35.0" prefWidth="178.0" style="-fx-background-color: rgb(0,200,0); -fx-background-radius: 10;" text="Forlat kollektiv" textFill="#f80e0e">
+      <Button layoutX="310.0" layoutY="403.0" mnemonicParsing="false" onAction="#leaveCollective" prefHeight="35.0" prefWidth="178.0" style="-fx-background-color: #69A94F; -fx-background-radius: 10; -fx-border-color: red; -fx-border-radius: 10;" text="Forlat kollektiv" textFill="#f80e0e">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Label layoutX="411.0" layoutY="362.0" prefHeight="17.0" prefWidth="114.0" text="42MH08E3" textFill="WHITE">
+      <Label fx:id="collectiveCode" layoutX="433.0" layoutY="362.0" prefHeight="28.0" prefWidth="164.0" text="42MH08E3" textFill="WHITE">
          <font>
             <Font size="23.0" />
          </font>
       </Label>
-      <HBox fx:id="profileContainer" alignment="CENTER" layoutX="-4.0" layoutY="126.0" prefHeight="131.0" prefWidth="800.0" style="-fx-spacing: 25" />
-      <AnchorPane layoutX="363.0" layoutY="258.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="77.0" prefWidth="75.0">
+      <HBox fx:id="profileContainer" alignment="CENTER" layoutX="-4.0" layoutY="136.0" prefHeight="131.0" prefWidth="806.0" style="-fx-spacing: 0;" />
+      <AnchorPane layoutX="362.0" layoutY="272.0" onMouseClicked="#addUser" prefHeight="65.0" prefWidth="69.0" style="-fx-background-color: #69A94F; -fx-background-radius: 100; -fx-border-color: #92C37D; -fx-border-radius: 100; -fx-border-width: 2;">
          <children>
-            <AnchorPane layoutX="1.0" prefHeight="65.0" prefWidth="60.0" style="-fx-background-color: #29ff21; -fx-background-radius: 100;">
+            <ImageView fitHeight="65.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+               <image>
+                  <Image url="@/images/plus.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="800.0" spacing="10.0" style="-fx-background-color: #69A94F;">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="192.0" HBox.hgrow="ALWAYS">
                <children>
-                  <ImageView fitHeight="65.0" fitWidth="69.0" layoutY="1.0" onMouseReleased="#addUserToCollective" pickOnBounds="true" preserveRatio="true">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text=" Matplanleggeren ">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <ImageView fitHeight="36.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@/images/plus.png" />
+                        <Image url="@../../images/Kniv_Gaffel_ikon.png" />
                      </image>
                   </ImageView>
                </children>
-            </AnchorPane>
-            <Text layoutX="-11.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til bruker" textAlignment="CENTER" wrappingWidth="97.0" />
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="500.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox prefHeight="60.0" prefWidth="100.0" HBox.hgrow="SOMETIMES" />
+                  <HBox prefHeight="60.0" prefWidth="100.0" HBox.hgrow="SOMETIMES" />
+                  <HBox prefHeight="60.0" prefWidth="100.0" HBox.hgrow="SOMETIMES" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="175.0">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Ditt kollektiv   ">
+                           <font>
+                              <Font name="Comic Sans MS" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
          </children>
-      </AnchorPane>
+      </HBox>
    </children>
 </AnchorPane>
