@@ -99,27 +99,51 @@ public class HouseholdDaoImpl implements HouseholdDao {
 
 
   /**
-   * Updates the details of an existing household.
+   * Updates the name of an existing household.
    *
-   * @param household The household to update with new values for name and/or join code.
+   * @param household The household to update with a new name.
    * @return true if the update was successful, false otherwise.
    */
   @Override
-  public boolean updateHousehold(Household household) {
-    String sql = "UPDATE household SET name = ?, join_code = ? WHERE household_id = ?";
+  public boolean updateHouseholdName(Household household) {
+    String sql = "UPDATE household SET name = ? WHERE household_id = ?";
     try (Connection conn = DatabaseConnection.getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
       pstmt.setString(1, household.getName());
-      pstmt.setString(2, household.getJoinCode());
-      pstmt.setInt(3, household.getHouseholdId());
+      pstmt.setInt(2, household.getHouseholdId());
 
-      // Execute the update
+      // execute the update
       int affectedRows = pstmt.executeUpdate();
 
       return affectedRows > 0;
     } catch (SQLException e) {
-      logger.log(Level.SEVERE, "There was an error updating the household", e);
+      logger.log(Level.SEVERE, "There was an error updating the household name", e);
+      return false;
+    }
+  }
+
+  /**
+   * Updates the join code of an existing household.
+   *
+   * @param household The household to update with a new join code.
+   * @return true if the update was successful, false otherwise.
+   */
+  @Override
+  public boolean updateHouseholdJoinCode(Household household) {
+    String sql = "UPDATE household SET join_code = ? WHERE household_id = ?";
+    try (Connection conn = DatabaseConnection.getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+      pstmt.setString(1, household.getJoinCode());
+      pstmt.setInt(2, household.getHouseholdId());
+
+      // execute the update
+      int affectedRows = pstmt.executeUpdate();
+
+      return affectedRows > 0;
+    } catch (SQLException e) {
+      logger.log(Level.SEVERE, "There was an error updating the household join code", e);
       return false;
     }
   }
