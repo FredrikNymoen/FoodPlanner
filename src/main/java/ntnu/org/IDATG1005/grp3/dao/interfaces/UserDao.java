@@ -71,4 +71,6 @@ public interface UserDao {
   void saveUserHousehold(Integer userId, Integer householdId);
 
   void saveChosenRecipes(Integer userId, List<Recipe> recipeList);
+
+  void deleteUser(Integer userId);
 }
