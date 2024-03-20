@@ -16,14 +16,6 @@ public interface HouseholdDao {
   Household createHousehold();
 
   /**
-   * Updates the name of an existing household.
-   *
-   * @param h The household to update.
-   * @return true if the update succeeds, false otherwise.
-   */
-  boolean updateHousehold(Household h);
-
-  /**
    * Finds a household by its join code.
    *
    * @param joinCode The join code of the household to find.
@@ -31,4 +23,10 @@ public interface HouseholdDao {
    * @throws HouseholdNotFoundException if the join code is not found.
    */
   Household findHouseholdByJoinCode(String joinCode) throws HouseholdNotFoundException;
+
+  boolean updateHouseholdName(Household household);
+
+  boolean updateHouseholdJoinCode(Household household);
+
+  boolean refreshUsers(Household household);
 }
