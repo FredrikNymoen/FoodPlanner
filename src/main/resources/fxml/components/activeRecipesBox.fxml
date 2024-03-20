@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="activeRecipeBox" minHeight="-Infinity" prefHeight="182.0" prefWidth="669.0" style="-fx-background-color: rgba(0,0,0,0.7); -fx-border-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="activeRecipeBox" minHeight="-Infinity" prefHeight="182.0" prefWidth="669.0" style="-fx-background-color: rgba(0,0,0,0.7); -fx-border-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.org.IDATG1005.grp3.controller.ActiveRecipeBoxController">
    <children>
       <ImageView fx:id="recipeImage" fitHeight="113.0" fitWidth="165.0" layoutX="19.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true" style="visibility: 100;">
          <image>
@@ -23,12 +23,12 @@
             </Text>
          </children>
       </Pane>
-      <Button fx:id="lagdFerdigButton" layoutX="194.0" layoutY="56.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="449.0" style="-fx-background-color: green;" text="Lagd ferdig" textFill="WHITE">
+      <Button fx:id="lagdFerdigButton" layoutX="194.0" layoutY="56.0" mnemonicParsing="false" onMouseClicked="#recipeMade" prefHeight="66.0" prefWidth="449.0" style="-fx-background-color: green;" text="Lagd ferdig" textFill="WHITE">
          <font>
             <Font size="21.0" />
          </font>
       </Button>
-      <Button fx:id="fjernButton" layoutX="194.0" layoutY="129.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="449.0" style="-fx-background-color: red;" text="Fjern" textFill="WHITE">
+      <Button fx:id="fjernButton" layoutX="194.0" layoutY="129.0" mnemonicParsing="false" onMouseClicked="#removeRecipe" prefHeight="39.0" prefWidth="449.0" style="-fx-background-color: red;" text="Fjern" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>
