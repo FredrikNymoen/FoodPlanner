@@ -70,12 +70,15 @@ public class EditIngredientBoxController {
     boolean isInInventory = false;
     InventoryIngredient foundInventoryIngredient = null;
 
+    try{
     for (InventoryIngredient inventoryIngredient : appUser.getInventory().getIngredients().values()) {
       if (inventoryIngredient.getIngredient().getName().equals(ingredient.getName())) {
         isInInventory = true;
         foundInventoryIngredient = inventoryIngredient;
         break; // Exit the loop as soon as you find the ingredient.
       }
+    }
+    }catch (NullPointerException e){
     }
 
     if (isInInventory && foundInventoryIngredient != null) {
@@ -136,10 +139,13 @@ public class EditIngredientBoxController {
       int amountToAdd = Integer.parseInt(editTextField.getText());
       inventoryIngredient.setQuantity(inventoryIngredient.getQuantity() + amountToAdd);
 
-      if(appUser.getInventory().getIngredients().get(inventoryIngredient.getIngredient()) != null){
-        appUser.getInventory().getIngredients().get(inventoryIngredient.getIngredient()).setQuantity(inventoryIngredient.getQuantity());
-      }
-      else {
+      try {
+        if (appUser.getInventory().getIngredients().get(inventoryIngredient.getIngredient())
+            != null) {
+          appUser.getInventory().getIngredients().get(inventoryIngredient.getIngredient())
+              .setQuantity(inventoryIngredient.getQuantity());
+        }
+      } catch (NullPointerException e) {
         appUser.getInventory().getIngredients().put(inventoryIngredient.getIngredient(),inventoryIngredient);
       }
 

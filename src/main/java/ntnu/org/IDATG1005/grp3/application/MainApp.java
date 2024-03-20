@@ -22,6 +22,10 @@ public class MainApp extends Application {
 
   public static Stage primaryStage;
 
+  public static synchronized void updateAppUser(User newUser) {
+    MainApp.appUser = newUser;
+  }
+
   @Override
   public void start(Stage primaryStage) throws Exception {
     MainApp.primaryStage = primaryStage;

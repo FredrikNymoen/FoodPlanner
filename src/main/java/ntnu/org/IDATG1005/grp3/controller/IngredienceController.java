@@ -36,7 +36,9 @@ import javafx.util.Duration;
 import ntnu.org.IDATG1005.grp3.Main;
 import ntnu.org.IDATG1005.grp3.application.MainApp;
 import ntnu.org.IDATG1005.grp3.dao.implementations.IngredientDaoImpl;
+import ntnu.org.IDATG1005.grp3.dao.implementations.UserDaoImpl;
 import ntnu.org.IDATG1005.grp3.dao.interfaces.IngredientDao;
+import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.AuthenticationFailedException;
 import ntnu.org.IDATG1005.grp3.interfaces.EditBoxDisplayListener;
 import ntnu.org.IDATG1005.grp3.interfaces.ItemRemovalListener;
 import ntnu.org.IDATG1005.grp3.interfaces.OnIngredientUpdateListener;
@@ -46,6 +48,7 @@ import ntnu.org.IDATG1005.grp3.model.objects.InventoryIngredient;
 import ntnu.org.IDATG1005.grp3.model.objects.MeasurementUnit;
 import ntnu.org.IDATG1005.grp3.model.objects.User;
 import ntnu.org.IDATG1005.grp3.service.IngredientService;
+import ntnu.org.IDATG1005.grp3.service.UserService;
 
 public class IngredienceController implements Initializable, EditBoxDisplayListener,
     OnIngredientUpdateListener {
@@ -78,6 +81,8 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
     private final IngredientDao ingredientDao = new IngredientDaoImpl();
     private final IngredientService ingredientService = new IngredientService(ingredientDao);
 
+    private final UserService us = new UserService(new UserDaoImpl());
+
 
     public void getData(){
         appUser = new User(1, "test", "test");
@@ -94,11 +99,13 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("IngredienceController");
+        System.out.println(appUser.getHousehold().getUsers());
+        //System.out.println(appUser.getInventory().getIngredients().size());
         setupGlobalClickListener();
         initializeSearchBar();
         initializeCheckBoxes();
 
-        getData();
+        //getData();
         displayIngredients();
     }
 
@@ -210,13 +217,16 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
 
     private InventoryIngredient isIngredientInInventory(Ingredient ingredient) {
         InventoryIngredient invIngredient = null;
-        for (InventoryIngredient inventoryIngredient : appUser.getInventory().getIngredients().values()) {
-            if (inventoryIngredient.getIngredient().getName().equals(ingredient.getName())) {
-                System.out.println("Ingredient is in inventory");
-                invIngredient = inventoryIngredient;
+        try {
+            for (InventoryIngredient inventoryIngredient : appUser.getInventory().getIngredients()
+                .values()) {
+                if (inventoryIngredient.getIngredient().getName().equals(ingredient.getName())) {
+                    System.out.println("Ingredient is in inventory");
+                    invIngredient = inventoryIngredient;
+                }
             }
+        } catch (NullPointerException e) {
         }
-
         return invIngredient;
     }
 
@@ -289,8 +299,13 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
         if(favoriteCheckBox.isSelected()){
             invIngredients = filterFavorites();
         } else{
-            Collection<InventoryIngredient> inventoryIngredients = appUser.getInventory().getIngredients().values();
-            invIngredients = new ArrayList<>(inventoryIngredients);
+            try {
+                Collection<InventoryIngredient> inventoryIngredients = appUser.getInventory()
+                    .getIngredients().values();
+                invIngredients = new ArrayList<>(inventoryIngredients);
+            } catch (NullPointerException e) {
+                invIngredients = new ArrayList<>();
+            }
         }
 
         grid.getChildren().clear(); // Clear existing items from the grid

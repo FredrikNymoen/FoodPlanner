@@ -85,18 +85,14 @@ public class YourCollectiveController implements Initializable, LoginDisplayList
   }
 
   private void displayUsers() {
-    System.out.println("HALLAHHALLA");
-    System.out.println(appUser.getHousehold().getUsers().size());
-    try {
-      System.out.println(hs.findHouseholdByJoinCode(appUser.getHousehold().getJoinCode()).getUsers().size()); //FUNKER IKKE
-    } catch (HouseholdNotFoundException e) {
-    };
-
+    System.out.println("HALLAHHALLAHALLAHALLA");
 
     profileContainer.getChildren().clear();
-    for (User user : appUser.getHousehold().getUsers()) {
-      System.out.println(user.getUsername() + " " + user.getPassword());
-      try {
+    try {
+    for (User user : hs.findHouseholdByJoinCode(appUser.getHousehold().getJoinCode()).getUsers()) {
+
+      System.out.println(user.getUsername() + " " + user.getPassword() + " " + user.getHousehold().getUsers() + " " + user.getInventory().getIngredients().size());
+
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(
             getClass().getResource("/fxml/components/profilePicture.fxml"));
@@ -105,11 +101,12 @@ public class YourCollectiveController implements Initializable, LoginDisplayList
         profilePictureController.setData(user);
         profilePictureController.setLoginDisplayListener(this);
 
-
         profileContainer.getChildren().add(anchorPane);
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
+    }
+    } catch (IOException e) {
+      e.printStackTrace();
+    } catch (HouseholdNotFoundException e) {
+      e.printStackTrace();
     }
   }
 
@@ -136,11 +133,17 @@ public class YourCollectiveController implements Initializable, LoginDisplayList
   @FXML
   void leaveCollective(ActionEvent event) {
     System.out.println("leaveCollective");
-    appUser.getHousehold().removeUser(appUser);
-    appUser.setHousehold(null);
+    Household h = null;
     try {
+      h = hs.findHouseholdByJoinCode(appUser.getHousehold().getJoinCode());
+      h.getUsers().remove(appUser);
+    } catch (HouseholdNotFoundException e) {
+      System.out.println("Household not found");
+    }
+    //appUser.getHousehold().removeUser(appUser);
+    try {
+      hs.refreshHouseholdUsers(h);
       us.saveUserHousehold(appUser);
-      hs.findHouseholdByJoinCode(collectiveCode.getText()).removeUser(appUser);
     } catch (Exception e) {
       e.printStackTrace();
     }

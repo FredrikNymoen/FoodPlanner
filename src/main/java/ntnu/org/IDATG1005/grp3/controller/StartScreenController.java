@@ -51,7 +51,7 @@ public class StartScreenController {
         createTemporaryUser();
         Household h = hs.findHouseholdByJoinCode(collectiveCodeField.getText());
         MainApp.appUser.setHousehold(h);
-        us.saveUserHousehold(MainApp.appUser);
+        //us.saveUserHousehold(MainApp.appUser);
 
         FXMLLoader loader = new FXMLLoader(
             getClass().getResource("/fxml/views/yourCollectivePage.fxml"));
@@ -65,32 +65,9 @@ public class StartScreenController {
     }catch (HouseholdNotFoundException e) {
       collectiveCodeField.setStyle("-fx-border-color: red");
     } catch (IOException e) {
-      e.printStackTrace();
+      System.out.println("Error");
     }
-
   }
-
-
-  /*public void updateUser() {
-    try {
-      try{
-        MainApp.appUser = us.registerUser(generateRandomString(8),generateRandomString(8));
-      }
-      catch (UsernameAlreadyExistsException e) {
-        updateUser();
-      }
-
-      Household h = hs.findHouseholdByJoinCode(collectiveCodeField.getText());
-
-      h.addUser(MainApp.appUser);
-      MainApp.appUser.setHousehold(h);
-
-      us.saveUserHousehold(MainApp.appUser);
-
-    } catch (HouseholdNotFoundException e) {
-      e.printStackTrace();
-    }
-  }*/
 
   public String generateRandomString(int length) {
     String allowedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -123,11 +100,12 @@ public class StartScreenController {
 
   public void registerCollective(){
     Household h = hs.createHousehold();
-    h.addUser(MainApp.appUser);
-    MainApp.appUser.setHousehold(h);
+    //h.addUser(MainApp.appUser);
     h.setJoinCode(generateRandomString(8));
-    hs.updateHouseholdDetails(h);
-    us.saveUserHousehold(MainApp.appUser);
+    MainApp.appUser.setHousehold(h);
+    hs.updateHouseholdJoinCode(h);
+    //us.saveUserHousehold(MainApp.appUser);
+    //hs.refreshHouseholdUsers(h);
   }
 
 

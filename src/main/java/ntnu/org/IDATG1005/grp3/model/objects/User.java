@@ -2,6 +2,7 @@ package ntnu.org.IDATG1005.grp3.model.objects;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -31,6 +32,7 @@ public class User {
     this.shoppingList = new ArrayList<>();
     this.chosenRecipes = new ArrayList<>();
     this.shoppingCartRecipes = new ArrayList<>();
+    this.inventory = new Inventory(new HashMap<>());
   }
 
   /**
