@@ -167,6 +167,12 @@ public class User {
     return chosenRecipes;
   }
 
+  public void setChosenRecipes(List<Recipe> recipes) {
+    chosenRecipes = recipes;
+  }
+
+
+  // I think this needs to go
   public List<Recipe> getShoppingCartRecipes() {
     return shoppingCartRecipes;
   }

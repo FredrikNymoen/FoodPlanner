@@ -96,7 +96,7 @@ public class MainCheeky {
     Household household = hs.createHousehold();
 
     household.setJoinCode("newJoin");
-    hs.updateHouseholdDetails(household);
+    hs.updateHouseholdJoinCode(household);
 
     MainApp.appUser.setHousehold(household);
     userService.saveUserHousehold(MainApp.appUser);

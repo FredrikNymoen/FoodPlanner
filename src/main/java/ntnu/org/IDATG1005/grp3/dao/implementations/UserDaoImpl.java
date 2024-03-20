@@ -1,6 +1,5 @@
 package ntnu.org.IDATG1005.grp3.dao.implementations;
 
-import com.google.protobuf.ProtocolStringList;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import de.mkammerer.argon2.Argon2Factory.Argon2Types;
@@ -14,16 +13,21 @@ import java.util.Set;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import ntnu.org.IDATG1005.grp3.application.MainApp;
 import ntnu.org.IDATG1005.grp3.dao.interfaces.UserDao;
 import ntnu.org.IDATG1005.grp3.db.DatabaseConnection;
 import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.AuthenticationFailedException;
 import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.UsernameAlreadyExistsException;
+import ntnu.org.IDATG1005.grp3.model.objects.Direction;
 import ntnu.org.IDATG1005.grp3.model.objects.Household;
 import ntnu.org.IDATG1005.grp3.model.objects.Ingredient;
 import ntnu.org.IDATG1005.grp3.model.objects.Inventory;
 import ntnu.org.IDATG1005.grp3.model.objects.InventoryIngredient;
 import ntnu.org.IDATG1005.grp3.model.objects.MeasurementUnit;
 import ntnu.org.IDATG1005.grp3.model.objects.Recipe;
+import ntnu.org.IDATG1005.grp3.model.objects.RecipeInfo;
+import ntnu.org.IDATG1005.grp3.model.objects.RecipeIngredient;
+import ntnu.org.IDATG1005.grp3.model.objects.Tag;
 import ntnu.org.IDATG1005.grp3.model.objects.User;
 
 /**
@@ -83,12 +87,13 @@ public class UserDaoImpl implements UserDao {
         int householdId = rs.getInt("household_id");
         String storedHash = rs.getString("password"); // fetch the stored hash
 
-        // Verify the password with the stored hash
+        // verify the password with the stored hash
         if (verifyPassword(password, storedHash)) {
           User user = new User(userId, userUsername, null);
           user.setHousehold(
               setHouseholdIfPartOf(householdId)); // check if user is part of a household
           user.setInventory(setInventoryIfExists(userId));
+          user.setChosenRecipes(setChosenRecipesIfExists(userId));
 
           return user;
         } else {
@@ -251,6 +256,40 @@ public class UserDaoImpl implements UserDao {
     }
 
     return inventory;
+  }
+
+  private List<Recipe> setChosenRecipesIfExists(Integer userId) {
+    List<Recipe> recipes = new ArrayList<>();
+
+    // fetch recipe ids associated with user
+    String sql = "SELECT recipe_id " +
+        "FROM user_recipe " +
+        "WHERE user_id = ?";
+
+    try (Connection conn = DatabaseConnection.getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+      pstmt.setInt(1, userId);
+      ResultSet rs = pstmt.executeQuery();
+
+      // collect all recipe ids
+      Set<Integer> recipeIdsForUser = new HashSet<>();
+      while (rs.next()) {
+        int recipeId = rs.getInt("recipe_id");
+        recipeIdsForUser.add(recipeId);
+      }
+
+      // filter MainApp.appRecipes by the collected recipe ids
+      for (Recipe recipe : MainApp.appRecipes) {
+        if (recipeIdsForUser.contains(recipe.getRecipeId())) {
+          recipes.add(recipe);
+        }
+      }
+    } catch (SQLException e) {
+      logger.log(Level.SEVERE, "SQL error on fetching user's recipes", e);
+    }
+
+    return recipes;
   }
 
   /**
