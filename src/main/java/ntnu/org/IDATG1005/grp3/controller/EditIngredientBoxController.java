@@ -139,15 +139,15 @@ public class EditIngredientBoxController {
       int amountToAdd = Integer.parseInt(editTextField.getText());
       inventoryIngredient.setQuantity(inventoryIngredient.getQuantity() + amountToAdd);
 
-      try {
         if (appUser.getInventory().getIngredients().get(inventoryIngredient.getIngredient())
             != null) {
           appUser.getInventory().getIngredients().get(inventoryIngredient.getIngredient())
               .setQuantity(inventoryIngredient.getQuantity());
         }
-      } catch (NullPointerException e) {
-        appUser.getInventory().getIngredients().put(inventoryIngredient.getIngredient(),inventoryIngredient);
-      }
+        else {
+          appUser.getInventory().getIngredients().put(inventoryIngredient.getIngredient(),inventoryIngredient);
+        }
+
 
       if (updateListener != null) {
         updateListener.onIngredientUpdate();

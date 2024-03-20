@@ -50,9 +50,9 @@ public class LoginToYourProfilePageController {
     try {
       if (us.authenticateUser(user.getUsername(), checkPassword.getText()) != null){
         //MainApp.updateAppUser(user);
-        System.out.println(MainApp.appUser.getUsername() + " " + MainApp.appUser.getPassword() + " " + MainApp.appUser.getHousehold().getUsers());
-        System.out.println("OIOIOIIOOI");
-        System.out.println(MainApp.appUser.getInventory().getIngredients().size());
+        //System.out.println(MainApp.appUser.getUsername() + " " + MainApp.appUser.getPassword() + " " + MainApp.appUser.getInventory().getIngredients());
+        //System.out.println("OIOIOIIOOI");
+        //System.out.println(MainApp.appUser.getInventory().getIngredients().size());
 
         checkPassword.setStyle("-fx-border-color: green");
         FXMLLoader loader = new FXMLLoader(

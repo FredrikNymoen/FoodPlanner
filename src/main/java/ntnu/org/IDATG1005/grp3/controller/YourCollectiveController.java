@@ -91,7 +91,7 @@ public class YourCollectiveController implements Initializable, LoginDisplayList
     try {
     for (User user : hs.findHouseholdByJoinCode(appUser.getHousehold().getJoinCode()).getUsers()) {
 
-      System.out.println(user.getUsername() + " " + user.getPassword() + " " + user.getHousehold().getUsers() + " " + user.getInventory().getIngredients().size());
+      System.out.println(user.getUsername() + " " + user.getPassword() +  " " + user.getInventory().getIngredients().size());
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(

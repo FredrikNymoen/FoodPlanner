@@ -18,6 +18,8 @@ public class Recipe {
   private Integer personsAdults;
   private Integer personsChildren;
 
+  private boolean beenBought = false;
+
   /**
    * Constructs a Recipe with specified details.
    *
@@ -120,6 +122,14 @@ public class Recipe {
 
   public Integer getRecipeId(){
     return recipeId;
+  }
+
+  public void changeBoughtStatus() {
+    this.beenBought = !this.beenBought;
+  }
+
+  public boolean getBeenBought() {
+    return this.beenBought;
   }
 
 }

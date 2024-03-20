@@ -16,8 +16,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ntnu.org.IDATG1005.grp3.application.MainApp;
+import ntnu.org.IDATG1005.grp3.dao.implementations.UserDaoImpl;
 import ntnu.org.IDATG1005.grp3.interfaces.RecipeChangedListener;
 import ntnu.org.IDATG1005.grp3.model.objects.Recipe;
+import ntnu.org.IDATG1005.grp3.service.UserService;
 
 public class ChoseRecipeController {
   private Recipe recipe;
@@ -49,6 +51,8 @@ public class ChoseRecipeController {
   private Text recipeName;
   private RecipeChangedListener recipeChangedListener;
 
+  private final UserService us = new UserService(new UserDaoImpl());
+
     public ChoseRecipeController() {
 
     }
@@ -68,6 +72,8 @@ public class ChoseRecipeController {
   }
   @FXML
   public void chooseRecipe(){
+    System.out.println("BJØRNEN");
+    System.out.println(appUser.getChosenRecipes().size());
     if(appUser.getChosenRecipes().contains(recipe)){
       appUser.removeChosenRecipe(recipe);
       chose.setStyle("-fx-background-color: #00b400cc");
@@ -78,6 +84,8 @@ public class ChoseRecipeController {
       chose.setStyle("-fx-background-color: #f00");
       chose.setText("Remove");
     }
+    System.out.println(appUser.getChosenRecipes().size());
+    us.saveChosenRecipes(appUser);
   }
   @FXML
   public void showingRecipe() {
@@ -105,6 +113,7 @@ public class ChoseRecipeController {
       recipeChangedListener.onRecipeChanged(recipe);
     }
     System.out.println("added");
+    us.saveChosenRecipes(appUser);
   }
 
   public void setRecipeChangedListener(RecipeChangedListener recipeChangedListener){
