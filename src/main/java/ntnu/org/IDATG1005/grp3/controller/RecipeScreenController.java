@@ -31,16 +31,16 @@ public class RecipeScreenController implements Initializable, RecipeChangedListe
     private Text recipeName;
     private ImageView recipeImage;
 
-    public RecipeScreenController() {
+    /*public RecipeScreenController() {
         intializeRecipeList();
-    }
+    }*/
 
-    public static synchronized RecipeScreenController getInstance() {
+    /*public static synchronized RecipeScreenController getInstance() {
         if (instance == null) {
             instance = new RecipeScreenController();
         }
         return instance;
-    }
+    }*/
 
     @Override
     public void initialize(URL location, ResourceBundle resourceBundle) {
@@ -74,9 +74,9 @@ public class RecipeScreenController implements Initializable, RecipeChangedListe
         //choseRecipeComponent.close();
     }
 
-    public void intializeRecipeList(){
+    /*public void intializeRecipeList(){
         appUser = new User(1, "test", "test");
-    }
+    }*/
 
     @Override
     public void onRecipeChanged(Recipe recipe) {

@@ -15,12 +15,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import ntnu.org.IDATG1005.grp3.dao.implementations.UserDaoImpl;
 import ntnu.org.IDATG1005.grp3.interfaces.*;
 import ntnu.org.IDATG1005.grp3.model.objects.Recipe;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import ntnu.org.IDATG1005.grp3.model.objects.User;
+import ntnu.org.IDATG1005.grp3.service.UserService;
 
 //Controller for the activeRecipesBox.fxml file
 public class ActiveRecipesController implements Initializable, ActiveRecipeRemovalListener, ActiveRecipeMadeListener, ActiveRecipePopupBuyMake {
@@ -36,23 +38,21 @@ public class ActiveRecipesController implements Initializable, ActiveRecipeRemov
     private Parent root;
     private ArrayList<Node> activeRecipesList = new ArrayList<>();
 
+    private final UserService us = new UserService(new UserDaoImpl());
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        getData();
+        //getData();
         System.out.println("ActiveRecipesController initialized");
         displayActiveRecipes();
     }
 
-    private void getData() {
+   /* private void getData() {
         appUser = new User(1, "test", "test");
         appUser.addChosenRecipe(appRecipes.get(0));
         appUser.addChosenRecipe(appRecipes.get(1));
-
-        System.out.println("Oppskrifter i brukerens aktive oppskrifter listen:");
-        for (int i = 0; i < appUser.getChosenRecipes().size(); i++) {
-            System.out.println(appUser.getChosenRecipes().get(i).getRecipeInfo().getTitle());
-        }
-    }
+    }*/
 
     public void displayActiveRecipes(){
         recipeHolder.getChildren().clear();
@@ -83,12 +83,14 @@ public class ActiveRecipesController implements Initializable, ActiveRecipeRemov
     private void madeRecipe(Recipe recipe) {
         //check if user has the nessaary ingredients
         //if run different methods based on if user has the ingredients or not
-        boolean hasIngredients = checkIfUserHasIngredients(recipe);
+        /*boolean hasIngredients = checkIfUserHasIngredients(recipe);
         hasIngredients = false; // MÅ FJERNES
 
-        if (hasIngredients) {
-            appUser.getShoppingCartRecipes().remove(recipe);
+         */
+
+        if (recipe.getBeenBought()) {
             appUser.getChosenRecipes().remove(recipe);
+            us.saveChosenRecipes(appUser);
             displayActiveRecipes();
         } else {
             //open popup to buy ingredients
@@ -101,7 +103,7 @@ public class ActiveRecipesController implements Initializable, ActiveRecipeRemov
 
             AnchorPane anchorPane = loader.load();
             Popup_buyShoppingListController controller = loader.getController();
-            controller.setData(recipe, hasIngredients);
+            controller.setData(recipe, recipe.getBeenBought());
             controller.setActiveRecipePopupBuyMakeListener(this);
             popupHolder.getChildren().add(anchorPane);
         } catch (IOException e) {
@@ -109,7 +111,7 @@ public class ActiveRecipesController implements Initializable, ActiveRecipeRemov
         }
     }
 
-    private boolean checkIfUserHasIngredients(Recipe recipe) {
+    /*private boolean checkIfUserHasIngredients(Recipe recipe) {
         //Iterer gjennom inventory og sjekk om brukeren har alle ingrediensene som trengs for å lage oppskriften
         boolean returnValue = false;
         try{
@@ -128,7 +130,7 @@ public class ActiveRecipesController implements Initializable, ActiveRecipeRemov
 
         System.out.println("User has ingredients: " + returnValue);
         return returnValue;
-    }
+    }*/
 
     @Override
     public void anActiveRecipeRemoved(Recipe recipe) {

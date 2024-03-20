@@ -225,7 +225,7 @@ public class UserDaoImpl implements UserDao {
     return null;
   }
 
-  private Inventory setInventoryIfExists(Integer userId) {
+  public Inventory setInventoryIfExists(Integer userId) {
     Inventory inventory = new Inventory(new HashMap<>()); // initialize an empty Inventory
 
     // fetch inventory items for the user
@@ -258,7 +258,7 @@ public class UserDaoImpl implements UserDao {
     return inventory;
   }
 
-  private List<Recipe> setChosenRecipesIfExists(Integer userId) {
+  public List<Recipe> setChosenRecipesIfExists(Integer userId) {
     List<Recipe> recipes = new ArrayList<>();
 
     // fetch recipe ids associated with user
