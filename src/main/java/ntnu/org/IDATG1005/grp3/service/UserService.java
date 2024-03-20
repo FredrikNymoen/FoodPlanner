@@ -134,4 +134,14 @@ public class UserService {
       throw new IllegalArgumentException("Username cannot exceed " + MAX_USERNAME_LENGTH + " characters.");
     }
   }
+
+  /**
+   * Deletes a user from the database.
+   * The user object becomes null!
+   *
+   * @param user to be deleted (null)
+   */
+  public void deleteUser(User user) {
+    userDao.deleteUser(user.getUserId());
+  }
 }
