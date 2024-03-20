@@ -47,6 +47,11 @@ public class ActiveRecipesController implements Initializable, ActiveRecipeRemov
         appUser = new User(1, "test", "test");
         appUser.addChosenRecipe(appRecipes.get(0));
         appUser.addChosenRecipe(appRecipes.get(1));
+
+        System.out.println("Oppskrifter i brukerens aktive oppskrifter listen:");
+        for (int i = 0; i < appUser.getChosenRecipes().size(); i++) {
+            System.out.println(appUser.getChosenRecipes().get(i).getRecipeInfo().getTitle());
+        }
     }
 
     public void displayActiveRecipes(){
