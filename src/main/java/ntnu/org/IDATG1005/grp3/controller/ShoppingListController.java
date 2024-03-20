@@ -17,17 +17,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
-import ntnu.org.IDATG1005.grp3.application.MainApp;
+import ntnu.org.IDATG1005.grp3.dao.implementations.UserDaoImpl;
+import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.FailedToLoadInventoryException;
 import ntnu.org.IDATG1005.grp3.interfaces.ShoppingListRecipeRemovalListener;
-import ntnu.org.IDATG1005.grp3.model.objects.Ingredient;
-import ntnu.org.IDATG1005.grp3.model.objects.Inventory;
 import ntnu.org.IDATG1005.grp3.model.objects.InventoryIngredient;
-import ntnu.org.IDATG1005.grp3.model.objects.MeasurementUnit;
 import ntnu.org.IDATG1005.grp3.model.objects.Recipe;
 import ntnu.org.IDATG1005.grp3.model.objects.RecipeIngredient;
 import ntnu.org.IDATG1005.grp3.model.objects.ShoppingListIngredient;
-import ntnu.org.IDATG1005.grp3.model.objects.User;
+import ntnu.org.IDATG1005.grp3.service.UserService;
 
 public class ShoppingListController implements Initializable, ShoppingListRecipeRemovalListener {
 
@@ -41,16 +38,18 @@ public class ShoppingListController implements Initializable, ShoppingListRecipe
   private Map<ShoppingListIngredient, AnchorPane> ingredientUIMap = new HashMap<>();
   private Map<Recipe, HBox> chosenRecipeUIMap = new HashMap<>();
 
+  private final UserService us = new UserService(new UserDaoImpl());
 
 
-  public void getData(){
+
+  /*public void getData(){
     appUser = new User(1, "test", "test");
     Ingredient ingredient1 = new Ingredient(1, "Tomat", "", MeasurementUnit.STK);
 
     Inventory inventory = new Inventory(new HashMap<>());
     inventory.getIngredients().put(ingredient1, new InventoryIngredient(ingredient1, 5.0));
     appUser.setInventory(inventory);
-  }
+  }*/
 
   public void fillShoppingList(){
     appUser.getShoppingList().clear();
@@ -77,11 +76,11 @@ public class ShoppingListController implements Initializable, ShoppingListRecipe
 
   @Override
   public void initialize(URL location, ResourceBundle resources){
-    getData();
-
-    appUser.addChosenRecipe(MainApp.appRecipes.get(0));
-    appUser.addChosenRecipe(MainApp.appRecipes.get(1));
-    appUser.addChosenRecipe(MainApp.appRecipes.get(2));
+    //getData();
+    System.out.println(appUser.getChosenRecipes());
+    //appUser.addChosenRecipe(MainApp.appRecipes.get(0));
+    //appUser.addChosenRecipe(MainApp.appRecipes.get(1));
+    //appUser.addChosenRecipe(MainApp.appRecipes.get(2));
 
     displayShoppingList();
     displayChosenRecipes();
@@ -89,6 +88,10 @@ public class ShoppingListController implements Initializable, ShoppingListRecipe
 
   public void displayChosenRecipes(){
     List<Recipe> shoppingCartRecipes = appUser.getShoppingCartRecipes();
+    System.out.println("UGLER");
+    System.out.println(shoppingCartRecipes.size());
+    System.out.println(appUser.getShoppingCartRecipes().size());
+    System.out.println(appUser.getChosenRecipes().size());
     chosenRecipesGrid.getChildren().clear(); // Clear existing items from the grid
     int column = 0;
     int row = 1;
@@ -152,6 +155,7 @@ public class ShoppingListController implements Initializable, ShoppingListRecipe
   public void onRecipeRemoved(Recipe recipe) {
     appUser.getChosenRecipes().remove(recipe);
     chosenRecipesGrid.getChildren().remove(chosenRecipeUIMap.get(recipe));
+    us.saveChosenRecipes(appUser);
     chosenRecipeUIMap.remove(recipe);
     displayChosenRecipes();
     displayShoppingList();
@@ -162,8 +166,16 @@ public class ShoppingListController implements Initializable, ShoppingListRecipe
     for (ShoppingListIngredient ingredient : appUser.getShoppingList()) {
       appUser.getInventory().addIngredient(ingredient);
     }
+    for (Recipe recipe : appUser.getShoppingCartRecipes()) {
+      recipe.changeBoughtStatus();
+    }
+    try {
+      us.saveUserInventory(appUser);
+    } catch (FailedToLoadInventoryException e) {
+      throw new RuntimeException(e);
+    }
+    us.saveChosenRecipes(appUser);
 
-    appUser.getShoppingCartRecipes().clear();
     displayChosenRecipes();
     displayShoppingList();
     System.out.println(appUser.getInventory().getIngredients().size());
