@@ -101,7 +101,8 @@ public class UserService {
     if (user == null) {
       throw new IllegalArgumentException("User cannot be null.");
     }
-    userDao.saveUserHousehold(user.getUserId(), user.getHousehold().getHouseholdId());
+    Integer householdId = (user.getHousehold() != null) ? user.getHousehold().getHouseholdId() : null;
+    userDao.saveUserHousehold(user.getUserId(), householdId);
   }
 
   /**
