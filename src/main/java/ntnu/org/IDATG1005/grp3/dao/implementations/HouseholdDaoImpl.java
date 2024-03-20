@@ -8,6 +8,7 @@ import ntnu.org.IDATG1005.grp3.db.DatabaseConnection;
 import ntnu.org.IDATG1005.grp3.exception.db.HouseholdExceptions.HouseholdNotFoundException;
 import ntnu.org.IDATG1005.grp3.model.objects.Household;
 import ntnu.org.IDATG1005.grp3.model.objects.User;
+import ntnu.org.IDATG1005.grp3.service.UserService;
 import ntnu.org.IDATG1005.grp3.utility.Utility;
 
 /**
@@ -152,7 +153,7 @@ public class HouseholdDaoImpl implements HouseholdDao {
 
   @Override
   public boolean refreshUsers(Household household) {
-    String sql = "SELECT user_id, username " +
+    String sql = "SELECT user_id, username, household_id " + // Include household_id in your query
         "FROM user " +
         "WHERE household_id = ?";
 
@@ -160,17 +161,20 @@ public class HouseholdDaoImpl implements HouseholdDao {
         PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
       pstmt.setInt(1, household.getHouseholdId());
-
-      // execute the query
       ResultSet rs = pstmt.executeQuery();
-
-      // clear all users
-      household.getUsers().clear();
+      household.getUsers().clear(); // clear users before repopulating
 
       while (rs.next()) {
         int userId = rs.getInt("user_id");
         String username = rs.getString("username");
-        household.getUsers().add(new User(userId, username, null));
+
+        User user = new User(userId, username, null);
+        user.setHousehold(household);
+
+        user.setInventory(new UserDaoImpl().setInventoryIfExists(userId));
+        user.setChosenRecipes(new UserDaoImpl().setChosenRecipesIfExists(userId));
+
+        household.getUsers().add(user);
       }
 
       return !household.getUsers().isEmpty();
