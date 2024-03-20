@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 import ntnu.org.IDATG1005.grp3.interfaces.RecipeChangedListener;
 import ntnu.org.IDATG1005.grp3.model.objects.Ingredient;
 import ntnu.org.IDATG1005.grp3.model.objects.Recipe;
+import ntnu.org.IDATG1005.grp3.model.objects.User;
 
 public class ChoseRecipeController implements Initializable {
 
@@ -78,6 +79,7 @@ public class ChoseRecipeController implements Initializable {
     checkIngredients();
   }
 
+
   @FXML
   public void chooseRecipe() {
     if (appUser.getChosenRecipes().contains(recipe)) {
@@ -96,8 +98,9 @@ public class ChoseRecipeController implements Initializable {
     try {
       FXMLLoader loader = new FXMLLoader(
           getClass().getResource("/fxml/components/showingRecipe.fxml"));
-      loader.setController(ShowingRecipeController.getInstance());
       Parent root = loader.load();
+      ShowingRecipeController controller = loader.getController();
+      controller.setData(recipe);
 
       Stage showingRecipe = new Stage();
 

@@ -47,7 +47,7 @@ public class RecipeScreenController implements Initializable, RecipeChangedListe
 
     @Override
     public void initialize(URL location, ResourceBundle resourceBundle) {
-        intializeUser();
+        initializeUser();
         displayRecipes();
     }
 
@@ -77,7 +77,7 @@ public class RecipeScreenController implements Initializable, RecipeChangedListe
         //choseRecipeComponent.close();
     }
 
-    public void intializeUser(){
+    public void initializeUser(){
         appUser = new User(1, "test", "test");
         Ingredient ingredient1 = MainApp.appIngredients.get(0);
         Ingredient ingredient2 = MainApp.appIngredients.get(1);
