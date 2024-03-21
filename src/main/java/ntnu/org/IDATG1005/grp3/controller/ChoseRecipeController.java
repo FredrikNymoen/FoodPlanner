@@ -92,15 +92,12 @@ public class ChoseRecipeController implements Initializable {
       chose.setText("Remove");
     }
   }
-
-  @FXML
   public void showingRecipe() {
     try {
       FXMLLoader loader = new FXMLLoader(
           getClass().getResource("/fxml/components/showingRecipe.fxml"));
+      loader.setController(ShowingRecipeController.getInstance());
       Parent root = loader.load();
-      ShowingRecipeController controller = loader.getController();
-      controller.setData(recipe);
 
       Stage showingRecipe = new Stage();
 
@@ -108,7 +105,6 @@ public class ChoseRecipeController implements Initializable {
 
       showingRecipe.setScene(scene);
       showingRecipe.show();
-      LoginToYourProfilePageController.getInstance().setPrimaryStage(showingRecipe);
     } catch (IOException e) {
       e.printStackTrace();
     }
