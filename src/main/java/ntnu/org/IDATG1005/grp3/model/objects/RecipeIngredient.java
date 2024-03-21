@@ -1,18 +1,17 @@
 package ntnu.org.IDATG1005.grp3.model.objects;
 
 /**
- * Represents an ingredient used in a recipe, detailing the ingredient, its measurement unit,
- * and the amount used. Each recipe ingredient is uniquely identified by a recipeIngredientId.
+ * Defines an ingredient's amount in a recipe.
  */
 public class RecipeIngredient extends AbstractIngredientDetail {
+
   private Integer amount;
 
   /**
-   * Constructs a RecipeIngredient with specified details including its unique ID, the ingredient
-   * used, the unit of measurement, and the amount of the ingredient.
+   * Initializes with ingredient and amount.
    *
-   * @param ingredient         The ingredient object used in the recipe.
-   * @param amount             The amount of the ingredient used in the recipe.
+   * @param ingredient The ingredient.
+   * @param amount     Ingredient amount for the recipe.
    */
   public RecipeIngredient(Ingredient ingredient, Integer amount) {
     super(ingredient);
@@ -20,23 +19,28 @@ public class RecipeIngredient extends AbstractIngredientDetail {
   }
 
   /**
-   * Gets the amount of the ingredient used in the recipe.
+   * Returns ingredient amount.
    *
-   * @return The amount of the ingredient.
+   * @return Ingredient amount.
    */
   public Integer getAmount() {
     return amount;
   }
 
   /**
-   * Sets the amount of the ingredient used in the recipe.
+   * Updates ingredient amount.
    *
-   * @param amount The new amount of the ingredient to be used.
+   * @param amount New ingredient amount.
    */
   public void setAmount(Integer amount) {
     this.amount = amount;
   }
 
+  /**
+   * Returns ingredient's unit of measure.
+   *
+   * @return Measurement unit.
+   */
   public MeasurementUnit getUnit() {
     return ingredient.getUnit();
   }
