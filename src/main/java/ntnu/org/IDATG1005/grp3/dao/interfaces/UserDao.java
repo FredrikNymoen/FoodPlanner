@@ -6,6 +6,8 @@ import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.AuthenticationFailedE
 import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.UsernameAlreadyExistsException;
 import ntnu.org.IDATG1005.grp3.model.objects.Inventory;
 import ntnu.org.IDATG1005.grp3.model.objects.InventoryIngredient;
+import ntnu.org.IDATG1005.grp3.model.objects.Recipe;
+import ntnu.org.IDATG1005.grp3.model.objects.ShoppingListIngredient;
 import ntnu.org.IDATG1005.grp3.model.objects.User;
 
 /**
@@ -67,4 +69,8 @@ public interface UserDao {
    * @param householdId id of the household to connect the user to.
    */
   void saveUserHousehold(Integer userId, Integer householdId);
+
+  void saveChosenRecipes(Integer userId, List<Recipe> recipeList);
+
+  void deleteUser(Integer userId);
 }

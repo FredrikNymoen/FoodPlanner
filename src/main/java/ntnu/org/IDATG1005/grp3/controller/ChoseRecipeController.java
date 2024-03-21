@@ -92,8 +92,6 @@ public class ChoseRecipeController implements Initializable {
       chose.setText("Remove");
     }
   }
-
-  @FXML
   public void showingRecipe() {
     try {
       FXMLLoader loader = new FXMLLoader(
@@ -108,7 +106,6 @@ public class ChoseRecipeController implements Initializable {
 
       showingRecipe.setScene(scene);
       showingRecipe.show();
-      LoginToYourProfilePageController.getInstance().setPrimaryStage(showingRecipe);
     } catch (IOException e) {
       e.printStackTrace();
     }

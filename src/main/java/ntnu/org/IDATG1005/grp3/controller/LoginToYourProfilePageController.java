@@ -7,64 +7,74 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import ntnu.org.IDATG1005.grp3.application.MainApp;
+import ntnu.org.IDATG1005.grp3.dao.implementations.UserDaoImpl;
+import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.AuthenticationFailedException;
+import ntnu.org.IDATG1005.grp3.model.objects.User;
+import ntnu.org.IDATG1005.grp3.service.UserService;
 
 public class LoginToYourProfilePageController {
 
-  private static LoginToYourProfilePageController instance;
   @FXML
   private PasswordField checkPassword;
-  private Stage primaryStage;
 
-  private LoginToYourProfilePageController() {
+  @FXML
+  private Text profileUsername;
 
+  @FXML
+  private AnchorPane rootPane;
+  private User user;
+  private final UserService us = new UserService(new UserDaoImpl());
+
+  public void setData(User user) {
+    this.user = user;
+    profileUsername.setText(user.getUsername());
   }
 
-  public static synchronized LoginToYourProfilePageController getInstance() {
-    if (instance == null) {
-      instance = new LoginToYourProfilePageController();
-    }
-    return instance;
+  @FXML
+  void exitLoginPage(MouseEvent event) {
+    // Assuming rootPane's parent is a type of Pane
+    Pane parent = (Pane) rootPane.getParent();
+    parent.getChildren().remove(rootPane);
   }
 
-  public void loginToExistingUser(MouseEvent mouseEvent) {
-    if (checkPassword.getText().isEmpty()) {
-      System.out.println("Please fill in all fields");
-    } else {
-      System.out.println(checkPassword.getText());
-      Stage LoginToProfile = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-      LoginToProfile.close();
-      try {
+  @FXML
+  void loggInn(MouseEvent event) {
+    //if (user.getPassword().equals(checkPassword.getText()))
+    try {
+      if (us.authenticateUser(user.getUsername(), checkPassword.getText()) != null){
+        //MainApp.updateAppUser(user);
+        //System.out.println(MainApp.appUser.getUsername() + " " + MainApp.appUser.getPassword() + " " + MainApp.appUser.getInventory().getIngredients());
+        //System.out.println("OIOIOIIOOI");
+        //System.out.println(MainApp.appUser.getInventory().getIngredients().size());
+
+        checkPassword.setStyle("-fx-border-color: green");
         FXMLLoader loader = new FXMLLoader(
             getClass().getResource("/fxml/views/recipeScreenPage.fxml"));
-
-        //loader.setController(recipeScreenController.getInstance());
         Parent root = loader.load();
-
+        // Create a new scene with the loaded content
         Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-      } catch (IOException e) {
-        e.printStackTrace();
+        // Get the current stage and set the new scene
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
       }
+      else{
+        checkPassword.setStyle("-fx-border-color: red");
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    } catch (AuthenticationFailedException e) {
+      checkPassword.setStyle("-fx-border-color: red");
     }
 
-  }
-
-  public void exitUser(MouseEvent mouseEvent) {
-    Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-    stage.close();
-  }
-
-  /*public void closeYourColletive(joinCollectiveController joinCollectiveController){
-    ntnu.org.IDATG1005.grp3.controller.joinCollectiveController.getInstance().closeCurrentScene();
 
   }
 
-   */
-  public void setPrimaryStage(Stage primaryStage) {
-    this.primaryStage = primaryStage;
-  }
 }

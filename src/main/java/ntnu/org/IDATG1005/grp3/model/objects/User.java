@@ -2,6 +2,7 @@ package ntnu.org.IDATG1005.grp3.model.objects;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -15,7 +16,6 @@ public class User {
   private Household household;
   private List<ShoppingListIngredient> shoppingList;
   private List<Recipe> chosenRecipes;
-  private List<Recipe> shoppingCartRecipes;
 
   /**
    * Constructs a new User with the specified ID, username, email, and password.
@@ -30,7 +30,7 @@ public class User {
     this.password = password;
     this.shoppingList = new ArrayList<>();
     this.chosenRecipes = new ArrayList<>();
-    this.shoppingCartRecipes = new ArrayList<>();
+    this.inventory = new Inventory(new HashMap<>());
   }
 
   /**
@@ -154,20 +154,33 @@ public class User {
   }
 
   public void addChosenRecipe(Recipe recipe) {
-    chosenRecipes.add(recipe);
-    shoppingCartRecipes.add(recipe);
+    if(!chosenRecipes.contains(recipe)){
+      chosenRecipes.add(recipe);
+    }
   }
 
   public void removeChosenRecipe(Recipe recipe) {
     chosenRecipes.remove(recipe);
-    shoppingCartRecipes.remove(recipe);
   }
 
   public List<Recipe> getChosenRecipes() {
     return chosenRecipes;
   }
 
+  public void setChosenRecipes(List<Recipe> recipes) {
+    chosenRecipes = recipes;
+  }
+
+
+  // I think this needs to go
   public List<Recipe> getShoppingCartRecipes() {
+    List<Recipe> shoppingCartRecipes = new ArrayList<>();
+    for (Recipe recipe : this.chosenRecipes) {
+      if (!recipe.getBeenBought()){
+        shoppingCartRecipes.add(recipe);
+      }
+    }
     return shoppingCartRecipes;
   }
+
 }

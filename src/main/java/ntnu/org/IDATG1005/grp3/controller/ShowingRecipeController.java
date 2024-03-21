@@ -19,17 +19,8 @@ public class ShowingRecipeController implements Initializable {
     private Text recipeDescriptionTest;
     @FXML
     private Label recipeTitle;
-    private static ShowingRecipeController instance;
 
     public ShowingRecipeController() {
-
-    }
-
-    public static synchronized ShowingRecipeController getInstance() {
-        if (instance == null) {
-        instance = new ShowingRecipeController();
-        }
-        return instance;
     }
 
     @Override
@@ -41,6 +32,7 @@ public class ShowingRecipeController implements Initializable {
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         stage.close();
     }
+
     public void setData(Recipe recipe){
         recipeTitle.setText(recipe.getRecipeInfo().getTitle());
         StringBuilder ingredients = new StringBuilder();
@@ -48,11 +40,7 @@ public class ShowingRecipeController implements Initializable {
             ingredients.append(recipe.getIngredients().get(i).getIngredient().getName());
             ingredients.append(" ");
             ingredients.append(recipe.getIngredients().get(i).getAmount());
-            if(recipe.getIngredients().get(i).getAmount() > 10){
-                ingredients.append("g");
-            } else{
-                ingredients.append("stk");
-            }
+            ingredients.append(recipe.getIngredients().get(i).getUnit());
             ingredients.append("\n");
         }
         recipeIngredientsText.setText(ingredients.toString());

@@ -93,7 +93,6 @@ public class UserService {
     userDao.updatePassword(user.getUserId(), hashedPassword);
   }
 
-
   /**
    * Persists the household for a user.
    * @param user The user to associate with a household.
@@ -102,7 +101,19 @@ public class UserService {
     if (user == null) {
       throw new IllegalArgumentException("User cannot be null.");
     }
-    userDao.saveUserHousehold(user.getUserId(), user.getHousehold().getHouseholdId());
+    Integer householdId = (user.getHousehold() != null) ? user.getHousehold().getHouseholdId() : null;
+    userDao.saveUserHousehold(user.getUserId(), householdId);
+  }
+
+  /**
+   * Persists the household for a user.
+   * @param user The user to associate with a household.
+   */
+  public void saveChosenRecipes(User user) {
+    if (user == null) {
+      throw new IllegalArgumentException("User cannot be null.");
+    }
+    userDao.saveChosenRecipes(user.getUserId(), user.getChosenRecipes());
   }
 
   private String hashPassword(String password) {
@@ -122,5 +133,15 @@ public class UserService {
     if (username.length() > MAX_USERNAME_LENGTH) {
       throw new IllegalArgumentException("Username cannot exceed " + MAX_USERNAME_LENGTH + " characters.");
     }
+  }
+
+  /**
+   * Deletes a user from the database.
+   * The user object becomes null!
+   *
+   * @param user to be deleted (null)
+   */
+  public void deleteUser(User user) {
+    userDao.deleteUser(user.getUserId());
   }
 }

@@ -169,5 +169,6 @@
             <HBox layoutX="104.0" layoutY="41.0" prefHeight="29.0" prefWidth="551.0" style="-fx-background-color: #92C37D;" />
          </children>
       </Pane>
+      <fx:include source="../components/menybar-1utkast.fxml" />
    </children>
 </AnchorPane>

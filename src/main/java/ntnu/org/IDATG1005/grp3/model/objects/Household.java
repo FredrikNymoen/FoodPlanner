@@ -81,26 +81,4 @@ public class Household {
   public void setJoinCode(String joinCode) {
     this.joinCode = joinCode;
   }
-
-  /**
-   * Adds a user to the household.
-   *
-   * @param u The user to add.
-   */
-  public void addUser(User u) {
-    users.add(u);
-  }
-
-  /**
-   * Removes a user from the household.
-   *
-   * @param u The user to remove.
-   */
-  public void removeUser(User u) {
-    users.remove(u);
-  }
-
-  /*public boolean containsUser(String username){
-    return users.stream().anyMatch(user -> user.getUsername().equals(username));
-  }*/
 }

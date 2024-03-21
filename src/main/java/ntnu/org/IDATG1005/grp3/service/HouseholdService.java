@@ -39,12 +39,32 @@ public class HouseholdService {
   }
 
   /**
-   * Updates the details of an existing household.
+   * Refreshes the users of a specified household, updating its user list.
    *
-   * @param household The household to update with new values already set.
+   * @param household The household to refresh users for.
+   * @return true if the refresh was successful, false otherwise.
+   */
+  public boolean refreshHouseholdUsers(Household household) {
+    return householdDao.refreshUsers(household);
+  }
+
+  /**
+   * Updates the name of a given household.
+   *
+   * @param household The household to update.
    * @return true if the update was successful, false otherwise.
    */
-  public boolean updateHouseholdDetails(Household household) {
-    return householdDao.updateHousehold(household);
+  public boolean updateHouseholdName(Household household) {
+    return householdDao.updateHouseholdName(household);
+  }
+
+  /**
+   * Updates the join code of a given household.
+   *
+   * @param household The household to update.
+   * @return true if the update was successful, false otherwise.
+   */
+  public boolean updateHouseholdJoinCode(Household household) {
+    return householdDao.updateHouseholdJoinCode(household);
   }
 }
