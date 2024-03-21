@@ -57,6 +57,7 @@ public class ActiveRecipeBoxController implements Initializable {
   @FXML
   public void removeRecipe() {
     System.out.println("Recipe removed!");
+    recipe.setBeenBought(false);
     appUser.getChosenRecipes().remove(recipe);
 
     listener.anActiveRecipeRemoved(recipe);

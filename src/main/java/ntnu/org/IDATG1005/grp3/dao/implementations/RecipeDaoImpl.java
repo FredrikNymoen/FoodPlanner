@@ -62,7 +62,7 @@ public class RecipeDaoImpl implements RecipeDao {
         while (rs.next()) {
           ingredients.add(new RecipeIngredient(
               new Ingredient(rs.getInt("ingredient_id"), rs.getString("name"), rs.getString("image"), MeasurementUnit.fromId(rs.getInt("unit_id"))),
-              rs.getInt("amount")
+              rs.getDouble("amount")
           ));
         }
       }

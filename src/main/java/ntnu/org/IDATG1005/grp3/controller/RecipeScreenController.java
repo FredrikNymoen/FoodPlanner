@@ -22,7 +22,7 @@ import ntnu.org.IDATG1005.grp3.model.objects.User;
 
 
 public class RecipeScreenController implements Initializable, RecipeChangedListener {
-    private static RecipeScreenController instance;
+
     @FXML
     private VBox choseRecipeContainer;
     private Button lookRecipe;
@@ -30,17 +30,6 @@ public class RecipeScreenController implements Initializable, RecipeChangedListe
     private Label starLabel;
     private Text recipeName;
     private ImageView recipeImage;
-
-    /*public RecipeScreenController() {
-        intializeRecipeList();
-    }*/
-
-    /*public static synchronized RecipeScreenController getInstance() {
-        if (instance == null) {
-            instance = new RecipeScreenController();
-        }
-        return instance;
-    }*/
 
     @Override
     public void initialize(URL location, ResourceBundle resourceBundle) {
@@ -50,9 +39,7 @@ public class RecipeScreenController implements Initializable, RecipeChangedListe
 
     public void displayRecipes(){
         choseRecipeContainer.getChildren().clear();
-        System.out.println("Hei");
         for(Recipe recp : MainApp.appRecipes) {
-            System.out.println(recp.getFavoriteStatus());
             try{
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(
@@ -70,13 +57,7 @@ public class RecipeScreenController implements Initializable, RecipeChangedListe
                 e.printStackTrace();
             }
         }
-        //Stage choseRecipeComponent = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-        //choseRecipeComponent.close();
     }
-
-    /*public void intializeRecipeList(){
-        appUser = new User(1, "test", "test");
-    }*/
 
     @Override
     public void onRecipeChanged(Recipe recipe) {
