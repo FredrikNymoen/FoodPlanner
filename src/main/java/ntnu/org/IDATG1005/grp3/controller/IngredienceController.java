@@ -84,7 +84,7 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
     private final UserService us = new UserService(new UserDaoImpl());
 
 
-    public void getData(){
+    /*public void getData(){
         appUser = new User(1, "test", "test");
 
         Ingredient ingredient1 = MainApp.appIngredients.get(0);
@@ -94,7 +94,7 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
         inventory.getIngredients().put(ingredient1, new InventoryIngredient(ingredient1, 5.0));
         inventory.getIngredients().put(ingredient2, new InventoryIngredient(ingredient2, 4.0));
         appUser.setInventory(inventory);
-    }
+    }*/
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -178,11 +178,6 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
     private void displaySearchAlternatives(List<Ingredient> searchItems) throws IOException {
         ingredienceSearchGrid.getChildren().clear();
         String url = getClass().getResource("/images/Kniv_Gaffel_ikon.png").toString();
-
-        for (int i = 0; i < ingredientService.findAllIngredients().size(); i++){
-            System.out.println(ingredientService.findAllIngredients().get(i).getName());
-        }
-
 
         // Assume you have a list of ingredient alternatives to display
         for (int i = 0; i < searchItems.size(); i++) { // adding 3 alternatives
@@ -313,7 +308,6 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
         int row = 1;
         try {
             for (int i = 0; i < invIngredients.size(); i++) {
-                System.out.println(invIngredients.get(i) + " " + invIngredients.get(i).getFavoriteStatus());
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(
                     getClass().getResource("/fxml/components/ingredience_box.fxml"));
