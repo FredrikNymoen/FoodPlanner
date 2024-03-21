@@ -48,6 +48,7 @@ public class ShowingRecipeController implements Initializable {
             ingredients.append(recipe.getIngredients().get(i).getIngredient().getName());
             ingredients.append(" ");
             ingredients.append(recipe.getIngredients().get(i).getAmount());
+            ingredients.append(recipe.getIngredients().get(i).getUnit());
             ingredients.append("\n");
         }
         recipeIngredientsText.setText(ingredients.toString());
