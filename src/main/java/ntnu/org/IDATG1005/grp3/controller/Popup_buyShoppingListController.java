@@ -82,21 +82,24 @@ public class Popup_buyShoppingListController implements Initializable {
                 }
             }
             */
+
             for (RecipeIngredient recIngredient : recipe.getIngredients()) {
-                for (ShoppingListIngredient shopIngredient : appUser.getShoppingList()) {
+                appUser.getShoppingList().removeIf(shopIngredient -> {
                     if (recIngredient.getIngredient().getName().equals(shopIngredient.getIngredient().getName())) {
                         double newQuantity = shopIngredient.getQuantity() - recIngredient.getAmount();
                         if (newQuantity <= 0) {
-                            appUser.getShoppingList().remove(shopIngredient);
+                            return true; // Remove from shopping list if new quantity is less than or equal to zero
                         } else {
-                            shopIngredient.setQuantity(newQuantity);
+                            if (appUser.getInventory().getIngredients().containsKey(recIngredient.getIngredient())) {
+                                appUser.getInventory().getIngredients().get(recIngredient.getIngredient()).setQuantity(appUser.getInventory().getIngredients().get(recIngredient.getIngredient()).getQuantity() - recIngredient.getAmount());
+                            } else {
+                                shopIngredient.setQuantity(newQuantity); // Update quantity otherwise
+                            }
+                            return false; // Do not remove from shopping list
                         }
                     }
-                    else {
-                        double newQuantity = appUser.getInventory().getIngredients().get(recIngredient.getIngredient()).getQuantity() - recIngredient.getAmount();
-                        appUser.getInventory().getIngredients().get(recIngredient.getIngredient()).setQuantity(newQuantity);
-                    }
-                }
+                    return false; // Keep the ingredient in the shopping list if names do not match
+                });
             }
 
             appUser.getChosenRecipes().remove(recipe);

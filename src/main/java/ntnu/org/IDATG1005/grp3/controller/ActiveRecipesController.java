@@ -89,6 +89,7 @@ public class ActiveRecipesController implements Initializable, ActiveRecipeRemov
          */
 
         if (recipe.getBeenBought()) {
+            recipe.setBeenBought(false);
             appUser.getChosenRecipes().remove(recipe);
             us.saveChosenRecipes(appUser);
             displayActiveRecipes();
@@ -134,6 +135,7 @@ public class ActiveRecipesController implements Initializable, ActiveRecipeRemov
 
     @Override
     public void anActiveRecipeRemoved(Recipe recipe) {
+        us.saveChosenRecipes(appUser);
         displayActiveRecipes();
     }
 
