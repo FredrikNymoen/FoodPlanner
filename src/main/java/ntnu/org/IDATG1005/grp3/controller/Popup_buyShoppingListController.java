@@ -82,6 +82,13 @@ public class Popup_buyShoppingListController implements Initializable {
                 }
             }
             */
+            //buy the necessary ingredients from shopping list (this means removing the items that are requred for the recipe from sopping list and adding them to ingredient list)
+            // and use the ingredients from the inventory (this means removing the ingredients from the inventory)
+
+            //Konklusjon: Fjerner alle ingrediensene som brukes i retten fra handlelista, og fjerner alle ingrediensene som brukes i retten fra inventory (Husk å ha riktig antall)
+            //Spørsmål: Har vi en metode som flytter ingredienser fra handleliste til inventory?
+
+            System.out.println("The user does not have the required ingredients to make the recipe");
             for (RecipeIngredient recIngredient : recipe.getIngredients()) {
                 for (ShoppingListIngredient shopIngredient : appUser.getShoppingList()) {
                     if (recIngredient.getIngredient().getName().equals(shopIngredient.getIngredient().getName())) {

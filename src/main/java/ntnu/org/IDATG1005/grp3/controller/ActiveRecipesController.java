@@ -86,12 +86,15 @@ public class ActiveRecipesController implements Initializable, ActiveRecipeRemov
         /*boolean hasIngredients = checkIfUserHasIngredients(recipe);
         hasIngredients = false; // MÅ FJERNES
 
+
          */
 
         if (recipe.getBeenBought()) {
+            //Fjern aktive ingredienser fra inventory
             appUser.getChosenRecipes().remove(recipe);
             us.saveChosenRecipes(appUser);
             displayActiveRecipes();
+
         } else {
             //open popup to buy ingredients
             //openPopup(recipe);
