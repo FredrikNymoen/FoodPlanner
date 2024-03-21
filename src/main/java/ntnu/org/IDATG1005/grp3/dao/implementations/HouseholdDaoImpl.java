@@ -7,6 +7,8 @@ import ntnu.org.IDATG1005.grp3.dao.interfaces.HouseholdDao;
 import ntnu.org.IDATG1005.grp3.db.DatabaseConnection;
 import ntnu.org.IDATG1005.grp3.exception.db.HouseholdExceptions.HouseholdNotFoundException;
 import ntnu.org.IDATG1005.grp3.model.objects.Household;
+import ntnu.org.IDATG1005.grp3.model.objects.User;
+import ntnu.org.IDATG1005.grp3.service.UserService;
 import ntnu.org.IDATG1005.grp3.utility.Utility;
 
 /**
@@ -87,7 +89,9 @@ public class HouseholdDaoImpl implements HouseholdDao {
       ResultSet rs = pstmt.executeQuery();
 
       if (rs.next()) {
-        return new Household(rs.getInt("household_id"), rs.getString("name"), rs.getString("join_code"));
+        Household household = new Household(rs.getInt("household_id"), rs.getString("name"), rs.getString("join_code"));
+        refreshUsers(household); // retrieves users associated with the household
+        return household;
       } else {
         throw new HouseholdNotFoundException(joinCode);
       }
@@ -97,29 +101,85 @@ public class HouseholdDaoImpl implements HouseholdDao {
     return null;
   }
 
-
   /**
-   * Updates the details of an existing household.
+   * Updates the name of an existing household.
    *
-   * @param household The household to update with new values for name and/or join code.
+   * @param household The household to update with a new name.
    * @return true if the update was successful, false otherwise.
    */
   @Override
-  public boolean updateHousehold(Household household) {
-    String sql = "UPDATE household SET name = ?, join_code = ? WHERE household_id = ?";
+  public boolean updateHouseholdName(Household household) {
+    String sql = "UPDATE household SET name = ? WHERE household_id = ?";
     try (Connection conn = DatabaseConnection.getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
       pstmt.setString(1, household.getName());
-      pstmt.setString(2, household.getJoinCode());
-      pstmt.setInt(3, household.getHouseholdId());
+      pstmt.setInt(2, household.getHouseholdId());
 
-      // Execute the update
+      // execute the update
       int affectedRows = pstmt.executeUpdate();
 
       return affectedRows > 0;
     } catch (SQLException e) {
-      logger.log(Level.SEVERE, "There was an error updating the household", e);
+      logger.log(Level.SEVERE, "There was an error updating the household name", e);
+      return false;
+    }
+  }
+
+  /**
+   * Updates the join code of an existing household.
+   *
+   * @param household The household to update with a new join code.
+   * @return true if the update was successful, false otherwise.
+   */
+  @Override
+  public boolean updateHouseholdJoinCode(Household household) {
+    String sql = "UPDATE household SET join_code = ? WHERE household_id = ?";
+    try (Connection conn = DatabaseConnection.getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+      pstmt.setString(1, household.getJoinCode());
+      pstmt.setInt(2, household.getHouseholdId());
+
+      // execute the update
+      int affectedRows = pstmt.executeUpdate();
+
+      return affectedRows > 0;
+    } catch (SQLException e) {
+      logger.log(Level.SEVERE, "There was an error updating the household join code", e);
+      return false;
+    }
+  }
+
+  @Override
+  public boolean refreshUsers(Household household) {
+    String sql = "SELECT user_id, username, household_id " + // Include household_id in your query
+        "FROM user " +
+        "WHERE household_id = ?";
+
+    try (Connection conn = DatabaseConnection.getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+      pstmt.setInt(1, household.getHouseholdId());
+      ResultSet rs = pstmt.executeQuery();
+      household.getUsers().clear(); // clear users before repopulating
+
+      while (rs.next()) {
+        int userId = rs.getInt("user_id");
+        String username = rs.getString("username");
+
+        User user = new User(userId, username, null);
+        user.setHousehold(household);
+
+        user.setInventory(new UserDaoImpl().setInventoryIfExists(userId));
+        user.setChosenRecipes(new UserDaoImpl().setChosenRecipesIfExists(userId));
+
+        household.getUsers().add(user);
+      }
+
+      return !household.getUsers().isEmpty();
+    } catch (SQLException e) {
+      logger.log(Level.SEVERE, "There was an error querying for users in the household", e);
       return false;
     }
   }

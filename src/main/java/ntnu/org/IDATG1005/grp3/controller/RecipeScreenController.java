@@ -3,7 +3,6 @@ package ntnu.org.IDATG1005.grp3.controller;
 import static ntnu.org.IDATG1005.grp3.application.MainApp.appUser;
 
 import java.net.URL;
-import java.util.HashMap;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,9 +15,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import ntnu.org.IDATG1005.grp3.application.MainApp;
 import ntnu.org.IDATG1005.grp3.interfaces.RecipeChangedListener;
-import ntnu.org.IDATG1005.grp3.model.objects.Ingredient;
-import ntnu.org.IDATG1005.grp3.model.objects.Inventory;
-import ntnu.org.IDATG1005.grp3.model.objects.InventoryIngredient;
 import ntnu.org.IDATG1005.grp3.model.objects.Recipe;
 
 import java.io.IOException;
@@ -35,25 +31,26 @@ public class RecipeScreenController implements Initializable, RecipeChangedListe
     private Text recipeName;
     private ImageView recipeImage;
 
-    public RecipeScreenController() {
-    }
+    /*public RecipeScreenController() {
+        intializeRecipeList();
+    }*/
 
-    public static synchronized RecipeScreenController getInstance() {
+    /*public static synchronized RecipeScreenController getInstance() {
         if (instance == null) {
             instance = new RecipeScreenController();
         }
         return instance;
-    }
+    }*/
 
     @Override
     public void initialize(URL location, ResourceBundle resourceBundle) {
-        initializeUser();
         displayRecipes();
     }
 
 
     public void displayRecipes(){
         choseRecipeContainer.getChildren().clear();
+        System.out.println("Hei");
         for(Recipe recp : MainApp.appRecipes) {
             System.out.println(recp.getFavoriteStatus());
             try{
@@ -77,19 +74,9 @@ public class RecipeScreenController implements Initializable, RecipeChangedListe
         //choseRecipeComponent.close();
     }
 
-    public void initializeUser(){
+    /*public void intializeRecipeList(){
         appUser = new User(1, "test", "test");
-        Ingredient ingredient1 = MainApp.appIngredients.get(0);
-        Ingredient ingredient2 = MainApp.appIngredients.get(1);
-        for (Ingredient ingredient : MainApp.appIngredients) {
-            System.out.println(ingredient.getName());
-        }
-
-        Inventory inventory = new Inventory(new HashMap<>());
-        inventory.getIngredients().put(ingredient1, new InventoryIngredient(ingredient1, 1.0));
-        inventory.getIngredients().put(ingredient2, new InventoryIngredient(ingredient2, 0.5));
-        appUser.setInventory(inventory);
-    }
+    }*/
 
     @Override
     public void onRecipeChanged(Recipe recipe) {

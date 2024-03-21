@@ -10,12 +10,15 @@ import java.util.List;
 public class Recipe {
   private boolean favorite = false;
 
+  private final Integer recipeId;
   private final RecipeInfo recipeInfo;
   private final List<RecipeIngredient> ingredients;
   private final List<Direction> directions;
   private final List<Tag> tags;
   private Integer personsAdults;
   private Integer personsChildren;
+
+  private boolean beenBought = false;
 
   /**
    * Constructs a Recipe with specified details.
@@ -26,15 +29,17 @@ public class Recipe {
    * @param tags            List of tags associated with the recipe.
    * @param personsAdults   Number of Adults recorded for base ingredients.
    * @param personsChildren Number of Children recorded for base ingredients.
+   * @param recipeId        RecipeId id matching the id in the db.
    */
   public Recipe(RecipeInfo recipeInfo, List<RecipeIngredient> ingredients,
-      List<Direction> directions, List<Tag> tags, Integer personsAdults, Integer personsChildren) {
+      List<Direction> directions, List<Tag> tags, Integer personsAdults, Integer personsChildren, Integer recipeId) {
     this.recipeInfo = recipeInfo;
     this.ingredients = ingredients;
     this.directions = directions;
     this.tags = tags;
     this.personsAdults = personsAdults;
     this.personsChildren = personsChildren;
+    this.recipeId = recipeId;
   }
 
   /**
@@ -113,6 +118,18 @@ public class Recipe {
   }
   public boolean getFavoriteStatus(){
     return this.favorite;
+  }
+
+  public Integer getRecipeId(){
+    return recipeId;
+  }
+
+  public void changeBoughtStatus() {
+    this.beenBought = !this.beenBought;
+  }
+
+  public boolean getBeenBought() {
+    return this.beenBought;
   }
 
 }

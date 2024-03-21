@@ -10,24 +10,24 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.org.IDATG1005.grp3.controller.StartScreenController">
    <children>
-      <ImageView fitHeight="466.0" fitWidth="931.0" layoutX="-122.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-9.0" AnchorPane.leftAnchor="-122.0" AnchorPane.rightAnchor="-9.0" AnchorPane.topAnchor="-7.0">
+      <ImageView fitHeight="450.0" fitWidth="800.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@/images/bakgrunnsbilde_mat.jpg" />
          </image>
       </ImageView>
-      <StackPane layoutX="189.0" layoutY="79.0" prefHeight="295.0" prefWidth="310.0">
+      <StackPane layoutX="189.0" layoutY="79.0" prefHeight="295.0" prefWidth="310.0" AnchorPane.bottomAnchor="76.0" AnchorPane.leftAnchor="270.0" AnchorPane.rightAnchor="270.0" AnchorPane.topAnchor="79.0">
          <children>
             <AnchorPane maxHeight="590.0" maxWidth="620.0" minHeight="295.0" minWidth="310.0" style="-fx-background-color: white; -fx-background-radius: 10;" StackPane.alignment="CENTER">
                <children>
-                  <TextField layoutX="10.0" layoutY="68.0" maxHeight="50.0" maxWidth="558.0" prefHeight="25.0" prefWidth="279.0" promptText="Kollektivets kode" style="-fx-font-size: 1.1em;" />
+                  <TextField fx:id="collectiveCodeField" layoutX="10.0" layoutY="68.0" maxHeight="50.0" maxWidth="558.0" prefHeight="25.0" prefWidth="279.0" promptText="Kollektivets kode" style="-fx-font-size: 1.1em;" />
                   <Text layoutX="11.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.6em;" text="Bli med i kollektiv" wrappingWidth="279.0" AnchorPane.bottomAnchor="237.18124961853027" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="32.28125">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Text>
-                  <Button layoutX="10.0" layoutY="106.0" maxHeight="30.0" maxWidth="300.0" minHeight="25.0" minWidth="279.0" mnemonicParsing="false" onAction="#joinExistingCollective" style="-fx-background-color: green; -fx-font-size: 1.2em;" text="Bli med" textFill="WHITE">
+                  <Button layoutX="10.0" layoutY="106.0" maxHeight="30.0" maxWidth="300.0" minHeight="25.0" minWidth="279.0" mnemonicParsing="false" onAction="#joinCollective" style="-fx-background-color: green; -fx-font-size: 1.2em;" text="Bli med" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -44,7 +44,7 @@
                   </Text>
                   <Line endX="92.5" layoutX="35.0" layoutY="172.0" startX="-37.0" />
                   <Line endX="97.0" layoutX="212.0" layoutY="171.0" startX="-40.0" />
-                  <Button layoutX="10.0" layoutY="236.0" maxHeight="30.0" maxWidth="300.0" minHeight="25.0" minWidth="279.0" mnemonicParsing="false" onAction="#registerNewCollective" style="-fx-background-color: green; -fx-font-size: 1.2em;" text="Registrer" textFill="WHITE">
+                  <Button layoutX="10.0" layoutY="236.0" maxHeight="30.0" maxWidth="300.0" minHeight="25.0" minWidth="279.0" mnemonicParsing="false" onAction="#register" style="-fx-background-color: green; -fx-font-size: 1.2em;" text="Registrer" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>

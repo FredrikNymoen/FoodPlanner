@@ -82,12 +82,39 @@ public class MainCheeky {
       System.out.println("Inventory saving failed because failed to load inventory");
     }
 
+    // add a recipe to the user and persist it
+    persitentUser.getChosenRecipes().add(MainApp.appRecipes.get(1));
+    persitentUser.getChosenRecipes().add(MainApp.appRecipes.get(2));
+    userService.saveChosenRecipes(persitentUser);
+
+
 
     // save user household (example)
 
     // create a houseHold with db
     HouseholdService hs = new HouseholdService(new HouseholdDaoImpl());
     Household household = hs.createHousehold();
+
+    household.setJoinCode("newJoin");
+    hs.updateHouseholdJoinCode(household);
+
+    MainApp.appUser.setHousehold(household);
+    userService.saveUserHousehold(MainApp.appUser);
+
+
+    Household householdN = null;
+
+    try {
+      householdN = hs.findHouseholdByJoinCode("newJoin");
+    } catch (HouseholdNotFoundException e) {
+      System.out.println("Household with joincode not found.");
+    }
+
+    for (User u : householdN.getUsers()) {
+      System.out.println(u.getUsername());
+    }
+
+
 
     System.out.println("Created household: " + household.getName());
     System.out.println("With the join code: " + household.getJoinCode());
