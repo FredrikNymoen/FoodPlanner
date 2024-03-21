@@ -5,7 +5,7 @@ package ntnu.org.IDATG1005.grp3.model.objects;
  */
 public class RecipeIngredient extends AbstractIngredientDetail {
 
-  private Integer amount;
+  private Double amount;
 
   /**
    * Initializes with ingredient and amount.
@@ -13,7 +13,7 @@ public class RecipeIngredient extends AbstractIngredientDetail {
    * @param ingredient The ingredient.
    * @param amount     Ingredient amount for the recipe.
    */
-  public RecipeIngredient(Ingredient ingredient, Integer amount) {
+  public RecipeIngredient(Ingredient ingredient, Double amount) {
     super(ingredient);
     this.amount = amount;
   }
@@ -23,7 +23,7 @@ public class RecipeIngredient extends AbstractIngredientDetail {
    *
    * @return Ingredient amount.
    */
-  public Integer getAmount() {
+  public Double getAmount() {
     return amount;
   }
 
@@ -32,7 +32,7 @@ public class RecipeIngredient extends AbstractIngredientDetail {
    *
    * @param amount New ingredient amount.
    */
-  public void setAmount(Integer amount) {
+  public void setAmount(Double amount) {
     this.amount = amount;
   }
 
