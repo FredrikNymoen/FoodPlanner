@@ -96,8 +96,9 @@ public class ChoseRecipeController implements Initializable {
     try {
       FXMLLoader loader = new FXMLLoader(
           getClass().getResource("/fxml/components/showingRecipe.fxml"));
-      loader.setController(ShowingRecipeController.getInstance());
       Parent root = loader.load();
+      ShowingRecipeController controller = loader.getController();
+      controller.setData(recipe);
 
       Stage showingRecipe = new Stage();
 
