@@ -124,8 +124,8 @@ public class Recipe {
     return recipeId;
   }
 
-  public void changeBoughtStatus() {
-    this.beenBought = !this.beenBought;
+  public void setBeenBought(boolean beenBought) {
+    this.beenBought = beenBought;
   }
 
   public boolean getBeenBought() {

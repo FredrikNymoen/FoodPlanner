@@ -167,7 +167,7 @@ public class ShoppingListController implements Initializable, ShoppingListRecipe
       appUser.getInventory().addIngredient(ingredient);
     }
     for (Recipe recipe : appUser.getShoppingCartRecipes()) {
-      recipe.changeBoughtStatus();
+      recipe.setBeenBought(true);
     }
     try {
       us.saveUserInventory(appUser);
