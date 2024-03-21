@@ -1,7 +1,7 @@
 package ntnu.org.IDATG1005.grp3.model.objects;
 
 /**
- * Represents a base ingredient with a unique ID, name, and image URL.
+ * Represents an ingredient with ID, name, image URL, and measurement unit.
  */
 public class Ingredient {
   private final Integer ingredientId;
@@ -10,11 +10,12 @@ public class Ingredient {
   private final MeasurementUnit unit;
 
   /**
-   * Constructs an Ingredient with specified ID, name, and image URL.
+   * Initializes a new Ingredient.
    *
-   * @param ingredientId The unique identifier for the ingredient.
-   * @param name The name of the ingredient.
-   * @param imageUrl The URL of the image associated with the ingredient.
+   * @param ingredientId Unique ID.
+   * @param name Name of the ingredient.
+   * @param imageUrl Image URL.
+   * @param unit Measurement unit.
    */
   public Ingredient(Integer ingredientId, String name, String imageUrl, MeasurementUnit unit) {
     this.ingredientId = ingredientId;
@@ -24,53 +25,60 @@ public class Ingredient {
   }
 
   /**
-   * Gets the ingredient's unique identifier.
+   * Returns the ingredient ID.
    *
-   * @return The ingredient's ID.
+   * @return Ingredient ID.
    */
   public Integer getIngredientId() {
     return ingredientId;
   }
 
   /**
-   * Gets the ingredient's name.
+   * Returns the ingredient name.
    *
-   * @return The name of the ingredient.
+   * @return Name of the ingredient.
    */
   public String getName() {
     return name;
   }
 
   /**
-   * Gets the URL of the ingredient's image.
+   * Returns the image URL.
    *
-   * @return The image URL associated with the ingredient.
+   * @return Image URL of the ingredient.
    */
   public String getImageUrl() {
     return imageUrl;
   }
 
   /**
-   * Gets the unit of the ingredient.
+   * Returns the measurement unit.
    *
-   * @return The measurement of the ingredient.
+   * @return Unit of the ingredient.
    */
   public MeasurementUnit getUnit() {
     return unit;
   }
 
-  /*
-  Compares an ingredient with an ingredient on db id
+  /**
+   * Checks equality based on ingredient ID.
+   *
+   * @param obj The object to compare.
+   * @return True if the same ID, false otherwise.
    */
   @Override
   public boolean equals(Object obj) {
     if (this == obj) return true;
     if (obj == null || getClass() != obj.getClass()) return false;
-
     Ingredient that = (Ingredient) obj;
     return ingredientId.equals(that.ingredientId);
   }
 
+  /**
+   * Generates hash code based on ingredient ID.
+   *
+   * @return Hash code.
+   */
   @Override
   public int hashCode() {
     return ingredientId.hashCode();
