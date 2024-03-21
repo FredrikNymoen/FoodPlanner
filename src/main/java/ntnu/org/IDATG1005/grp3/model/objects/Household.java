@@ -17,8 +17,8 @@ public class Household {
    * Constructs a new Household with the specified name, join code, and ID.
    * Initializes an empty list of users.
    *
-   * @param name The name of the household.
-   * @param joinCode The join code for the household.
+   * @param name        The name of the household.
+   * @param joinCode    The join code for the household.
    * @param householdId The unique identifier for the household.
    */
   public Household(Integer householdId, String name, String joinCode) {
@@ -80,5 +80,14 @@ public class Household {
    */
   public void setJoinCode(String joinCode) {
     this.joinCode = joinCode;
+  }
+  public void addUser(User user) {
+    for (int i = 0; i < users.size(); i++) {
+      if (users.get(i).getUserId().equals(user.getUserId())) {
+        users.set(i, user);
+        return;
+      }
+    }
+    users.add(user);
   }
 }
