@@ -244,7 +244,7 @@ public class UserDaoImpl implements UserDao {
             rs.getInt("ingredient_id"),
             rs.getString("name"),
             rs.getString("image"),
-            MeasurementUnit.fromUnitId(rs.getInt("unit_id")));
+            MeasurementUnit.fromId(rs.getInt("unit_id")));
         double amount = rs.getDouble("amount");
 
         InventoryIngredient inventoryIngredient = new InventoryIngredient(ingredient, amount);
