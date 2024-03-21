@@ -106,7 +106,11 @@ public class User {
     return household;
   }
 
-
+  /**
+   * Associates the user with a household.
+   *
+   * @param household The household to associate with the user. Can be null if dissociating the user from a household.
+   */
   public void setHousehold(Household household) {
     this.household = household;
   }
