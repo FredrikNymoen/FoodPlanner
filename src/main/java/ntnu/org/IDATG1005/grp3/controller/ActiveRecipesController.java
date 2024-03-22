@@ -4,6 +4,7 @@ import static ntnu.org.IDATG1005.grp3.application.MainApp.appRecipes;
 import static ntnu.org.IDATG1005.grp3.application.MainApp.appUser;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,12 +17,13 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import ntnu.org.IDATG1005.grp3.dao.implementations.UserDaoImpl;
+import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions;
 import ntnu.org.IDATG1005.grp3.interfaces.*;
-import ntnu.org.IDATG1005.grp3.model.objects.Recipe;
+import ntnu.org.IDATG1005.grp3.model.objects.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import ntnu.org.IDATG1005.grp3.model.objects.User;
+
 import ntnu.org.IDATG1005.grp3.service.UserService;
 
 //Controller for the activeRecipesBox.fxml file
@@ -88,15 +90,7 @@ public class ActiveRecipesController implements Initializable, ActiveRecipeRemov
 
          */
 
-        if (recipe.getBeenBought()) {
-            recipe.setBeenBought(false);
-            appUser.getChosenRecipes().remove(recipe);
-            us.saveChosenRecipes(appUser);
-            displayActiveRecipes();
-        } else {
-            //open popup to buy ingredients
-            //openPopup(recipe);
-        }
+
 
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -104,11 +98,41 @@ public class ActiveRecipesController implements Initializable, ActiveRecipeRemov
 
             AnchorPane anchorPane = loader.load();
             Popup_buyShoppingListController controller = loader.getController();
+            System.out.println("Recipe.getBeenBought(): " + recipe.getBeenBought());
             controller.setData(recipe, recipe.getBeenBought());
             controller.setActiveRecipePopupBuyMakeListener(this);
             popupHolder.getChildren().add(anchorPane);
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+
+        if (recipe.getBeenBought()) {
+            //Dette er samme kode som i popop_buyShoppinglistController
+            List<String> inventoryNames = appUser.getInventory().getIngredients().keySet().stream().map(Ingredient::getName).toList();
+            double newQuantity;
+            for (RecipeIngredient recIngredient : recipe.getIngredients()) {
+                if (inventoryNames.contains(recIngredient.getIngredient().getName())) {
+                    newQuantity = appUser.getInventory().getIngredients().get(recIngredient.getIngredient()).getQuantity() - recIngredient.getAmount();
+                    appUser.getInventory().getIngredients().get(recIngredient.getIngredient()).setQuantity(newQuantity);
+                    System.out.println("Removed " + recIngredient.getIngredient().getName() + " from inventory");
+                }
+            }
+
+
+            us.saveChosenRecipes(appUser);
+            try {
+                us.saveUserInventory(appUser);
+            } catch (UserExceptions.FailedToLoadInventoryException e) {
+                System.out.println("Failed to save inventory");
+            }
+
+            recipe.setBeenBought(false);
+            appUser.getChosenRecipes().remove(recipe);
+            us.saveChosenRecipes(appUser);
+            displayActiveRecipes();
+        } else {
+            //open popup to buy ingredients
+            //openPopup(recipe);
         }
     }
 
