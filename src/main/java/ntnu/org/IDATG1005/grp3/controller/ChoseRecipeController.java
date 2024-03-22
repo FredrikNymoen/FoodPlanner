@@ -127,7 +127,7 @@ public class ChoseRecipeController implements Initializable {
     if (recipe.getFavoriteStatus()) {
       starLabel.setText("★");
       starLabel.setStyle("-fx-text-fill: yellow;");
-      choseRecipeBorder.setStyle("-fx-border-color: yellow; -fx-border-width: 5;");
+      choseRecipeBorder.setStyle(choseRecipeBorder.getStyle() + "-fx-border-color: yellow;");
     }
     if (appUser.getChosenRecipes().contains(recipe)) {
       appUser.addChosenRecipe(recipe);

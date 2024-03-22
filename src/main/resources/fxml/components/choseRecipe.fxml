@@ -9,18 +9,18 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="choseRecipeBorder" prefHeight="232.0" prefWidth="644.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.org.IDATG1005.grp3.controller.ChoseRecipeController">
+<AnchorPane fx:id="choseRecipeBorder" prefHeight="232.0" prefWidth="642.0" style="-fx-background-color: rgba(0,0,0,0.6); -fx-border-color: black; -fx-max-width: 642.0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.org.IDATG1005.grp3.controller.ChoseRecipeController">
    <children>
       <ImageView fitHeight="113.0" fitWidth="165.0" layoutX="19.0" layoutY="56.8193359375" pickOnBounds="true" preserveRatio="true">
       </ImageView>
-      <Pane layoutX="9.0" layoutY="6.0" prefHeight="29.0" prefWidth="626.0" style="-fx-background-color: rgba(0,150,0,0.80);">
+      <Pane layoutX="-2.0" layoutY="1.0" prefHeight="29.0" prefWidth="642.0" style="-fx-background-color: rgba(0,150,0,0.6);">
          <children>
-            <Text fx:id="recipeName" fill="WHITE" layoutX="-5.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Navn på matrett" textAlignment="CENTER" wrappingWidth="624.0">
+            <Text fx:id="recipeName" fill="WHITE" layoutX="36.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Navn på matrett" textAlignment="CENTER" wrappingWidth="571.0">
                <font>
                   <Font size="21.0" />
                </font>
             </Text>
-            <Label fx:id="starLabel" layoutX="582.0" layoutY="1.0" onMouseClicked="#favoriteClick" text="☆">
+            <Label fx:id="starLabel" layoutX="603.0" layoutY="1.0" onMouseClicked="#favoriteClick" text="☆">
                <font>
                   <Font size="18.0" />
                </font>
@@ -36,7 +36,7 @@
                   <Font size="14.0" />
                </font>
             </Text>
-            <Button fx:id="lookRecipe" layoutX="234.0" layoutY="74.0" mnemonicParsing="false" onMouseClicked="#showingRecipe" prefHeight="29.0" prefWidth="107.0" style="-fx-background-color: rgba(0,220,0,0.80);" text="Se oppsrkift" textFill="WHITE" />
+            <Button fx:id="lookRecipe" layoutX="234.0" layoutY="74.0" mnemonicParsing="false" onMouseClicked="#showingRecipe" prefHeight="29.0" prefWidth="107.0" style="-fx-background-color: rgba(0,220,0,0.80);" text="Se oppskrift" textFill="WHITE" />
             <Button fx:id="chose" layoutX="234.0" layoutY="115.0" mnemonicParsing="false" onMouseClicked="#chooseRecipe" prefHeight="29.0" prefWidth="107.0" style="-fx-background-color: rgba(0,180,0,0.80);" text="Velg!" textFill="WHITE" />
             <ImageView fitHeight="23.0" fitWidth="41.0" layoutX="66.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
                <image>
