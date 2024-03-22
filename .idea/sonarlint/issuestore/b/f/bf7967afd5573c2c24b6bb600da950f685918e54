@@ -1,0 +1,50 @@
+
+š	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(İÍƒûÿÿÿÿJ$de32abf6-4e26-4c08-80e9-5edd93093be1
+
+java:S2259B"KA "NullPointerException" could be thrown; "persitentUser" is nullable here.(ˆ®Ö¿8ú¯õ²å1J$36dd069b-8a05-4ac3-aedd-0d5b9d75a69c
+~
+java:S1854/";Remove this useless assignment to local variable "newUser".(Ø½‘×8™‚ï®æ1J$24bf8b6f-c2c6-497d-b474-46e7fa523b54
+
+java:S1854i">Remove this useless assignment to local variable "householdN".(ÚœÉ¾8¦Âó®æ1J$0ee75d6d-554d-4bf3-86ef-a135b60c80dd
+t
+java:S1481-",Remove this unused "newUser" local variable.(£…¢ÿÿÿÿÿ8‚ï®æ1J$d54b0a96-01e4-4c93-a7e0-2b69585f118f
+m	java:S1061"+Replace this use of System.out by a logger.(çü¢‚8ñß“Šå1J$fdd74ab9-aa12-4be9-9cc7-0c785ffa6c52
+m	java:S1063"+Replace this use of System.out by a logger.(ƒˆ¬ş8óß“Šå1J$12b3f44a-4f7a-4333-a553-71624fb6b697
+m	java:S106;"+Replace this use of System.out by a logger.(ÔŞé°8÷ß“Šå1J$2dc4e3e8-457e-4c40-b655-608693237e86
+r	java:S106M"+Replace this use of System.out by a logger.(Ö„éûûÿÿÿÿ8ûß“Šå1J$90e8200d-320b-4c0e-a2ea-f9e72d1c8147
+m	java:S106O"+Replace this use of System.out by a logger.(öà¢8üß“Šå1J$c954c999-7f96-4ed5-83b1-1b15f3f82a3a
+r
+java:S1481f"/Remove this unused "householdN" local variable.(Õ„ü›8°Âó®æ1J$30507ff5-7ed0-4c15-acec-e2cebd407753
+r	java:S106k"+Replace this use of System.out by a logger.(Ş‚ıîüÿÿÿÿ8ˆ°õ²å1J$6509ba27-c883-406b-9a0e-7d8758e96822
+r	java:S106y"+Replace this use of System.out by a logger.(ì—™óùÿÿÿÿ8ƒà“Šå1J$a9f414b5-36b2-4fa1-aede-93441444527f
+s	java:S106"+Replace this use of System.out by a logger.( ”ÍÜúÿÿÿÿ8…à“Šå1J$5f734e85-4d1b-4e29-acda-ee16f442f091
+s	java:S106ƒ"+Replace this use of System.out by a logger.(…ëêŒüÿÿÿÿ8¯‚ï®æ1J$cd90e57d-33ba-45b0-bc7b-5087a3208328
+†
+java:S1854“"BRemove this useless assignment to local variable "foundHousehold".(ŒÉçÇ8‚¦÷®æ1J$ad0c6a8a-228f-4021-8c21-5d8a8e5ab67e
+w
+java:S1481“"3Remove this unused "foundHousehold" local variable.(ŒÉçÇ8ƒ¦÷®æ1J$4f59250f-c672-4b3d-893e-f84377db0da8
+s	java:S106•"+Replace this use of System.out by a logger.(·ä€Šıÿÿÿÿ8²‚ï®æ1J$29c76f3d-7092-47a0-bde8-192649654f8f
+Š
+java:S1854 "ARemove this useless assignment to local variable "newIngredient".(õ¤³ úÿÿÿÿ8©’ø®æ1J$2c535f4c-e936-47fa-b043-c4f30a2910e7
+s	java:S106"+Replace this use of System.out by a logger.(¶Õ’úÿÿÿÿ8 °õ²å1J$987fb397-2184-48ca-97dd-3b3691f1ee09
+{
+java:S1481 "2Remove this unused "newIngredient" local variable.(õ¤³ úÿÿÿÿ8«’ø®æ1J$95686352-38a9-4be9-a219-6ec9c3fecee1
+s	java:S106°"+Replace this use of System.out by a logger.(—É–„üÿÿÿÿ8Ãà“Šå1J$014f8d0f-a46c-485e-bf7a-8d996aeaa6c9
+s	java:S106±"+Replace this use of System.out by a logger.(Ø‡ìùüÿÿÿÿ8Äà“Šå1J$18b59a83-709a-4a67-9d2f-a0a6a6d8e206
+s	java:S106²"+Replace this use of System.out by a logger.(·ü˜…ıÿÿÿÿ8§°õ²å1J$a8fab970-d7fd-40be-9bd3-475260316989
+n	java:S106³"+Replace this use of System.out by a logger.(Ë›©·8Çà“Šå1J$85ae75f1-af6a-4778-8108-0d0486ea3fac
+n	java:S106´"+Replace this use of System.out by a logger.(²÷©‚8¼‚ï®æ1J$a670fa03-eb1e-4aca-9c1b-21cc603ed020
+s	java:S106µ"+Replace this use of System.out by a logger.(ïñâ¾úÿÿÿÿ8Èà“Šå1J$c21a8a79-cc3c-4683-8b31-99695084e8bf
+n	java:S106¶"+Replace this use of System.out by a logger.(Æ‘¤°8Ó‚ï®æ1J$ca0766e9-143d-40d4-add0-3404119a517f
+s	java:S106·"+Replace this use of System.out by a logger.(æÃŒÎûÿÿÿÿ8¨°õ²å1J$dff1c5f5-bac6-454f-8ec9-bc16623e4726
+s	java:S106¹"+Replace this use of System.out by a logger.(ÑŠõ¨ûÿÿÿÿ8Íà“Šå1J$0162cf53-ccfe-44a5-8da0-69ee9a40d869
+n	java:S106»"+Replace this use of System.out by a logger.(òˆ”8Ïà“Šå1J$750ffe58-11ab-4773-88b2-d14be94eb4de
+n	java:S106½"+Replace this use of System.out by a logger.(¹¤÷ó8Ñà“Šå1J$0feef94d-c811-4e19-b40b-54e6a7cb8a6e
+n	java:S106¿"+Replace this use of System.out by a logger.(–Š‡ş8Ö‚ï®æ1J$3103be29-ce07-4b48-8a77-e403cb4794c5
+n	java:S106Á"+Replace this use of System.out by a logger.(Ê»£©8×‚ï®æ1J$ff7e1d2f-bef9-4a5a-b790-18609cc9b569
+²
+java:S1128"oRemove this unused import 'ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.FailedToLoadHouseholdException'.(Ã²Ü€8«°õ²å1J$b2efdd18-82bf-4e04-aa64-fd79f7c7f529
+
+java:S1128"LRemove this unused import 'ntnu.org.IDATG1005.grp3.model.objects.Inventory'.(¤éÂ¥8«°õ²å1J$32c9413f-5383-4508-baff-2ddb463c403f
+
+java:S1128"VRemove this unused import 'ntnu.org.IDATG1005.grp3.model.objects.InventoryIngredient'.(¡ÙÓ¾şÿÿÿÿ8«°õ²å1J$ab680873-e1d5-4bae-8c9b-a2b754f8ac33

@@ -1,0 +1,8 @@
+
+u
+java:S1192/"ZDefine a constant instead of duplicating this literal "-fx-border-color: yellow;" 3 times.(êÔ‹Íúÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‡¡èâÿÿÿÿÿ
+r
+java:S1128"PRemove this unused import 'ntnu.org.IDATG1005.grp3.application.MainApp.appUser'.(ÄòÜÔıÿÿÿÿ8 ·õ²å1
+R
+java:S1128"5Remove this unused import 'javafx.scene.image.Image'.(‰¿½Ç8¡·õ²å1

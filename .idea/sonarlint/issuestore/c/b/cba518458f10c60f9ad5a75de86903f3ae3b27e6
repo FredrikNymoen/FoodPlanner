@@ -1,0 +1,9 @@
+
+	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ëø‚8Ó„°´å1J$8bb6efac-c978-4c55-8578-8ea7ce5d8f5f
+¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‡¡èâÿÿÿÿÿ8Õ„°´å1J$3eab4e0d-1626-4877-be27-b88afe8c05c8
+É
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(•‘İŸüÿÿÿÿ8±ÌŒ¯æ1J$003797a8-65ac-40ac-824a-642439b8765e
+~
+java:S1128";Remove this unused import 'javafx.scene.layout.AnchorPane'.(Ø µ8ÛÌŒ¯æ1J$a371ec71-b697-4d90-a2c0-6a0040c8de5f
+x
+java:S1128"5Remove this unused import 'javafx.scene.layout.HBox'.(äê…8ÛÌŒ¯æ1J$2c12efbf-db88-466e-81fd-989ac523b2a3

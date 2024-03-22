@@ -1,0 +1,16 @@
+
+g	java:S112P"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ÉÅà­æ1
+g	java:S112h"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ÉÅà­æ1
+¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‡¡èâÿÿÿÿÿ8Õç÷ˆæ1J$865b55ce-3eb1-43d9-b09f-a47cdbcc3c68
+X	java:S1250"<This block of commented-out lines of code should be removed.(¤åñ¼8ùÅà­æ1
+W	java:S1254"<This block of commented-out lines of code should be removed.(êı®8úÅà­æ1
+]	java:S125C"<This block of commented-out lines of code should be removed.(ŸœŞøÿÿÿÿ8şÅà­æ1
+X	java:S125W"<This block of commented-out lines of code should be removed.(÷ôø‰8‰Æà­æ1
+L	java:S106{"+Replace this use of System.out by a logger.(ÃõÛ­üÿÿÿÿ8Æà­æ1
+^	java:S125„"<This block of commented-out lines of code should be removed.(ï¦±úÿÿÿÿ8Æà­æ1
+p
+java:S1128"SRemove this unused import 'ntnu.org.IDATG1005.grp3.application.MainApp.appRecipes'.(½‚İ”8´¼–¯æ1
+J
+java:S1068("(Remove this unused "root" private field.(Ğ´”ğûÿÿÿÿ8”Æà­æ1
+W
+java:S1068)"5Remove this unused "activeRecipesList" private field.(–÷üÿÿÿÿ8”Æà­æ1
