@@ -114,7 +114,7 @@ public class ActiveRecipesController implements Initializable, ActiveRecipeRemov
                 if (inventoryNames.contains(recIngredient.getIngredient().getName())) {
                     newQuantity = appUser.getInventory().getIngredients().get(recIngredient.getIngredient()).getQuantity() - recIngredient.getAmount();
                     appUser.getInventory().getIngredients().get(recIngredient.getIngredient()).setQuantity(newQuantity);
-                    System.out.println("Removed " + recIngredient.getIngredient().getName() + " from inventory");
+                    //System.out.println("Removed " + recIngredient.getIngredient().getName() + " from inventory");
                 }
             }
 
