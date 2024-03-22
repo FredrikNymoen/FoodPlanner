@@ -95,9 +95,6 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("IngredienceController");
-        //System.out.println(appUser.getHousehold().getUsers());
-        //System.out.println(appUser.getInventory().getIngredients().size());
         setupGlobalClickListener();
         initializeSearchBar();
         initializeCheckBoxes();
@@ -213,7 +210,6 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
             for (InventoryIngredient inventoryIngredient : appUser.getInventory().getIngredients()
                 .values()) {
                 if (inventoryIngredient.getIngredient().getName().equals(ingredient.getName())) {
-                    System.out.println("Ingredient is in inventory");
                     invIngredient = inventoryIngredient;
                 }
             }

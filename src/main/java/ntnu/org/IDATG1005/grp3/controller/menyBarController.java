@@ -21,13 +21,11 @@ public class menyBarController implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    System.out.println("MenyBarController initialized");
   }
 
 
   @FXML
   private void recipes() {
-    System.out.println("Recipes");
     try {
       root = FXMLLoader.load(getClass().getResource("/fxml/views/recipeScreenPage.fxml"));
       stage = MainApp.primaryStage;
@@ -41,7 +39,6 @@ public class menyBarController implements Initializable {
 
   @FXML
   private void ingredients() {
-    System.out.println("ingredients");
     try {
       root = FXMLLoader.load(getClass().getResource("/fxml/views/ingredience.fxml"));
       stage = MainApp.primaryStage;
@@ -55,7 +52,6 @@ public class menyBarController implements Initializable {
 
   @FXML
   private void shoppingList() {
-    System.out.println("shoppingList");
     try {
       root = FXMLLoader.load(getClass().getResource("/fxml/views/shoppingList.fxml"));
       stage = MainApp.primaryStage;
@@ -69,7 +65,6 @@ public class menyBarController implements Initializable {
 
   @FXML
   private void activeRecipes() {
-    System.out.println("activeRecipes");
     try {
       root = FXMLLoader.load(getClass().getResource("/fxml/views/activeRecipes.fxml"));
       stage = MainApp.primaryStage;

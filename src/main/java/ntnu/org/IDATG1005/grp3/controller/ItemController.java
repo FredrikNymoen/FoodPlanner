@@ -38,15 +38,11 @@ public class ItemController {
         this.ingredient = inventoryIngredient;
         nameLabel.setText(inventoryIngredient.getIngredient().getName());
         amountLabel.setText(inventoryIngredient.getQuantity().toString() + " " + inventoryIngredient.getUnit().getUnitName());
-        //Image image = new Image(inventoryIngredient.getIngredient().getImageUrl().toString());
-        //System.out.println("image loaded");
-        //img.setImage(image);
     }
 
     @FXML
     public void onStarClicked(MouseEvent event) {
         if (!ingredient.getFavoriteStatus()) {
-            System.out.println("Star clicked");
             // Change only the border color, preserving other styles
             item.setStyle(item.getStyle() + "-fx-border-color: yellow;");
             starLabel.setTextFill(Color.YELLOW); // Change star color to yellow

@@ -73,12 +73,9 @@ public class CreateProfileController {
       us.saveUserInventory(newUser);
       hs.refreshHouseholdUsers(currentHousehold);
 
-      System.out.println("NÆMEN");
-      System.out.println(newUser.getInventory().getIngredients().size());
 
       updateAppUser(newUser);
-      System.out.println(MainApp.appUser.getInventory().getIngredients().size());
-    }
+      }
     catch (UsernameAlreadyExistsException e) {
       Alert alert = new Alert(Alert.AlertType.ERROR);
       alert.setTitle("Error");
@@ -99,7 +96,6 @@ public class CreateProfileController {
 
   @FXML
   void exitCreateUser(MouseEvent event) {
-    System.out.println("exitCreateUser");
     rootPane.setVisible(false);
   }
 

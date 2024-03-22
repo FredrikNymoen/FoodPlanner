@@ -156,7 +156,6 @@ public class User {
         inventory.getIngredients().put(ingredient, new InventoryIngredient(ingredient, changeValue));
       } else {
         // handle case for negative or zero changeValue for non-existing ingredient
-        System.out.println("Cannot add ingredient with non-positive quantity.");
       }
     }
   }

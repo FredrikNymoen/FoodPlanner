@@ -25,7 +25,6 @@ public class YourProfilePageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("MenyBarController initialized");
     }
 
     public void saveChanges() {
@@ -36,15 +35,12 @@ public class YourProfilePageController implements Initializable {
             alert.setContentText("Please fill in all fields");
             alert.showAndWait();
         } else {
-            System.out.println(appUser.getUsername());
             appUser.setUsername(newUsername.getText());
             appUser.setPassword(newPassword.getText());
-            System.out.println(appUser.getUsername());
             Household household = appUser.getHousehold();
             if (household != null) {
                 household.addUser(appUser);
             }
-            System.out.println("Username: " + appUser.getUsername() + " Password: " + appUser.getPassword());
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
             alert.setHeaderText("Changes saved");

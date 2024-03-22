@@ -38,7 +38,6 @@ public class MainCheeky {
   }
 
   private static void testUserOperations() {
-    System.out.println("=== User Operations Test ===");
     UserDao userDao = new UserDaoImpl();
     UserService userService = new UserService(userDao);
 
@@ -46,7 +45,6 @@ public class MainCheeky {
     User newUser = null;
     try {
       newUser = userService.registerUser("testUser11", "testPass");
-      System.out.println("User registered: " + newUser.getUsername());
     } catch (IllegalArgumentException e) {
       System.out.println("Username or password might have been to long...");
     } catch (UsernameAlreadyExistsException e) {
@@ -57,7 +55,6 @@ public class MainCheeky {
     User persitentUser = null;
     try {
       persitentUser = userService.authenticateUser("testUserNew1", "newTestPass");
-      System.out.println("Logged into: " + persitentUser.getUsername());
     } catch (AuthenticationFailedException e) {
       System.out.println("Username or password is simply wrong");
     }
@@ -110,14 +107,9 @@ public class MainCheeky {
       System.out.println("Household with joincode not found.");
     }
 
-    for (User u : householdN.getUsers()) {
-      System.out.println(u.getUsername());
-    }
 
 
 
-    System.out.println("Created household: " + household.getName());
-    System.out.println("With the join code: " + household.getJoinCode());
 
     // set the household offline
     persitentUser.setHousehold(household);
@@ -125,7 +117,6 @@ public class MainCheeky {
     // persist the changes to db
     try {
       userService.saveUserHousehold(persitentUser);
-      System.out.println("User household saved.");
     } catch (Exception e) {
       System.out.println("User household saving failed");
     }
@@ -133,8 +124,8 @@ public class MainCheeky {
     // change user username
     try {
       userService.changeUserUsername(persitentUser, "testUserNew1");
-      System.out.println("User username updated: " + persitentUser.getUsername());
-    } catch (UsernameAlreadyExistsException e) {
+    }
+    catch (UsernameAlreadyExistsException e) {
       System.out.println("Username change failed due to already existing in db");
     } catch (IllegalArgumentException e) {
       System.out.println("Username is too long or illegal");
@@ -143,47 +134,37 @@ public class MainCheeky {
 
     // change user password
     userService.changeUserPassword(persitentUser, "newTestPass");
-    System.out.println("User password updated.");
   }
 
 
 
   private static void testHouseholdOperations() {
-    System.out.println("=== Household Operations Test ===");
     HouseholdDao householdDao = new HouseholdDaoImpl();
     HouseholdService householdService = new HouseholdService(householdDao);
 
     try {
       Household newHousehold = householdService.createHousehold();
-      System.out.println("Household created: " + newHousehold.getName());
       Household foundHousehold = householdService.findHouseholdByJoinCode(newHousehold.getJoinCode());
-      System.out.println("Household found: " + foundHousehold.getName());
     } catch (HouseholdNotFoundException e) {
       System.out.println("Household not found");
     }
   }
 
   private static void testIngredientOperations() {
-    System.out.println("=== Ingredient Operations Test ===");
     IngredientDao ingredientDao = new IngredientDaoImpl();
     IngredientService ingredientService = new IngredientService(ingredientDao);
 
     List<Ingredient> ingredients = ingredientService.findAllIngredients();
-    System.out.println("All ingredients:");
     ingredients.forEach(ingredient -> System.out.println("- " + ingredient.getName()));
 
     Ingredient newIngredient = ingredientService.findIngredientById(1); // is assuming an ingredient with ID 1 exists
-    System.out.println("Ingredient found: " + newIngredient.getName());
   }
 
   private static void testRecipeOperations() {
-    System.out.println("=== Recipe Operations Test ===");
     RecipeDao recipeDao = new RecipeDaoImpl();
     RecipeService recipeService = new RecipeService(recipeDao);
 
     List<Recipe> recipes = recipeService.findAllRecipes();
-    System.out.println("All recipes:");
-    recipes.forEach(recipe -> System.out.println("- " + recipe));
 
     // assuming a recipe with ID 1 exists
     Recipe recipe = recipes.get(1);

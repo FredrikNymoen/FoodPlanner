@@ -22,9 +22,6 @@ public class ShoppingListItemController {
   public void setData(ShoppingListIngredient shoppingListIngredient) {
     nameLabel.setText(shoppingListIngredient.getIngredient().getName());
     amountLabel.setText(shoppingListIngredient.getQuantity() + " " + shoppingListIngredient.getIngredient().getUnit().getUnitName());
-    //Image image = new Image(inventoryIngredient.getIngredient().getImageUrl().toString());
-    //System.out.println("image loaded");
-    //img.setImage(image);
   }
 
 

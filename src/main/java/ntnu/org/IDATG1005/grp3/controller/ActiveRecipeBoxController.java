@@ -38,7 +38,6 @@ public class ActiveRecipeBoxController implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    System.out.println("ActiveRecipeBoxController initialized");
   }
 
   public void setData(Recipe recipe) {
@@ -49,13 +48,11 @@ public class ActiveRecipeBoxController implements Initializable {
 
   @FXML
   public void recipeMade() {
-    System.out.println("Recipe made!");
     listener2.anActiveRecipeMade(recipe);
   }
 
   @FXML
   public void removeRecipe() {
-    System.out.println("Recipe removed!");
     recipe.setBeenBought(false); //vet ikke om denne er riktig
     appUser.getChosenRecipes().remove(recipe);
 

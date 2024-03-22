@@ -46,7 +46,6 @@ public class ActiveRecipesController implements Initializable, ActiveRecipeRemov
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //getData();
-        System.out.println("ActiveRecipesController initialized");
         displayActiveRecipes();
     }
 
@@ -98,7 +97,6 @@ public class ActiveRecipesController implements Initializable, ActiveRecipeRemov
 
             AnchorPane anchorPane = loader.load();
             Popup_buyShoppingListController controller = loader.getController();
-            System.out.println("Recipe.getBeenBought(): " + recipe.getBeenBought());
             controller.setData(recipe, recipe.getBeenBought());
             controller.setActiveRecipePopupBuyMakeListener(this);
             popupHolder.getChildren().add(anchorPane);
@@ -114,7 +112,6 @@ public class ActiveRecipesController implements Initializable, ActiveRecipeRemov
                 if (inventoryNames.contains(recIngredient.getIngredient().getName())) {
                     newQuantity = appUser.getInventory().getIngredients().get(recIngredient.getIngredient()).getQuantity() - recIngredient.getAmount();
                     appUser.getInventory().getIngredients().get(recIngredient.getIngredient()).setQuantity(newQuantity);
-                    //System.out.println("Removed " + recIngredient.getIngredient().getName() + " from inventory");
                 }
             }
 
@@ -136,27 +133,6 @@ public class ActiveRecipesController implements Initializable, ActiveRecipeRemov
         }
     }
 
-    /*private boolean checkIfUserHasIngredients(Recipe recipe) {
-        //Iterer gjennom inventory og sjekk om brukeren har alle ingrediensene som trengs for å lage oppskriften
-        boolean returnValue = false;
-        try{
-            //HER KAN DET VÆRE FEIL
-            for (int i = 0; i < recipe.getIngredients().size(); i++) {
-                if (appUser.getInventory().getIngredients().containsKey(recipe.getIngredients().get(i))) {
-                    returnValue = true;
-                } else {
-                    returnValue = false;
-                    break;
-                }
-            }
-        } catch (NullPointerException e) {
-            System.out.println("User has no ingredients");
-        }
-
-        System.out.println("User has ingredients: " + returnValue);
-        return returnValue;
-    }*/
-
     @Override
     public void anActiveRecipeRemoved(Recipe recipe) {
         us.saveChosenRecipes(appUser);
@@ -173,22 +149,7 @@ public class ActiveRecipesController implements Initializable, ActiveRecipeRemov
     public void buyAndMake(Recipe recipe) {
         popupHolder.getChildren().clear();
         displayActiveRecipes();
-        System.out.println("Pressed buy and make button");
     }
-
-    /*@Override
-    public void exitPopup() {
-        popupHolder.getChildren().clear();
-        System.out.println("Popup closed");
-    }
-
-
-
-    @Override
-    public void editShoppingList() {
-        popupHolder.getChildren().clear();
-        System.out.println("Pressed edit shopping list button");
-    }*/
 
 
     //Iterer gjennom inventory og fjern ingredienser som er brukt i oppskriften

@@ -56,9 +56,7 @@ public class ShoppingListController implements Initializable, ShoppingListRecipe
 
     Collection<InventoryIngredient> ingredients = appUser.getInventory().getIngredients().values();
     for (Recipe recipe : appUser.getShoppingCartRecipes()) {
-      System.out.println(recipe.getRecipeInfo().getTitle());
       for(RecipeIngredient recIngredient : recipe.getIngredients()){
-        System.out.println(recIngredient.getIngredient().getName() + " " + recIngredient.getAmount() + " " + recIngredient.getUnit());
         for(InventoryIngredient invIngredient : ingredients){
           if(invIngredient.getIngredient().getName().equals(recIngredient.getIngredient().getName())){
             double shoppingListAmount = recIngredient.getAmount() - invIngredient.getQuantity();
@@ -77,7 +75,6 @@ public class ShoppingListController implements Initializable, ShoppingListRecipe
   @Override
   public void initialize(URL location, ResourceBundle resources){
     //getData();
-    System.out.println(appUser.getChosenRecipes());
     //appUser.addChosenRecipe(MainApp.appRecipes.get(0));
     //appUser.addChosenRecipe(MainApp.appRecipes.get(1));
     //appUser.addChosenRecipe(MainApp.appRecipes.get(2));
@@ -88,16 +85,11 @@ public class ShoppingListController implements Initializable, ShoppingListRecipe
 
   public void displayChosenRecipes(){
     List<Recipe> shoppingCartRecipes = appUser.getShoppingCartRecipes();
-    System.out.println("UGLER");
-    System.out.println(shoppingCartRecipes.size());
-    System.out.println(appUser.getShoppingCartRecipes().size());
-    System.out.println(appUser.getChosenRecipes().size());
     chosenRecipesGrid.getChildren().clear(); // Clear existing items from the grid
     int column = 0;
     int row = 1;
     try {
       for (int i = 0; i < shoppingCartRecipes.size(); i++) {
-        System.out.println(shoppingCartRecipes.get(i).getRecipeInfo().getTitle());
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(
             getClass().getResource("/fxml/components/shoppingListChosenRecipe.fxml"));
@@ -128,7 +120,6 @@ public class ShoppingListController implements Initializable, ShoppingListRecipe
     int row = 1;
     try {
       for (int i = 0; i < shoppingList.size(); i++) {
-        System.out.println(shoppingList.get(i).getIngredient().getName() + " " + shoppingList.get(i).getQuantity() + " " + shoppingList.get(i).getUnit());
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(
             getClass().getResource("/fxml/components/shoppingListItem.fxml"));
@@ -178,7 +169,6 @@ public class ShoppingListController implements Initializable, ShoppingListRecipe
 
     displayChosenRecipes();
     displayShoppingList();
-    System.out.println(appUser.getInventory().getIngredients().size());
   }
 
 }

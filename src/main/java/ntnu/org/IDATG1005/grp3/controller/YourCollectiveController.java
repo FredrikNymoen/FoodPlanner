@@ -69,15 +69,8 @@ public class YourCollectiveController implements Initializable, LoginDisplayList
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    System.out.println("YourCollectiveController initialized");
     collectiveCode.setText(appUser.getHousehold().getJoinCode());
 
-    System.out.println(appUser.getHousehold().getUsers().size());
-    try {
-      System.out.println(hs.findHouseholdByJoinCode(appUser.getHousehold().getJoinCode()).getUsers().size());
-    } catch (HouseholdNotFoundException e) {
-      throw new RuntimeException(e);
-    };
 
     //getData();
 
@@ -85,13 +78,11 @@ public class YourCollectiveController implements Initializable, LoginDisplayList
   }
 
   private void displayUsers() {
-    System.out.println("HALLAHHALLAHALLAHALLA");
 
     profileContainer.getChildren().clear();
     try {
     for (User user : hs.findHouseholdByJoinCode(appUser.getHousehold().getJoinCode()).getUsers()) {
 
-      System.out.println(user.getUsername() + " " + user.getPassword() +  " " + user.getInventory().getIngredients().size());
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(
@@ -112,7 +103,6 @@ public class YourCollectiveController implements Initializable, LoginDisplayList
 
   @Override
   public void onLoginDisplay(User user) {
-    System.out.println("HALLAHALLA");
     try {
       FXMLLoader loader = new FXMLLoader();
       loader.setLocation(getClass().getResource("/fxml/components/loginToYourProfilePage.fxml"));
@@ -132,7 +122,6 @@ public class YourCollectiveController implements Initializable, LoginDisplayList
 
   @FXML
   void leaveCollective(ActionEvent event) {
-    System.out.println("leaveCollective");
     Household h = null;
     try {
       h = hs.findHouseholdByJoinCode(appUser.getHousehold().getJoinCode());
@@ -147,7 +136,6 @@ public class YourCollectiveController implements Initializable, LoginDisplayList
     } catch (Exception e) {
       e.printStackTrace();
     }
-    System.out.println("halla");
 
     try{
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/views/startScreen.fxml"));

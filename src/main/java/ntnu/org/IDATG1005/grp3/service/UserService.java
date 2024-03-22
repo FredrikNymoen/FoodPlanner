@@ -52,7 +52,6 @@ public class UserService {
    */
   public void saveUserInventory(User user) throws FailedToLoadInventoryException {
     if (user == null || user.getInventory() == null || user.getUserId() == null) {
-      System.out.println("Saving inventory failed because of null");
       return;
     }
     try {

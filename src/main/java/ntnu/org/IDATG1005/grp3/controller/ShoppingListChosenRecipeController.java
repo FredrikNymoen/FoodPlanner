@@ -27,7 +27,6 @@ public class ShoppingListChosenRecipeController {
 
   @FXML
   void removeRecipe(MouseEvent event) {
-    System.out.println("HALLA");
     appUser.getChosenRecipes().remove(recipe);
     appUser.getShoppingCartRecipes().remove(recipe);
     removalListener.onRecipeRemoved(recipe);

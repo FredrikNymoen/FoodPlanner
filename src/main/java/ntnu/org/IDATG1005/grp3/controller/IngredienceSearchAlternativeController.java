@@ -75,7 +75,6 @@ public class IngredienceSearchAlternativeController {
   }
   @FXML
   void displayEditBox(MouseEvent event) {
-    System.out.println("Displaying edit box for " + ingredient.getName());
     if (editBoxDisplayListener != null) {
       editBoxDisplayListener.onDisplayEditBox(ingredient);
     }

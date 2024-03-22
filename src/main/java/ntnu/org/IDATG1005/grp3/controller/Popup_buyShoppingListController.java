@@ -52,7 +52,6 @@ public class Popup_buyShoppingListController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("Popup_buyShoppingListController initialized");
     }
 
 
@@ -115,7 +114,6 @@ public class Popup_buyShoppingListController implements Initializable {
 
     @FXML
     public void changeShoppingList() {
-        System.out.println("Change shopping list");
     }
 
     @FXML

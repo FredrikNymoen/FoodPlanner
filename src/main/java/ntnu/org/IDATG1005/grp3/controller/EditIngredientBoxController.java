@@ -114,7 +114,6 @@ public class EditIngredientBoxController {
   @FXML
   void onRemoveButtonClicked(MouseEvent event) {
     try {
-      System.out.println("HALLAALALA");
       // Parse the amount to remove from the text field.
       int amountToRemove = Integer.parseInt(editTextField.getText());
 
