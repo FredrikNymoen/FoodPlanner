@@ -8,8 +8,8 @@ import java.util.List;
  * preparation guidance.
  */
 public class Recipe {
-  private boolean favorite = false;
 
+  private boolean favorite = false;
   private final Integer recipeId;
   private final RecipeInfo recipeInfo;
   private final List<RecipeIngredient> ingredients;
@@ -32,7 +32,8 @@ public class Recipe {
    * @param recipeId        RecipeId id matching the id in the db.
    */
   public Recipe(RecipeInfo recipeInfo, List<RecipeIngredient> ingredients,
-      List<Direction> directions, List<Tag> tags, Integer personsAdults, Integer personsChildren, Integer recipeId) {
+      List<Direction> directions, List<Tag> tags, Integer personsAdults, Integer personsChildren,
+      Integer recipeId) {
     this.recipeInfo = recipeInfo;
     this.ingredients = ingredients;
     this.directions = directions;
@@ -113,23 +114,47 @@ public class Recipe {
   public void setPersonsChildren(Integer personsChildren) {
     this.personsChildren = personsChildren;
   }
-  public void changeFavoriteStatus(){
+
+  /**
+   * Toggles the favorite status of this item.
+   */
+  public void changeFavoriteStatus() {
     this.favorite = !this.favorite;
   }
-  public boolean getFavoriteStatus(){
+
+  /**
+   * Gets the favorite status.
+   *
+   * @return true if it's a favorite, false otherwise.
+   */
+  public boolean getFavoriteStatus() {
     return this.favorite;
   }
 
-  public Integer getRecipeId(){
+  /**
+   * Gets the recipe ID.
+   *
+   * @return The recipe ID.
+   */
+  public Integer getRecipeId() {
     return recipeId;
   }
 
+  /**
+   * Sets the purchase status of the recipe.
+   *
+   * @param beenBought true if the recipe has been purchased, false otherwise.
+   */
   public void setBeenBought(boolean beenBought) {
     this.beenBought = beenBought;
   }
 
+  /**
+   * Checks if the recipe has been purchased.
+   *
+   * @return true if purchased, false otherwise.
+   */
   public boolean getBeenBought() {
     return this.beenBought;
   }
-
 }

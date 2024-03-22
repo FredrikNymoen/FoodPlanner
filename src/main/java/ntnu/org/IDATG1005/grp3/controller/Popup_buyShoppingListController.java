@@ -1,5 +1,9 @@
 package ntnu.org.IDATG1005.grp3.controller;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,6 +17,7 @@ import ntnu.org.IDATG1005.grp3.interfaces.ActiveRecipeMadeListener;
 import ntnu.org.IDATG1005.grp3.interfaces.ActiveRecipePopupBuyMake;
 import ntnu.org.IDATG1005.grp3.interfaces.ActiveRecipePopupChangeShoppingListListener;
 import ntnu.org.IDATG1005.grp3.interfaces.CloseActiveRecipePopupListener;
+import ntnu.org.IDATG1005.grp3.model.objects.Ingredient;
 import ntnu.org.IDATG1005.grp3.model.objects.Recipe;
 
 import java.net.URL;
@@ -70,39 +75,34 @@ public class Popup_buyShoppingListController implements Initializable {
 
     @FXML
     public void buyAndMake() {
+        List<String> inventoryNames = appUser.getInventory().getIngredients().keySet().stream().map(Ingredient::getName).toList();
+        double newQuantity;
 
-        if(!hasIngredients) {
+        if(!hasIngredients) { //er egentlig ikke noe vits å ha if her fordi denne knappen finnes bare hvis brukeren allerede har ingrediensene
             //Iterer gjennom hvilke ingredienser brukeren har, legg til de ingrediensene som mangler, også fjern alle ingrediensene som brukes i retten
-
-            //HER KAN DET VÆRE FEIL
-            /*System.out.println("Shopping cart: " + appUser.getShoppingList());
-            for(int i = 0; i < recipe.getIngredients().size(); i++) {
-                if(!appUser.getShoppingList().contains(recipe.getIngredients().get(i))) {
-                    appUser.getShoppingList().remove(recipe.getIngredients().get(i));
-                }
-            }
-            */
-
+            List<Ingredient> shoppingListIngredients = appUser.getShoppingList().stream().map(ShoppingListIngredient::getIngredient).toList();
             for (RecipeIngredient recIngredient : recipe.getIngredients()) {
-                appUser.getShoppingList().removeIf(shopIngredient -> {
-                    if (recIngredient.getIngredient().getName().equals(shopIngredient.getIngredient().getName())) {
-                        double newQuantity = shopIngredient.getQuantity() - recIngredient.getAmount();
-                        if (newQuantity <= 0) {
-                            return true; // Remove from shopping list if new quantity is less than or equal to zero
-                        } else {
-                            if (appUser.getInventory().getIngredients().containsKey(recIngredient.getIngredient())) {
-                                appUser.getInventory().getIngredients().get(recIngredient.getIngredient()).setQuantity(appUser.getInventory().getIngredients().get(recIngredient.getIngredient()).getQuantity() - recIngredient.getAmount());
-                            } else {
-                                shopIngredient.setQuantity(newQuantity); // Update quantity otherwise
-                            }
-                            return false; // Do not remove from shopping list
-                        }
+                if (inventoryNames.contains(recIngredient.getIngredient().getName())) {
+                    newQuantity = appUser.getInventory().getIngredients().get(recIngredient.getIngredient()).getQuantity() - recIngredient.getAmount();
+                    appUser.getInventory().getIngredients().get(recIngredient.getIngredient()).setQuantity(newQuantity);
+                }
+                else if (shoppingListIngredients.contains(recIngredient.getIngredient())) {
+                    ShoppingListIngredient shopIngredient = appUser.getShoppingList().stream().filter(shopIng -> shopIng.getIngredient().getName().equals(recIngredient.getIngredient().getName())).findFirst().get();
+                    newQuantity = shopIngredient.getQuantity() - recIngredient.getAmount();
+                    if (newQuantity <= 0) {
+                        appUser.getShoppingList().remove(shopIngredient);
+                    } else {
+                        shopIngredient.setQuantity(newQuantity);
                     }
-                    return false; // Keep the ingredient in the shopping list if names do not match
-                });
+                }
             }
 
             appUser.getChosenRecipes().remove(recipe);
+            try {
+                us.saveUserInventory(appUser);
+            } catch (FailedToLoadInventoryException e) {
+                throw new RuntimeException(e);
+            }
             us.saveChosenRecipes(appUser);
             try {
                 us.saveUserInventory(appUser);

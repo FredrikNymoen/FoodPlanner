@@ -138,17 +138,16 @@ public class ChoseRecipeController implements Initializable {
 
   public void checkIngredients() {
     Integer matchedIngredients = 0;
-    List<Ingredient> missingIngredientsList = new ArrayList<>(); // List to hold names of missing ingredients
+    List<Ingredient> missingIngredientsList = new ArrayList<>();
     int totalRecipeIngredients = recipe.getIngredients().size();
-    // Check each ingredient in the recipe
     if (appUser != null && appUser.getInventory() != null) {
       for (int i = 0; i < recipe.getIngredients().size(); i++) {
         Ingredient recIngredient = recipe.getIngredients().get(i).getIngredient();
         // Check if the user's inventory contains this ingredient
         if (appUser.getInventory().getIngredients().get(recIngredient) != null) {
           if (appUser.getInventory().getIngredients().get(recIngredient).getQuantity()
-              >= recipe.getIngredients().get(0).getAmount()) {
-            matchedIngredients++; // Ingredient is in inventory
+              >= recipe.getIngredients().get(i).getAmount()) {
+            matchedIngredients++;
           }
         } else {
           missingIngredientsList.add(recIngredient); // Ingredient is missing
@@ -157,12 +156,9 @@ public class ChoseRecipeController implements Initializable {
     } else {
       System.out.println("User or inventory is null");
     }
-
-    // Update the UI for matched ingredients
     boughtIngredients.setText(matchedIngredients.toString() /* + " of " + totalRecipeIngredients*/);
-
     int missingCount =
-        totalRecipeIngredients - matchedIngredients; // Calculate the number of missing ingredients
+        totalRecipeIngredients - matchedIngredients;
     this.missingIngredients.setText(String.valueOf(missingCount));
   }
 }
