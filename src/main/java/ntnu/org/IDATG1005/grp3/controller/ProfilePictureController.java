@@ -6,6 +6,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import ntnu.org.IDATG1005.grp3.interfaces.LoginDisplayListener;
+import ntnu.org.IDATG1005.grp3.model.objects.Household;
 import ntnu.org.IDATG1005.grp3.model.objects.User;
 
 public class ProfilePictureController {
