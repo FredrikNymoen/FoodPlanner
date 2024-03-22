@@ -9,27 +9,27 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="choseRecipeBorder" prefHeight="232.0" prefWidth="644.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.org.IDATG1005.grp3.controller.ChoseRecipeController">
+<AnchorPane fx:id="choseRecipeBorder" prefHeight="237.0" prefWidth="412.0" style="-fx-background-color: black; -fx-padding: 6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.org.IDATG1005.grp3.controller.ChoseRecipeController">
    <children>
       <ImageView fitHeight="113.0" fitWidth="165.0" layoutX="19.0" layoutY="56.8193359375" pickOnBounds="true" preserveRatio="true">
       </ImageView>
-      <Pane layoutX="9.0" layoutY="6.0" prefHeight="29.0" prefWidth="626.0" style="-fx-background-color: rgba(0,150,0,0.80);">
+      <Pane layoutX="19.0" layoutY="14.0" prefHeight="29.0" prefWidth="606.0" style="-fx-background-color: rgba(0,150,0,0.80);">
          <children>
-            <Text fx:id="recipeName" fill="WHITE" layoutX="-5.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Navn på matrett" textAlignment="CENTER" wrappingWidth="624.0">
+            <Text fx:id="recipeName" fill="WHITE" layoutX="-9.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Navn på matrett" textAlignment="CENTER" wrappingWidth="624.0">
                <font>
                   <Font size="21.0" />
                </font>
             </Text>
-            <Label fx:id="starLabel" layoutX="582.0" layoutY="1.0" onMouseClicked="#favoriteClick" text="☆">
+            <Label fx:id="starLabel" layoutX="562.0" layoutY="2.0" onMouseClicked="#favoriteClick" prefHeight="27.0" prefWidth="18.0" text="☆">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
          </children>
       </Pane>
-      <ImageView fx:id="recipeImage" fitHeight="160.0" fitWidth="207.0" layoutX="8.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="recipeImage" fitHeight="133.0" fitWidth="179.0" layoutX="36.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
       </ImageView>
-      <AnchorPane layoutX="215.0" layoutY="57.0" prefHeight="160.0" prefWidth="418.0" style="-fx-background-color: rgba(0,0,0,0.1);">
+      <AnchorPane layoutX="215.0" layoutY="57.0" prefHeight="160.0" prefWidth="404.0" style="-fx-background-color: rgba(0,0,0,0.1);">
          <children>
             <Text fx:id="recipeDescription" fill="WHITE" layoutX="6.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The group will spend class hours and agreed meeting hours on assignments, with additional hours as needed." textAlignment="CENTER" wrappingWidth="401.13671875">
                <font>
