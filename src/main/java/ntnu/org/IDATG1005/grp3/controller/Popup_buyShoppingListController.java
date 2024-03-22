@@ -75,14 +75,13 @@ public class Popup_buyShoppingListController implements Initializable {
 
     @FXML
     public void buyAndMake() {
+        List<String> inventoryNames = appUser.getInventory().getIngredients().keySet().stream().map(Ingredient::getName).toList();
+        double newQuantity;
 
-        if(!hasIngredients) {
+        if(!hasIngredients) { //er egentlig ikke noe vits å ha if her fordi denne knappen finnes bare hvis brukeren allerede har ingrediensene
             //Iterer gjennom hvilke ingredienser brukeren har, legg til de ingrediensene som mangler, også fjern alle ingrediensene som brukes i retten
-
-            List<String> inventoryNames = appUser.getInventory().getIngredients().keySet().stream().map(Ingredient::getName).toList();
             List<Ingredient> shoppingListIngredients = appUser.getShoppingList().stream().map(ShoppingListIngredient::getIngredient).toList();
             for (RecipeIngredient recIngredient : recipe.getIngredients()) {
-                double newQuantity;
                 if (inventoryNames.contains(recIngredient.getIngredient().getName())) {
                     newQuantity = appUser.getInventory().getIngredients().get(recIngredient.getIngredient()).getQuantity() - recIngredient.getAmount();
                     appUser.getInventory().getIngredients().get(recIngredient.getIngredient()).setQuantity(newQuantity);

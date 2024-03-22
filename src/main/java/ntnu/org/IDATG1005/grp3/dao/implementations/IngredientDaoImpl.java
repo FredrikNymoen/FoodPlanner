@@ -27,7 +27,7 @@ public class IngredientDaoImpl implements IngredientDao {
             rs.getInt("ingredient_id"),
             rs.getString("name"),
             rs.getString("image"),
-            MeasurementUnit.fromUnitId(rs.getInt("unit_id")));
+            MeasurementUnit.fromId(rs.getInt("unit_id")));
       }
     } catch (SQLException e) {
       logger.log(Level.SEVERE, "Error finding ingredient by ID", e);
@@ -47,7 +47,7 @@ public class IngredientDaoImpl implements IngredientDao {
             rs.getInt("ingredient_id"),
             rs.getString("name"),
             rs.getString("image"),
-            MeasurementUnit.fromUnitId(rs.getInt("unit_id"))));
+            MeasurementUnit.fromId(rs.getInt("unit_id"))));
       }
     } catch (SQLException e) {
       logger.log(Level.SEVERE, "Error finding all ingredients", e);

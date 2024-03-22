@@ -43,7 +43,6 @@ public class ActiveRecipeBoxController implements Initializable {
 
   public void setData(Recipe recipe) {
     this.recipe = recipe;
-    System.out.println("KJØRER!!");
     recipeName.setText(recipe.getRecipeInfo().getTitle());
     recipeImage.setImage(new Image("/images/Kniv_Gaffel_ikon.png")); //Funker ikke fordi det ikke er lagt inn bilde i databasen
   }
@@ -57,7 +56,7 @@ public class ActiveRecipeBoxController implements Initializable {
   @FXML
   public void removeRecipe() {
     System.out.println("Recipe removed!");
-    recipe.setBeenBought(false);
+    recipe.setBeenBought(false); //vet ikke om denne er riktig
     appUser.getChosenRecipes().remove(recipe);
 
     listener.anActiveRecipeRemoved(recipe);

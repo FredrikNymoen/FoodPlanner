@@ -2,9 +2,8 @@ package ntnu.org.IDATG1005.grp3.controller;
 
 import static ntnu.org.IDATG1005.grp3.application.MainApp.appUser;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -27,9 +26,7 @@ import javafx.scene.layout.Region;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
@@ -290,6 +287,15 @@ public class IngredienceController implements Initializable, EditBoxDisplayListe
     }
 
     private void displayIngredients() {
+        //Fjerner først alle ingrediensene som ikke har noen mengde
+        Iterator<InventoryIngredient> iterator = appUser.getInventory().getIngredients().values().iterator();
+        while(iterator.hasNext()) {
+            InventoryIngredient ingredient = iterator.next();
+            if (ingredient.getQuantity() <= 0.0) {
+                iterator.remove();
+            }
+        }
+
         List<InventoryIngredient> invIngredients;
         if(favoriteCheckBox.isSelected()){
             invIngredients = filterFavorites();

@@ -18,16 +18,12 @@ import ntnu.org.IDATG1005.grp3.dao.interfaces.UserDao;
 import ntnu.org.IDATG1005.grp3.db.DatabaseConnection;
 import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.AuthenticationFailedException;
 import ntnu.org.IDATG1005.grp3.exception.db.UserExceptions.UsernameAlreadyExistsException;
-import ntnu.org.IDATG1005.grp3.model.objects.Direction;
 import ntnu.org.IDATG1005.grp3.model.objects.Household;
 import ntnu.org.IDATG1005.grp3.model.objects.Ingredient;
 import ntnu.org.IDATG1005.grp3.model.objects.Inventory;
 import ntnu.org.IDATG1005.grp3.model.objects.InventoryIngredient;
 import ntnu.org.IDATG1005.grp3.model.objects.MeasurementUnit;
 import ntnu.org.IDATG1005.grp3.model.objects.Recipe;
-import ntnu.org.IDATG1005.grp3.model.objects.RecipeInfo;
-import ntnu.org.IDATG1005.grp3.model.objects.RecipeIngredient;
-import ntnu.org.IDATG1005.grp3.model.objects.Tag;
 import ntnu.org.IDATG1005.grp3.model.objects.User;
 
 /**
@@ -244,7 +240,7 @@ public class UserDaoImpl implements UserDao {
             rs.getInt("ingredient_id"),
             rs.getString("name"),
             rs.getString("image"),
-            MeasurementUnit.fromUnitId(rs.getInt("unit_id")));
+            MeasurementUnit.fromId(rs.getInt("unit_id")));
         double amount = rs.getDouble("amount");
 
         InventoryIngredient inventoryIngredient = new InventoryIngredient(ingredient, amount);

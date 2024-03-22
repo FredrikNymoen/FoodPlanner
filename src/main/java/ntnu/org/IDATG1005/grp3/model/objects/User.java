@@ -1,6 +1,5 @@
 package ntnu.org.IDATG1005.grp3.model.objects;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -80,10 +79,20 @@ public class User {
     this.password = password;
   }
 
+  /**
+   * Retrieves the user's inventory.
+   *
+   * @return The inventory associated with the user.
+   */
   public Inventory getInventory() {
     return inventory;
   }
 
+  /**
+   * Set the user inventory.
+   *
+   * @param inventory The inventory to be associated with the user.
+   */
   public void setInventory(Inventory inventory) {
     this.inventory = inventory;
   }
@@ -97,10 +106,20 @@ public class User {
     return household;
   }
 
+  /**
+   * Associates the user with a household.
+   *
+   * @param household The household to associate with the user. Can be null if dissociating the user from a household.
+   */
   public void setHousehold(Household household) {
     this.household = household;
   }
 
+  /**
+   * Checks if the user is associated with a household.
+   *
+   * @return true if the user is part of a household; false otherwise.
+   */
   public boolean isAssociatedWithHousehold () {
     return household != null;
   }
@@ -116,10 +135,11 @@ public class User {
   }
 
   /**
-   * Can both increase and decrease the value based on +-
+   * Adjusts the quantity of a given ingredient in the inventory.
+   * If the ingredient does not exist, it will be added or ignored based on the change value.
    *
-   * @param ingredient
-   * @param changeValue
+   * @param ingredient The ingredient whose quantity is to be adjusted.
+   * @param changeValue The amount by which the ingredient's quantity is to be adjusted.
    */
   public void changeQuantityOfIngredient(Ingredient ingredient, double changeValue) {
     InventoryIngredient inventoryIngredient = inventory.getIngredients().get(ingredient);
@@ -139,6 +159,24 @@ public class User {
         System.out.println("Cannot add ingredient with non-positive quantity.");
       }
     }
+  }
+
+  /**
+   * Retrieves the list of chosen recipes by the user.
+   *
+   * @return A list of recipes chosen by the user.
+   */
+  public List<Recipe> getChosenRecipes() {
+    return chosenRecipes;
+  }
+
+  /**
+   * Sets the list of chosen recipes for the user.
+   *
+   * @param recipes The new list of chosen recipes.
+   */
+  public void setChosenRecipes(List<Recipe> recipes) {
+    chosenRecipes = recipes;
   }
 
   public void addShoppingListIngredient(ShoppingListIngredient ingredient) {
@@ -163,15 +201,6 @@ public class User {
     chosenRecipes.remove(recipe);
   }
 
-  public List<Recipe> getChosenRecipes() {
-    return chosenRecipes;
-  }
-
-  public void setChosenRecipes(List<Recipe> recipes) {
-    chosenRecipes = recipes;
-  }
-
-
   // I think this needs to go
   public List<Recipe> getShoppingCartRecipes() {
     List<Recipe> shoppingCartRecipes = new ArrayList<>();
@@ -182,5 +211,4 @@ public class User {
     }
     return shoppingCartRecipes;
   }
-
 }
