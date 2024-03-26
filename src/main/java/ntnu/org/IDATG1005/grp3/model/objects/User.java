@@ -179,7 +179,20 @@ public class User {
   }
 
   public void addShoppingListIngredient(ShoppingListIngredient ingredient) {
-    shoppingList.add(ingredient);
+    //Check if ingredient already is in the list, if so, add the amount to the existing ingredient
+    boolean ingredientAlreadyInList = false;
+    for (ShoppingListIngredient shoppingListIngredient : shoppingList) {
+      if (shoppingListIngredient.getIngredient().equals(ingredient.getIngredient())) {
+        System.out.println(ingredient.getIngredient().getName() );
+        System.out.println("previous quantity: " + shoppingListIngredient.getQuantity() + " new quantity: " + ingredient.getQuantity());
+        shoppingListIngredient.setQuantity(shoppingListIngredient.getQuantity() + ingredient.getQuantity());
+        ingredientAlreadyInList = true;
+      }
+    }
+    if (!ingredientAlreadyInList) {
+      shoppingList.add(ingredient);
+    }
+    //shoppingList.add(ingredient);
   }
 
   public void removeShoppingListIngredient(ShoppingListIngredient ingredient) {
