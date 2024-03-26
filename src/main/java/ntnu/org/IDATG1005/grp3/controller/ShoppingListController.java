@@ -62,18 +62,18 @@ public class ShoppingListController implements Initializable, ShoppingListRecipe
         for(InventoryIngredient invIngredient : ingredients){
           if(invIngredient.getIngredient().getName().equals(recIngredient.getIngredient().getName())){
             shoppingListAmount = recIngredient.getAmount() - invIngredient.getQuantity();
-            if(shoppingListAmount > 0.0){
+            recIngredientIsInInventory = true;
 
-              recIngredientIsInInventory = true;
-            }
           }
         }
 
-        if(recIngredientIsInInventory){
-          appUser.addShoppingListIngredient(new ShoppingListIngredient(recIngredient.getIngredient(), shoppingListAmount));
-        }
-        else {
-          appUser.addShoppingListIngredient(new ShoppingListIngredient(recIngredient.getIngredient(), recIngredient.getAmount()));
+        if(!recIngredientIsInInventory){
+          if(shoppingListAmount > 0.0){
+            appUser.addShoppingListIngredient(new ShoppingListIngredient(recIngredient.getIngredient(), shoppingListAmount));
+          }
+          else {
+            appUser.addShoppingListIngredient(new ShoppingListIngredient(recIngredient.getIngredient(), recIngredient.getAmount()));
+          }
         }
       }
     }
