@@ -1,22 +1,0 @@
-
-p
-java:S1104"SMake appUser a static final constant or non-public and provide accessors if needed.(ú·œ¹8²»İ®æ1
-x
-java:S1104"VMake appRecipes a static final constant or non-public and provide accessors if needed.(—¹¥Îúÿÿÿÿ8²»İ®æ1
-z
-java:S1104"XMake primaryStage a static final constant or non-public and provide accessors if needed.(¢Ñû¦ûÿÿÿÿ8²»İ®æ1
-J
-java:S1444"-Make this "public static appUser" field final(ú·œ¹8³»İ®æ1
-R
-java:S1444"0Make this "public static appRecipes" field final(—¹¥Îúÿÿÿÿ8³»İ®æ1
-T
-java:S1444"2Make this "public static primaryStage" field final(¢Ñû¦ûÿÿÿÿ8³»İ®æ1
-œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ƒíÇí8ªâòå1J$5f14b86f-2feb-4c7b-9fb0-1aaa18dc023e
-9
-java:S2386"Make this member "protected".(’àË'8Å»İ®æ1
-?
-java:S2386"Make this member "protected".(—¹¥Îúÿÿÿÿ8Ç»İ®æ1
-a
-java:S1124"EReorder the modifiers to comply with the Java Language Specification.(’àË'8Ê»İ®æ1
-X
-java:S2696"6Make the enclosing method "static" or remove this set.(™¼œùÿÿÿÿ8Ñ»İ®æ1

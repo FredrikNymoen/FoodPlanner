@@ -1,7 +1,0 @@
-
-a	java:S112¦"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‡¡èâÿÿÿÿÿ
-m
-java:S37766"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(È¨Ÿşÿÿÿÿ
-Q	java:S125-"<This block of commented-out lines of code should be removed.( Âà›
-Q	java:S125M"<This block of commented-out lines of code should be removed.(¤åñ¼

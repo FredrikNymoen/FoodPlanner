@@ -1,17 +1,0 @@
-
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‡¡èâÿÿÿÿÿ
-@	java:S1065"+Replace this use of System.out by a logger.(…´ƒõ
-E	java:S1067"+Replace this use of System.out by a logger.(Íùä¾øÿÿÿÿ
-Q	java:S125I"<This block of commented-out lines of code should be removed.(ü‹’Ó
-Q
-java:S2696N"6Make the enclosing method "static" or remove this set.(õ½Ìüûÿÿÿÿ
-D
-java:S1068".Remove this unused "lookRecipe" private field.(üº›â
->
-java:S1068")Remove this unused "chose" private field.(áÛ¥
-C
-java:S1068"-Remove this unused "starLabel" private field.(«ıÁ¾
-I
-java:S1068".Remove this unused "recipeName" private field.(˜¬Şıÿÿÿÿ
-D
-java:S1068 "/Remove this unused "recipeImage" private field.(…Õ¦
