@@ -1,8 +1,9 @@
 package ntnu.org.IDATG1005.grp3;
 
-public class Main {
+import ntnu.org.IDATG1005.grp3.application.MainApp;
 
+public class Main{
   public static void main(String[] args) {
-    System.out.println("Hello world!");
+    new MainApp().maino(args);
   }
 }

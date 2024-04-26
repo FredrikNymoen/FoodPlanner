@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.org.IDATG1005.grp3.controller.RecipeScreenController">
+   <children>
+      <ImageView fitHeight="450.0" fitWidth="800.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@/images/bakgrunnsbilde_mat.jpg" />
+         </image></ImageView>
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="78.0" layoutY="101.0" prefHeight="349.0" prefWidth="644.0" style="-fx-background: transparent; -fx-background-color: transparent;" styleClass="recipeScrollPane" stylesheets="@../../css/style.css" vbarPolicy="NEVER">
+         <content>
+            <VBox fx:id="choseRecipeContainer" prefHeight="349.0" prefWidth="642.0" style="-fx-spacing: 20; -fx-alignment: center; -fx-background-color: rgba(0,0,0,0.1);" />
+         </content>
+      </ScrollPane>
+      <ComboBox layoutX="266.0" layoutY="62.0" prefHeight="25.0" prefWidth="268.0" promptText="Vis alle">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:value="Vis alle" />
+               <String fx:value="Vis favoritter ☆" />
+               <String fx:value="Ukas anbefalinger" />
+            </FXCollections>
+         </items>
+      </ComboBox>
+      <fx:include source="../components/menybar-1utkast.fxml" />
+   </children>
+</AnchorPane>

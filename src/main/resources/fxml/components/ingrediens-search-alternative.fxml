@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<HBox fx:id="rootBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="597.0" style="-fx-background-color: #749C63; -fx-border-color: #000; -fx-border-width: 1;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.org.IDATG1005.grp3.controller.IngredienceSearchAlternativeController">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="321.0" HBox.hgrow="NEVER">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="15.0" />
+            <ImageView fx:id="alternativeImage" fitHeight="72.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/Kniv_Gaffel_ikon.png" />
+               </image>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </ImageView>
+            <HBox prefHeight="150.0" prefWidth="37.0" HBox.hgrow="NEVER" />
+            <Text fx:id="alternativeName" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Tomat" textAlignment="CENTER" wrappingWidth="139.609375">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="23.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="150.0" prefWidth="135.0">
+         <children>
+            <Text fx:id="alternativeAmount" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="12 stk">
+               <font>
+                  <Font name="Comic Sans MS" size="17.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <HBox prefHeight="150.0" prefWidth="91.0" HBox.hgrow="ALWAYS" />
+      <VBox fx:id="buttonVBox" alignment="CENTER" prefHeight="150.0" prefWidth="193.0">
+         <children>
+            <HBox fx:id="addButton" alignment="CENTER_LEFT" maxWidth="90.0" minWidth="90.0" onMouseClicked="#displayEditBox" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color: green; -fx-border-width: 2px; -fx-border-color: black;">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til  " wrappingWidth="66.640625">
+                     <font>
+                        <Font name="Comic Sans MS" size="16.0" />
+                     </font>
+                  </Text>
+                  <ImageView fitHeight="58.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/plus-small.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="-7.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox fx:id="editButton" alignment="CENTER_LEFT" maxWidth="89.0" minWidth="84.0" onMouseClicked="#displayEditBox" prefHeight="27.0" prefWidth="84.0" style="-fx-background-color: gray; -fx-border-width: 2px; -fx-border-color: black;">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Endre">
+                     <font>
+                        <Font name="Comic Sans MS" size="16.0" />
+                     </font>
+                  </Text>
+                  <ImageView fitHeight="19.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/editPen.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="12.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</HBox>
