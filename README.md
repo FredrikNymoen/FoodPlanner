@@ -16,11 +16,16 @@ The goal of the application is to optimize meal planning, reduce food waste, and
 
 ## 🛠️ Technology
 - **Language:** Java  
-- **Methodology:** Scrum (3 iterations)  
+- **Methodology:** Scrum (3 iterations)
+- **Database:** MySQL  
 - **Testing:** Automated testing for quality assurance  
-- **Environment:** Desktop application  
+- **Environment:** Desktop application
 
+(Must be connected to the NTNU network to run the application, f.eks with VPN).
 
-![Pantry view]()
-![Meal plan view]()
-![Shopping list view]()
+---
+
+![Join or create a collective](images/foodPlanner1.png)
+![A collective](images/foodPlanner2.png)
+![Meals to choose from](images/foodPlanner3.png)
+![Food inventory](images/foodPlanner4.png)
